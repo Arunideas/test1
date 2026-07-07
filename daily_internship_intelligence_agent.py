@@ -21,6 +21,10 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from linkedin_company_page_agent import LinkedInCompanyPageAgent, LinkedInPostError
+from weekly_linkedin_series import SERIES_BY_KEY, prepend_series_header, resolve_series_for_date
+
+
+INTERNSHIP_SERIES = SERIES_BY_KEY["internship_opportunities"]
 
 
 DEFAULT_SOURCES_PATH = Path("data/sample_sources")
@@ -642,6 +646,16 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         help="Write dry-run output to history without treating it as a live post.",
     )
     parser.add_argument(
+        "--skip-unless-wednesday",
+        action="store_true",
+        help="Skip generation unless today is Wednesday's Internship Opportunities series.",
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Run even when today is not Wednesday.",
+    )
+    parser.add_argument(
         "--post-as",
         choices=("member", "organization"),
         default=os.getenv("LINKEDIN_POST_AS", "member"),
@@ -671,6 +685,26 @@ def main(argv: list[str] | None = None) -> int:
     history_path = Path(args.history_path)
     output_dir = Path(args.output_dir)
     report_date = dt.date.fromisoformat(args.report_date) if args.report_date else dt.date.today()
+    series = resolve_series_for_date(report_date)
+
+    if args.skip_unless_wednesday and series.key != "internship_opportunities" and not args.force:
+        print(
+            json.dumps(
+                {
+                    "dry_run": not args.post,
+                    "skipped": True,
+                    "report_date": report_date.isoformat(),
+                    "series_key": series.key,
+                    "series_label": series.label,
+                    "reason": (
+                        "Internship Opportunities runs on Wednesday. "
+                        "Run daily_story_linkedin_agent.py on other days."
+                    ),
+                },
+                indent=2,
+            )
+        )
+        return 0
 
     try:
         brief = build_daily_brief(
@@ -694,6 +728,7 @@ def main(argv: list[str] | None = None) -> int:
                 max_chars=args.max_chars,
                 continue_url=args.continue_url,
             )
+        text = prepend_series_header(text, INTERNSHIP_SERIES)
         text = append_hashtags_to_post(
             text,
             build_internship_hashtags(brief),
@@ -740,6 +775,8 @@ def main(argv: list[str] | None = None) -> int:
     response = {
         "dry_run": not args.post,
         "report_date": brief.report_date.isoformat(),
+        "series_key": INTERNSHIP_SERIES.key,
+        "series_label": INTERNSHIP_SERIES.label,
         "total_count": brief.total_count,
         "category_counts": brief.category_counts(),
         "sources": brief.sources,

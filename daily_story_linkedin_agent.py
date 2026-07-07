@@ -26,6 +26,13 @@ from pathlib import Path
 from typing import Any
 
 from linkedin_company_page_agent import LinkedInCompanyPageAgent, LinkedInPostError
+from weekly_linkedin_series import (
+    SERIES_BY_KEY,
+    SERIES_HASHTAGS,
+    WeeklySeries,
+    prepend_series_header,
+    resolve_series_for_date,
+)
 
 
 DEFAULT_HISTORY_PATH = Path("daily_story_history.json")
@@ -151,6 +158,18 @@ PILLAR_HASHTAGS: dict[str, tuple[str, ...]] = {
         "EmergingTech",
         "CareerReady",
     ),
+    "Prompt of the Week": (
+        "PromptOfTheWeek",
+        "PromptEngineering",
+        "ChatGPTTips",
+        "CareerPrompts",
+    ),
+    "Student Success Story": (
+        "StudentSuccess",
+        "CareerWin",
+        "InternshipJourney",
+        "ProofOfWork",
+    ),
 }
 
 CONTENT_TYPE_HASHTAGS: dict[str, tuple[str, ...]] = {
@@ -215,6 +234,39 @@ AI_TOOL_CONTENT_TYPES = frozenset(
         "Notion AI",
         "n8n",
         "Zapier AI",
+    }
+)
+
+RESUME_MAKEOVER_CONTENT_TYPES = frozenset(
+    {
+        "Resume Before vs After",
+        "Resume Mistakes",
+        "Excel plus AI workflow",
+        "AI workflow proof",
+    }
+)
+
+RESUME_MAKEOVER_CONTENT_GROUPS = frozenset(
+    {
+        "Student Employability",
+        "AI Resume Upgrade",
+    }
+)
+
+AI_CAREER_TIP_CONTENT_GROUPS = frozenset(
+    {
+        "AI Career Survival",
+        "AI Mythbusters",
+        "AI Interview Practice",
+        "Future Skills",
+    }
+)
+
+HIRING_TRENDS_CONTENT_GROUPS = frozenset(
+    {
+        "Market Intelligence",
+        "Employer Branding",
+        "Hire Interns in 10 Days",
     }
 )
 
@@ -1365,6 +1417,246 @@ CONTENT_ANGLES = [
         ],
         "action": "Explain vector search in one sentence using a real example from your projects.",
     },
+    {
+        "id": "prompt-resume-bullet-upgrade",
+        "weekly_series": "prompt_of_the_week",
+        "content_group": "Prompt of the Week",
+        "content_type": "Resume bullet rewrite",
+        "hook": "One prompt turned a vague resume line into proof recruiters actually scan.",
+        "headline": "PROMPT WIN",
+        "subhead": "Copy, paste, rewrite.",
+        "visual": "document",
+        "setup": (
+            "Students often ask AI to 'improve my resume' and get generic adjectives back. "
+            "This week's prompt forces problem, tool, action, and measurable result."
+        ),
+        "sections": [
+            "Prompt: Rewrite this resume bullet using problem, tool, action, and result. Keep it under 22 words.",
+            "Before: 'Worked on inventory project using Python.'",
+            "After: 'Built a Python inventory tracker that cut manual stock checks by 30% for 120 users.'",
+        ],
+        "action": "Paste your weakest project line into the prompt and replace only that line today.",
+    },
+    {
+        "id": "prompt-interview-project-story",
+        "weekly_series": "prompt_of_the_week",
+        "content_group": "Prompt of the Week",
+        "content_type": "Interview project story",
+        "hook": "This prompt saved a student interview in the first two minutes.",
+        "headline": "STAR PROMPT",
+        "subhead": "Project answer ready.",
+        "visual": "interview",
+        "setup": (
+            "Most students list features when asked about a project. This prompt turns the answer "
+            "into problem, role, trade-off, and result in plain language."
+        ),
+        "sections": [
+            "Prompt: Turn my project into a 45-second interview answer with problem, my role, one hard decision, and result.",
+            "Before: explaining screens and libraries with no ownership.",
+            "After: naming the business problem, your contribution, and one metric.",
+        ],
+        "action": "Run the prompt on one project before your next mock interview.",
+    },
+    {
+        "id": "prompt-linkedin-headline",
+        "weekly_series": "prompt_of_the_week",
+        "content_group": "Prompt of the Week",
+        "content_type": "LinkedIn headline",
+        "hook": "Your headline is doing the job of a resume summary in eight seconds.",
+        "headline": "HEADLINE PROMPT",
+        "subhead": "Role plus proof.",
+        "visual": "spotlight",
+        "setup": (
+            "Generic headlines like 'B.Tech student seeking opportunities' disappear in recruiter feeds. "
+            "This prompt builds role, proof, and target in one line."
+        ),
+        "sections": [
+            "Prompt: Write a LinkedIn headline with target role, one proof project, and core tool stack in under 120 characters.",
+            "Before: 'Computer Science Student | Open to Work'.",
+            "After: 'Data Analyst Intern | SQL dashboard cut report time 40% | Python, Excel, Power BI'.",
+        ],
+        "action": "Update your headline with one proof line this week.",
+    },
+    {
+        "id": "prompt-skill-gap-plan",
+        "weekly_series": "prompt_of_the_week",
+        "content_group": "Prompt of the Week",
+        "content_type": "Skill gap plan",
+        "hook": "Stop collecting courses. Start closing one gap recruiters can verify.",
+        "headline": "GAP PROMPT",
+        "subhead": "Seven-day plan.",
+        "visual": "clock",
+        "setup": (
+            "Students often spread effort across ten skills. This prompt converts one target role "
+            "into a seven-day proof plan with one visible output."
+        ),
+        "sections": [
+            "Prompt: For a Data Analyst Intern role, list the top 3 skill gaps on my profile and a 7-day plan to prove each with one mini project.",
+            "Before: watching tutorials with nothing to show.",
+            "After: one SQL dashboard, one Excel report, one short write-up recruiters can inspect.",
+        ],
+        "action": "Pick one gap and ship one proof artifact this week.",
+    },
+    {
+        "id": "prompt-recruiter-outreach",
+        "weekly_series": "prompt_of_the_week",
+        "content_group": "Prompt of the Week",
+        "content_type": "Recruiter outreach",
+        "hook": "Most cold messages get ignored because they ask for a job instead of showing fit.",
+        "headline": "OUTREACH PROMPT",
+        "subhead": "Short and specific.",
+        "visual": "message",
+        "setup": (
+            "Recruiters reply to messages that make the shortlist decision easy. "
+            "This prompt keeps outreach under 80 words with role fit and one proof link."
+        ),
+        "sections": [
+            "Prompt: Write an 80-word internship outreach message with role fit, one proof project, and a polite ask for feedback.",
+            "Before: 'Please find my resume attached. I am a hardworking student.'",
+            "After: naming the role, one relevant project outcome, and a portfolio link.",
+        ],
+        "action": "Send one tailored message this week instead of a mass template.",
+    },
+    {
+        "id": "prompt-portfolio-summary",
+        "weekly_series": "prompt_of_the_week",
+        "content_group": "Prompt of the Week",
+        "content_type": "Portfolio summary",
+        "hook": "Recruiters click portfolios when the first screen explains value fast.",
+        "headline": "PORTFOLIO PROMPT",
+        "subhead": "Proof above fold.",
+        "visual": "document",
+        "setup": (
+            "Portfolio home pages often open with biography. This prompt writes a recruiter-first "
+            "summary with role target, top project, and tools."
+        ),
+        "sections": [
+            "Prompt: Write a portfolio hero section with target role, strongest project outcome, and tool stack in 3 short lines.",
+            "Before: 'Hello, I am a passionate learner.'",
+            "After: role, proof, and links a recruiter can scan in ten seconds.",
+        ],
+        "action": "Rewrite the first screen of your portfolio this week.",
+    },
+    {
+        "id": "success-story-python-dashboard",
+        "weekly_series": "student_success_story",
+        "content_group": "Student Success Story",
+        "content_type": "Python dashboard turnaround",
+        "hook": "Asha went from zero callbacks to three interviews in ten days.",
+        "headline": "ASHA WIN",
+        "subhead": "One project changed the scan.",
+        "visual": "document",
+        "setup": (
+            "Asha had coursework on her resume but no proof recruiters could inspect. "
+            "She rebuilt one project line and added a live dashboard link."
+        ),
+        "sections": [
+            "Before: 'Good knowledge of Python and SQL.'",
+            "After: 'Built a sales dashboard in Python and SQL used by her college fest team.'",
+            "Result: three internship interview calls in ten days after updating the top project line.",
+        ],
+        "action": "Pick one project and make the result visible at the top of your profile.",
+    },
+    {
+        "id": "success-story-resume-rewrite",
+        "weekly_series": "student_success_story",
+        "content_group": "Student Success Story",
+        "content_type": "Resume rewrite win",
+        "hook": "Dev stopped getting silence after fixing one resume line.",
+        "headline": "DEV WIN",
+        "subhead": "Proof beat polish.",
+        "visual": "spotlight",
+        "setup": (
+            "Dev applied to data roles with a generic resume for weeks. "
+            "He rewrote only the first project bullet with a measurable outcome."
+        ),
+        "sections": [
+            "Before: 'Created reports using Excel.'",
+            "After: 'Automated weekly sales reporting in Excel, saving 6 hours per week for ops team.'",
+            "Result: shortlist rate improved after recruiters could verify impact in one line.",
+        ],
+        "action": "Rewrite your top project bullet with time saved, users served, or accuracy improved.",
+    },
+    {
+        "id": "success-story-claude-readme",
+        "weekly_series": "student_success_story",
+        "content_group": "Student Success Story",
+        "content_type": "Claude README clarity",
+        "hook": "Meera turned a messy GitHub README into a recruiter-friendly story.",
+        "headline": "MEERA WIN",
+        "subhead": "Clarity got clicks.",
+        "visual": "document",
+        "setup": (
+            "Meera had a solid project but recruiters bounced because the README was long and vague. "
+            "She used Claude to extract problem, build, and result in five lines."
+        ),
+        "sections": [
+            "Before: long feature list with no business problem.",
+            "After: short README with problem, stack, demo link, and one metric.",
+            "Result: profile views and recruiter messages picked up within a week.",
+        ],
+        "action": "Make your best project understandable in one screen.",
+    },
+    {
+        "id": "success-story-github-proof",
+        "weekly_series": "student_success_story",
+        "content_group": "Student Success Story",
+        "content_type": "GitHub proof multiplier",
+        "hook": "Ravi added one GitHub project and doubled interview interest.",
+        "headline": "RAVI WIN",
+        "subhead": "Visible beats claimed.",
+        "visual": "document",
+        "setup": (
+            "Ravi listed Java on his resume without evidence. He published one clean repo with README, "
+            "sample output, and setup steps recruiters could inspect."
+        ),
+        "sections": [
+            "Before: skills listed with no public proof.",
+            "After: one repo with README, screenshots, and a 30-second demo GIF.",
+            "Result: interview requests increased after recruiters could verify the work quickly.",
+        ],
+        "action": "Publish one repo that proves your strongest skill this month.",
+    },
+    {
+        "id": "success-story-interview-prep",
+        "weekly_series": "student_success_story",
+        "content_group": "Student Success Story",
+        "content_type": "Interview prep comeback",
+        "hook": "Nisha failed one interview, then fixed the answer that broke trust.",
+        "headline": "NISHA WIN",
+        "subhead": "One answer changed.",
+        "visual": "interview",
+        "setup": (
+            "Nisha lost momentum when she could not explain her role in a group project. "
+            "She rehearsed one ownership-focused answer with problem, decision, and result."
+        ),
+        "sections": [
+            "Before: describing the whole team's work with no personal contribution.",
+            "After: naming her module, trade-off, and measurable outcome in 45 seconds.",
+            "Result: she cleared the next two interview rounds with the same project story.",
+        ],
+        "action": "Prepare one project answer that names your role, not the team's.",
+    },
+    {
+        "id": "success-story-sql-gap",
+        "weekly_series": "student_success_story",
+        "content_group": "Student Success Story",
+        "content_type": "SQL gap closed",
+        "hook": "Ibrahim closed one skill gap and finally matched the JD.",
+        "headline": "IBRAHIM WIN",
+        "subhead": "Proof over promise.",
+        "visual": "clock",
+        "setup": (
+            "Ibrahim kept applying to analytics internships while his profile lacked SQL proof. "
+            "He built one public dashboard project in seven days."
+        ),
+        "sections": [
+            "Before: 'Interested in data analytics' with no SQL artifact.",
+            "After: one SQL dashboard analyzing real sample sales data with documented queries.",
+            "Result: he started getting replies from roles that previously auto-rejected the profile.",
+        ],
+        "action": "Close one visible skill gap before sending the next ten applications.",
+    },
 ]
 
 
@@ -1380,6 +1672,8 @@ class Story:
     subhead: str
     visual: str
     word_count: int
+    series_key: str
+    series_label: str
 
 
 class PngCanvas:
@@ -1601,11 +1895,12 @@ def openai_chat_completion(
     return parsed
 
 
-def build_content_user_prompt(angle: dict[str, Any]) -> str:
+def build_content_user_prompt(angle: dict[str, Any], *, series: WeeklySeries) -> str:
     sections = "\n".join(f"- {section}" for section in angle.get("sections", []))
     return (
         f"WORD_MIN: {MIN_POST_WORDS}\n"
         f"WORD_MAX: {MAX_POST_WORDS}\n\n"
+        f"Recurring series: {series.header}\n"
         f"Content pillar: {angle.get('content_group', 'General')}\n"
         f"Content type: {angle['content_type']}\n"
         f"Hook direction: {angle['hook']}\n"
@@ -1614,6 +1909,7 @@ def build_content_user_prompt(angle: dict[str, Any]) -> str:
         f"Setup: {angle.get('setup', '')}\n"
         f"Proof points:\n{sections}\n"
         f"Suggested action: {angle.get('action', '')}\n"
+        f"Write for today's {series.label} installment. Do not repeat the series title in the opening line.\n"
     )
 
 
@@ -1630,7 +1926,12 @@ def extract_hashtags(text: str) -> set[str]:
     return {normalize_hashtag(match) for match in re.findall(r"#(\w+)", text) if normalize_hashtag(match)}
 
 
-def build_hashtags_for_angle(angle: dict[str, Any], *, max_tags: int = 8) -> list[str]:
+def build_hashtags_for_angle(
+    angle: dict[str, Any],
+    *,
+    series: WeeklySeries | None = None,
+    max_tags: int = 8,
+) -> list[str]:
     tags: list[str] = []
     seen: set[str] = set()
     content_type = angle.get("content_type", "")
@@ -1646,6 +1947,8 @@ def build_hashtags_for_angle(angle: dict[str, Any], *, max_tags: int = 8) -> lis
             tags.append(normalized)
 
     add(*BASE_HASHTAGS[:2])
+    if series is not None:
+        add(*SERIES_HASHTAGS.get(series.key, ()))
     if content_type in AI_TOOL_CONTENT_TYPES:
         add(content_type.replace(" ", ""), "AITools")
     add(*CONTENT_TYPE_HASHTAGS.get(content_type, ()))
@@ -1658,13 +1961,14 @@ def append_hashtags_to_caption(
     caption: str,
     angle: dict[str, Any],
     *,
+    series: WeeklySeries | None = None,
     max_tags: int = 8,
 ) -> str:
     body = caption.strip()
     if not body:
         return body
 
-    desired = build_hashtags_for_angle(angle, max_tags=max_tags)
+    desired = build_hashtags_for_angle(angle, series=series, max_tags=max_tags)
     existing = extract_hashtags(body)
     missing = [tag for tag in desired if tag not in existing]
     if not missing:
@@ -1677,6 +1981,7 @@ def append_hashtags_to_caption(
 def generate_ai_content(
     angle: dict[str, Any],
     *,
+    series: WeeklySeries,
     api_key: str,
     model: str,
 ) -> dict[str, str]:
@@ -1685,7 +1990,7 @@ def generate_ai_content(
         model=model,
         messages=[
             {"role": "system", "content": CONTENT_SYSTEM_PROMPT},
-            {"role": "user", "content": build_content_user_prompt(angle)},
+            {"role": "user", "content": build_content_user_prompt(angle, series=series)},
         ],
     )
     caption = str(parsed.get("caption", "")).strip()
@@ -2693,6 +2998,7 @@ def build_story(
     rng: random.Random,
     angle: dict[str, Any],
     *,
+    series: WeeklySeries,
     metrics: dict[str, str],
     api_key: str,
     text_model: str,
@@ -2702,7 +3008,12 @@ def build_story(
     last_error: Exception | None = None
     for _ in range(MAX_CONTENT_GENERATION_ATTEMPTS):
         try:
-            generated = generate_ai_content(angle, api_key=api_key, model=text_model)
+            generated = generate_ai_content(
+                angle,
+                series=series,
+                api_key=api_key,
+                model=text_model,
+            )
             caption_body = generated["caption"]
             count = word_count(caption_body)
             if not MIN_POST_WORDS <= count <= MAX_POST_WORDS:
@@ -2710,12 +3021,15 @@ def build_story(
                     f"Generated story must be between {MIN_POST_WORDS} and "
                     f"{MAX_POST_WORDS} words; got {count}."
                 )
-            caption = append_hashtags_to_caption(caption_body, angle)
+            caption = append_hashtags_to_caption(caption_body, angle, series=series)
+            caption = prepend_series_header(caption, series)
             assets = {
                 "caption": caption,
                 "visual": generated["image_prompt"],
                 "generation": "openai_llm",
                 "prompt_brief": angle["id"],
+                "series_key": series.key,
+                "series_label": series.label,
             }
             unique_id = f"{angle['id']}-{story_hash(caption)[:12]}"
             return Story(
@@ -2729,6 +3043,8 @@ def build_story(
                 subhead=angle["subhead"],
                 visual=angle["visual"],
                 word_count=count,
+                series_key=series.key,
+                series_label=series.label,
             )
         except (ValueError, RuntimeError, json.JSONDecodeError) as error:
             last_error = error
@@ -2738,17 +3054,62 @@ def build_story(
     )
 
 
+def angle_matches_series(angle: dict[str, Any], series: WeeklySeries) -> bool:
+    if angle.get("weekly_series") == series.key:
+        return True
+
+    group = angle.get("content_group", "")
+    content_type = angle.get("content_type", "")
+
+    if series.key == "ai_tool_of_the_week":
+        return group == "Learn One AI Tool Every Week"
+    if series.key == "prompt_of_the_week":
+        return group == "Prompt of the Week"
+    if series.key == "resume_makeover":
+        return (
+            content_type in RESUME_MAKEOVER_CONTENT_TYPES
+            or (
+                group in RESUME_MAKEOVER_CONTENT_GROUPS
+                and content_type
+                in {
+                    "Resume Before vs After",
+                    "Resume Mistakes",
+                    "Portfolio Reviews",
+                }
+            )
+        )
+    if series.key == "ai_career_tip":
+        return group in AI_CAREER_TIP_CONTENT_GROUPS
+    if series.key == "hiring_trends":
+        return group in HIRING_TRENDS_CONTENT_GROUPS
+    if series.key == "student_success_story":
+        return group == "Student Success Story"
+    return False
+
+
+def filter_angles_for_series(series: WeeklySeries) -> list[dict[str, Any]]:
+    return [angle for angle in CONTENT_ANGLES if angle_matches_series(angle, series)]
+
+
 def choose_unused_story(
     history: dict[str, Any],
     *,
+    series: WeeklySeries,
+    report_date: dt.date,
     metrics: dict[str, str],
     api_key: str,
     text_model: str,
     seed: int | None = None,
 ) -> Story:
     used_hashes = set(history.get("used_hashes", []))
-    rng = random.Random(seed)
-    angles = list(CONTENT_ANGLES)
+    eligible = filter_angles_for_series(series)
+    if not eligible:
+        raise RuntimeError(f"No content angles configured for {series.label}.")
+
+    week_number, _, _ = report_date.isocalendar()
+    seed_source = f"{week_number}:{series.key}:{seed or 0}"
+    rng = random.Random(int(hashlib.sha256(seed_source.encode()).hexdigest()[:16], 16))
+    angles = list(eligible)
     rng.shuffle(angles)
     errors: list[str] = []
     for angle in angles:
@@ -2756,6 +3117,7 @@ def choose_unused_story(
             story = build_story(
                 rng,
                 angle,
+                series=series,
                 metrics=metrics,
                 api_key=api_key,
                 text_model=text_model,
@@ -2766,7 +3128,9 @@ def choose_unused_story(
         if story_hash(story.text) not in used_hashes:
             return story
     detail = errors[-1] if errors else "No unused content available."
-    raise RuntimeError(f"Could not create a new unused story after AI generation attempts. {detail}")
+    raise RuntimeError(
+        f"Could not create a new unused story for {series.label} after AI generation attempts. {detail}"
+    )
 
 
 def sanitize_filename(value: str) -> str:
@@ -3104,6 +3468,8 @@ def record_story(
         "story_id": story.story_id,
         "content_group": story.content_group,
         "content_type": story.content_type,
+        "series_key": story.series_key,
+        "series_label": story.series_label,
         "content_hash": content_hash,
         "assets": story.assets,
         "word_count": story.word_count,
@@ -3164,6 +3530,20 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         help="Optional random seed for repeatable dry-run testing.",
     )
     parser.add_argument(
+        "--date",
+        help="Override today's date (YYYY-MM-DD) to select the weekly series.",
+    )
+    parser.add_argument(
+        "--series",
+        choices=tuple(SERIES_BY_KEY),
+        help="Override the weekly series instead of using today's schedule.",
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Run even when today's series is handled by another agent.",
+    )
+    parser.add_argument(
         "--post",
         action="store_true",
         help="Publish to LinkedIn. Omit for dry-run generation only.",
@@ -3201,6 +3581,27 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv or sys.argv[1:])
     history_path = Path(args.history_path)
     output_dir = Path(args.output_dir)
+    report_date = dt.date.fromisoformat(args.date) if args.date else dt.date.today()
+    series = SERIES_BY_KEY[args.series] if args.series else resolve_series_for_date(report_date)
+
+    if series.key == "internship_opportunities" and not args.force:
+        print(
+            json.dumps(
+                {
+                    "dry_run": not args.post,
+                    "skipped": True,
+                    "report_date": report_date.isoformat(),
+                    "series_key": series.key,
+                    "series_label": series.label,
+                    "reason": (
+                        "Wednesday is Internship Opportunities day. "
+                        "Run daily_internship_intelligence_agent.py instead."
+                    ),
+                },
+                indent=2,
+            )
+        )
+        return 0
 
     try:
         if not args.openai_api_key:
@@ -3209,6 +3610,8 @@ def main(argv: list[str] | None = None) -> int:
         metrics = load_metrics(Path(args.metrics_path) if args.metrics_path else None)
         story = choose_unused_story(
             history,
+            series=series,
+            report_date=report_date,
             metrics=metrics,
             api_key=args.openai_api_key,
             text_model=args.openai_text_model,
@@ -3266,6 +3669,9 @@ def main(argv: list[str] | None = None) -> int:
 
     response = {
         "dry_run": not args.post,
+        "report_date": report_date.isoformat(),
+        "series_key": story.series_key,
+        "series_label": story.series_label,
         "story_id": story.story_id,
         "content_group": story.content_group,
         "content_type": story.content_type,

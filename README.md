@@ -155,6 +155,34 @@ python3 linkedin_company_page_agent.py \
 generates a related image, and can post both to LinkedIn. Captions are short,
 comment-first LinkedIn posts rather than long teaching posts.
 
+Posts follow a fixed weekly series so followers know what to expect:
+
+| Day | Series |
+| --- | --- |
+| Monday | 🛠 AI Tool of the Week |
+| Tuesday | 🎯 Prompt of the Week |
+| Wednesday | 💼 Internship Opportunities |
+| Thursday | 📄 Resume Makeover |
+| Friday | 🤖 AI Career Tip |
+| Saturday | 📊 Hiring Trends |
+| Sunday | 🎓 Student Success Story |
+
+Use `daily_linkedin_scheduler.py` to run the correct agent for today:
+
+```bash
+python3 daily_linkedin_scheduler.py --record-dry-run
+```
+
+Wednesday internship posts are handled by `daily_internship_intelligence_agent.py`.
+The story agent skips Wednesday unless you pass `--force`.
+
+Override the schedule while testing:
+
+```bash
+python3 daily_story_linkedin_agent.py --series resume_makeover --record-dry-run
+python3 daily_story_linkedin_agent.py --date 2026-07-06 --record-dry-run
+```
+
 The content engine rotates through seven World of Interns pillars:
 
 1. **Student Employability** — Resume Before vs After, Employability Score Explained,
@@ -406,6 +434,21 @@ Notes:
 content engine. It collects verified internship openings from one or more JSON
 source files, builds a daily briefing, saves artifacts locally, and can post
 the update to LinkedIn.
+
+This agent powers **Wednesday's 💼 Internship Opportunities** series. Each post
+starts with that series header, then the verified openings list.
+
+For scheduled automation, prefer:
+
+```bash
+python3 daily_linkedin_scheduler.py --post
+```
+
+Or run the internship agent directly on Wednesdays:
+
+```bash
+python3 daily_internship_intelligence_agent.py --skip-unless-wednesday --post
+```
 
 Example output:
 
