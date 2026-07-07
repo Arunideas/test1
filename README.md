@@ -1,7 +1,10 @@
-# LinkedIn Company Page Agent
+# LinkedIn Posting Agent
 
 This repository includes a small Python agent that can post a sample text update
-to a LinkedIn company page.
+to LinkedIn. It supports:
+
+- Company page posts when LinkedIn grants organization permissions.
+- Personal profile posts with the `w_member_social` permission.
 
 ## Dry-run test
 
@@ -44,7 +47,7 @@ python3 linkedin_company_page_agent.py \
   --state "random-string-for-testing"
 ```
 
-By default the agent requests:
+By default the agent requests organization scopes:
 
 - `w_organization_social`
 - `r_organization_social`
@@ -56,6 +59,24 @@ python3 linkedin_company_page_agent.py \
   --auth-url \
   --scope "w_organization_social r_organization_social"
 ```
+
+For personal profile posting, request the scopes available on a basic LinkedIn
+app:
+
+```bash
+python3 linkedin_company_page_agent.py \
+  --auth-url \
+  --post-as member \
+  --client-id "your-linkedin-client-id" \
+  --redirect-uri "http://localhost:3000/callback"
+```
+
+That prints an authorization URL with these default personal posting scopes:
+
+- `openid`
+- `profile`
+- `email`
+- `w_member_social`
 
 After you receive the authorization code, exchange it for an access token:
 
@@ -71,7 +92,9 @@ curl -X POST "https://www.linkedin.com/oauth/v2/accessToken" \
 
 ## Publish to LinkedIn
 
-Set the required credentials, then pass `--post`:
+### Company page
+
+Set the required company page credentials, then pass `--post`:
 
 ```bash
 export LINKEDIN_ACCESS_TOKEN="your-linkedin-access-token"
@@ -91,13 +114,37 @@ export LINKEDIN_ORGANIZATION_URN="urn:li:organization:123456"
 The access token must have permission to publish organic posts for the target
 LinkedIn organization page.
 
+### Personal profile
+
+For personal profile testing, use `--post-as member`. The access token must
+include `w_member_social`.
+
+```bash
+export LINKEDIN_ACCESS_TOKEN="your-linkedin-access-token"
+export LINKEDIN_MEMBER_ID="your-authenticated-linkedin-member-id"
+
+python3 linkedin_company_page_agent.py \
+  --post-as member \
+  --message "Sample personal profile test message." \
+  --post
+```
+
+You can also provide a full member/person URN:
+
+```bash
+export LINKEDIN_MEMBER_URN="urn:li:person:abc123"
+```
+
 ## Configuration
 
 | Variable | Description |
 | --- | --- |
 | `LINKEDIN_ACCESS_TOKEN` | LinkedIn API bearer token. Required with `--post`. |
+| `LINKEDIN_POST_AS` | Optional author type: `organization` or `member`. Defaults to `organization`. |
 | `LINKEDIN_ORGANIZATION_ID` | Numeric organization id used to build `urn:li:organization:<id>`. |
 | `LINKEDIN_ORGANIZATION_URN` | Full organization URN. Takes priority over organization id. |
+| `LINKEDIN_MEMBER_ID` | Authenticated LinkedIn member id used to build `urn:li:person:<id>`. |
+| `LINKEDIN_MEMBER_URN` | Full member/person URN. Takes priority over member id. |
 | `LINKEDIN_POST_MESSAGE` | Optional default message for the agent. |
 | `LINKEDIN_API_BASE_URL` | Optional API base URL. Defaults to `https://api.linkedin.com`. |
 | `LINKEDIN_CLIENT_ID` | LinkedIn app client id used by `--auth-url`. |

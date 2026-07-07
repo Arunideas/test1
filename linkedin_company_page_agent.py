@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Post a text update to a LinkedIn company page.
+"""Post a text update to LinkedIn.
 
 The agent defaults to dry-run mode so the payload can be tested without
-credentials. Pass --post with a valid access token and organization id to send
-the update to LinkedIn.
+credentials. Pass --post with a valid access token and author id to send the
+update to LinkedIn.
 """
 
 from __future__ import annotations
@@ -23,8 +23,10 @@ from typing import Any
 DEFAULT_MESSAGE = "Sample test post from the LinkedIn company page agent."
 DEFAULT_API_BASE_URL = "https://api.linkedin.com"
 DEFAULT_AUTHORIZATION_URL = "https://www.linkedin.com/oauth/v2/authorization"
-DEFAULT_OAUTH_SCOPES = ("w_organization_social", "r_organization_social")
+DEFAULT_ORGANIZATION_OAUTH_SCOPES = ("w_organization_social", "r_organization_social")
+DEFAULT_MEMBER_OAUTH_SCOPES = ("openid", "profile", "email", "w_member_social")
 PLACEHOLDER_ORGANIZATION_URN = "urn:li:organization:YOUR_ORGANIZATION_ID"
+PLACEHOLDER_MEMBER_URN = "urn:li:person:YOUR_MEMBER_ID"
 
 
 class LinkedInPostError(RuntimeError):
@@ -33,9 +35,10 @@ class LinkedInPostError(RuntimeError):
 
 @dataclass(frozen=True)
 class LinkedInCompanyPageAgent:
-    """Small agent for publishing text posts to a LinkedIn organization page."""
+    """Small agent for publishing text posts to LinkedIn."""
 
     organization_urn: str
+    member_urn: str | None = None
     access_token: str | None = None
     api_base_url: str = DEFAULT_API_BASE_URL
     timeout_seconds: int = 30
@@ -46,19 +49,29 @@ class LinkedInCompanyPageAgent:
             os.getenv("LINKEDIN_ORGANIZATION_URN"),
             os.getenv("LINKEDIN_ORGANIZATION_ID"),
         )
+        member_urn = normalize_member_urn(
+            os.getenv("LINKEDIN_MEMBER_URN"),
+            os.getenv("LINKEDIN_MEMBER_ID"),
+        )
         return cls(
             organization_urn=organization_urn or PLACEHOLDER_ORGANIZATION_URN,
+            member_urn=member_urn,
             access_token=os.getenv("LINKEDIN_ACCESS_TOKEN"),
             api_base_url=os.getenv("LINKEDIN_API_BASE_URL", DEFAULT_API_BASE_URL),
         )
 
-    def build_text_post_payload(self, message: str) -> dict[str, Any]:
+    def build_text_post_payload(
+        self,
+        message: str,
+        *,
+        author_urn: str | None = None,
+    ) -> dict[str, Any]:
         message = message.strip()
         if not message:
             raise ValueError("Message cannot be empty.")
 
         return {
-            "author": self.organization_urn,
+            "author": author_urn or self.organization_urn,
             "lifecycleState": "PUBLISHED",
             "specificContent": {
                 "com.linkedin.ugc.ShareContent": {
@@ -71,31 +84,51 @@ class LinkedInCompanyPageAgent:
             },
         }
 
-    def post_text(self, message: str, *, dry_run: bool = True) -> dict[str, Any]:
-        payload = self.build_text_post_payload(message)
+    def post_text(
+        self,
+        message: str,
+        *,
+        dry_run: bool = True,
+        post_as: str = "organization",
+    ) -> dict[str, Any]:
+        author_urn = self.author_urn_for(post_as)
+        payload = self.build_text_post_payload(message, author_urn=author_urn)
 
         if dry_run:
             return {
                 "dry_run": True,
+                "post_as": post_as,
                 "endpoint": self.post_endpoint,
                 "payload": payload,
                 "note": "No request was sent. Run with --post to publish.",
             }
 
-        self._validate_publish_configuration()
+        self._validate_publish_configuration(post_as)
         return self._send_post(payload)
+
+    def author_urn_for(self, post_as: str) -> str:
+        if post_as == "organization":
+            return self.organization_urn
+        if post_as == "member":
+            return self.member_urn or PLACEHOLDER_MEMBER_URN
+        raise ValueError("post_as must be either 'organization' or 'member'.")
 
     @property
     def post_endpoint(self) -> str:
         return f"{self.api_base_url.rstrip('/')}/v2/ugcPosts"
 
-    def _validate_publish_configuration(self) -> None:
+    def _validate_publish_configuration(self, post_as: str) -> None:
         if not self.access_token:
             raise ValueError("LINKEDIN_ACCESS_TOKEN is required when using --post.")
-        if self.organization_urn == PLACEHOLDER_ORGANIZATION_URN:
+        if post_as == "organization" and self.organization_urn == PLACEHOLDER_ORGANIZATION_URN:
             raise ValueError(
                 "LINKEDIN_ORGANIZATION_ID or LINKEDIN_ORGANIZATION_URN is required "
                 "when using --post."
+            )
+        if post_as == "member" and not self.member_urn:
+            raise ValueError(
+                "LINKEDIN_MEMBER_ID or LINKEDIN_MEMBER_URN is required when posting "
+                "as a member. Use the authenticated member id from LinkedIn."
             )
 
     def _send_post(self, payload: dict[str, Any]) -> dict[str, Any]:
@@ -149,6 +182,17 @@ def normalize_organization_urn(
     return None
 
 
+def normalize_member_urn(
+    member_urn: str | None,
+    member_id: str | None,
+) -> str | None:
+    if member_urn:
+        return member_urn.strip()
+    if member_id:
+        return f"urn:li:person:{member_id.strip()}"
+    return None
+
+
 def build_authorization_url(
     *,
     client_id: str,
@@ -183,13 +227,20 @@ def build_authorization_url(
     return f"{authorization_url}?{query}"
 
 
-def normalize_scopes(scopes: list[str] | None, scopes_from_env: str | None) -> list[str]:
+def normalize_scopes(
+    scopes: list[str] | None,
+    scopes_from_env: str | None,
+    *,
+    post_as: str,
+) -> list[str]:
     if scopes:
         raw_scopes = scopes
     elif scopes_from_env:
         raw_scopes = scopes_from_env.replace(",", " ").split()
+    elif post_as == "member":
+        raw_scopes = list(DEFAULT_MEMBER_OAUTH_SCOPES)
     else:
-        raw_scopes = list(DEFAULT_OAUTH_SCOPES)
+        raw_scopes = list(DEFAULT_ORGANIZATION_OAUTH_SCOPES)
 
     normalized_scopes: list[str] = []
     for scope in raw_scopes:
@@ -220,6 +271,23 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument(
         "--access-token",
         help="LinkedIn API access token. Overrides LINKEDIN_ACCESS_TOKEN.",
+    )
+    parser.add_argument(
+        "--member-id",
+        help="LinkedIn authenticated member id. Overrides LINKEDIN_MEMBER_ID.",
+    )
+    parser.add_argument(
+        "--member-urn",
+        help="Full LinkedIn member/person URN. Overrides LINKEDIN_MEMBER_URN.",
+    )
+    parser.add_argument(
+        "--post-as",
+        choices=("organization", "member"),
+        default=os.getenv("LINKEDIN_POST_AS", "organization"),
+        help=(
+            "Author type for auth URL generation and posting. Use 'member' for "
+            "personal profile posts with w_member_social."
+        ),
     )
     parser.add_argument(
         "--post",
@@ -262,7 +330,11 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.auth_url:
         state = args.state or secrets.token_urlsafe(24)
-        scopes = normalize_scopes(args.scope, os.getenv("LINKEDIN_OAUTH_SCOPES"))
+        scopes = normalize_scopes(
+            args.scope,
+            os.getenv("LINKEDIN_OAUTH_SCOPES"),
+            post_as=args.post_as,
+        )
         try:
             authorization_url = build_authorization_url(
                 client_id=args.client_id or "",
@@ -278,6 +350,7 @@ def main(argv: list[str] | None = None) -> int:
             json.dumps(
                 {
                     "authorization_url": authorization_url,
+                    "post_as": args.post_as,
                     "state": state,
                     "scopes": scopes,
                     "next_step": (
@@ -293,23 +366,26 @@ def main(argv: list[str] | None = None) -> int:
     agent = LinkedInCompanyPageAgent.from_environment()
 
     organization_urn = normalize_organization_urn(args.organization_urn, args.organization_id)
+    member_urn = normalize_member_urn(args.member_urn, args.member_id)
     if organization_urn:
         agent = LinkedInCompanyPageAgent(
             organization_urn=organization_urn,
+            member_urn=member_urn or agent.member_urn,
             access_token=args.access_token or agent.access_token,
             api_base_url=agent.api_base_url,
             timeout_seconds=agent.timeout_seconds,
         )
-    elif args.access_token:
+    elif member_urn or args.access_token:
         agent = LinkedInCompanyPageAgent(
             organization_urn=agent.organization_urn,
-            access_token=args.access_token,
+            member_urn=member_urn or agent.member_urn,
+            access_token=args.access_token or agent.access_token,
             api_base_url=agent.api_base_url,
             timeout_seconds=agent.timeout_seconds,
         )
 
     try:
-        result = agent.post_text(args.message, dry_run=not args.post)
+        result = agent.post_text(args.message, dry_run=not args.post, post_as=args.post_as)
     except (LinkedInPostError, ValueError) as error:
         print(f"Error: {error}", file=sys.stderr)
         return 1
