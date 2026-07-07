@@ -42,7 +42,7 @@ DEFAULT_OPENAI_IMAGE_MODEL = "gpt-image-1"
 DEFAULT_OPENAI_IMAGE_SIZE = "1024x1024"
 DEFAULT_OPENAI_CHAT_URL = "https://api.openai.com/v1/chat/completions"
 MAX_CONTENT_GENERATION_ATTEMPTS = 3
-MIN_POST_WORDS = 35
+MIN_POST_WORDS = 70
 MAX_POST_WORDS = 180
 MAX_PROMOTIONAL_SCORE = 5
 MIN_WEIGHTED_QUALITY_SCORE = 65
@@ -93,14 +93,23 @@ Voice and tone:
 
 Post rules:
 - Stay between WORD_MIN and WORD_MAX words
-- Open with a sharp hook
-- Show proof with a before/after, concrete example, or scenario — do not lecture
-- Include one short takeaway line
-- End with an interactive checkbox question; put each option on its own line starting with □
-- Do not use labels like "Topic:", "Insight:", "Hook:", or "Proof:"
+- Use all four required sections in order:
+  1. Hook (1-2 short sentences)
+  2. Proof (before/after, example, or short story — at least 3 sentences)
+  3. Takeaway (one line that starts with "Takeaway:")
+  4. Checkbox question with 3-4 options; each option on its own line starting with □
+- Do not skip any section or end the post early
+- Do not use labels like "Topic:", "Insight:", "Hook:", or "Proof:" except the Takeaway line
 - Do not add website links or signup CTAs
 - Do not include hashtags; meaningful tags are appended automatically after generation
 - Use the provided pillar, brief, and metrics naturally when relevant
+- For Prompt of the Week posts, include the full copy-paste prompt in quotes
+
+Image prompt rules:
+- Describe a photorealistic desk/workspace scene told through objects and screens only
+- Never include readable text, words, letters, handwriting, book titles, sticky-note text, UI labels, or logos with text
+- Any screens, papers, notebooks, or books must have blurred or blank text areas
+- Use color blocks, charts without labels, and composition instead of typography
 
 Quality gate — score the caption before you finalize it (0-100 each):
 - educational (weight 30%)
@@ -114,9 +123,31 @@ Only return a caption if promotional is 5 or less and the weighted score is stro
 
 Return JSON with exactly these keys:
 - caption: the full LinkedIn post text ready to publish
-- image_prompt: a detailed prompt for a square photorealistic curiosity-driven image using objects, desks, screens, resumes, dashboards, or evidence — not generic stock photos of students smiling
+- image_prompt: a detailed no-text photorealistic scene prompt — objects, desks, blurred screens, charts without labels; never ask for readable words on paper or screens
 - quality_scores: object with numeric scores for educational, actionable, trustworthy, engaging, brand_mention, and promotional
 """
+
+IMAGE_PROMPT_RULES = """Image generation constraints:
+- Photorealistic square composition
+- Absolutely no readable text, letters, numbers, handwriting, book titles, sticky-note writing, UI labels, or logos with words anywhere in the scene
+- Laptop/tablet/phone screens must show blurred interfaces, abstract color blocks, or out-of-focus dashboards only
+- Notebooks, resumes, and papers must be blank or have illegible blur — never ask for specific words on them
+- Tell the story with objects, lighting, posture, and workspace mood only"""
+
+IMAGE_PROMPT_REPLACEMENTS: tuple[tuple[str, str], ...] = (
+    (r"handwritten notes?", "blank notepad with pen"),
+    (r"handwriting", "blank paper"),
+    (r"sticky notes?(?: (?:saying|with|reading|that says)[^.]*)?", "blank yellow sticky notes"),
+    (r"book titled[^.]*", "plain book with blank cover"),
+    (r"headline (?:reading|showing|like|with)[^.]*", "blurred profile screen with a highlight bar"),
+    (r"resume (?:for|showing|with|document)[^.]*", "laptop showing a blurred document layout"),
+    (r"notepad with[^.]*", "notepad and pen on desk"),
+    (r"notes about[^.]*", "desk notes"),
+    (r"labeled[^.]*", "organized desk items"),
+    (r"title(?:d)?[^.]*on[^.]*cover", "plain covered book"),
+    (r"text on[^.]*", "visual layout on"),
+    (r"reading \"[^\"]+\"", "showing a blurred screen"),
+)
 
 BASE_HASHTAGS = (
     "WorldOfInterns",
@@ -1975,6 +2006,12 @@ def build_content_user_prompt(angle: dict[str, Any], *, series: WeeklySeries) ->
         + ", ".join(VOICE_EXAMPLE_PHRASES)
         + "\n"
         "Score the caption on educational, actionable, trustworthy, engaging, brand_mention, and promotional before returning it.\n"
+        "Required sections: hook, proof story, Takeaway line, and 3-4 checkbox options — do not publish an incomplete post.\n"
+        + (
+            "Include the full copy-paste prompt in quotes before the Takeaway line.\n"
+            if series.key == "prompt_of_the_week"
+            else ""
+        )
         + (
             "Do not include a Why this matters section or student benefit checklist; "
             "that block is appended automatically after generation.\n"
@@ -2099,6 +2136,43 @@ def validate_caption_voice(caption: str) -> None:
             )
 
 
+def validate_caption_structure(
+    caption: str,
+    *,
+    series: WeeklySeries,
+) -> None:
+    body = caption.strip()
+    paragraphs = [part.strip() for part in re.split(r"\n\s*\n", body) if part.strip()]
+    if len(paragraphs) < 4:
+        raise ValueError(
+            f"Caption must include hook, proof, takeaway, and question sections; got {len(paragraphs)} blocks."
+        )
+
+    checkbox_count = body.count("□") + body.count("☐")
+    if checkbox_count < 3:
+        raise ValueError(
+            f"Caption must include at least 3 checkbox options; got {checkbox_count}."
+        )
+
+    if not re.search(r"(?i)\btakeaway\s*:", body):
+        raise ValueError('Caption must include a Takeaway line starting with "Takeaway:".')
+
+    if series.key == "prompt_of_the_week":
+        has_prompt = bool(
+            re.search(r'(?i)(copy this prompt|try this prompt|prompt:|\bturn my project\b|"[^"]{15,}")', body)
+        )
+        if not has_prompt:
+            raise ValueError("Prompt of the Week caption must include the full copy-paste prompt.")
+
+
+def sanitize_image_prompt(prompt: str) -> str:
+    cleaned = prompt.strip()
+    for pattern, replacement in IMAGE_PROMPT_REPLACEMENTS:
+        cleaned = re.sub(pattern, replacement, cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()
+    return f"{cleaned}\n\n{IMAGE_PROMPT_RULES}"
+
+
 def validate_quality_scores(scores: dict[str, float]) -> dict[str, float]:
     promotional = scores["promotional"]
     if promotional > MAX_PROMOTIONAL_SCORE:
@@ -2141,9 +2215,10 @@ def generate_ai_content(
         raise ValueError("OpenAI content response missing image_prompt.")
     quality_scores = validate_quality_scores(parse_quality_scores(parsed.get("quality_scores")))
     validate_caption_voice(caption)
+    validate_caption_structure(caption, series=series)
     return {
         "caption": caption,
-        "image_prompt": image_prompt,
+        "image_prompt": sanitize_image_prompt(image_prompt),
         "quality_scores": quality_scores,
     }
 
@@ -3459,7 +3534,7 @@ def draw_visual(canvas: PngCanvas, visual: str) -> None:
 def build_photographic_image_prompt(story: Story) -> str:
     llm_prompt = story.assets.get("visual", "").strip()
     if llm_prompt:
-        return llm_prompt
+        return sanitize_image_prompt(llm_prompt)
     raise ValueError("AI image prompt is missing from generated story assets.")
 
 

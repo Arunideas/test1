@@ -261,6 +261,9 @@ Before publishing, every caption self-scores on:
 | Promotional | ≤5% (hard limit) |
 
 Posts below the quality threshold are regenerated automatically.
+
+Captions must include four sections: hook, proof, a `Takeaway:` line, and 3-4 checkbox options.
+AI images are generated with a strict no-readable-text rule so DALL-E does not misspell words on screens, books, or sticky notes.
 Each post also ends with meaningful hashtags based on the content pillar and
 topic (for example `#WorldOfInterns`, `#ResumeTips`, `#Claude`).
 
