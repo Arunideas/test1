@@ -28,13 +28,12 @@ from typing import Any
 from linkedin_company_page_agent import LinkedInCompanyPageAgent, LinkedInPostError
 
 
-SIGNUP_URL = "https://student.worldofinterns.com"
 DEFAULT_HISTORY_PATH = Path("daily_story_history.json")
 DEFAULT_OUTPUT_DIR = Path("daily_story_output")
 DEFAULT_OPENAI_IMAGE_MODEL = "gpt-image-1"
 DEFAULT_OPENAI_IMAGE_SIZE = "1024x1024"
-MIN_POST_WORDS = 200
-MAX_POST_WORDS = 500
+MIN_POST_WORDS = 35
+MAX_POST_WORDS = 180
 
 DEFAULT_METRICS = {
     "python_assessment_students": "12,487",
@@ -825,24 +824,24 @@ def render_content_angle(angle: dict[str, Any], metrics: dict[str, str]) -> dict
 def choose_human_hook(rng: random.Random, angle: dict[str, Any]) -> str:
     hooks_by_type = {
         "Student Transformations": [
-            "This profile got ignored.\n\nNothing was wrong with it.\n\nIt was just forgettable.",
-            "The difference between\n\nNo interview\n\n↓\n\nInterview.",
-            "Recruiters do not reject students.\n\nThey reject unclear profiles.",
+            "This profile was not weak; it was invisible.",
+            "The difference between no interview and interview is usually one clear proof.",
+            "Recruiters do not reject students; they reject unclear profiles.",
         ],
         "Resume Improvement": [
-            "This resume did not need a redesign.\n\nIt needed one line of proof.",
-            "The resume looked clean.\n\nThat was the problem.\n\nClean is not the same as convincing.",
+            "This resume did not need a redesign; it needed one line of proof.",
+            "The resume looked clean, but clean is not the same as convincing.",
         ],
         "Resume Roast": [
-            "This resume line sounds busy.\n\nBut it does not sound employable.",
-            "A recruiter does not need more adjectives.\n\nThey need proof.",
+            "This resume line sounds busy, but it does not sound employable.",
+            "A recruiter does not need more adjectives; they need proof.",
         ],
         "Resume Data": [
-            "The students getting more calls are not always better.\n\nThey are easier to verify.",
-            f"{angle['hook']}\n\nThat is not a design trick.\n\nIt is a trust signal.",
+            "The students getting more calls are not always better; they are easier to verify.",
+            f"{angle['hook']} That is not a design trick; it is a trust signal.",
         ],
         "Assessment Scores": [
-            f"{angle['hook']}\n\nThis is the gap nobody sees on a certificate.",
+            f"{angle['hook']} This is the gap nobody sees on a certificate.",
         ],
     }
     return rng.choice(hooks_by_type.get(angle["content_type"], [angle["hook"]]))
@@ -921,15 +920,14 @@ def build_before_after(angle: dict[str, Any]) -> str:
     )
 
 
-def build_interactive_cta() -> str:
+def build_interactive_question() -> str:
     return (
-        "What is your weakest section right now?\n\n"
+        "What's the first thing you'd change?\n\n"
         "□ Headline\n"
         "□ Resume\n"
         "□ Projects\n"
         "□ Skills\n"
-        "□ Experience\n\n"
-        f"Pick one and start here: {SIGNUP_URL}"
+        "□ Experience"
     )
 
 
@@ -1047,51 +1045,34 @@ def build_content_assets(
     before_after = build_before_after(angle)
     proof_line = rng.choice(
         [
-            "The change is small, but the signal is huge.",
-            "Same student. Different clarity.",
-            "This is the part recruiters remember.",
+            "Same student. Different signal.",
             "The skill was already there. The proof was missing.",
             "Nothing fancy. Just easier to trust.",
         ]
     )
-    topic = hook
+    proof = before_after
     insight = (
-        f"{before_after}\n\n"
         f"{proof_line}\n\n"
         f"For a student like {student_name}, this is usually the difference between "
         "being skipped and being understood."
     )
-    story = (
-        f"{angle['setup']}\n\n"
-        "Most students do not have a talent problem.\n\n"
-        "They have a clarity problem.\n\n"
-        "A recruiter is not sitting there trying to understand your full journey. "
-        "They are scanning for one thing: can this person do the work?\n\n"
-        "If the answer is hidden, the profile gets ignored.\n\n"
-        "If the answer is visible, the same profile suddenly feels stronger.\n\n"
-        f"That is why this matters: {angle['action']}\n\n"
-        "No long lecture needed. Just make the proof impossible to miss.\n\n"
-        "Because on LinkedIn, in a resume, or in an interview, clarity travels "
-        "faster than potential. The clearer the proof, the easier it is for "
-        "someone to say yes."
-    )
     visual = build_curiosity_visual(angle)
-    cta = build_interactive_cta()
+    question = build_interactive_question()
     return {
-        "topic": topic,
+        "hook": hook,
+        "proof": proof,
         "insight": insight,
-        "story": story,
         "visual": visual,
-        "cta": cta,
+        "question": question,
     }
 
 
 def format_content_text(assets: dict[str, str]) -> str:
     return (
-        f"{assets['topic']}\n\n"
+        f"{assets['hook']}\n\n"
+        f"{assets['proof']}\n\n"
         f"{assets['insight']}\n\n"
-        f"{assets['story']}\n\n"
-        f"{assets['cta']}"
+        f"{assets['question']}"
     )
 
 

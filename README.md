@@ -152,12 +152,8 @@ python3 linkedin_company_page_agent.py \
 ## Daily student content automation
 
 `daily_story_linkedin_agent.py` creates one daily employability content post,
-generates a related image, and can post both to LinkedIn. Each post is kept
-between 200 and 500 words and ends with:
-
-```text
-https://student.worldofinterns.com
-```
+generates a related image, and can post both to LinkedIn. Captions are short,
+comment-first LinkedIn posts rather than long teaching posts.
 
 The content engine rotates through formats such as:
 
@@ -207,18 +203,18 @@ reused.
 
 Each generated post is built as five assets:
 
-1. `topic` - the content angle and hook.
-2. `insight` - the practical lesson or breakdown.
-3. `story` - the expanded explanation or scenario.
+1. `hook` - one sharp sentence.
+2. `proof` - one screenshot/resume/recruiter-comment style example.
+3. `insight` - one takeaway only.
 4. `visual` - the image direction used for AI photo/card generation.
-5. `cta` - the signup push to `https://student.worldofinterns.com`.
+5. `question` - an interactive comment prompt.
 
 The five assets are preserved in the JSON output and history tracking. The
-LinkedIn caption is formatted as a natural post without exposing labels like
-`Topic`, `Insight`, or `Story`.
+LinkedIn caption is formatted as a natural post without exposing internal labels.
 
 Public captions use a show-first style: strong hook, before/after proof, short
-human explanation, and an interactive checkbox question to invite comments.
+human insight, and an interactive checkbox question to invite comments. They do
+not include a website CTA.
 
 Dry-run generation:
 
