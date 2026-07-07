@@ -32,6 +32,8 @@ SERIES_BY_KEY: dict[str, WeeklySeries] = {
     series.key: series for series in WEEKLY_SERIES_SCHEDULE
 }
 
+INTERNSHIP_SERIES = SERIES_BY_KEY["internship_opportunities"]
+
 SERIES_HASHTAGS: dict[str, tuple[str, ...]] = {
     "ai_tool_of_the_week": ("AIToolOfTheWeek", "ToolTuesday"),
     "prompt_of_the_week": ("PromptOfTheWeek", "PromptEngineering"),

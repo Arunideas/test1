@@ -21,16 +21,14 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from linkedin_company_page_agent import LinkedInCompanyPageAgent, LinkedInPostError
-from weekly_linkedin_series import SERIES_BY_KEY, prepend_series_header, resolve_series_for_date
-
-
-INTERNSHIP_SERIES = SERIES_BY_KEY["internship_opportunities"]
+from weekly_linkedin_series import INTERNSHIP_SERIES, SERIES_HASHTAGS, prepend_series_header, resolve_series_for_date
 
 
 DEFAULT_SOURCES_PATH = Path("data/sample_sources")
 DEFAULT_HISTORY_PATH = Path("daily_internship_history.json")
 DEFAULT_OUTPUT_DIR = Path("daily_internship_output")
 DEFAULT_MAX_LINKEDIN_CHARS = 3000
+DEFAULT_MAX_INTERNSHIP_HASHTAGS = 12
 DEFAULT_CATEGORY_ORDER = (
     "Software Engineering",
     "Digital Marketing",
@@ -85,6 +83,18 @@ INDIA_LOCATION_MARKERS = (
     "noida",
     "kolkata",
     "remote india",
+)
+
+ROLE_KEYWORD_HASHTAGS: tuple[tuple[tuple[str, ...], str], ...] = (
+    (("software", "backend", "frontend", "full stack", "developer", "engineering"), "SoftwareInternship"),
+    (("devops", "qa", "mobile"), "TechInternship"),
+    (("marketing", "seo", "social media", "content", "brand"), "MarketingInternship"),
+    (("data", "analytics", "analyst", "power bi", "sql"), "DataAnalytics"),
+    (("design", "ux", "ui", "creative"), "DesignInternship"),
+    (("finance", "accounting"), "FinanceInternship"),
+    (("human resources", " hr ", "people ops"), "HRInternship"),
+    (("sales", "business development"), "SalesInternship"),
+    (("operations", "ops"), "OperationsInternship"),
 )
 
 
@@ -343,7 +353,24 @@ def extract_hashtags(text: str) -> set[str]:
     }
 
 
-def build_internship_hashtags(brief: DailyInternshipBrief, *, max_tags: int = 10) -> list[str]:
+def extract_hashtags_from_jobs(brief: DailyInternshipBrief, *, max_tags: int = 4) -> list[str]:
+    combined = " ".join(f"{job.role} {job.category}" for job in brief.jobs).lower()
+    tags: list[str] = []
+    seen: set[str] = set()
+    for keywords, tag in ROLE_KEYWORD_HASHTAGS:
+        if len(tags) >= max_tags:
+            break
+        if not any(keyword in combined for keyword in keywords):
+            continue
+        normalized = normalize_hashtag(tag)
+        if not normalized or normalized in seen:
+            continue
+        seen.add(normalized)
+        tags.append(normalized)
+    return tags
+
+
+def build_internship_hashtags(brief: DailyInternshipBrief, *, max_tags: int = DEFAULT_MAX_INTERNSHIP_HASHTAGS) -> list[str]:
     tags: list[str] = []
     seen: set[str] = set()
 
@@ -357,7 +384,9 @@ def build_internship_hashtags(brief: DailyInternshipBrief, *, max_tags: int = 10
             seen.add(normalized)
             tags.append(normalized)
 
-    add(*INTERNSHIP_BASE_HASHTAGS)
+    add(*INTERNSHIP_BASE_HASHTAGS[:3])
+    add(*SERIES_HASHTAGS.get(INTERNSHIP_SERIES.key, ()))
+    add(*extract_hashtags_from_jobs(brief))
 
     counts = brief.category_counts()
     top_categories = sorted(counts, key=lambda category: (-counts[category], category))
@@ -382,27 +411,27 @@ def append_hashtags_to_post(
     hashtags: list[str],
     *,
     max_chars: int | None = None,
-) -> str:
+) -> tuple[str, list[str]]:
     body = text.strip()
     if not body or not hashtags:
-        return body
+        return body, hashtags
 
     existing = extract_hashtags(body)
     missing = [tag for tag in hashtags if normalize_hashtag(tag) not in existing]
-    if not missing:
-        return body
+    if not missing and existing:
+        return body, hashtags
 
-    hashtag_line = " ".join(format_hashtag(tag) for tag in missing)
+    hashtag_line = " ".join(format_hashtag(tag) for tag in (missing or hashtags))
     hashtag_block = f"\n\n{hashtag_line}"
     if max_chars is None:
-        return f"{body}{hashtag_block}"
+        return f"{body}{hashtag_block}", hashtags
 
     allowed_body_len = max_chars - len(hashtag_block)
     if allowed_body_len < 1:
-        return body[:max_chars]
+        return body[:max_chars], hashtags
     if len(body) > allowed_body_len:
         body = body[: allowed_body_len - 3].rstrip() + "..."
-    return f"{body}{hashtag_block}"
+    return f"{body}{hashtag_block}", hashtags
 
 
 def format_summary_header(brief: DailyInternshipBrief) -> str:
@@ -529,7 +558,13 @@ def build_daily_brief(
     return brief
 
 
-def save_brief_artifacts(brief: DailyInternshipBrief, output_dir: Path, text: str) -> dict[str, str]:
+def save_brief_artifacts(
+    brief: DailyInternshipBrief,
+    output_dir: Path,
+    text: str,
+    *,
+    hashtags: list[str] | None = None,
+) -> dict[str, str]:
     output_dir.mkdir(parents=True, exist_ok=True)
     date_prefix = brief.report_date.isoformat()
     text_path = output_dir / f"{date_prefix}-daily-internship-intelligence.txt"
@@ -547,6 +582,7 @@ def save_brief_artifacts(brief: DailyInternshipBrief, output_dir: Path, text: st
                 "omitted_job_count": brief.omitted_job_count,
                 "jobs": [job.to_dict() for job in brief.jobs],
                 "linkedin_text": text,
+                "hashtags": hashtags or extract_hashtags(text),
             },
             indent=2,
             sort_keys=True,
@@ -729,12 +765,13 @@ def main(argv: list[str] | None = None) -> int:
                 continue_url=args.continue_url,
             )
         text = prepend_series_header(text, INTERNSHIP_SERIES)
-        text = append_hashtags_to_post(
+        hashtags = build_internship_hashtags(brief)
+        text, hashtags = append_hashtags_to_post(
             text,
-            build_internship_hashtags(brief),
+            hashtags,
             max_chars=args.max_chars,
         )
-        artifacts = save_brief_artifacts(brief, output_dir, text)
+        artifacts = save_brief_artifacts(brief, output_dir, text, hashtags=hashtags)
     except (OSError, ValueError, json.JSONDecodeError) as error:
         print(f"Error: {error}", file=sys.stderr)
         return 1
@@ -786,6 +823,7 @@ def main(argv: list[str] | None = None) -> int:
         "json_path": artifacts["json_path"],
         "history_path": str(history_path),
         "recorded": args.post or args.record_dry_run,
+        "hashtags": hashtags,
         "content": text,
         "post_response": post_result,
     }

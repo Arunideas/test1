@@ -264,8 +264,9 @@ Posts below the quality threshold are regenerated automatically.
 
 Captions must include four sections: hook, proof, a `Takeaway:` line, and 3-4 checkbox options.
 AI images are generated with a strict no-readable-text rule so DALL-E does not misspell words on screens, books, or sticky notes.
-Each post also ends with meaningful hashtags based on the content pillar and
-topic (for example `#WorldOfInterns`, `#ResumeTips`, `#Claude`).
+Each post also ends with meaningful hashtags based on the weekly series, content pillar,
+topic, and words in the post itself (for example `#PromptOfTheWeek`, `#InterviewPrep`,
+`#LinkedInTips`).
 
 Monday **AI Tool of the Week** posts also end with a fixed
 **Why Students Should Care** block:
@@ -514,9 +515,9 @@ Each job listing includes:
 - Last Date
 - Verified ✅
 
-Every briefing also ends with meaningful hashtags based on the categories,
-work modes, and locations in that day's list (for example
-`#VerifiedInternships`, `#DigitalMarketing`, `#RemoteInternship`).
+Every briefing also ends with meaningful hashtags based on the Wednesday series,
+job categories, roles in that day's list, work modes, and locations (for example
+`#InternshipOpportunities`, `#SoftwareInternship`, `#RemoteInternship`).
 
 Dry-run with the bundled sample sources:
 

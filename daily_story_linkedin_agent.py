@@ -46,6 +46,7 @@ MIN_POST_WORDS = 70
 MAX_POST_WORDS = 180
 MAX_PROMOTIONAL_SCORE = 5
 MIN_WEIGHTED_QUALITY_SCORE = 65
+DEFAULT_MAX_HASHTAGS = 10
 
 POST_QUALITY_WEIGHTS: dict[str, float] = {
     "educational": 0.30,
@@ -2054,11 +2055,56 @@ def append_ai_tool_why_students_should_care(caption: str) -> str:
     return f"{body}\n\n{AI_TOOL_WHY_STUDENTS_SHOULD_CARE_BLOCK}"
 
 
+CONTENT_KEYWORD_HASHTAGS: tuple[tuple[tuple[str, ...], str], ...] = (
+    (("mock interview", "interview answer", "interview prep", "interview"), "InterviewPrep"),
+    (("resume", "cv", "shortlist"), "ResumeTips"),
+    (("linkedin headline", "headline"), "LinkedInTips"),
+    (("portfolio", "github readme", "github"), "Portfolio"),
+    (("prompt", "copy this prompt", "try this prompt"), "PromptEngineering"),
+    (("python",), "Python"),
+    (("sql", "dashboard"), "DataAnalytics"),
+    (("excel",), "ExcelSkills"),
+    (("java",), "Java"),
+    (("chatgpt",), "ChatGPT"),
+    (("claude",), "Claude"),
+    (("cursor",), "Cursor"),
+    (("copilot",), "GitHubCopilot"),
+    (("n8n", "zapier", "automation"), "WorkflowAutomation"),
+    (("startup founder", "startup"), "StartupCareers"),
+    (("recruiter", "hiring manager", "hr"), "Recruiting"),
+    (("stipend", "salary"), "InternshipPay"),
+    (("scam", "verify", "verification"), "InternshipSafety"),
+    (("remote", "work from home"), "RemoteInternship"),
+    (("project story", "final-year", "engineering student"), "StudentCareers"),
+    (("ai tool", " ai ", "artificial intelligence"), "AITools"),
+    (("employability", "skill gap"), "Employability"),
+    (("takeaway", "career tip"), "CareerAdvice"),
+)
+
+
+def extract_hashtags_from_content(caption: str, *, max_tags: int = 4) -> list[str]:
+    text = caption.lower()
+    tags: list[str] = []
+    seen: set[str] = set()
+    for keywords, tag in CONTENT_KEYWORD_HASHTAGS:
+        if len(tags) >= max_tags:
+            break
+        if not any(keyword in text for keyword in keywords):
+            continue
+        normalized = normalize_hashtag(tag)
+        if not normalized or normalized in seen:
+            continue
+        seen.add(normalized)
+        tags.append(normalized)
+    return tags
+
+
 def build_hashtags_for_angle(
     angle: dict[str, Any],
     *,
     series: WeeklySeries | None = None,
-    max_tags: int = 8,
+    caption: str = "",
+    max_tags: int = DEFAULT_MAX_HASHTAGS,
 ) -> list[str]:
     tags: list[str] = []
     seen: set[str] = set()
@@ -2077,6 +2123,7 @@ def build_hashtags_for_angle(
     add(*BASE_HASHTAGS[:2])
     if series is not None:
         add(*SERIES_HASHTAGS.get(series.key, ()))
+    add(*extract_hashtags_from_content(caption))
     if content_type in AI_TOOL_CONTENT_TYPES:
         add(content_type.replace(" ", ""), "AITools")
     add(*CONTENT_TYPE_HASHTAGS.get(content_type, ()))
@@ -2090,20 +2137,25 @@ def append_hashtags_to_caption(
     angle: dict[str, Any],
     *,
     series: WeeklySeries | None = None,
-    max_tags: int = 8,
-) -> str:
+    max_tags: int = DEFAULT_MAX_HASHTAGS,
+) -> tuple[str, list[str]]:
     body = caption.strip()
     if not body:
-        return body
+        return body, []
 
-    desired = build_hashtags_for_angle(angle, series=series, max_tags=max_tags)
+    desired = build_hashtags_for_angle(
+        angle,
+        series=series,
+        caption=body,
+        max_tags=max_tags,
+    )
     existing = extract_hashtags(body)
     missing = [tag for tag in desired if tag not in existing]
-    if not missing:
-        return body
+    if not missing and existing:
+        return body, desired
 
-    hashtag_line = " ".join(format_hashtag(tag) for tag in missing)
-    return f"{body}\n\n{hashtag_line}"
+    hashtag_line = " ".join(format_hashtag(tag) for tag in (missing or desired))
+    return f"{body}\n\n{hashtag_line}", desired
 
 
 def parse_quality_scores(raw: Any) -> dict[str, float]:
@@ -3244,8 +3296,12 @@ def build_story(
                 )
             if series.key == "ai_tool_of_the_week":
                 caption_body = append_ai_tool_why_students_should_care(caption_body)
-            caption = append_hashtags_to_caption(caption_body, angle, series=series)
-            caption = prepend_series_header(caption, series)
+            caption_body, hashtags = append_hashtags_to_caption(
+                caption_body,
+                angle,
+                series=series,
+            )
+            caption = prepend_series_header(caption_body, series)
             assets = {
                 "caption": caption,
                 "visual": generated["image_prompt"],
@@ -3254,6 +3310,7 @@ def build_story(
                 "series_key": series.key,
                 "series_label": series.label,
                 "quality_scores": generated["quality_scores"],
+                "hashtags": hashtags,
             }
             unique_id = f"{angle['id']}-{story_hash(caption)[:12]}"
             return Story(
@@ -3901,6 +3958,7 @@ def main(argv: list[str] | None = None) -> int:
         "content_group": story.content_group,
         "content_type": story.content_type,
         "assets": story.assets,
+        "hashtags": story.assets.get("hashtags", []),
         "quality_scores": story.assets.get("quality_scores"),
         "word_count": story.word_count,
         "content": story.text,
