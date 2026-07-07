@@ -1,0 +1,90 @@
+{
+  "source": "company_feeds",
+  "collected_at": "2026-07-07T08:30:00Z",
+  "jobs": [
+    {
+      "company": "CloudRail",
+      "role": "DevOps Intern",
+      "category": "Software Engineering",
+      "location": "Bangalore",
+      "stipend": "₹28,000/month",
+      "work_mode": "Remote",
+      "duration": "6 months",
+      "apply_link": "https://example.com/jobs/cloudrail-devops",
+      "last_date": "2026-07-21",
+      "verified": true
+    },
+    {
+      "company": "AppNest",
+      "role": "Mobile Engineering Intern",
+      "category": "Software Engineering",
+      "location": "Remote",
+      "stipend": "₹24,000/month",
+      "work_mode": "Remote",
+      "duration": "4 months",
+      "apply_link": "https://example.com/jobs/appnest-mobile",
+      "last_date": "2026-07-17",
+      "verified": true
+    },
+    {
+      "company": "BrandPulse",
+      "role": "Social Media Intern",
+      "category": "Digital Marketing",
+      "location": "Mumbai",
+      "stipend": "₹12,000/month",
+      "work_mode": "Hybrid",
+      "duration": "3 months",
+      "apply_link": "https://example.com/jobs/brandpulse-social",
+      "last_date": "2026-07-15",
+      "verified": true
+    },
+    {
+      "company": "ContentHive",
+      "role": "Content Marketing Intern",
+      "category": "Digital Marketing",
+      "location": "Bangalore",
+      "stipend": "₹14,000/month",
+      "work_mode": "Remote",
+      "duration": "4 months",
+      "apply_link": "https://example.com/jobs/contenthive-content",
+      "last_date": "2026-07-18",
+      "verified": true
+    },
+    {
+      "company": "MetricMind",
+      "role": "Business Analytics Intern",
+      "category": "Data Analytics",
+      "location": "Pune",
+      "stipend": "₹22,000/month",
+      "work_mode": "Hybrid",
+      "duration": "6 months",
+      "apply_link": "https://example.com/jobs/metricmind-analytics",
+      "last_date": "2026-07-23",
+      "verified": true
+    },
+    {
+      "company": "TalentBridge",
+      "role": "Recruitment Intern",
+      "category": "HR",
+      "location": "Hyderabad",
+      "stipend": "₹14,000/month",
+      "work_mode": "Onsite",
+      "duration": "4 months",
+      "apply_link": "https://example.com/jobs/talentbridge-recruitment",
+      "last_date": "2026-07-16",
+      "verified": true
+    },
+    {
+      "company": "CapitalNest",
+      "role": "Accounts Intern",
+      "category": "Finance",
+      "location": "Mumbai",
+      "stipend": "₹18,000/month",
+      "work_mode": "Onsite",
+      "duration": "3 months",
+      "apply_link": "https://example.com/jobs/capitalnest-accounts",
+      "last_date": "2026-07-13",
+      "verified": true
+    }
+  ]
+}

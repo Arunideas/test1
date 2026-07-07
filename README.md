@@ -337,6 +337,138 @@ python3 daily_story_linkedin_agent.py \
 
 Dry runs do not mark content as used unless you pass `--record-dry-run`.
 
+## Daily Internship Intelligence
+
+`daily_internship_intelligence_agent.py` is separate from the employability
+content engine. It collects verified internship openings from one or more JSON
+source files, builds a daily briefing, saves artifacts locally, and can post
+the update to LinkedIn.
+
+Example output:
+
+```text
+🔥 Today's Verified Internship Opportunities (24)
+
+📍 Software Engineering
+5 Openings
+
+📍 Digital Marketing
+8 Openings
+
+📍 Data Analytics
+4 Openings
+
+📍 HR
+3 Openings
+
+📍 Finance
+4 Openings
+```
+
+Each job listing includes:
+
+- Company
+- Location
+- Stipend
+- Remote/Hybrid/Onsite
+- Duration
+- Apply Link
+- Last Date
+- Verified ✅
+
+Dry-run with the bundled sample sources:
+
+```bash
+python3 daily_internship_intelligence_agent.py
+```
+
+The sample sources under `data/sample_sources/` contain 24 verified openings
+across five categories. The agent also writes:
+
+- `daily_internship_output/<date>-daily-internship-intelligence.txt`
+- `daily_internship_output/<date>-daily-internship-intelligence.json`
+
+Use your own source directory in production:
+
+```bash
+python3 daily_internship_intelligence_agent.py \
+  --sources-path "/var/lib/worldofinterns/internship_sources"
+```
+
+Each source file can be either a JSON array of jobs or an object with metadata:
+
+```json
+{
+  "source": "company_feeds",
+  "collected_at": "2026-07-07T08:30:00Z",
+  "jobs": [
+    {
+      "company": "NovaStack Labs",
+      "role": "Backend Engineering Intern",
+      "category": "Software Engineering",
+      "location": "Bangalore",
+      "stipend": "₹30,000/month",
+      "work_mode": "Hybrid",
+      "duration": "6 months",
+      "apply_link": "https://example.com/jobs/novastack-backend",
+      "last_date": "2026-07-20",
+      "verified": true,
+      "verification_notes": "Company website and LinkedIn verified"
+    }
+  ]
+}
+```
+
+Only jobs marked `"verified": true` are included by default. To include
+unverified jobs during testing:
+
+```bash
+python3 daily_internship_intelligence_agent.py --include-unverified
+```
+
+LinkedIn posts are limited to about 3000 characters. When the full daily list
+is too long, the agent truncates the post and can point to a full list URL:
+
+```bash
+export INTERNSHIP_CONTINUE_URL="https://student.worldofinterns.com/internships"
+
+python3 daily_internship_intelligence_agent.py \
+  --continue-url "$INTERNSHIP_CONTINUE_URL"
+```
+
+To post only the daily summary block and link to the full verified list:
+
+```bash
+python3 daily_internship_intelligence_agent.py --summary-only --continue-url "$INTERNSHIP_CONTINUE_URL"
+```
+
+Post to LinkedIn:
+
+```bash
+export LINKEDIN_ACCESS_TOKEN="your-60-day-linkedin-token"
+export LINKEDIN_MEMBER_ID="your-authenticated-linkedin-member-id"
+
+python3 daily_internship_intelligence_agent.py --post
+```
+
+For a scheduled automation:
+
+```bash
+python3 daily_internship_intelligence_agent.py \
+  --sources-path "/var/lib/worldofinterns/internship_sources" \
+  --history-path "/var/lib/worldofinterns/daily_internship_history.json" \
+  --output-dir "/var/lib/worldofinterns/daily_internship_output" \
+  --post
+```
+
+| Variable | Description |
+| --- | --- |
+| `INTERNSHIP_SOURCES_PATH` | Directory or JSON file containing internship source feeds. |
+| `INTERNSHIP_HISTORY_PATH` | JSON file for posted daily report tracking. |
+| `INTERNSHIP_OUTPUT_DIR` | Directory for generated `.txt` and `.json` artifacts. |
+| `INTERNSHIP_MAX_LINKEDIN_CHARS` | LinkedIn post character limit. Defaults to `3000`. |
+| `INTERNSHIP_CONTINUE_URL` | Optional URL for full list when post is truncated or summary-only. |
+
 ## Configuration
 
 | Variable | Description |
