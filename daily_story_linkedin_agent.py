@@ -51,6 +51,13 @@ DEFAULT_METRICS = {
     "data_analyst_resume_gap": "SQL portfolio projects",
     "startup_shortlist_rate": "31%",
     "role_ranking_top_role": "Data Analyst Intern",
+    "intern_hiring_days": "10",
+    "screening_time_saved": "42%",
+    "campus_campaign_reach": "3,200",
+    "bulk_recruitment_roles": "120",
+    "hiring_trend_year": "2026",
+    "salary_benchmark_role": "Data Analyst Intern",
+    "salary_benchmark_growth": "22%",
 }
 
 NAMES = [
@@ -67,6 +74,302 @@ NAMES = [
 ]
 
 CONTENT_ANGLES = [
+    {
+        "id": "student-employability-score",
+        "content_group": "For Students",
+        "content_type": "Employability Score",
+        "hook": "Your employability score is not a label. It is a map.",
+        "headline": "SCORE MAP",
+        "subhead": "Know what to fix first.",
+        "visual": "clock",
+        "setup": (
+            "An employability score helps students see readiness across resume, "
+            "skills, assessments, projects, and interview confidence. The point is "
+            "not to judge the student; the point is to reveal the next best action."
+        ),
+        "sections": [
+            "A resume score shows whether your proof is visible in the first scan.",
+            "A skill score shows whether you can apply knowledge without hints.",
+            "An interview score shows whether your projects sound clear, relevant, and credible.",
+        ],
+        "action": "Check your weakest area first. Improving one low-scoring category can change how recruiters read your entire profile.",
+    },
+    {
+        "id": "student-resume-improvement",
+        "content_group": "For Students",
+        "content_type": "Resume Improvement",
+        "hook": "One resume bullet can change the whole interview.",
+        "headline": "FIX ONE LINE",
+        "subhead": "Better proof gets better calls.",
+        "visual": "document",
+        "setup": (
+            "Resume improvement is not only about formatting. The bigger upgrade "
+            "is changing vague activity into proof a recruiter can trust."
+        ),
+        "sections": [
+            "Weak line: 'Worked on college project.' Strong line: 'Built a dashboard that tracked attendance trends for 500 students.'",
+            "Weak resumes describe effort. Strong resumes describe problem, tool, action, and result.",
+            "The fastest improvement is to rewrite the top three project lines before sending another application.",
+        ],
+        "action": "Open your resume and rewrite one bullet with this structure: problem, tool, action, result.",
+    },
+    {
+        "id": "student-mock-assessments",
+        "content_group": "For Students",
+        "content_type": "Mock Assessments",
+        "hook": "Mock assessments show the gap before the recruiter does.",
+        "headline": "MOCK TEST",
+        "subhead": "Practice before pressure.",
+        "visual": "laptop",
+        "setup": (
+            "Mock assessments are useful because they turn confidence into evidence. "
+            "A student may feel ready after watching tutorials, but timed tasks reveal "
+            "whether the skill works under pressure."
+        ),
+        "sections": [
+            "A good mock assessment tests basics, edge cases, and problem understanding.",
+            "The score matters, but the error pattern matters more: syntax, logic, speed, or clarity.",
+            "Students who review mistakes immediately improve faster than students who simply retake tests.",
+        ],
+        "action": "Take one mock assessment this week and write down the top three mistakes. That list is your next study plan.",
+    },
+    {
+        "id": "student-career-challenges",
+        "content_group": "For Students",
+        "content_type": "Career Challenges",
+        "hook": "A seven-day career challenge can beat one month of overthinking.",
+        "headline": "7 DAY PUSH",
+        "subhead": "Small actions compound.",
+        "visual": "rocket",
+        "setup": (
+            "Career challenges work because they replace vague ambition with daily "
+            "proof. Students do not need a perfect plan to begin; they need a repeatable action."
+        ),
+        "sections": [
+            "Day one: fix one resume bullet. Day two: publish one project screenshot.",
+            "Day three: record one project explanation. Day four: apply to one matched role.",
+            "By day seven, the student has more visible proof than they had all month.",
+        ],
+        "action": "Start a seven-day challenge today. Do one employability action daily and track what changed.",
+    },
+    {
+        "id": "student-internship-discovery",
+        "content_group": "For Students",
+        "content_type": "Internship Discovery",
+        "hook": "The best internship is not always the most famous one.",
+        "headline": "FIND FIT",
+        "subhead": "Discover roles that match proof.",
+        "visual": "path",
+        "setup": (
+            "Internship discovery should not begin with brand names alone. It should "
+            "begin with fit: skills, learning goals, role expectations, and proof the "
+            "student can actually show."
+        ),
+        "sections": [
+            "A smaller startup role can teach more if the student gets real ownership.",
+            "A famous company role can still fail if the student is not ready for the task.",
+            "Better discovery means matching your strongest proof to the role that needs it.",
+        ],
+        "action": "List your top three proofs, then search for internships where those proofs matter most.",
+    },
+    {
+        "id": "company-hire-interns-ten-days",
+        "content_group": "For Companies",
+        "content_type": "Hire interns within 10 days",
+        "hook": "Hiring interns within {intern_hiring_days} days is possible when screening starts with proof.",
+        "headline": "10 DAY HIRE",
+        "subhead": "Shortlist by evidence.",
+        "visual": "door",
+        "setup": (
+            "Companies lose time when internship hiring begins with unstructured resumes "
+            "and unclear role expectations. A faster process starts by defining the role "
+            "task, assessment, and proof signal before applications arrive."
+        ),
+        "sections": [
+            "Day one: define the role outcome. Day two: run a role-specific assessment.",
+            "Day three to five: shortlist candidates by proof, not just keywords.",
+            "By day ten, interviews can focus on ownership, communication, and fit instead of basic filtering.",
+        ],
+        "action": "Before opening the next intern role, define one task the intern must perform in the first two weeks.",
+    },
+    {
+        "id": "company-ai-candidate-screening",
+        "content_group": "For Companies",
+        "content_type": "AI-powered candidate screening",
+        "hook": "AI screening should not reject students faster. It should find proof faster.",
+        "headline": "AI SCREENING",
+        "subhead": "Use AI to find signals.",
+        "visual": "spotlight",
+        "setup": (
+            "AI-powered candidate screening is useful only when it searches for evidence: "
+            "projects, assessment performance, role fit, and communication signals. "
+            "Speed without context only creates faster mistakes."
+        ),
+        "sections": [
+            "Good screening compares candidates against role-specific tasks, not generic buzzwords.",
+            "It can reduce manual resume review time by {screening_time_saved} when the inputs are structured.",
+            "The best result is a shortlist that hiring managers can trust and explain.",
+        ],
+        "action": "Use AI screening to rank proof, skill match, and assessment evidence before scheduling interviews.",
+    },
+    {
+        "id": "company-role-specific-assessments",
+        "content_group": "For Companies",
+        "content_type": "Role-specific assessments",
+        "hook": "Generic tests create generic shortlists.",
+        "headline": "ROLE TESTS",
+        "subhead": "Assess the actual job.",
+        "visual": "laptop",
+        "setup": (
+            "Role-specific assessments help companies identify interns who can perform "
+            "the work, not just talk about it. A marketing intern, data intern, and "
+            "operations intern should not face the same test."
+        ),
+        "sections": [
+            "A data role should test cleaning, querying, and explaining insights.",
+            "A marketing role should test audience understanding, copy, and campaign logic.",
+            "An operations role should test process thinking, Excel comfort, and follow-through.",
+        ],
+        "action": "Replace one generic screening test with a 45-minute task that mirrors the intern's real work.",
+    },
+    {
+        "id": "company-campus-hiring-campaigns",
+        "content_group": "For Companies",
+        "content_type": "Campus hiring campaigns",
+        "hook": "A campus hiring campaign should measure readiness, not just registrations.",
+        "headline": "CAMPUS HIRING",
+        "subhead": "Reach is not readiness.",
+        "visual": "conversation",
+        "setup": (
+            "Campus hiring campaigns can reach {campus_campaign_reach} students, but "
+            "reach alone does not create a strong shortlist. The campaign needs assessment, "
+            "resume review, and role matching."
+        ),
+        "sections": [
+            "The first metric is participation. The second is assessment completion.",
+            "The third is employability score movement: how many students became more role-ready during the campaign.",
+            "Companies get stronger pipelines when campuses see preparation as part of hiring, not an afterthought.",
+        ],
+        "action": "Design every campus campaign with a readiness score, not only an application count.",
+    },
+    {
+        "id": "company-bulk-internship-recruitment",
+        "content_group": "For Companies",
+        "content_type": "Bulk internship recruitment",
+        "hook": "Bulk internship recruitment fails when every role uses the same filter.",
+        "headline": "BULK HIRING",
+        "subhead": "Segment before shortlisting.",
+        "visual": "arrow",
+        "setup": (
+            "Bulk internship recruitment can cover {bulk_recruitment_roles} roles, but "
+            "quality drops when every applicant goes through one generic funnel."
+        ),
+        "sections": [
+            "Segment candidates by role family: tech, analytics, operations, sales, marketing, design, and support.",
+            "Use role-specific assessments to avoid comparing unrelated skills.",
+            "Track shortlist quality by interview conversion, not only application volume.",
+        ],
+        "action": "For the next bulk drive, create separate scorecards for each role family before screening begins.",
+    },
+    {
+        "id": "industry-hiring-trends",
+        "content_group": "Industry Insights",
+        "content_type": "Hiring trends",
+        "hook": "The hiring trend in {hiring_trend_year}: proof is replacing promises.",
+        "headline": "HIRING TREND",
+        "subhead": "Proof moves faster.",
+        "visual": "rocket",
+        "setup": (
+            "Hiring trends show a clear shift: companies want students who can show "
+            "work, explain decisions, and adapt quickly. Certificates still help, but "
+            "proof is becoming the stronger signal."
+        ),
+        "sections": [
+            "Recruiters are spending less time on generic profiles and more time on portfolios.",
+            "Assessments are becoming common because they reveal applied ability.",
+            "Students who package proof clearly are easier to shortlist across roles.",
+        ],
+        "action": "If your profile still depends on claims, add one visible proof this week.",
+    },
+    {
+        "id": "industry-skill-gap-reports",
+        "content_group": "Industry Insights",
+        "content_type": "Skill gap reports",
+        "hook": "Skill gap reports are useful only when they lead to action.",
+        "headline": "GAP REPORT",
+        "subhead": "Data should change training.",
+        "visual": "document",
+        "setup": (
+            "Skill gap reports help colleges, students, and companies see where readiness "
+            "breaks down. The value is not the report itself; the value is the training "
+            "plan it creates."
+        ),
+        "sections": [
+            "A strong report separates resume gaps, assessment gaps, and interview gaps.",
+            "It shows which departments need role-specific preparation.",
+            "It helps companies design better hiring campaigns and colleges design better practice plans.",
+        ],
+        "action": "Use every skill gap report to create one weekly challenge students can actually complete.",
+    },
+    {
+        "id": "industry-college-rankings",
+        "content_group": "Industry Insights",
+        "content_type": "College rankings",
+        "hook": "College rankings should include employability proof, not just reputation.",
+        "headline": "COLLEGE RANK",
+        "subhead": "Rank readiness, not noise.",
+        "visual": "arrow",
+        "setup": (
+            "Industry-facing college rankings become more useful when they include "
+            "student readiness: assessment scores, resume quality, project proof, "
+            "internship conversion, and role fit."
+        ),
+        "sections": [
+            "A college with strong practice systems can outperform a better-known college in employability outcomes.",
+            "Rankings should show where students are improving, not only where they started.",
+            "Employability rankings can push campuses toward measurable preparation.",
+        ],
+        "action": "When comparing colleges, ask for proof: assessment performance, project completion, and internship outcomes.",
+    },
+    {
+        "id": "industry-salary-benchmarks",
+        "content_group": "Industry Insights",
+        "content_type": "Salary benchmarks",
+        "hook": "{salary_benchmark_role} benchmarks are rising, but only for students who can show proof.",
+        "headline": "SALARY SIGNAL",
+        "subhead": "Pay follows readiness.",
+        "visual": "spotlight",
+        "setup": (
+            "Salary benchmarks help students understand market value, but they can also "
+            "mislead students if they ignore readiness. In-demand roles may grow by "
+            "{salary_benchmark_growth}, yet companies still pay for credible proof."
+        ),
+        "sections": [
+            "Higher benchmarks usually follow stronger business impact, not only tool familiarity.",
+            "Students with role-ready projects can negotiate from evidence.",
+            "Students without proof often compete only on availability, which weakens outcomes.",
+        ],
+        "action": "Before chasing a salary benchmark, build one project that proves you can create value in that role.",
+    },
+    {
+        "id": "industry-recruiter-tips",
+        "content_group": "Industry Insights",
+        "content_type": "Recruiter tips",
+        "hook": "Recruiter tip: make the shortlist decision easy.",
+        "headline": "RECRUITER TIP",
+        "subhead": "Clarity gets calls.",
+        "visual": "message",
+        "setup": (
+            "Recruiters do not have time to decode every student profile. The easier "
+            "you make your proof, role fit, and next step, the easier it is to shortlist you."
+        ),
+        "sections": [
+            "Use a headline that names your target role and strongest proof.",
+            "Put the most relevant project near the top, not hidden at the bottom.",
+            "Explain outcomes in plain language so non-technical recruiters can understand value.",
+        ],
+        "action": "Review your profile like a recruiter with 30 seconds. If the strongest proof is not obvious, move it up.",
+    },
     {
         "id": "assessment-python-function-errors",
         "content_type": "Assessment Scores",
@@ -333,6 +636,7 @@ CONTENT_ANGLES = [
 class Story:
     story_id: str
     text: str
+    content_group: str
     content_type: str
     assets: dict[str, str]
     hook: str
@@ -601,6 +905,7 @@ def build_story(
     return Story(
         story_id=unique_id,
         text=story_text,
+        content_group=angle.get("content_group", "General"),
         content_type=angle["content_type"],
         assets=assets,
         hook=angle["hook"],
@@ -986,6 +1291,7 @@ def record_story(
     content_hash = story_hash(story.text)
     entry = {
         "story_id": story.story_id,
+        "content_group": story.content_group,
         "content_type": story.content_type,
         "content_hash": content_hash,
         "assets": story.assets,
@@ -1150,6 +1456,7 @@ def main(argv: list[str] | None = None) -> int:
     response = {
         "dry_run": not args.post,
         "story_id": story.story_id,
+        "content_group": story.content_group,
         "content_type": story.content_type,
         "assets": story.assets,
         "word_count": story.word_count,

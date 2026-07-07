@@ -161,6 +161,32 @@ https://student.worldofinterns.com
 
 The content engine rotates through formats such as:
 
+For students:
+
+- Employability Score
+- Resume Improvement
+- Mock Assessments
+- Career Challenges
+- Internship Discovery
+
+For companies:
+
+- Hire interns within 10 days
+- AI-powered candidate screening
+- Role-specific assessments
+- Campus hiring campaigns
+- Bulk internship recruitment
+
+Industry insights:
+
+- Hiring trends
+- Skill gap reports
+- College rankings
+- Salary benchmarks
+- Recruiter tips
+
+Additional content formats:
+
 - Recruiter Secrets
 - Resume Roast
 - Interview Mistakes
@@ -227,7 +253,14 @@ Data-led posts can use metrics from a JSON file:
   "bottom_college_score": "42/100",
   "data_analyst_resume_gap": "SQL portfolio projects",
   "startup_shortlist_rate": "31%",
-  "role_ranking_top_role": "Data Analyst Intern"
+  "role_ranking_top_role": "Data Analyst Intern",
+  "intern_hiring_days": "10",
+  "screening_time_saved": "42%",
+  "campus_campaign_reach": "3,200",
+  "bulk_recruitment_roles": "120",
+  "hiring_trend_year": "2026",
+  "salary_benchmark_role": "Data Analyst Intern",
+  "salary_benchmark_growth": "22%"
 }
 ```
 
