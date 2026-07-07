@@ -822,46 +822,158 @@ def render_content_angle(angle: dict[str, Any], metrics: dict[str, str]) -> dict
     return rendered
 
 
+def choose_human_hook(rng: random.Random, angle: dict[str, Any]) -> str:
+    hooks_by_type = {
+        "Student Transformations": [
+            "This profile got ignored.\n\nNothing was wrong with it.\n\nIt was just forgettable.",
+            "The difference between\n\nNo interview\n\n↓\n\nInterview.",
+            "Recruiters do not reject students.\n\nThey reject unclear profiles.",
+        ],
+        "Resume Improvement": [
+            "This resume did not need a redesign.\n\nIt needed one line of proof.",
+            "The resume looked clean.\n\nThat was the problem.\n\nClean is not the same as convincing.",
+        ],
+        "Resume Roast": [
+            "This resume line sounds busy.\n\nBut it does not sound employable.",
+            "A recruiter does not need more adjectives.\n\nThey need proof.",
+        ],
+        "Resume Data": [
+            "The students getting more calls are not always better.\n\nThey are easier to verify.",
+            f"{angle['hook']}\n\nThat is not a design trick.\n\nIt is a trust signal.",
+        ],
+        "Assessment Scores": [
+            f"{angle['hook']}\n\nThis is the gap nobody sees on a certificate.",
+        ],
+    }
+    return rng.choice(hooks_by_type.get(angle["content_type"], [angle["hook"]]))
+
+
+def build_before_after(angle: dict[str, Any]) -> str:
+    before_after_by_type = {
+        "Student Transformations": (
+            "Before\n"
+            "B.Tech Student\n"
+            "Looking for opportunities\n\n"
+            "↓\n\n"
+            "After\n"
+            "Python Developer\n"
+            "Built inventory management software used by 120 students."
+        ),
+        "Resume Improvement": (
+            "Before\n"
+            "Completed machine learning project\n\n"
+            "↓\n\n"
+            "After\n"
+            "Built a Python model to predict attendance risk and explained the result in a dashboard."
+        ),
+        "Resume Roast": (
+            "Before\n"
+            "Worked on app development project\n\n"
+            "↓\n\n"
+            "After\n"
+            "Built login, search, and reporting flows for a student event app used by 300 participants."
+        ),
+        "Resume Data": (
+            "Without portfolio\n"
+            "Skills listed. Nothing to inspect.\n\n"
+            "↓\n\n"
+            "With portfolio\n"
+            "README, screenshots, code, and one clear project outcome."
+        ),
+        "Assessment Scores": (
+            "Before assessment\n"
+            "I know Python.\n\n"
+            "↓\n\n"
+            "After assessment\n"
+            "I can write a function, handle inputs, and explain where it fails."
+        ),
+        "Skill Gap Analysis": (
+            "Before\n"
+            "Mechanical Engineering student with CAD knowledge\n\n"
+            "↓\n\n"
+            "After\n"
+            "Designed a bracket, documented tolerances, estimated material cost, and explained trade-offs."
+        ),
+        "Mock Assessments": (
+            "Before\n"
+            "I watched the tutorial.\n\n"
+            "↓\n\n"
+            "After\n"
+            "I solved the task under time and found exactly where I got stuck."
+        ),
+        "Role-specific assessments": (
+            "Generic test\n"
+            "Same questions for every intern.\n\n"
+            "↓\n\n"
+            "Role test\n"
+            "A data intern cleans data. A marketing intern writes a campaign. An operations intern fixes a process."
+        ),
+    }
+    if angle["content_type"] in before_after_by_type:
+        return before_after_by_type[angle["content_type"]]
+    sections = angle["sections"]
+    return (
+        "Before\n"
+        "Claims, keywords, and unclear effort.\n\n"
+        "↓\n\n"
+        "After\n"
+        f"{sections[-1]}"
+    )
+
+
+def build_interactive_cta() -> str:
+    return (
+        "What is your weakest section right now?\n\n"
+        "□ Headline\n"
+        "□ Resume\n"
+        "□ Projects\n"
+        "□ Skills\n"
+        "□ Experience\n\n"
+        f"Pick one and start here: {SIGNUP_URL}"
+    )
+
+
 def build_content_assets(
     rng: random.Random,
     angle: dict[str, Any],
     *,
     student_name: str,
 ) -> dict[str, str]:
-    proof_task = rng.choice(
+    hook = choose_human_hook(rng, angle)
+    before_after = build_before_after(angle)
+    proof_line = rng.choice(
         [
-            "rewrite one resume bullet",
-            "record one 60-second project explanation",
-            "send one focused networking message",
-            "publish one small project proof",
-            "apply to one role that matches your evidence",
+            "The change is small, but the signal is huge.",
+            "Same student. Different clarity.",
+            "This is the part recruiters remember.",
+            "The skill was already there. The proof was missing.",
+            "Nothing fancy. Just easier to trust.",
         ]
     )
-    sections = "\n".join(f"- {section}" for section in angle["sections"])
-    topic = f"{angle['content_type']}: {angle['hook']}"
+    topic = hook
     insight = (
-        f"{angle['setup']}\n\n"
-        f"The pattern I keep seeing with students like {student_name}:\n{sections}"
+        f"{before_after}\n\n"
+        f"{proof_line}\n\n"
+        f"For a student like {student_name}, this is usually the difference between "
+        "being skipped and being understood."
     )
     story = (
-        "This is where most people overcomplicate employability. They keep adding "
-        "more courses, more certificates, and more saved internship links, but the "
-        "recruiter still cannot see what they can actually do.\n\n"
-        "The students who stand out usually do one simple thing better: they make "
-        "their proof easy to inspect. A project has a result. A resume line has a "
-        "clear outcome. An assessment score points to a real gap. A profile tells "
-        "the reader what role the student is ready for.\n\n"
-        f"So here is the practical move: {angle['action']}\n\n"
-        f"If that feels too big, start smaller: {proof_task}. It is not glamorous, "
-        "but it gives your next application more evidence than your last one.\n\n"
-        "That is the goal. Not to look perfect. To become easier to trust."
+        f"{angle['setup']}\n\n"
+        "Most students do not have a talent problem.\n\n"
+        "They have a clarity problem.\n\n"
+        "A recruiter is not sitting there trying to understand your full journey. "
+        "They are scanning for one thing: can this person do the work?\n\n"
+        "If the answer is hidden, the profile gets ignored.\n\n"
+        "If the answer is visible, the same profile suddenly feels stronger.\n\n"
+        f"That is why this matters: {angle['action']}\n\n"
+        "No long lecture needed. Just make the proof impossible to miss."
     )
     visual = (
         f"Photorealistic LinkedIn image concept: {angle['headline']} - "
         f"{angle['subhead'].rstrip('.')}. Show students in a realistic campus or early-career "
         "workspace moment with curiosity, proof, and action visible."
     )
-    cta = f"Stop waiting to feel ready. Start here: {SIGNUP_URL}"
+    cta = build_interactive_cta()
     return {
         "topic": topic,
         "insight": insight,

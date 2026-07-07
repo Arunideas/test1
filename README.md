@@ -217,6 +217,9 @@ The five assets are preserved in the JSON output and history tracking. The
 LinkedIn caption is formatted as a natural post without exposing labels like
 `Topic`, `Insight`, or `Story`.
 
+Public captions use a show-first style: strong hook, before/after proof, short
+human explanation, and an interactive checkbox question to invite comments.
+
 Dry-run generation:
 
 ```bash
