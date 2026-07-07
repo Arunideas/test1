@@ -149,6 +149,62 @@ python3 linkedin_company_page_agent.py \
   --post
 ```
 
+## Daily student story automation
+
+`daily_story_linkedin_agent.py` creates one short real-life conversation story,
+generates a related PNG image card, and can post both to LinkedIn. Each story is
+kept under 100 words and ends with:
+
+```text
+https://student.worldofinterns.com
+```
+
+The agent tracks used stories in a JSON history file so successful posts are not
+reused.
+
+Dry-run generation:
+
+```bash
+python3 daily_story_linkedin_agent.py
+```
+
+Dry-run with deterministic output for testing:
+
+```bash
+python3 daily_story_linkedin_agent.py --seed 42
+```
+
+Post to a personal LinkedIn profile:
+
+```bash
+export LINKEDIN_ACCESS_TOKEN="your-60-day-linkedin-token"
+export LINKEDIN_MEMBER_ID="your-authenticated-linkedin-member-id"
+
+python3 daily_story_linkedin_agent.py --post
+```
+
+By default the daily agent writes:
+
+- `daily_story_history.json` for used story tracking.
+- `daily_story_output/` for generated PNG images.
+
+Use a persistent history path if the script runs in a scheduled environment:
+
+```bash
+python3 daily_story_linkedin_agent.py \
+  --history-path "/var/lib/worldofinterns/daily_story_history.json" \
+  --output-dir "/var/lib/worldofinterns/daily_story_images" \
+  --post
+```
+
+Example cron entry for every day at 9 AM:
+
+```cron
+0 9 * * * cd /path/to/repo && /usr/bin/python3 daily_story_linkedin_agent.py --post >> daily_story.log 2>&1
+```
+
+Dry runs do not mark stories as used unless you pass `--record-dry-run`.
+
 ## Configuration
 
 | Variable | Description |
@@ -168,3 +224,5 @@ python3 linkedin_company_page_agent.py \
 | `LINKEDIN_REDIRECT_URI` | OAuth redirect URI used by `--auth-url`. |
 | `LINKEDIN_OAUTH_SCOPES` | Optional space/comma-separated scopes for `--auth-url`. |
 | `LINKEDIN_OAUTH_STATE` | Optional state value for `--auth-url`; generated when omitted. |
+| `DAILY_STORY_HISTORY_PATH` | Optional JSON path for daily story tracking. |
+| `DAILY_STORY_OUTPUT_DIR` | Optional directory for generated daily story images. |
