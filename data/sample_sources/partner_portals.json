@@ -1,0 +1,138 @@
+{
+  "source": "partner_portals",
+  "collected_at": "2026-07-07T07:45:00Z",
+  "jobs": [
+    {
+      "company": "SecureByte",
+      "role": "QA Engineering Intern",
+      "category": "Software Engineering",
+      "location": "Chennai",
+      "stipend": "₹20,000/month",
+      "work_mode": "Hybrid",
+      "duration": "6 months",
+      "apply_link": "https://example.com/jobs/securebyte-qa",
+      "last_date": "2026-07-20",
+      "verified": true
+    },
+    {
+      "company": "AdSpark",
+      "role": "SEO Intern",
+      "category": "Digital Marketing",
+      "location": "Delhi NCR",
+      "stipend": "₹15,000/month",
+      "work_mode": "Remote",
+      "duration": "3 months",
+      "apply_link": "https://example.com/jobs/adspark-seo",
+      "last_date": "2026-07-14",
+      "verified": true
+    },
+    {
+      "company": "ViralReach",
+      "role": "Influencer Marketing Intern",
+      "category": "Digital Marketing",
+      "location": "Mumbai",
+      "stipend": "₹16,000/month",
+      "work_mode": "Hybrid",
+      "duration": "4 months",
+      "apply_link": "https://example.com/jobs/viralreach-influencer",
+      "last_date": "2026-07-19",
+      "verified": true
+    },
+    {
+      "company": "CampaignCraft",
+      "role": "Email Marketing Intern",
+      "category": "Digital Marketing",
+      "location": "Bangalore",
+      "stipend": "₹13,000/month",
+      "work_mode": "Remote",
+      "duration": "3 months",
+      "apply_link": "https://example.com/jobs/campaigncraft-email",
+      "last_date": "2026-07-17",
+      "verified": true
+    },
+    {
+      "company": "MarketMosaic",
+      "role": "Brand Strategy Intern",
+      "category": "Digital Marketing",
+      "location": "Pune",
+      "stipend": "₹17,000/month",
+      "work_mode": "Onsite",
+      "duration": "5 months",
+      "apply_link": "https://example.com/jobs/marketmosaic-brand",
+      "last_date": "2026-07-21",
+      "verified": true
+    },
+    {
+      "company": "DataPulse",
+      "role": "Power BI Intern",
+      "category": "Data Analytics",
+      "location": "Bangalore",
+      "stipend": "₹21,000/month",
+      "work_mode": "Hybrid",
+      "duration": "6 months",
+      "apply_link": "https://example.com/jobs/datapulse-powerbi",
+      "last_date": "2026-07-22",
+      "verified": true
+    },
+    {
+      "company": "PeopleOps Co",
+      "role": "HR Business Partner Intern",
+      "category": "HR",
+      "location": "Remote",
+      "stipend": "₹16,000/month",
+      "work_mode": "Remote",
+      "duration": "4 months",
+      "apply_link": "https://example.com/jobs/peopleops-hrbp",
+      "last_date": "2026-07-18",
+      "verified": true
+    },
+    {
+      "company": "FinEdge",
+      "role": "Financial Planning Intern",
+      "category": "Finance",
+      "location": "Hyderabad",
+      "stipend": "₹19,000/month",
+      "work_mode": "Hybrid",
+      "duration": "6 months",
+      "apply_link": "https://example.com/jobs/finedge-planning",
+      "last_date": "2026-07-24",
+      "verified": true
+    },
+    {
+      "company": "PayRoute",
+      "role": "FinOps Intern",
+      "category": "Finance",
+      "location": "Bangalore",
+      "stipend": "₹23,000/month",
+      "work_mode": "Onsite",
+      "duration": "5 months",
+      "apply_link": "https://example.com/jobs/payroute-finops",
+      "last_date": "2026-07-20",
+      "verified": true
+    },
+    {
+      "company": "ClickForge",
+      "role": "Paid Ads Intern",
+      "category": "Digital Marketing",
+      "location": "Remote",
+      "stipend": "₹18,000/month",
+      "work_mode": "Remote",
+      "duration": "4 months",
+      "apply_link": "https://example.com/jobs/clickforge-paid-ads",
+      "last_date": "2026-07-16",
+      "verified": true
+    },
+    {
+      "company": "QueryLab",
+      "role": "SQL Analytics Intern",
+      "category": "Data Analytics",
+      "location": "Chennai",
+      "stipend": "₹20,000/month",
+      "work_mode": "Hybrid",
+      "duration": "6 months",
+      "apply_link": "https://example.com/jobs/querylab-sql",
+      "last_date": "2026-07-25",
+      "verified": true
+    }
+  ]
+}
