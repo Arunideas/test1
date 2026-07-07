@@ -1437,6 +1437,165 @@ def choose_human_hook(rng: random.Random, angle: dict[str, Any]) -> str:
     return rng.choice(hooks_by_type.get(angle["content_type"], [angle["hook"]]))
 
 
+def strip_section_label(text: str) -> tuple[str | None, str]:
+    for label in ("Before", "After", "Real work example", "Myth", "Reality"):
+        prefix = f"{label}:"
+        if text.strip().lower().startswith(prefix.lower()):
+            return label, text.split(":", 1)[1].strip()
+    return None, text.strip()
+
+
+def build_tool_week_proof(angle: dict[str, Any]) -> str:
+    sections = angle.get("sections", [])
+    before = strip_section_label(sections[0])[1] if sections else ""
+    after = strip_section_label(sections[1])[1] if len(sections) > 1 else ""
+    example = ""
+    for section in sections[2:]:
+        label, value = strip_section_label(section)
+        if label == "Real work example" or not label:
+            example = value
+            break
+
+    tool = angle["content_type"]
+    lines = [
+        f"Most students open {tool} and stall at the same point:",
+        before or "too much theory, not enough output.",
+        "",
+        "Try this instead:",
+    ]
+    if after:
+        parts = re.split(r",\s*then\s+", after, flags=re.IGNORECASE)
+        if len(parts) > 1:
+            for part in parts:
+                cleaned = part.strip(" .")
+                if cleaned:
+                    lines.append(f"→ {cleaned[0].upper()}{cleaned[1:]}")
+        else:
+            lines.append(f"→ {after}")
+    if example:
+        example = example.rstrip(".")
+        lines.append(f"→ {example[0].upper()}{example[1:]}")
+    return "\n".join(lines)
+
+
+def build_mythbuster_proof(angle: dict[str, Any]) -> str:
+    sections = angle.get("sections", [])
+    lines: list[str] = []
+    for section in sections[:3]:
+        label, value = strip_section_label(section)
+        if label == "Myth":
+            lines.extend(["Myth", value, ""])
+        elif label == "Reality":
+            lines.extend(["Reality", value, ""])
+        elif value:
+            lines.append(value)
+    return "\n".join(line for line in lines if line).strip()
+
+
+def build_clean_before_after(angle: dict[str, Any]) -> str:
+    sections = angle.get("sections", [])
+    if len(sections) >= 2:
+        _, before = strip_section_label(sections[0])
+        _, after = strip_section_label(sections[1])
+        return f"{before}\n\n↓\n\n{after}"
+
+    if sections:
+        _, fallback = strip_section_label(sections[0])
+        return fallback
+    return angle.get("setup", "").strip()
+
+
+def build_takeaway(rng: random.Random, angle: dict[str, Any]) -> str:
+    takeaways_by_group = {
+        "Student Employability": [
+            "One clear proof line can change how recruiters read your whole profile.",
+            "You do not need a perfect profile. You need one thing that is easy to trust.",
+            "Fix the weakest signal first. Everything else gets easier after that.",
+        ],
+        "Hire Interns in 10 Days": [
+            "Speed helps only when screening starts with proof.",
+            "The best shortlists come from role tasks, not keyword searches.",
+            "Ten days is enough when evidence comes before interviews.",
+        ],
+        "Internship Verification": [
+            "A good-looking offer is not the same as a verified company.",
+            "Check before you celebrate.",
+            "Verification saves time, money, and regret.",
+        ],
+        "Recruiter Secrets": [
+            "Recruiters scan for proof first. Everything else is secondary.",
+            "If your strongest proof is not obvious in 8 seconds, move it up.",
+            "Clarity gets interviews faster than confidence alone.",
+        ],
+        "Market Intelligence": [
+            "The market moved. Your profile should move with it.",
+            "Build proof for what is hiring now, not what was hiring last year.",
+            "Data only helps when it changes what you build next.",
+        ],
+        "Employer Branding": [
+            "Students apply where the role feels real, not vague.",
+            "A clearer JD often beats a bigger brand.",
+            "Better applicants start with better role clarity.",
+        ],
+        "Campus Ambassador / Job Acquisition": [
+            "One verified employer connection can open doors for an entire campus.",
+            "Opportunities travel through relationships, not only job boards.",
+            "Bring roles to students instead of waiting for roles to appear.",
+        ],
+        "AI Career Survival": [
+            "The edge is not prompting harder. It is using AI with judgment and proof.",
+            "AI plus you is the competition now.",
+            "Show what you reviewed, not just what the tool generated.",
+        ],
+        "Learn One AI Tool Every Week": [
+            "One explained workflow beats listing ten AI tools on your resume.",
+            "Learn the tool by shipping one small example today.",
+            "Recruiters remember proof, not another tool name.",
+        ],
+        "AI Challenge of the Week": [
+            "Ship one entry this week. Momentum beats perfection.",
+            "A finished example is stronger than another tutorial bookmark.",
+            "Featured submissions come from finished work, not perfect plans.",
+        ],
+        "AI Resume Upgrade": [
+            "Workflows beat tool names on a resume every time.",
+            "Show what AI helped with and what you verified yourself.",
+            "Replace generic skills with one outcome recruiters can trust.",
+        ],
+        "AI Interview Practice": [
+            "Confidence without clarity still loses interviews.",
+            "Practice shows the gap before the recruiter does.",
+            "A clear 60-second answer beats a long unfocused one.",
+        ],
+        "AI Mythbusters": [
+            "The practical truth hires faster than the viral fear.",
+            "Careers are built on problems solved, not buzzwords repeated.",
+            "Update the story before the market updates you.",
+        ],
+        "Future Skills": [
+            "Future skills matter when you can explain them in one practical example.",
+            "Learn the concept, then show one use case.",
+            "Simple language plus one real example beats jargon every time.",
+        ],
+    }
+    group = angle.get("content_group", "Student Employability")
+    action = angle.get("action", "").strip()
+    if action and rng.random() < 0.35:
+        return action
+    return rng.choice(
+        takeaways_by_group.get(group, takeaways_by_group["Student Employability"])
+    )
+
+
+def build_natural_proof(angle: dict[str, Any]) -> str:
+    group = angle.get("content_group", "")
+    if group == "Learn One AI Tool Every Week":
+        return build_tool_week_proof(angle)
+    if group == "AI Mythbusters":
+        return build_mythbuster_proof(angle)
+    return build_clean_before_after(angle)
+
+
 def build_before_after(angle: dict[str, Any]) -> str:
     before_after_by_type = {
         "Resume Before vs After": (
@@ -1724,14 +1883,7 @@ def build_before_after(angle: dict[str, Any]) -> str:
     }
     if angle["content_type"] in before_after_by_type:
         return before_after_by_type[angle["content_type"]]
-    sections = angle["sections"]
-    return (
-        "Before\n"
-        f"{sections[0]}\n\n"
-        "↓\n\n"
-        "After\n"
-        f"{sections[-1]}"
-    )
+    return build_clean_before_after(angle)
 
 
 def build_pillar_question(angle: dict[str, Any]) -> str:
@@ -1800,7 +1952,7 @@ def build_pillar_question(angle: dict[str, Any]) -> str:
             "□ Already using AI daily"
         ),
         "Learn One AI Tool Every Week": (
-            "Which AI tool do you want to learn next?\n\n"
+            "Which AI tool are you learning this week?\n\n"
             "□ ChatGPT\n"
             "□ Claude\n"
             "□ Cursor\n"
@@ -2191,16 +2343,16 @@ def build_content_assets(
     *,
     student_name: str,
 ) -> dict[str, str]:
+    del student_name
     hook = choose_human_hook(rng, angle)
-    before_after = build_before_after(angle)
-    proof = before_after
-    insight = build_insight(rng, angle, student_name=student_name)
+    proof = build_natural_proof(angle)
+    takeaway = build_takeaway(rng, angle)
     visual = build_curiosity_visual(angle)
     question = build_pillar_question(angle)
     return {
         "hook": hook,
         "proof": proof,
-        "insight": insight,
+        "insight": takeaway,
         "visual": visual,
         "question": question,
     }
