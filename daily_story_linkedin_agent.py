@@ -933,6 +933,110 @@ def build_interactive_cta() -> str:
     )
 
 
+def build_curiosity_visual(angle: dict[str, Any]) -> str:
+    scenes_by_type = {
+        "Student Transformations": (
+            "Split-screen recruiter view. Left side: a plain student profile card "
+            "labeled 'Ignored' with vague headline. Right side: upgraded profile "
+            "card labeled 'Interview' with project proof highlighted. Add a red "
+            "circle around the missing proof on the left."
+        ),
+        "Resume Improvement": (
+            "Close-up recruiter desk with two resume versions. One has a sticky note "
+            "that says 'Too vague'. The improved one has one highlighted project "
+            "line and a green check mark. Make the viewer wonder what changed."
+        ),
+        "Resume Roast": (
+            "Recruiter desk scene. A resume is stamped 'REJECTED'. Next to it, a "
+            "small note says 'Reason: no projects'. A second resume nearby has "
+            "one project line highlighted but is not fully readable."
+        ),
+        "Resume Data": (
+            "Laptop analytics dashboard on a desk: 'Applications sent: 84' and "
+            "'Replies: 3' on one side, then a portfolio link card glowing on the "
+            "other side. The mood should feel like a painful but useful discovery."
+        ),
+        "Assessment Scores": (
+            "Assessment result screen on a laptop: '12,487 attempted' and '18% "
+            "passed function task'. Show a student staring at the result, with "
+            "code errors faintly visible on the screen."
+        ),
+        "Skill Gap Analysis": (
+            "Mechanical engineering resume on a desk with five missing skill tags "
+            "floating above it: CAD docs, GD&T, Excel reports, manufacturing, cost. "
+            "Use a curious audit-board style."
+        ),
+        "Employability Score": (
+            "Employability score dashboard on a laptop: score meter, red gap area, "
+            "and one highlighted section labeled 'Projects'. A student points at "
+            "the weakest score with a pen."
+        ),
+        "College-wise Performance": (
+            "College employability ranking board with two score cards: top college "
+            "84/100 and lowest 42/100. Add sticky notes showing 'projects', "
+            "'assessments', and 'interview readiness'."
+        ),
+        "Role-wise Rankings": (
+            "Role ranking dashboard showing 'Data Analyst Intern' at the top, with "
+            "a warning tag: 'Missing proof: SQL portfolio'. Make it look like a "
+            "real hiring insights screen."
+        ),
+        "Role-specific assessments": (
+            "Hiring table with three assessment cards: Data task, Marketing task, "
+            "Operations task. A generic test paper is crossed out in the corner."
+        ),
+        "Hire interns within 10 days": (
+            "Recruiter planning board with a bold 10-day hiring timeline. Day 1: "
+            "role task, Day 3: shortlist, Day 10: intern selected. Include resumes "
+            "and assessment cards on the table."
+        ),
+        "AI-powered candidate screening": (
+            "AI screening dashboard sorting candidate cards by proof, assessment, "
+            "and role fit. Avoid robot imagery; show a recruiter reviewing a clear "
+            "shortlist with one card highlighted."
+        ),
+        "Campus hiring campaigns": (
+            "Campus hiring command center: student registrations, assessment "
+            "completion, and employability score movement on a large screen. "
+            "Show a campus coordinator looking at the data."
+        ),
+        "Bulk internship recruitment": (
+            "Large hiring dashboard with role-family columns: tech, analytics, "
+            "operations, sales, marketing. Generic funnel crossed out; segmented "
+            "shortlists highlighted."
+        ),
+        "Hiring trends": (
+            "Industry trend board showing 'Proof > Promises' with portfolio, "
+            "assessment, and project proof cards pinned like evidence on a wall."
+        ),
+        "Skill gap reports": (
+            "Skill gap report spread across a desk with red markers over resume "
+            "gaps, assessment gaps, and interview gaps. Make it feel investigative."
+        ),
+        "College rankings": (
+            "College ranking table focused on employability proof, not reputation. "
+            "Show scorecards, project completion bars, and interview readiness notes."
+        ),
+        "Salary benchmarks": (
+            "Salary benchmark chart beside two candidate profiles: one with proof, "
+            "one without. The proof profile has a brighter opportunity marker."
+        ),
+        "Recruiter tips": (
+            "Recruiter monitor with a 30-second scan timer. A profile section is "
+            "highlighted: headline, project, outcome. Add a note: 'make it obvious'."
+        ),
+    }
+    return scenes_by_type.get(
+        angle["content_type"],
+        (
+            "Curiosity-driven employability evidence scene. Use objects that tell "
+            "the story: resumes, sticky notes, dashboards, scorecards, rejected "
+            "applications, project proof, and highlighted gaps. Make the viewer ask "
+            "'why did this happen?' before reading the caption."
+        ),
+    )
+
+
 def build_content_assets(
     rng: random.Random,
     angle: dict[str, Any],
@@ -971,11 +1075,7 @@ def build_content_assets(
         "faster than potential. The clearer the proof, the easier it is for "
         "someone to say yes."
     )
-    visual = (
-        f"Photorealistic LinkedIn image concept: {angle['headline']} - "
-        f"{angle['subhead'].rstrip('.')}. Show students in a realistic campus or early-career "
-        "workspace moment with curiosity, proof, and action visible."
-    )
+    visual = build_curiosity_visual(angle)
     cta = build_interactive_cta()
     return {
         "topic": topic,
@@ -1217,22 +1317,21 @@ def draw_visual(canvas: PngCanvas, visual: str) -> None:
 
 def build_photographic_image_prompt(story: Story) -> str:
     return (
-        "Create a square photorealistic LinkedIn social image for a student "
-        "employability content post. "
-        "Show diverse college students or early-career young adults in a real "
-        "life moment connected to this topic: "
+        "Create a square photorealistic LinkedIn image that tells a clear micro-story. "
+        "Do not make a generic stock photo of a student holding a resume or laptop. "
+        "The image must create curiosity through objects, evidence, and tension: "
+        "rejected resumes, sticky notes, dashboards, scorecards, application counts, "
+        "highlighted gaps, recruiter desk details, before/after profile screens, or "
+        "assessment results. Topic: "
         f"{story.content_type}. "
         f"{story.hook} "
         f"Visual direction: {story.assets['visual']} "
-        "The image should feel cinematic, curious, practical, and aspirational, "
-        "with natural lighting, realistic faces, modern campus or workspace "
-        "environment, shallow depth of field, and a clear focal person. Add "
-        "subtle editorial graphic modifications on top, such as a translucent "
-        "gradient, small arrow marks, notification-style highlights, or a "
-        "spotlight effect. Make it attractive for LinkedIn and motivational "
-        "for students to click or sign up. Do not include brand logos. If text "
-        "is included, keep it minimal and readable: "
-        f"'{story.headline}' and 'Start here'."
+        "Use a cinematic realistic style with natural lighting and shallow depth of "
+        "field. People can appear, but the central story must be told by the desk, "
+        "screen, papers, notes, or dashboard. Add subtle editorial overlays like "
+        "circles, arrows, red/green stamps, or notification-style labels. Keep any "
+        "text minimal, large, and readable. Do not include brand logos. The image "
+        "should make someone pause and ask what happened before reading the post."
     )
 
 

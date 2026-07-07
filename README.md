@@ -226,8 +226,11 @@ Dry-run generation:
 python3 daily_story_linkedin_agent.py
 ```
 
-By default the daily agent tries to create a photorealistic AI image with
-students/people and subtle editorial overlays. Configure:
+By default the daily agent tries to create a photorealistic AI image with a
+curiosity-driven scene, not a generic stock photo. Visual prompts focus on
+evidence objects such as recruiter desks, rejected resumes, application
+dashboards, scorecards, highlighted gaps, before/after profile screens, and
+assessment results. Configure:
 
 ```bash
 export OPENAI_API_KEY="your-openai-api-key"
