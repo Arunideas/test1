@@ -149,17 +149,28 @@ python3 linkedin_company_page_agent.py \
   --post
 ```
 
-## Daily student story automation
+## Daily student content automation
 
-`daily_story_linkedin_agent.py` creates one real-life conversation story,
-generates a related image, and can post both to LinkedIn. Each story is kept
+`daily_story_linkedin_agent.py` creates one daily employability content post,
+generates a related image, and can post both to LinkedIn. Each post is kept
 between 200 and 500 words and ends with:
 
 ```text
 https://student.worldofinterns.com
 ```
 
-The agent tracks used stories in a JSON history file so successful posts are not
+The content engine rotates through formats such as:
+
+- Recruiter Secrets
+- Resume Roast
+- Interview Mistakes
+- Skill Battles
+- Student Transformations
+- Weekly Employability Challenges
+- College Rankings based on employability scores
+- Company Expectations
+
+The agent tracks used content in a JSON history file so successful posts are not
 reused.
 
 Dry-run generation:
@@ -205,7 +216,7 @@ python3 daily_story_linkedin_agent.py --post
 
 By default the daily agent writes:
 
-- `daily_story_history.json` for used story tracking.
+- `daily_story_history.json` for used content tracking.
 - `daily_story_output/` for generated PNG images.
 
 For a scheduled automation, configure the automation to run the command below
@@ -218,7 +229,7 @@ python3 daily_story_linkedin_agent.py \
   --post
 ```
 
-Dry runs do not mark stories as used unless you pass `--record-dry-run`.
+Dry runs do not mark content as used unless you pass `--record-dry-run`.
 
 ## Configuration
 
@@ -239,7 +250,7 @@ Dry runs do not mark stories as used unless you pass `--record-dry-run`.
 | `LINKEDIN_REDIRECT_URI` | OAuth redirect URI used by `--auth-url`. |
 | `LINKEDIN_OAUTH_SCOPES` | Optional space/comma-separated scopes for `--auth-url`. |
 | `LINKEDIN_OAUTH_STATE` | Optional state value for `--auth-url`; generated when omitted. |
-| `DAILY_STORY_HISTORY_PATH` | Optional JSON path for daily story tracking. |
+| `DAILY_STORY_HISTORY_PATH` | Optional JSON path for daily content tracking. |
 | `DAILY_STORY_OUTPUT_DIR` | Optional directory for generated daily story images. |
 | `DAILY_STORY_IMAGE_MODE` | Optional image mode: `ai` or `card`. Defaults to `ai`. |
 | `OPENAI_API_KEY` | Required for photorealistic AI story images. |

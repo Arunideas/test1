@@ -49,108 +49,150 @@ NAMES = [
     "Neel",
 ]
 
-MENTORS = ["Mentor", "Senior", "Coach", "Friend", "Alumni"]
-
-SCENARIOS = [
+CONTENT_ANGLES = [
     {
-        "id": "almost-closed-laptop",
-        "hook": "She almost closed the laptop.",
-        "fear": "No one is replying to my applications.",
-        "reply": "Then stop sending the same application. Show one proof.",
-        "action": "One tiny project became a sharper pitch. The next message got a callback.",
-        "headline": "ALMOST QUIT",
-        "subhead": "One proof changed the reply.",
+        "id": "recruiter-secret-eight-seconds",
+        "content_type": "Recruiter Secrets",
+        "hook": "Why I rejected this resume in 8 seconds.",
+        "headline": "8 SECOND REJECT",
+        "subhead": "Recruiters scan for proof first.",
         "visual": "spotlight",
+        "setup": (
+            "A recruiter opens a resume and does not read it like a student does. "
+            "They scan for proof, signal, and fit. If those three things are hidden, "
+            "the resume feels risky before the candidate gets a chance."
+        ),
+        "sections": [
+            "The first problem: the top half says 'hardworking student' but does not show one specific skill used in a real project.",
+            "The second problem: the project line says 'worked on app' instead of explaining the problem, tool, and result.",
+            "The fix: replace vague effort with evidence. Example: 'Built a Python dashboard that reduced manual report time by 30%.'",
+        ],
+        "action": "Open your resume today and underline every line that proves a skill. If a line only says you participated, rewrite it until it shows evidence.",
     },
     {
-        "id": "seven-rejections",
-        "hook": "Seven rejections. Then one line changed everything.",
-        "fear": "Maybe I am just not internship material.",
-        "reply": "Your resume says tasks. Make it show outcomes.",
-        "action": "The project line became a result. The next recruiter asked for an interview.",
-        "headline": "7 REJECTIONS",
-        "subhead": "Then one line changed everything.",
+        "id": "resume-roast-before-after",
+        "content_type": "Resume Roast",
+        "hook": "Resume roast: this line sounds busy, not employable.",
+        "headline": "RESUME ROAST",
+        "subhead": "Before and after that gets noticed.",
         "visual": "document",
+        "setup": (
+            "Most students do not have a weak resume because they lack talent. "
+            "They have a weak resume because their strongest work is written like a classroom note."
+        ),
+        "sections": [
+            "Before: 'Completed machine learning project in college.' This tells the recruiter almost nothing.",
+            "After: 'Trained a model to predict student drop-off risk using Python, cleaned 2,000 rows, and presented accuracy trade-offs.'",
+            "Why it works: the after version shows tool, scale, problem, and communication. That is employability language.",
+        ],
+        "action": "Pick one project and rewrite it with this formula: built what, using which tool, for what problem, with what result.",
     },
     {
-        "id": "almost-skipped",
-        "hook": "He almost skipped the interview.",
-        "fear": "I do not know every skill they listed.",
-        "reply": "They are not hiring a checklist. They are hiring a learner.",
-        "action": "He walked in with one honest project story and left with a second round.",
-        "headline": "ALMOST SKIPPED",
-        "subhead": "Showing up changed the story.",
-        "visual": "door",
-    },
-    {
-        "id": "empty-portfolio",
-        "hook": "The portfolio was empty at 11:58 PM.",
-        "fear": "I have nothing impressive to show.",
-        "reply": "Start with useful, not impressive.",
-        "action": "A simple case study went live before midnight. It became the first link sent.",
-        "headline": "11 58 PM",
-        "subhead": "Empty became visible.",
-        "visual": "laptop",
-    },
-    {
-        "id": "bus-stop-skill",
-        "hook": "A bus stop became the classroom.",
-        "fear": "I only get ten free minutes a day.",
-        "reply": "Ten focused minutes beats another day of waiting.",
-        "action": "One concept per commute became one interview answer per week.",
-        "headline": "10 MINUTES",
-        "subhead": "Small time. Real momentum.",
-        "visual": "clock",
-    },
-    {
-        "id": "messy-teamwork",
-        "hook": "The messy group project became the best answer.",
-        "fear": "Should I hide that the team struggled?",
-        "reply": "No. Real work is how you handle the struggle.",
-        "action": "The conflict became a story about ownership, clarity, and leadership.",
-        "headline": "MESSY PROJECT",
-        "subhead": "The struggle became proof.",
-        "visual": "conversation",
-    },
-    {
-        "id": "ignored-message",
-        "hook": "The message was ignored. The second one was not.",
-        "fear": "What if professionals never reply to students?",
-        "reply": "Ask one clear question. Make it easy to answer.",
-        "action": "The next note was shorter, specific, and got advice by evening.",
-        "headline": "IGNORED",
-        "subhead": "The second message worked.",
-        "visual": "message",
-    },
-    {
-        "id": "missed-deadline",
-        "hook": "One deadline was missed. The career was not.",
-        "fear": "I lost the only good opening.",
-        "reply": "No. You lost one date, not your direction.",
-        "action": "A fresh list went out that night. By morning, three better-fit roles appeared.",
-        "headline": "MISSED IT",
-        "subhead": "One date is not the end.",
-        "visual": "path",
-    },
-    {
-        "id": "ordinary-answer",
-        "hook": "The answer sounded boring until this changed.",
-        "fear": "My project sounds like everyone else's.",
-        "reply": "Tell the problem, your decision, and the result.",
-        "action": "The same project became a story that sounded job-ready.",
-        "headline": "BORING ANSWER",
-        "subhead": "Same project. Better story.",
+        "id": "interview-mistake-real-scenario",
+        "content_type": "Interview Mistakes",
+        "hook": "The interview was going well until this answer.",
+        "headline": "INTERVIEW TRAP",
+        "subhead": "One common answer kills trust.",
         "visual": "interview",
+        "setup": (
+            "A student is asked, 'Tell me about a project you are proud of.' "
+            "The answer starts with confidence, but then becomes a list of features. "
+            "That is where many interviews quietly fall apart."
+        ),
+        "sections": [
+            "Mistake: explaining every screen, library, and feature without naming the problem.",
+            "Better answer: 'The problem was slow manual tracking. My role was data cleanup and dashboard logic. The result was faster weekly reporting.'",
+            "Recruiters are not testing memory. They are testing whether you understand impact, ownership, and trade-offs.",
+        ],
+        "action": "Prepare one project answer with four parts: problem, your role, hard decision, measurable result.",
     },
     {
-        "id": "one-tab-open",
-        "hook": "One browser tab stayed open for three weeks.",
-        "fear": "I keep saving internships but never applying.",
-        "reply": "Saved is not submitted. Pick one and move.",
-        "action": "The application took 18 minutes. The confidence lasted all week.",
-        "headline": "STILL SAVED",
-        "subhead": "Saved is not submitted.",
-        "visual": "rocket",
+        "id": "skill-battle-python-excel",
+        "content_type": "Skill Battles",
+        "hook": "Python vs Excel: which one gets more internships?",
+        "headline": "SKILL BATTLE",
+        "subhead": "The winner depends on proof.",
+        "visual": "laptop",
+        "setup": (
+            "Students often ask which skill is more valuable. The honest answer is that companies do not hire tools. "
+            "They hire people who can solve problems with tools."
+        ),
+        "sections": [
+            "Excel wins when the role needs reporting, cleanup, dashboards, and business decisions quickly.",
+            "Python wins when the role needs automation, analysis at scale, scraping, APIs, or repeatable workflows.",
+            "The real winner is the student who can show one before-and-after result: messy data to useful decision.",
+        ],
+        "action": "Build one mini project twice: solve it in Excel, then automate one part in Python. That comparison becomes interview gold.",
+    },
+    {
+        "id": "student-transformation-profile",
+        "content_type": "Student Transformations",
+        "hook": "Same student. Same skills. Completely different profile.",
+        "headline": "PROFILE UPGRADE",
+        "subhead": "Small changes can change perception.",
+        "visual": "message",
+        "setup": (
+            "A student profile can look average even when the student has done meaningful work. "
+            "The transformation usually starts by moving from claims to proof."
+        ),
+        "sections": [
+            "Before: headline says 'B.Tech student looking for opportunities.' It sounds passive and common.",
+            "After: headline says 'Data analytics student building Excel and Python dashboards for campus problems.' Now there is direction.",
+            "Before: projects are hidden. After: one pinned project, one result-driven summary, and one clear skill stack are visible.",
+        ],
+        "action": "Update your profile today with one proof line, one pinned project, and one sentence about the problem you want to solve.",
+    },
+    {
+        "id": "weekly-employability-challenge",
+        "content_type": "Weekly Employability Challenges",
+        "hook": "Can you score 80/100 on employability this week?",
+        "headline": "80 OUT OF 100",
+        "subhead": "A simple weekly readiness challenge.",
+        "visual": "clock",
+        "setup": (
+            "Employability is not a mood. It can be scored through visible signals: proof, clarity, communication, consistency, and role fit."
+        ),
+        "sections": [
+            "20 points: your resume has at least three project lines with tools and outcomes.",
+            "20 points: your profile explains what role you want and why you are credible for it.",
+            "20 points: you can explain one project in 60 seconds. 20 points: you applied to roles that match your proof. 20 points: you asked for feedback.",
+        ],
+        "action": "Score yourself honestly. If you are below 80, do not panic. Fix the lowest category first and check again tomorrow.",
+    },
+    {
+        "id": "college-employability-ranking",
+        "content_type": "College Rankings",
+        "hook": "A college ranking that actually matters: employability score.",
+        "headline": "RANK BY PROOF",
+        "subhead": "Placements start before final year.",
+        "visual": "arrow",
+        "setup": (
+            "The useful question is not only which college has the biggest name. "
+            "The sharper question is which college helps students become visibly employable."
+        ),
+        "sections": [
+            "A strong employability score looks at project proof, internship readiness, interview practice, recruiter access, and student consistency.",
+            "A college with average branding but strong student proof can outperform a famous college where students wait passively.",
+            "Rankings become useful when they push action: better resumes, better projects, better employer conversations.",
+        ],
+        "action": "Ask your college community this week: how many students can show a role-ready project today, not just a certificate?",
+    },
+    {
+        "id": "company-expectations-startups",
+        "content_type": "Company Expectations",
+        "hook": "What startups actually test before hiring interns.",
+        "headline": "STARTUP TEST",
+        "subhead": "Speed, ownership, and proof matter.",
+        "visual": "door",
+        "setup": (
+            "Startups rarely have time to train someone from zero. They look for students who can learn fast, communicate clearly, and finish useful work."
+        ),
+        "sections": [
+            "They test whether you can understand an unclear problem without waiting for perfect instructions.",
+            "They test whether your portfolio shows shipped work, not just course completion.",
+            "They test whether you ask better questions, share progress early, and recover when something breaks.",
+        ],
+        "action": "Before applying to a startup, prepare one example where you took ownership without being pushed. That story can separate you from dozens of applicants.",
     },
 ]
 
@@ -159,6 +201,7 @@ SCENARIOS = [
 class Story:
     story_id: str
     text: str
+    content_type: str
     hook: str
     headline: str
     subhead: str
@@ -304,41 +347,40 @@ def save_history(path: Path, history: dict[str, Any]) -> None:
     path.write_text(json.dumps(history, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
-def build_story(rng: random.Random, scenario: dict[str, str]) -> Story:
+def build_story(rng: random.Random, angle: dict[str, Any]) -> Story:
     name = rng.choice(NAMES)
-    mentor = rng.choice(MENTORS)
-    quick_win = rng.choice(
+    proof_task = rng.choice(
         [
-            "rewrite one project with a result",
-            "send one specific message to a mentor",
-            "record a two-minute explanation of one project",
-            "apply to one role instead of saving five links",
-            "turn one class assignment into a portfolio proof",
+            "rewrite one resume bullet",
+            "record one 60-second project explanation",
+            "send one focused networking message",
+            "publish one small project proof",
+            "apply to one role that matches your evidence",
         ]
     )
-    tiny_deadline = rng.choice(["tonight", "before breakfast", "in the next 30 minutes"])
+    sections = "\n".join(
+        f"{index}. {section}" for index, section in enumerate(angle["sections"], start=1)
+    )
     story_text = (
-        f"{scenario['hook']}\n\n"
-        f"{name} did not feel inspired. The screen was open, the internship tab was "
-        f"still waiting, and the easy choice was to say, \"I will do it later.\" "
-        f"But later had already stolen too many chances.\n\n"
-        f"{name}: \"{scenario['fear']}\"\n"
-        f"{mentor}: \"{scenario['reply']}\"\n"
-        f"{name}: \"But what if I still look ordinary?\"\n"
-        f"{mentor}: \"Ordinary is what it looks like before you show the proof. "
-        f"Pick one small proof and make it impossible to ignore.\"\n"
-        f"{name}: \"So what should I do first?\"\n"
-        f"{mentor}: \"Do not plan a perfect career today. Just {quick_win} "
-        f"{tiny_deadline}. One visible step is enough to change the next reply.\"\n\n"
-        f"{scenario['action']}\n\n"
-        f"The shift was not magic. No one suddenly handed over a dream internship. "
-        f"But one action created evidence. Evidence created confidence. Confidence "
-        f"made the next application sound different. That is how students move from "
-        f"waiting to being noticed: not by feeling ready, but by building proof "
-        f"while they are still nervous.\n\n"
-        f"If you are a student sitting on a saved internship link, an unfinished "
-        f"resume, or a project you are scared to show, this is your sign. Start "
-        f"small. Make your effort visible. Let the next opportunity see you.\n\n"
+        f"{angle['hook']}\n\n"
+        f"Today's content engine: {angle['content_type']}.\n\n"
+        f"{angle['setup']} For a student like {name}, this is not theory. It is the "
+        f"difference between being another applicant and becoming a candidate with "
+        f"a signal recruiters can remember.\n\n"
+        f"Here is the breakdown:\n\n"
+        f"{sections}\n\n"
+        f"What most students miss is that employability is built in public signals. "
+        f"A certificate helps only when it connects to a project. A project helps "
+        f"only when it explains a problem. A profile helps only when it tells a "
+        f"recruiter what to trust. The student who makes proof easy to see wins "
+        f"attention faster than the student who only says, \"I am passionate.\"\n\n"
+        f"Your move today: {angle['action']} If you want a small starting point, "
+        f"{proof_task}. Do not wait until your profile feels perfect. Make one "
+        f"useful improvement, then make the next application with more evidence "
+        f"than yesterday.\n\n"
+        f"This is how internships become more than luck: stronger proof, sharper "
+        f"communication, and consistent action. Save this, try the action, and "
+        f"check your employability score again tomorrow.\n\n"
         f"Stop waiting to feel ready. Start here: {SIGNUP_URL}"
     )
     count = word_count(story_text)
@@ -347,14 +389,15 @@ def build_story(rng: random.Random, scenario: dict[str, str]) -> Story:
             f"Generated story must be between {MIN_POST_WORDS} and "
             f"{MAX_POST_WORDS} words; got {count}."
         )
-    unique_id = f"{scenario['id']}-{story_hash(story_text)[:12]}"
+    unique_id = f"{angle['id']}-{story_hash(story_text)[:12]}"
     return Story(
         story_id=unique_id,
         text=story_text,
-        hook=scenario["hook"],
-        headline=scenario["headline"],
-        subhead=scenario["subhead"],
-        visual=scenario["visual"],
+        content_type=angle["content_type"],
+        hook=angle["hook"],
+        headline=angle["headline"],
+        subhead=angle["subhead"],
+        visual=angle["visual"],
         word_count=count,
     )
 
@@ -363,7 +406,7 @@ def choose_unused_story(history: dict[str, Any], *, seed: int | None = None) -> 
     used_hashes = set(history.get("used_hashes", []))
     rng = random.Random(seed)
     for _ in range(300):
-        story = build_story(rng, rng.choice(SCENARIOS))
+        story = build_story(rng, rng.choice(CONTENT_ANGLES))
         if story_hash(story.text) not in used_hashes:
             return story
     raise RuntimeError("Could not create a new unused story after 300 attempts.")
@@ -545,11 +588,13 @@ def draw_visual(canvas: PngCanvas, visual: str) -> None:
 
 def build_photographic_image_prompt(story: Story) -> str:
     return (
-        "Create a square photorealistic LinkedIn social image for students. "
+        "Create a square photorealistic LinkedIn social image for a student "
+        "employability content post. "
         "Show diverse college students or early-career young adults in a real "
-        "life moment connected to this story: "
+        "life moment connected to this topic: "
+        f"{story.content_type}. "
         f"{story.hook} "
-        "The image should feel cinematic, curious, emotional, and aspirational, "
+        "The image should feel cinematic, curious, practical, and aspirational, "
         "with natural lighting, realistic faces, modern campus or workspace "
         "environment, shallow depth of field, and a clear focal person. Add "
         "subtle editorial graphic modifications on top, such as a translucent "
@@ -726,6 +771,7 @@ def record_story(
     content_hash = story_hash(story.text)
     entry = {
         "story_id": story.story_id,
+        "content_type": story.content_type,
         "content_hash": content_hash,
         "word_count": story.word_count,
         "text": story.text,
@@ -742,17 +788,17 @@ def record_story(
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Generate and optionally post a unique daily student story.",
+        description="Generate and optionally post unique daily student employability content.",
     )
     parser.add_argument(
         "--history-path",
         default=os.getenv("DAILY_STORY_HISTORY_PATH", str(DEFAULT_HISTORY_PATH)),
-        help="JSON file used to track posted story hashes.",
+        help="JSON file used to track posted content hashes.",
     )
     parser.add_argument(
         "--output-dir",
         default=os.getenv("DAILY_STORY_OUTPUT_DIR", str(DEFAULT_OUTPUT_DIR)),
-        help="Directory for generated story images.",
+        help="Directory for generated content images.",
     )
     parser.add_argument(
         "--image-mode",
@@ -793,7 +839,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument(
         "--record-dry-run",
         action="store_true",
-        help="Write dry-run output to history without marking the story as used.",
+        help="Write dry-run output to history without marking the content as used.",
     )
     parser.add_argument(
         "--post-as",
@@ -858,7 +904,7 @@ def main(argv: list[str] | None = None) -> int:
                 dry_run=False,
                 post_as=args.post_as,
                 image_title=story.headline.title(),
-                image_description="Student motivation story from World of Interns",
+                image_description=f"{story.content_type} from World of Interns",
             )
         except (LinkedInPostError, ValueError) as error:
             print(f"Error: {error}", file=sys.stderr)
@@ -882,8 +928,9 @@ def main(argv: list[str] | None = None) -> int:
     response = {
         "dry_run": not args.post,
         "story_id": story.story_id,
+        "content_type": story.content_type,
         "word_count": story.word_count,
-        "story": story.text,
+        "content": story.text,
         "image_path": str(image_path),
         "image_generation": image_generation,
         "history_path": str(history_path),
