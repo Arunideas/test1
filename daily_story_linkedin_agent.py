@@ -837,29 +837,24 @@ def build_content_assets(
             "apply to one role that matches your evidence",
         ]
     )
-    sections = "\n".join(
-        f"{index}. {section}" for index, section in enumerate(angle["sections"], start=1)
-    )
+    sections = "\n".join(f"- {section}" for section in angle["sections"])
     topic = f"{angle['content_type']}: {angle['hook']}"
     insight = (
-        f"{angle['setup']} For a student like {student_name}, this is not theory. "
-        f"It is the difference between being another applicant and becoming a "
-        f"candidate with a signal recruiters can remember.\n\n"
-        f"Here is the breakdown:\n{sections}"
+        f"{angle['setup']}\n\n"
+        f"The pattern I keep seeing with students like {student_name}:\n{sections}"
     )
     story = (
-        "What most students miss is that employability is built in public signals. "
-        "A certificate helps only when it connects to a project. A project helps "
-        "only when it explains a problem. A profile helps only when it tells a "
-        "recruiter what to trust. The student who makes proof easy to see wins "
-        "attention faster than the student who only says, \"I am passionate.\"\n\n"
-        f"Your move today: {angle['action']} If you want a small starting point, "
-        f"{proof_task}. Do not wait until your profile feels perfect. Make one "
-        "useful improvement, then make the next application with more evidence "
-        "than yesterday.\n\n"
-        "This is how internships become more than luck: stronger proof, sharper "
-        "communication, and consistent action. Save this, try the action, and "
-        "check your employability score again tomorrow."
+        "This is where most people overcomplicate employability. They keep adding "
+        "more courses, more certificates, and more saved internship links, but the "
+        "recruiter still cannot see what they can actually do.\n\n"
+        "The students who stand out usually do one simple thing better: they make "
+        "their proof easy to inspect. A project has a result. A resume line has a "
+        "clear outcome. An assessment score points to a real gap. A profile tells "
+        "the reader what role the student is ready for.\n\n"
+        f"So here is the practical move: {angle['action']}\n\n"
+        f"If that feels too big, start smaller: {proof_task}. It is not glamorous, "
+        "but it gives your next application more evidence than your last one.\n\n"
+        "That is the goal. Not to look perfect. To become easier to trust."
     )
     visual = (
         f"Photorealistic LinkedIn image concept: {angle['headline']} - "
@@ -878,10 +873,10 @@ def build_content_assets(
 
 def format_content_text(assets: dict[str, str]) -> str:
     return (
-        f"Topic:\n{assets['topic']}\n\n"
-        f"Insight:\n{assets['insight']}\n\n"
-        f"Story:\n{assets['story']}\n\n"
-        f"CTA:\n{assets['cta']}"
+        f"{assets['topic']}\n\n"
+        f"{assets['insight']}\n\n"
+        f"{assets['story']}\n\n"
+        f"{assets['cta']}"
     )
 
 

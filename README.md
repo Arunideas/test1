@@ -213,6 +213,10 @@ Each generated post is built as five assets:
 4. `visual` - the image direction used for AI photo/card generation.
 5. `cta` - the signup push to `https://student.worldofinterns.com`.
 
+The five assets are preserved in the JSON output and history tracking. The
+LinkedIn caption is formatted as a natural post without exposing labels like
+`Topic`, `Insight`, or `Story`.
+
 Dry-run generation:
 
 ```bash
