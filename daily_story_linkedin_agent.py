@@ -17,7 +17,6 @@ import random
 import re
 import struct
 import sys
-import textwrap
 import zlib
 from dataclasses import dataclass
 from pathlib import Path
@@ -48,94 +47,104 @@ MENTORS = ["Mentor", "Senior", "Coach", "Friend", "Alumni"]
 
 SCENARIOS = [
     {
-        "id": "first-interview",
-        "place": "before a first interview",
-        "fear": "I only have class projects. Is that enough?",
-        "reply": "Show what you built and what you learned. Employers notice action.",
-        "action": "The student practiced, applied, and booked a first internship call.",
-        "headline": "FIRST INTERVIEW",
-        "visual": "interview",
+        "id": "almost-closed-laptop",
+        "hook": "She almost closed the laptop.",
+        "fear": "No one is replying to my applications.",
+        "reply": "Then stop sending the same application. Show one proof.",
+        "action": "One tiny project became a sharper pitch. The next message got a callback.",
+        "headline": "ALMOST QUIT",
+        "subhead": "One proof changed the reply.",
+        "visual": "spotlight",
     },
     {
-        "id": "late-night-portfolio",
-        "place": "while updating a portfolio at midnight",
-        "fear": "Everyone else looks ahead of me.",
-        "reply": "Your next proof matters more than yesterday's doubt.",
-        "action": "One project was uploaded and three focused applications were sent.",
-        "headline": "BUILD PROOF",
-        "visual": "laptop",
-    },
-    {
-        "id": "resume-feedback",
-        "place": "after getting resume feedback",
-        "fear": "My resume feels too small.",
-        "reply": "Small becomes strong when every line shows impact.",
-        "action": "The projects were rewritten with outcomes and sent the same day.",
-        "headline": "RESUME READY",
+        "id": "seven-rejections",
+        "hook": "Seven rejections. Then one line changed everything.",
+        "fear": "Maybe I am just not internship material.",
+        "reply": "Your resume says tasks. Make it show outcomes.",
+        "action": "The project line became a result. The next recruiter asked for an interview.",
+        "headline": "7 REJECTIONS",
+        "subhead": "Then one line changed everything.",
         "visual": "document",
     },
     {
-        "id": "missed-deadline",
-        "place": "after missing a deadline",
-        "fear": "I think I lost my chance.",
-        "reply": "One missed date is not a closed career. Find the next door.",
-        "action": "New openings were tracked and one application went out before breakfast.",
-        "headline": "NEXT DOOR",
-        "visual": "path",
+        "id": "almost-skipped",
+        "hook": "He almost skipped the interview.",
+        "fear": "I do not know every skill they listed.",
+        "reply": "They are not hiring a checklist. They are hiring a learner.",
+        "action": "He walked in with one honest project story and left with a second round.",
+        "headline": "ALMOST SKIPPED",
+        "subhead": "Showing up changed the story.",
+        "visual": "door",
     },
     {
-        "id": "commute-learning",
-        "place": "on the bus to college",
-        "fear": "I do not have extra time to prepare.",
-        "reply": "Use ten focused minutes daily. Momentum compounds.",
-        "action": "One skill was practiced on each commute until it became a habit.",
-        "headline": "10 MINUTES",
-        "visual": "path",
-    },
-    {
-        "id": "group-project",
-        "place": "after a tough group project",
-        "fear": "Teamwork was messy. Should I mention it?",
-        "reply": "Yes. Real work is coordination, not perfection.",
-        "action": "That challenge became a strong interview story.",
-        "headline": "REAL WORK",
-        "visual": "conversation",
-    },
-    {
-        "id": "first-rejection",
-        "place": "after a first rejection email",
-        "fear": "Maybe I am not ready.",
-        "reply": "Rejection is data. Improve one thing and try again.",
-        "action": "The pitch was improved and two better-fit roles were targeted.",
-        "headline": "TRY AGAIN",
-        "visual": "arrow",
-    },
-    {
-        "id": "skill-gap",
-        "place": "while reading an internship description",
-        "fear": "I do not know every skill listed.",
-        "reply": "No one starts complete. Match the core and learn fast.",
-        "action": "One gap was chosen, practiced, and turned into confidence.",
-        "headline": "LEARN FAST",
+        "id": "empty-portfolio",
+        "hook": "The portfolio was empty at 11:58 PM.",
+        "fear": "I have nothing impressive to show.",
+        "reply": "Start with useful, not impressive.",
+        "action": "A simple case study went live before midnight. It became the first link sent.",
+        "headline": "11 58 PM",
+        "subhead": "Empty became visible.",
         "visual": "laptop",
     },
     {
-        "id": "mock-interview",
-        "place": "during a mock interview",
-        "fear": "My answers sound ordinary.",
-        "reply": "Add the problem, your action, and the result.",
-        "action": "One project was reframed and the answer sounded job-ready.",
-        "headline": "JOB READY",
+        "id": "bus-stop-skill",
+        "hook": "A bus stop became the classroom.",
+        "fear": "I only get ten free minutes a day.",
+        "reply": "Ten focused minutes beats another day of waiting.",
+        "action": "One concept per commute became one interview answer per week.",
+        "headline": "10 MINUTES",
+        "subhead": "Small time. Real momentum.",
+        "visual": "clock",
+    },
+    {
+        "id": "messy-teamwork",
+        "hook": "The messy group project became the best answer.",
+        "fear": "Should I hide that the team struggled?",
+        "reply": "No. Real work is how you handle the struggle.",
+        "action": "The conflict became a story about ownership, clarity, and leadership.",
+        "headline": "MESSY PROJECT",
+        "subhead": "The struggle became proof.",
+        "visual": "conversation",
+    },
+    {
+        "id": "ignored-message",
+        "hook": "The message was ignored. The second one was not.",
+        "fear": "What if professionals never reply to students?",
+        "reply": "Ask one clear question. Make it easy to answer.",
+        "action": "The next note was shorter, specific, and got advice by evening.",
+        "headline": "IGNORED",
+        "subhead": "The second message worked.",
+        "visual": "message",
+    },
+    {
+        "id": "missed-deadline",
+        "hook": "One deadline was missed. The career was not.",
+        "fear": "I lost the only good opening.",
+        "reply": "No. You lost one date, not your direction.",
+        "action": "A fresh list went out that night. By morning, three better-fit roles appeared.",
+        "headline": "MISSED IT",
+        "subhead": "One date is not the end.",
+        "visual": "path",
+    },
+    {
+        "id": "ordinary-answer",
+        "hook": "The answer sounded boring until this changed.",
+        "fear": "My project sounds like everyone else's.",
+        "reply": "Tell the problem, your decision, and the result.",
+        "action": "The same project became a story that sounded job-ready.",
+        "headline": "BORING ANSWER",
+        "subhead": "Same project. Better story.",
         "visual": "interview",
     },
     {
-        "id": "first-network-message",
-        "place": "before sending a networking message",
-        "fear": "What if they ignore me?",
-        "reply": "A clear ask is better than silent waiting.",
-        "action": "A polite note went out, and advice arrived by evening.",
-        "headline": "ASK CLEARLY",
-        "visual": "conversation",
+        "id": "one-tab-open",
+        "hook": "One browser tab stayed open for three weeks.",
+        "fear": "I keep saving internships but never applying.",
+        "reply": "Saved is not submitted. Pick one and move.",
+        "action": "The application took 18 minutes. The confidence lasted all week.",
+        "headline": "STILL SAVED",
+        "subhead": "Saved is not submitted.",
+        "visual": "rocket",
     },
 ]
 
@@ -144,7 +153,9 @@ SCENARIOS = [
 class Story:
     story_id: str
     text: str
+    hook: str
     headline: str
+    subhead: str
     visual: str
     word_count: int
 
@@ -291,11 +302,11 @@ def build_story(rng: random.Random, scenario: dict[str, str]) -> Story:
     name = rng.choice(NAMES)
     mentor = rng.choice(MENTORS)
     story_text = (
-        f"{name}, {scenario['place']}:\n"
+        f"{scenario['hook']}\n\n"
         f"{name}: \"{scenario['fear']}\"\n"
         f"{mentor}: \"{scenario['reply']}\"\n"
         f"{scenario['action']}\n\n"
-        f"Your next opportunity can start here: {SIGNUP_URL}"
+        f"Stop waiting to feel ready. Start here: {SIGNUP_URL}"
     )
     count = word_count(story_text)
     if count > MAX_POST_WORDS:
@@ -304,7 +315,9 @@ def build_story(rng: random.Random, scenario: dict[str, str]) -> Story:
     return Story(
         story_id=unique_id,
         text=story_text,
+        hook=scenario["hook"],
         headline=scenario["headline"],
+        subhead=scenario["subhead"],
         visual=scenario["visual"],
         word_count=count,
     )
@@ -355,6 +368,10 @@ def draw_text(
         cursor_x += scale * 6
 
 
+def text_width(text: str, *, scale: int) -> int:
+    return sum((4 if char == " " else 6) * scale for char in text.upper())
+
+
 def centered_text(
     canvas: PngCanvas,
     text: str,
@@ -363,8 +380,42 @@ def centered_text(
     scale: int,
     color: tuple[int, int, int],
 ) -> None:
-    width = sum((4 if char == " " else 6) * scale for char in text.upper())
+    width = text_width(text, scale=scale)
     draw_text(canvas, text, max(0, (canvas.width - width) // 2), y, scale=scale, color=color)
+
+
+def centered_text_fit(
+    canvas: PngCanvas,
+    text: str,
+    y: int,
+    *,
+    max_scale: int,
+    min_scale: int,
+    max_width: int,
+    color: tuple[int, int, int],
+) -> int:
+    scale = max_scale
+    while scale > min_scale and text_width(text, scale=scale) > max_width:
+        scale -= 1
+    centered_text(canvas, text, y, scale=scale, color=color)
+    return scale
+
+
+def wrap_display_text(text: str, *, max_chars: int) -> list[str]:
+    words = re.sub(r"[^a-zA-Z0-9 ]+", " ", text.upper()).split()
+    lines: list[str] = []
+    current = ""
+    for word in words:
+        candidate = f"{current} {word}".strip()
+        if len(candidate) <= max_chars:
+            current = candidate
+        else:
+            if current:
+                lines.append(current)
+            current = word
+    if current:
+        lines.append(current)
+    return lines
 
 
 def draw_visual(canvas: PngCanvas, visual: str) -> None:
@@ -375,72 +426,147 @@ def draw_visual(canvas: PngCanvas, visual: str) -> None:
     orange = (249, 115, 22)
     white = (255, 255, 255)
 
-    if visual == "laptop":
-        canvas.rect(355, 360, 490, 290, navy)
-        canvas.rect(385, 390, 430, 230, white)
-        canvas.rect(300, 660, 600, 55, blue)
-        canvas.line(515, 575, 600, 485, green, 10)
-        canvas.line(600, 485, 685, 555, green, 10)
-        canvas.line(600, 485, 600, 605, green, 10)
+    if visual == "spotlight":
+        canvas.line(600, 395, 445, 760, (96, 165, 250), 18)
+        canvas.line(600, 395, 755, 760, (96, 165, 250), 18)
+        canvas.circle(600, 500, 58, orange)
+        canvas.rect(535, 560, 130, 180, orange)
+        canvas.rect(350, 790, 500, 38, navy)
+        canvas.circle(600, 390, 36, white)
+    elif visual == "door":
+        canvas.rect(420, 390, 360, 470, navy)
+        canvas.rect(465, 440, 270, 420, (30, 64, 175))
+        canvas.circle(700, 650, 16, orange)
+        canvas.rect(735, 470, 35, 390, (125, 211, 252))
+        canvas.line(760, 665, 900, 665, green, 12)
+        canvas.line(900, 665, 855, 625, green, 12)
+        canvas.line(900, 665, 855, 705, green, 12)
+    elif visual == "clock":
+        canvas.circle(600, 610, 210, white)
+        canvas.circle(600, 610, 190, navy)
+        canvas.circle(600, 610, 160, white)
+        canvas.line(600, 610, 600, 500, orange, 10)
+        canvas.line(600, 610, 705, 650, blue, 10)
+        for index in range(6):
+            canvas.circle(460 + index * 56, 820 - abs(index - 3) * 20, 18, green)
+    elif visual == "message":
+        canvas.rect(300, 455, 440, 190, white)
+        canvas.rect(300, 455, 440, 25, blue)
+        canvas.line(300, 645, 520, 740, blue, 8)
+        canvas.line(740, 645, 520, 740, blue, 8)
+        canvas.rect(475, 540, 260, 155, orange)
+        canvas.rect(515, 585, 170, 14, white)
+        canvas.rect(515, 625, 125, 14, white)
+    elif visual == "rocket":
+        canvas.line(470, 820, 720, 455, white, 55)
+        canvas.line(470, 820, 720, 455, blue, 28)
+        canvas.circle(720, 455, 46, orange)
+        canvas.line(495, 815, 390, 900, orange, 18)
+        canvas.line(530, 835, 470, 955, green, 18)
+        canvas.line(560, 805, 600, 920, orange, 18)
+    elif visual == "laptop":
+        canvas.rect(355, 430, 490, 255, navy)
+        canvas.rect(385, 460, 430, 195, white)
+        canvas.rect(300, 700, 600, 55, blue)
+        canvas.line(515, 615, 600, 525, green, 10)
+        canvas.line(600, 525, 685, 595, green, 10)
+        canvas.line(600, 525, 600, 645, green, 10)
     elif visual == "interview":
-        canvas.circle(470, 455, 70, blue)
-        canvas.rect(395, 535, 150, 135, blue)
-        canvas.circle(730, 455, 70, orange)
-        canvas.rect(655, 535, 150, 135, orange)
-        canvas.rect(405, 730, 390, 45, navy)
-        canvas.line(545, 535, 650, 535, green, 8)
+        canvas.circle(470, 505, 70, blue)
+        canvas.rect(395, 585, 150, 135, blue)
+        canvas.circle(730, 505, 70, orange)
+        canvas.rect(655, 585, 150, 135, orange)
+        canvas.rect(405, 780, 390, 45, navy)
+        canvas.line(545, 585, 650, 585, green, 8)
     elif visual == "document":
-        canvas.rect(420, 330, 360, 470, white)
-        canvas.rect(420, 330, 360, 30, blue)
+        canvas.rect(420, 385, 360, 470, white)
+        canvas.rect(420, 385, 360, 30, blue)
         for index in range(5):
-            canvas.rect(480, 430 + index * 60, 240, 18, navy)
-        canvas.line(500, 710, 570, 760, green, 12)
-        canvas.line(570, 760, 730, 600, green, 12)
+            canvas.rect(480, 485 + index * 60, 240, 18, navy)
+        canvas.line(500, 765, 570, 815, green, 12)
+        canvas.line(570, 815, 730, 655, green, 12)
     elif visual == "conversation":
-        canvas.rect(330, 380, 360, 155, blue)
-        canvas.rect(510, 575, 360, 155, orange)
-        canvas.rect(390, 440, 240, 16, white)
-        canvas.rect(390, 480, 190, 16, white)
-        canvas.rect(570, 635, 240, 16, white)
-        canvas.rect(570, 675, 190, 16, white)
+        canvas.rect(300, 460, 390, 155, blue)
+        canvas.rect(510, 650, 390, 155, orange)
+        canvas.rect(365, 520, 250, 16, white)
+        canvas.rect(365, 560, 190, 16, white)
+        canvas.rect(575, 710, 250, 16, white)
+        canvas.rect(575, 750, 190, 16, white)
     elif visual == "path":
-        canvas.line(300, 780, 900, 360, blue, 18)
-        canvas.line(900, 360, 830, 365, blue, 18)
-        canvas.line(900, 360, 870, 430, blue, 18)
+        canvas.line(300, 835, 900, 415, blue, 18)
+        canvas.line(900, 415, 830, 420, blue, 18)
+        canvas.line(900, 415, 870, 485, blue, 18)
         for index in range(4):
-            canvas.circle(375 + index * 130, 710 - index * 92, 24, orange)
+            canvas.circle(375 + index * 130, 765 - index * 92, 24, orange)
     else:
-        canvas.line(330, 720, 830, 360, green, 18)
-        canvas.line(830, 360, 760, 370, green, 18)
-        canvas.line(830, 360, 805, 430, green, 18)
-        canvas.rect(350, 745, 120, 120, blue)
-        canvas.rect(520, 620, 120, 245, cyan)
-        canvas.rect(690, 500, 120, 365, orange)
+        canvas.line(330, 780, 830, 420, green, 18)
+        canvas.line(830, 420, 760, 430, green, 18)
+        canvas.line(830, 420, 805, 490, green, 18)
+        canvas.rect(350, 805, 120, 120, blue)
+        canvas.rect(520, 680, 120, 245, cyan)
+        canvas.rect(690, 560, 120, 365, orange)
 
 
 def create_story_image(story: Story, output_dir: Path) -> Path:
     output_dir.mkdir(parents=True, exist_ok=True)
     image_path = output_dir / f"{dt.date.today().isoformat()}-{sanitize_filename(story.story_id)}.png"
 
-    canvas = PngCanvas(1200, 1200, (239, 246, 255))
+    canvas = PngCanvas(1200, 1200, (15, 23, 42))
     for y in range(canvas.height):
         ratio = y / canvas.height
         color = (
-            int(239 - ratio * 24),
-            int(246 - ratio * 30),
-            int(255 - ratio * 10),
+            int(15 + ratio * 15),
+            int(23 + ratio * 41),
+            int(42 + ratio * 133),
         )
         canvas.rect(0, y, canvas.width, 1, color)
 
-    canvas.rect(80, 80, 1040, 1040, (255, 255, 255))
-    canvas.rect(80, 80, 1040, 16, (37, 99, 235))
-    canvas.circle(180, 185, 42, (34, 197, 94))
-    canvas.circle(1010, 1010, 70, (191, 219, 254))
+    canvas.rect(70, 70, 1060, 1060, (8, 13, 30))
+    canvas.rect(92, 92, 1016, 1016, (248, 250, 252))
+    canvas.rect(92, 92, 1016, 180, (15, 23, 42))
+    canvas.rect(92, 272, 1016, 14, (249, 115, 22))
+    canvas.circle(1025, 350, 58, (37, 99, 235))
+    canvas.circle(180, 1000, 95, (34, 197, 94))
+    canvas.rect(150, 305, 900, 3, (203, 213, 225))
 
-    centered_text(canvas, story.headline, 165, scale=18, color=(15, 23, 42))
+    headline_lines = wrap_display_text(story.headline, max_chars=13)
+    headline_start = 122 if len(headline_lines) == 1 else 112
+    for index, line in enumerate(headline_lines[:2]):
+        centered_text_fit(
+            canvas,
+            line,
+            headline_start + index * 72,
+            max_scale=10,
+            min_scale=6,
+            max_width=760,
+            color=(255, 255, 255),
+        )
+
     draw_visual(canvas, story.visual)
-    centered_text(canvas, "ONE STEP TODAY", 875, scale=14, color=(37, 99, 235))
-    centered_text(canvas, "STUDENT.WORLDOFINTERNS.COM", 1000, scale=8, color=(15, 23, 42))
+
+    subhead_lines = wrap_display_text(story.subhead, max_chars=24)
+    for index, line in enumerate(subhead_lines[:2]):
+        centered_text_fit(
+            canvas,
+            line,
+            850 + index * 54,
+            max_scale=7,
+            min_scale=5,
+            max_width=870,
+            color=(15, 23, 42),
+        )
+
+    canvas.rect(260, 965, 680, 72, (249, 115, 22))
+    centered_text(canvas, "START HERE", 985, scale=8, color=(255, 255, 255))
+    centered_text_fit(
+        canvas,
+        "STUDENT.WORLDOFINTERNS.COM",
+        1065,
+        max_scale=6,
+        min_scale=4,
+        max_width=900,
+        color=(15, 23, 42),
+    )
 
     canvas.save(image_path)
     return image_path
