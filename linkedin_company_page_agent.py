@@ -11,8 +11,10 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import secrets
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 from dataclasses import dataclass
 from typing import Any
@@ -20,6 +22,8 @@ from typing import Any
 
 DEFAULT_MESSAGE = "Sample test post from the LinkedIn company page agent."
 DEFAULT_API_BASE_URL = "https://api.linkedin.com"
+DEFAULT_AUTHORIZATION_URL = "https://www.linkedin.com/oauth/v2/authorization"
+DEFAULT_OAUTH_SCOPES = ("w_organization_social", "r_organization_social")
 PLACEHOLDER_ORGANIZATION_URN = "urn:li:organization:YOUR_ORGANIZATION_ID"
 
 
@@ -145,6 +149,57 @@ def normalize_organization_urn(
     return None
 
 
+def build_authorization_url(
+    *,
+    client_id: str,
+    redirect_uri: str,
+    scopes: list[str],
+    state: str,
+    authorization_url: str = DEFAULT_AUTHORIZATION_URL,
+) -> str:
+    client_id = client_id.strip()
+    redirect_uri = redirect_uri.strip()
+    state = state.strip()
+
+    if not client_id:
+        raise ValueError("LINKEDIN_CLIENT_ID or --client-id is required.")
+    if not redirect_uri:
+        raise ValueError("LINKEDIN_REDIRECT_URI or --redirect-uri is required.")
+    if not scopes:
+        raise ValueError("At least one OAuth scope is required.")
+    if not state:
+        raise ValueError("OAuth state cannot be empty.")
+
+    query = urllib.parse.urlencode(
+        {
+            "response_type": "code",
+            "client_id": client_id,
+            "redirect_uri": redirect_uri,
+            "scope": " ".join(scopes),
+            "state": state,
+        },
+        quote_via=urllib.parse.quote,
+    )
+    return f"{authorization_url}?{query}"
+
+
+def normalize_scopes(scopes: list[str] | None, scopes_from_env: str | None) -> list[str]:
+    if scopes:
+        raw_scopes = scopes
+    elif scopes_from_env:
+        raw_scopes = scopes_from_env.replace(",", " ").split()
+    else:
+        raw_scopes = list(DEFAULT_OAUTH_SCOPES)
+
+    normalized_scopes: list[str] = []
+    for scope in raw_scopes:
+        for item in scope.replace(",", " ").split():
+            item = item.strip()
+            if item and item not in normalized_scopes:
+                normalized_scopes.append(item)
+    return normalized_scopes
+
+
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Post a sample text message to a LinkedIn company page.",
@@ -171,11 +226,70 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         action="store_true",
         help="Actually publish the update. Omit this flag for a dry run.",
     )
+    parser.add_argument(
+        "--auth-url",
+        action="store_true",
+        help="Generate the LinkedIn browser authorization URL and exit.",
+    )
+    parser.add_argument(
+        "--client-id",
+        default=os.getenv("LINKEDIN_CLIENT_ID"),
+        help="LinkedIn app client id. Defaults to LINKEDIN_CLIENT_ID.",
+    )
+    parser.add_argument(
+        "--redirect-uri",
+        default=os.getenv("LINKEDIN_REDIRECT_URI"),
+        help="OAuth redirect URI registered in LinkedIn. Defaults to LINKEDIN_REDIRECT_URI.",
+    )
+    parser.add_argument(
+        "--scope",
+        action="append",
+        help=(
+            "OAuth scope to request. May be passed multiple times or as a "
+            "space/comma-separated value. Defaults to organization posting scopes."
+        ),
+    )
+    parser.add_argument(
+        "--state",
+        default=os.getenv("LINKEDIN_OAUTH_STATE"),
+        help="OAuth state value. Defaults to a generated random value.",
+    )
     return parser.parse_args(argv)
 
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv or sys.argv[1:])
+
+    if args.auth_url:
+        state = args.state or secrets.token_urlsafe(24)
+        scopes = normalize_scopes(args.scope, os.getenv("LINKEDIN_OAUTH_SCOPES"))
+        try:
+            authorization_url = build_authorization_url(
+                client_id=args.client_id or "",
+                redirect_uri=args.redirect_uri or "",
+                scopes=scopes,
+                state=state,
+            )
+        except ValueError as error:
+            print(f"Error: {error}", file=sys.stderr)
+            return 1
+
+        print(
+            json.dumps(
+                {
+                    "authorization_url": authorization_url,
+                    "state": state,
+                    "scopes": scopes,
+                    "next_step": (
+                        "Open authorization_url in a browser, approve access, "
+                        "then copy the code query parameter from the redirect URL."
+                    ),
+                },
+                indent=2,
+            )
+        )
+        return 0
+
     agent = LinkedInCompanyPageAgent.from_environment()
 
     organization_urn = normalize_organization_urn(args.organization_urn, args.organization_id)
