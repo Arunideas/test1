@@ -966,7 +966,9 @@ def build_content_assets(
         "If the answer is hidden, the profile gets ignored.\n\n"
         "If the answer is visible, the same profile suddenly feels stronger.\n\n"
         f"That is why this matters: {angle['action']}\n\n"
-        "No long lecture needed. Just make the proof impossible to miss."
+        "No long lecture needed. Just make the proof impossible to miss.\n\n"
+        "Because on LinkedIn, in a resume, or in an interview, clarity travels "
+        "faster than potential."
     )
     visual = (
         f"Photorealistic LinkedIn image concept: {angle['headline']} - "
