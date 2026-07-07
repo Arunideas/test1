@@ -13,6 +13,7 @@ import datetime as dt
 import hashlib
 import json
 import os
+import re
 import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -38,6 +39,49 @@ DEFAULT_CATEGORY_ORDER = (
     "Other",
 )
 WORK_MODES = frozenset({"Remote", "Hybrid", "Onsite"})
+
+INTERNSHIP_BASE_HASHTAGS = (
+    "WorldOfInterns",
+    "InternshipOpportunities",
+    "Internships",
+    "VerifiedInternships",
+    "StudentJobs",
+    "HiringNow",
+)
+
+INTERNSHIP_CATEGORY_HASHTAGS: dict[str, tuple[str, ...]] = {
+    "Software Engineering": ("SoftwareInternship", "TechInternship", "DeveloperJobs"),
+    "Digital Marketing": ("MarketingInternship", "DigitalMarketing", "GrowthMarketing"),
+    "Data Analytics": ("DataAnalytics", "AnalyticsInternship", "DataInternship"),
+    "HR": ("HRInternship", "PeopleOps", "TalentTeam"),
+    "Finance": ("FinanceInternship", "FinanceCareers", "AccountingInternship"),
+    "Operations": ("OperationsInternship", "OpsCareers", "BusinessOperations"),
+    "Design": ("DesignInternship", "UXDesign", "CreativeCareers"),
+    "Sales": ("SalesInternship", "BusinessDevelopment", "SalesCareers"),
+    "Other": ("EarlyCareer", "CareerLaunch"),
+}
+
+WORK_MODE_HASHTAGS: dict[str, tuple[str, ...]] = {
+    "Remote": ("RemoteInternship", "WorkFromHome"),
+    "Hybrid": ("HybridWork", "FlexibleInternship"),
+    "Onsite": ("OnsiteInternship", "OfficeInternship"),
+}
+
+INDIA_LOCATION_MARKERS = (
+    "india",
+    "bangalore",
+    "bengaluru",
+    "mumbai",
+    "delhi",
+    "hyderabad",
+    "pune",
+    "chennai",
+    "gurgaon",
+    "gurugram",
+    "noida",
+    "kolkata",
+    "remote india",
+)
 
 
 @dataclass(frozen=True)
@@ -275,6 +319,86 @@ def save_history(path: Path, history: dict[str, Any]) -> None:
 def report_hash(report_date: dt.date, job_ids: Iterable[str]) -> str:
     payload = f"{report_date.isoformat()}|" + "|".join(sorted(job_ids))
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def normalize_hashtag(tag: str) -> str:
+    cleaned = re.sub(r"[^a-zA-Z0-9]+", "", tag.strip().lstrip("#"))
+    return cleaned
+
+
+def format_hashtag(tag: str) -> str:
+    normalized = normalize_hashtag(tag)
+    return f"#{normalized}" if normalized else ""
+
+
+def extract_hashtags(text: str) -> set[str]:
+    return {
+        normalize_hashtag(match)
+        for match in re.findall(r"#(\w+)", text)
+        if normalize_hashtag(match)
+    }
+
+
+def build_internship_hashtags(brief: DailyInternshipBrief, *, max_tags: int = 10) -> list[str]:
+    tags: list[str] = []
+    seen: set[str] = set()
+
+    def add(*candidates: str) -> None:
+        for candidate in candidates:
+            if len(tags) >= max_tags:
+                return
+            normalized = normalize_hashtag(candidate)
+            if not normalized or normalized in seen:
+                continue
+            seen.add(normalized)
+            tags.append(normalized)
+
+    add(*INTERNSHIP_BASE_HASHTAGS)
+
+    counts = brief.category_counts()
+    top_categories = sorted(counts, key=lambda category: (-counts[category], category))
+    for category in top_categories[:3]:
+        add(*INTERNSHIP_CATEGORY_HASHTAGS.get(category, ()))
+
+    work_mode_counts: dict[str, int] = defaultdict(int)
+    for job in brief.jobs:
+        work_mode_counts[job.work_mode] += 1
+    for work_mode, _ in sorted(work_mode_counts.items(), key=lambda item: (-item[1], item[0]))[:2]:
+        add(*WORK_MODE_HASHTAGS.get(work_mode, ()))
+
+    locations = " ".join(job.location.lower() for job in brief.jobs)
+    if any(marker in locations for marker in INDIA_LOCATION_MARKERS):
+        add("IndiaJobs", "IndiaInternships")
+
+    return tags[:max_tags]
+
+
+def append_hashtags_to_post(
+    text: str,
+    hashtags: list[str],
+    *,
+    max_chars: int | None = None,
+) -> str:
+    body = text.strip()
+    if not body or not hashtags:
+        return body
+
+    existing = extract_hashtags(body)
+    missing = [tag for tag in hashtags if normalize_hashtag(tag) not in existing]
+    if not missing:
+        return body
+
+    hashtag_line = " ".join(format_hashtag(tag) for tag in missing)
+    hashtag_block = f"\n\n{hashtag_line}"
+    if max_chars is None:
+        return f"{body}{hashtag_block}"
+
+    allowed_body_len = max_chars - len(hashtag_block)
+    if allowed_body_len < 1:
+        return body[:max_chars]
+    if len(body) > allowed_body_len:
+        body = body[: allowed_body_len - 3].rstrip() + "..."
+    return f"{body}{hashtag_block}"
 
 
 def format_summary_header(brief: DailyInternshipBrief) -> str:
@@ -570,6 +694,11 @@ def main(argv: list[str] | None = None) -> int:
                 max_chars=args.max_chars,
                 continue_url=args.continue_url,
             )
+        text = append_hashtags_to_post(
+            text,
+            build_internship_hashtags(brief),
+            max_chars=args.max_chars,
+        )
         artifacts = save_brief_artifacts(brief, output_dir, text)
     except (OSError, ValueError, json.JSONDecodeError) as error:
         print(f"Error: {error}", file=sys.stderr)

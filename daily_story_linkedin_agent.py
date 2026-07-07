@@ -50,6 +50,7 @@ Rules:
 - End with an interactive checkbox question; put each option on its own line starting with □
 - Do not use labels like "Topic:", "Insight:", "Hook:", or "Proof:"
 - Do not add website links or signup CTAs
+- Do not include hashtags; meaningful tags are appended automatically after generation
 - Use the provided pillar, brief, and metrics naturally when relevant
 - Sound like a real LinkedIn post, not a template
 
@@ -57,6 +58,165 @@ Return JSON with exactly these keys:
 - caption: the full LinkedIn post text ready to publish
 - image_prompt: a detailed prompt for a square photorealistic curiosity-driven image using objects, desks, screens, resumes, dashboards, or evidence — not generic stock photos of students smiling
 """
+
+BASE_HASHTAGS = (
+    "WorldOfInterns",
+    "Internships",
+    "Students",
+    "CareerAdvice",
+)
+
+PILLAR_HASHTAGS: dict[str, tuple[str, ...]] = {
+    "Student Employability": (
+        "Employability",
+        "ResumeTips",
+        "InterviewPrep",
+        "SkillDevelopment",
+    ),
+    "Hire Interns in 10 Days": (
+        "Hiring",
+        "Recruitment",
+        "TalentAcquisition",
+        "InternHiring",
+    ),
+    "Internship Verification": (
+        "InternshipVerification",
+        "ScamAlert",
+        "CareerSafety",
+        "VerifiedInternships",
+    ),
+    "Recruiter Secrets": (
+        "Recruiting",
+        "HiringManagers",
+        "RecruiterTips",
+        "JobSearch",
+    ),
+    "Market Intelligence": (
+        "JobMarket",
+        "CareerTrends",
+        "SalaryInsights",
+        "InternshipMarket",
+    ),
+    "Employer Branding": (
+        "EmployerBranding",
+        "TalentBrand",
+        "CampusRecruiting",
+        "InternshipPrograms",
+    ),
+    "Campus Ambassador / Job Acquisition": (
+        "CampusAmbassador",
+        "StudentJobs",
+        "CampusPlacement",
+        "EarnWhileYouLearn",
+    ),
+    "AI Career Survival": (
+        "AICareer",
+        "FutureOfWork",
+        "CareerGrowth",
+        "AIForStudents",
+    ),
+    "Learn One AI Tool Every Week": (
+        "AITools",
+        "LearnAI",
+        "Productivity",
+        "TechSkills",
+    ),
+    "AI Challenge of the Week": (
+        "AIChallenge",
+        "BuildInPublic",
+        "LearningByDoing",
+        "PortfolioBuilding",
+    ),
+    "AI Resume Upgrade": (
+        "Resume",
+        "AIResume",
+        "JobSearch",
+        "CareerPrep",
+    ),
+    "AI Interview Practice": (
+        "InterviewTips",
+        "MockInterview",
+        "CommunicationSkills",
+        "InterviewPrep",
+    ),
+    "AI Mythbusters": (
+        "AIMyths",
+        "TechLiteracy",
+        "CareerMyths",
+        "AIReality",
+    ),
+    "Future Skills": (
+        "FutureSkills",
+        "Upskilling",
+        "EmergingTech",
+        "CareerReady",
+    ),
+}
+
+CONTENT_TYPE_HASHTAGS: dict[str, tuple[str, ...]] = {
+    "Resume Before vs After": ("ResumeMakeover", "BeforeAndAfter"),
+    "Employability Score Explained": ("EmployabilityScore", "CareerMapping"),
+    "Resume Mistakes": ("ResumeMistakes", "ResumeWriting"),
+    "Interview Questions": ("InterviewQuestions", "InterviewSkills"),
+    "Skill Gap Analysis": ("SkillGap", "CareerPlanning"),
+    "Portfolio Reviews": ("Portfolio", "ProjectShowcase"),
+    "Project Ideas": ("ProjectIdeas", "BuildProjects"),
+    "Career Roadmaps": ("CareerRoadmap", "CareerPlanning"),
+    "Screened to shortlist": ("Shortlisting", "RecruiterInsights"),
+    "Startup hiring speed": ("StartupHiring", "FastHiring"),
+    "AI screening reduction": ("AIScreening", "HRTech"),
+    "Unqualified intern cost": ("HiringRisk", "TalentQuality"),
+    "Stipend investigation": ("InternshipStipend", "DueDiligence"),
+    "Verify My Internship": ("VerifyInternship", "InternshipSafety"),
+    "Scam indicators": ("InternshipScam", "StaySafe"),
+    "12 second reject": ("ResumeReview", "FirstImpression"),
+    "Application mistakes": ("JobApplication", "ApplySmart"),
+    "What HR notices first": ("HRInsights", "RecruiterView"),
+    "Top Skills This Week": ("TopSkills", "InDemandSkills"),
+    "Top Hiring Cities": ("HiringCities", "JobLocations"),
+    "Top Paying Internship Domains": ("InternshipPay", "HighPayingInternships"),
+    "Most Applied Jobs": ("CompetitiveRoles", "ApplicationStrategy"),
+    "Average Employability Score": ("EmployabilityBenchmark", "CareerMetrics"),
+    "Low application count": ("JobDescription", "HiringTips"),
+    "Improve your JD": ("JobDescription", "HiringCopy"),
+    "Salary Benchmark": ("SalaryBenchmark", "Compensation"),
+    "Campus Hiring Guide": ("CampusHiring", "UniversityRecruiting"),
+    "Internship Program Design": ("InternshipProgram", "EarlyTalent"),
+    "Campus Growth Partner": ("CampusGrowth", "StudentAmbassador"),
+    "Earn while helping": ("StudentSideHustle", "CampusJobs"),
+    "Jobs AI won't replace": ("HumanSkills", "CareerResilience"),
+    "AI made developer faster": ("DeveloperProductivity", "AIAssistedCoding"),
+    "AI plus Humans": ("HumanInTheLoop", "CollaborativeAI"),
+    "Recruiter AI evaluation": ("AIAtWork", "WorkplaceAI"),
+    "Mention AI on resume": ("ResumeAI", "AISkills"),
+    "Portfolio in 30 minutes": ("QuickPortfolio", "ShipFast"),
+    "AI dataset dashboard": ("DataDashboard", "AnalyticsProjects"),
+    "Excel plus AI workflow": ("ExcelSkills", "DataReporting"),
+    "AI workflow proof": ("WorkflowAutomation", "ProofOfWork"),
+    "AI interview scoring": ("InterviewPractice", "CommunicationCoaching"),
+    "Developers replaced myth": ("DeveloperCareers", "CodingCareers"),
+    "Prompt engineering myth": ("PromptEngineering", "ProblemSolving"),
+    "Agentic AI": ("AgenticAI", "AIAgents"),
+    "MCP": ("ModelContextProtocol", "AIInfrastructure"),
+    "RAG": ("RetrievalAugmentedGeneration", "AIApplications"),
+    "Vector Databases": ("VectorDB", "AIML"),
+}
+
+AI_TOOL_CONTENT_TYPES = frozenset(
+    {
+        "ChatGPT",
+        "Claude",
+        "Cursor",
+        "GitHub Copilot",
+        "Canva AI",
+        "Figma AI",
+        "Perplexity",
+        "Gemini",
+        "Notion AI",
+        "n8n",
+        "Zapier AI",
+    }
+)
 
 DEFAULT_METRICS = {
     "python_assessment_students": "12,487",
@@ -1457,6 +1617,63 @@ def build_content_user_prompt(angle: dict[str, Any]) -> str:
     )
 
 
+def normalize_hashtag(tag: str) -> str:
+    return re.sub(r"[^a-zA-Z0-9]+", "", tag.strip().lstrip("#"))
+
+
+def format_hashtag(tag: str) -> str:
+    normalized = normalize_hashtag(tag)
+    return f"#{normalized}" if normalized else ""
+
+
+def extract_hashtags(text: str) -> set[str]:
+    return {normalize_hashtag(match) for match in re.findall(r"#(\w+)", text) if normalize_hashtag(match)}
+
+
+def build_hashtags_for_angle(angle: dict[str, Any], *, max_tags: int = 8) -> list[str]:
+    tags: list[str] = []
+    seen: set[str] = set()
+    content_type = angle.get("content_type", "")
+
+    def add(*candidates: str) -> None:
+        for candidate in candidates:
+            if len(tags) >= max_tags:
+                return
+            normalized = normalize_hashtag(candidate)
+            if not normalized or normalized in seen:
+                continue
+            seen.add(normalized)
+            tags.append(normalized)
+
+    add(*BASE_HASHTAGS[:2])
+    if content_type in AI_TOOL_CONTENT_TYPES:
+        add(content_type.replace(" ", ""), "AITools")
+    add(*CONTENT_TYPE_HASHTAGS.get(content_type, ()))
+    add(*PILLAR_HASHTAGS.get(angle.get("content_group", ""), ()))
+    add(*BASE_HASHTAGS[2:])
+    return tags[:max_tags]
+
+
+def append_hashtags_to_caption(
+    caption: str,
+    angle: dict[str, Any],
+    *,
+    max_tags: int = 8,
+) -> str:
+    body = caption.strip()
+    if not body:
+        return body
+
+    desired = build_hashtags_for_angle(angle, max_tags=max_tags)
+    existing = extract_hashtags(body)
+    missing = [tag for tag in desired if tag not in existing]
+    if not missing:
+        return body
+
+    hashtag_line = " ".join(format_hashtag(tag) for tag in missing)
+    return f"{body}\n\n{hashtag_line}"
+
+
 def generate_ai_content(
     angle: dict[str, Any],
     *,
@@ -2486,13 +2703,14 @@ def build_story(
     for _ in range(MAX_CONTENT_GENERATION_ATTEMPTS):
         try:
             generated = generate_ai_content(angle, api_key=api_key, model=text_model)
-            caption = generated["caption"]
-            count = word_count(caption)
+            caption_body = generated["caption"]
+            count = word_count(caption_body)
             if not MIN_POST_WORDS <= count <= MAX_POST_WORDS:
                 raise ValueError(
                     f"Generated story must be between {MIN_POST_WORDS} and "
                     f"{MAX_POST_WORDS} words; got {count}."
                 )
+            caption = append_hashtags_to_caption(caption_body, angle)
             assets = {
                 "caption": caption,
                 "visual": generated["image_prompt"],

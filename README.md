@@ -217,6 +217,8 @@ Each run stores AI-generated assets in history:
 
 Captions should read like human LinkedIn posts: strong hook, proof or example,
 one takeaway, and a checkbox question. They do not include a website CTA.
+Each post also ends with meaningful hashtags based on the content pillar and
+topic (for example `#WorldOfInterns`, `#ResumeTips`, `#Claude`).
 
 Dry-run generation requires OpenAI:
 
@@ -436,6 +438,10 @@ Each job listing includes:
 - Apply Link
 - Last Date
 - Verified ✅
+
+Every briefing also ends with meaningful hashtags based on the categories,
+work modes, and locations in that day's list (for example
+`#VerifiedInternships`, `#DigitalMarketing`, `#RemoteInternship`).
 
 Dry-run with the bundled sample sources:
 
