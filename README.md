@@ -245,6 +245,22 @@ Each run stores AI-generated assets in history:
 
 Captions should read like human LinkedIn posts: strong hook, proof or example,
 one takeaway, and a checkbox question. They do not include a website CTA.
+Voice is a plain-spoken 45-year-old mentor — casual English, not polished essay
+writing. Avoid character names like Dev or Priya; use generic phrasing like
+"A final-year engineering student..." or "One startup founder told us...".
+
+Before publishing, every caption self-scores on:
+
+| Attribute | Weight |
+| --- | --- |
+| Educational | 30% |
+| Actionable | 25% |
+| Trustworthy | 20% |
+| Engaging | 15% |
+| Brand Mention | 5% |
+| Promotional | ≤5% (hard limit) |
+
+Posts below the quality threshold are regenerated automatically.
 Each post also ends with meaningful hashtags based on the content pillar and
 topic (for example `#WorldOfInterns`, `#ResumeTips`, `#Claude`).
 

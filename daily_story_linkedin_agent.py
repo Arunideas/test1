@@ -44,12 +44,54 @@ DEFAULT_OPENAI_CHAT_URL = "https://api.openai.com/v1/chat/completions"
 MAX_CONTENT_GENERATION_ATTEMPTS = 3
 MIN_POST_WORDS = 35
 MAX_POST_WORDS = 180
+MAX_PROMOTIONAL_SCORE = 5
+MIN_WEIGHTED_QUALITY_SCORE = 65
+
+POST_QUALITY_WEIGHTS: dict[str, float] = {
+    "educational": 0.30,
+    "actionable": 0.25,
+    "trustworthy": 0.20,
+    "engaging": 0.15,
+    "brand_mention": 0.05,
+}
+
+POST_QUALITY_ATTRIBUTES = tuple(POST_QUALITY_WEIGHTS) + ("promotional",)
+
+VOICE_EXAMPLE_PHRASES = (
+    "A final-year engineering student...",
+    "A recruiter reviewing resumes...",
+    "One startup founder told us...",
+)
+
+FORBIDDEN_CHARACTER_NAMES = frozenset(
+    {
+        "Asha",
+        "Dev",
+        "John",
+        "Rahul",
+        "Priya",
+        "Meera",
+        "Ravi",
+        "Nisha",
+        "Ibrahim",
+        "Arjun",
+        "Kavya",
+        "Sara",
+        "Neel",
+    }
+)
 
 CONTENT_SYSTEM_PROMPT = """You write LinkedIn posts for World of Interns.
 
-Write one post that sounds human, specific, and scroll-stopping.
+Voice and tone:
+- Sound like a 45-year-old experienced mentor talking to students, not a professional English teacher or Cambridge essay
+- Use casual spoken English. Short sentences are fine. Small grammar slips are okay if it feels real
+- Avoid polished lecture words like "Furthermore", "It is imperative", "leverage synergies", "transformative journey"
+- Do not use character names like Dev, John, Rahul, or Priya unless the brief clearly marks the story as fictional
+- Prefer real-world phrasing like "A final-year engineering student...", "A recruiter reviewing resumes...", "One startup founder told us..."
+- Sound human, specific, and scroll-stopping — not corporate or textbook
 
-Rules:
+Post rules:
 - Stay between WORD_MIN and WORD_MAX words
 - Open with a sharp hook
 - Show proof with a before/after, concrete example, or scenario — do not lecture
@@ -59,11 +101,21 @@ Rules:
 - Do not add website links or signup CTAs
 - Do not include hashtags; meaningful tags are appended automatically after generation
 - Use the provided pillar, brief, and metrics naturally when relevant
-- Sound like a real LinkedIn post, not a template
+
+Quality gate — score the caption before you finalize it (0-100 each):
+- educational (weight 30%)
+- actionable (weight 25%)
+- trustworthy (weight 20%)
+- engaging (weight 15%)
+- brand_mention (weight 5%)
+- promotional (must be 5 or less; hard limit)
+
+Only return a caption if promotional is 5 or less and the weighted score is strong.
 
 Return JSON with exactly these keys:
 - caption: the full LinkedIn post text ready to publish
 - image_prompt: a detailed prompt for a square photorealistic curiosity-driven image using objects, desks, screens, resumes, dashboards, or evidence — not generic stock photos of students smiling
+- quality_scores: object with numeric scores for educational, actionable, trustworthy, engaging, brand_mention, and promotional
 """
 
 BASE_HASHTAGS = (
@@ -1550,17 +1602,17 @@ CONTENT_ANGLES = [
         "weekly_series": "student_success_story",
         "content_group": "Student Success Story",
         "content_type": "Python dashboard turnaround",
-        "hook": "Asha went from zero callbacks to three interviews in ten days.",
-        "headline": "ASHA WIN",
+        "hook": "A final-year engineering student went from zero callbacks to three interviews in ten days.",
+        "headline": "STUDENT WIN",
         "subhead": "One project changed the scan.",
         "visual": "document",
         "setup": (
-            "Asha had coursework on her resume but no proof recruiters could inspect. "
-            "She rebuilt one project line and added a live dashboard link."
+            "The student had coursework on the resume but no proof recruiters could inspect. "
+            "They rebuilt one project line and added a live dashboard link."
         ),
         "sections": [
             "Before: 'Good knowledge of Python and SQL.'",
-            "After: 'Built a sales dashboard in Python and SQL used by her college fest team.'",
+            "After: 'Built a sales dashboard in Python and SQL used by a college fest team.'",
             "Result: three internship interview calls in ten days after updating the top project line.",
         ],
         "action": "Pick one project and make the result visible at the top of your profile.",
@@ -1570,13 +1622,13 @@ CONTENT_ANGLES = [
         "weekly_series": "student_success_story",
         "content_group": "Student Success Story",
         "content_type": "Resume rewrite win",
-        "hook": "Dev stopped getting silence after fixing one resume line.",
-        "headline": "DEV WIN",
+        "hook": "One data-analytics student stopped getting silence after fixing a single resume line.",
+        "headline": "STUDENT WIN",
         "subhead": "Proof beat polish.",
         "visual": "spotlight",
         "setup": (
-            "Dev applied to data roles with a generic resume for weeks. "
-            "He rewrote only the first project bullet with a measurable outcome."
+            "They had applied to data roles with a generic resume for weeks. "
+            "Then they rewrote only the first project bullet with a measurable outcome."
         ),
         "sections": [
             "Before: 'Created reports using Excel.'",
@@ -1590,13 +1642,13 @@ CONTENT_ANGLES = [
         "weekly_series": "student_success_story",
         "content_group": "Student Success Story",
         "content_type": "Claude README clarity",
-        "hook": "Meera turned a messy GitHub README into a recruiter-friendly story.",
-        "headline": "MEERA WIN",
+        "hook": "A computer science student turned a messy GitHub README into a recruiter-friendly story.",
+        "headline": "STUDENT WIN",
         "subhead": "Clarity got clicks.",
         "visual": "document",
         "setup": (
-            "Meera had a solid project but recruiters bounced because the README was long and vague. "
-            "She used Claude to extract problem, build, and result in five lines."
+            "The project was solid but recruiters bounced because the README was long and vague. "
+            "Claude helped extract problem, build, and result in five lines."
         ),
         "sections": [
             "Before: long feature list with no business problem.",
@@ -1610,12 +1662,12 @@ CONTENT_ANGLES = [
         "weekly_series": "student_success_story",
         "content_group": "Student Success Story",
         "content_type": "GitHub proof multiplier",
-        "hook": "Ravi added one GitHub project and doubled interview interest.",
-        "headline": "RAVI WIN",
+        "hook": "One engineering student added a public GitHub project and doubled interview interest.",
+        "headline": "STUDENT WIN",
         "subhead": "Visible beats claimed.",
         "visual": "document",
         "setup": (
-            "Ravi listed Java on his resume without evidence. He published one clean repo with README, "
+            "Java was listed on the resume without evidence. They published one clean repo with README, "
             "sample output, and setup steps recruiters could inspect."
         ),
         "sections": [
@@ -1630,18 +1682,18 @@ CONTENT_ANGLES = [
         "weekly_series": "student_success_story",
         "content_group": "Student Success Story",
         "content_type": "Interview prep comeback",
-        "hook": "Nisha failed one interview, then fixed the answer that broke trust.",
-        "headline": "NISHA WIN",
+        "hook": "A final-year student failed one interview, then fixed the answer that broke trust.",
+        "headline": "STUDENT WIN",
         "subhead": "One answer changed.",
         "visual": "interview",
         "setup": (
-            "Nisha lost momentum when she could not explain her role in a group project. "
-            "She rehearsed one ownership-focused answer with problem, decision, and result."
+            "Momentum dropped when they could not explain their role in a group project. "
+            "So they rehearsed one ownership-focused answer with problem, decision, and result."
         ),
         "sections": [
             "Before: describing the whole team's work with no personal contribution.",
-            "After: naming her module, trade-off, and measurable outcome in 45 seconds.",
-            "Result: she cleared the next two interview rounds with the same project story.",
+            "After: naming their module, trade-off, and measurable outcome in 45 seconds.",
+            "Result: they cleared the next two interview rounds with the same project story.",
         ],
         "action": "Prepare one project answer that names your role, not the team's.",
     },
@@ -1650,18 +1702,18 @@ CONTENT_ANGLES = [
         "weekly_series": "student_success_story",
         "content_group": "Student Success Story",
         "content_type": "SQL gap closed",
-        "hook": "Ibrahim closed one skill gap and finally matched the JD.",
-        "headline": "IBRAHIM WIN",
+        "hook": "One analytics student closed a skill gap and finally matched the JD.",
+        "headline": "STUDENT WIN",
         "subhead": "Proof over promise.",
         "visual": "clock",
         "setup": (
-            "Ibrahim kept applying to analytics internships while his profile lacked SQL proof. "
-            "He built one public dashboard project in seven days."
+            "They kept applying to analytics internships while the profile lacked SQL proof. "
+            "Then they built one public dashboard project in seven days."
         ),
         "sections": [
             "Before: 'Interested in data analytics' with no SQL artifact.",
-            "After: one SQL dashboard analyzing real sample sales data with documented queries.",
-            "Result: he started getting replies from roles that previously auto-rejected the profile.",
+            "After: one SQL dashboard analyzing sample sales data with documented queries.",
+            "Result: replies started coming from roles that previously auto-rejected the profile.",
         ],
         "action": "Close one visible skill gap before sending the next ten applications.",
     },
@@ -1918,6 +1970,11 @@ def build_content_user_prompt(angle: dict[str, Any], *, series: WeeklySeries) ->
         f"Proof points:\n{sections}\n"
         f"Suggested action: {angle.get('action', '')}\n"
         f"Write for today's {series.label} installment. Do not repeat the series title in the opening line.\n"
+        "Voice: sound like a 45-year-old mentor talking plainly — not a polished English teacher.\n"
+        "Do not use names like Dev, John, Rahul, or Priya. Use phrases like "
+        + ", ".join(VOICE_EXAMPLE_PHRASES)
+        + "\n"
+        "Score the caption on educational, actionable, trustworthy, engaging, brand_mention, and promotional before returning it.\n"
         + (
             "Do not include a Why this matters section or student benefit checklist; "
             "that block is appended automatically after generation.\n"
@@ -2012,13 +2069,62 @@ def append_hashtags_to_caption(
     return f"{body}\n\n{hashtag_line}"
 
 
+def parse_quality_scores(raw: Any) -> dict[str, float]:
+    if not isinstance(raw, dict):
+        raise ValueError("OpenAI content response missing quality_scores object.")
+    scores: dict[str, float] = {}
+    for attribute in POST_QUALITY_ATTRIBUTES:
+        if attribute not in raw:
+            raise ValueError(f"OpenAI quality_scores missing {attribute}.")
+        try:
+            scores[attribute] = float(raw[attribute])
+        except (TypeError, ValueError) as error:
+            raise ValueError(f"OpenAI quality_scores.{attribute} must be numeric.") from error
+    return scores
+
+
+def compute_weighted_quality_score(scores: dict[str, float]) -> float:
+    return round(
+        sum(scores[attribute] * weight for attribute, weight in POST_QUALITY_WEIGHTS.items()),
+        2,
+    )
+
+
+def validate_caption_voice(caption: str) -> None:
+    for name in FORBIDDEN_CHARACTER_NAMES:
+        if re.search(rf"\b{re.escape(name)}\b", caption):
+            raise ValueError(
+                f"Caption uses character name {name!r}. Use generic phrasing like "
+                f"{VOICE_EXAMPLE_PHRASES[0]}"
+            )
+
+
+def validate_quality_scores(scores: dict[str, float]) -> dict[str, float]:
+    promotional = scores["promotional"]
+    if promotional > MAX_PROMOTIONAL_SCORE:
+        raise ValueError(
+            f"Promotional score must be {MAX_PROMOTIONAL_SCORE} or less; got {promotional}."
+        )
+    weighted = compute_weighted_quality_score(scores)
+    if weighted < MIN_WEIGHTED_QUALITY_SCORE:
+        raise ValueError(
+            f"Weighted quality score must be at least {MIN_WEIGHTED_QUALITY_SCORE}; got {weighted}."
+        )
+    return {
+        **scores,
+        "weighted_score": weighted,
+        "weights": POST_QUALITY_WEIGHTS,
+        "promotional_limit": MAX_PROMOTIONAL_SCORE,
+    }
+
+
 def generate_ai_content(
     angle: dict[str, Any],
     *,
     series: WeeklySeries,
     api_key: str,
     model: str,
-) -> dict[str, str]:
+) -> dict[str, Any]:
     parsed = openai_chat_completion(
         api_key=api_key,
         model=model,
@@ -2033,7 +2139,13 @@ def generate_ai_content(
         raise ValueError("OpenAI content response missing caption.")
     if not image_prompt:
         raise ValueError("OpenAI content response missing image_prompt.")
-    return {"caption": caption, "image_prompt": image_prompt}
+    quality_scores = validate_quality_scores(parse_quality_scores(parsed.get("quality_scores")))
+    validate_caption_voice(caption)
+    return {
+        "caption": caption,
+        "image_prompt": image_prompt,
+        "quality_scores": quality_scores,
+    }
 
 
 def choose_human_hook(rng: random.Random, angle: dict[str, Any]) -> str:
@@ -3066,6 +3178,7 @@ def build_story(
                 "prompt_brief": angle["id"],
                 "series_key": series.key,
                 "series_label": series.label,
+                "quality_scores": generated["quality_scores"],
             }
             unique_id = f"{angle['id']}-{story_hash(caption)[:12]}"
             return Story(
@@ -3506,6 +3619,7 @@ def record_story(
         "content_type": story.content_type,
         "series_key": story.series_key,
         "series_label": story.series_label,
+        "quality_scores": story.assets.get("quality_scores"),
         "content_hash": content_hash,
         "assets": story.assets,
         "word_count": story.word_count,
@@ -3712,6 +3826,7 @@ def main(argv: list[str] | None = None) -> int:
         "content_group": story.content_group,
         "content_type": story.content_type,
         "assets": story.assets,
+        "quality_scores": story.assets.get("quality_scores"),
         "word_count": story.word_count,
         "content": story.text,
         "image_path": str(image_path),
