@@ -28,7 +28,8 @@ from linkedin_company_page_agent import LinkedInCompanyPageAgent, LinkedInPostEr
 SIGNUP_URL = "https://student.worldofinterns.com"
 DEFAULT_HISTORY_PATH = Path("daily_story_history.json")
 DEFAULT_OUTPUT_DIR = Path("daily_story_output")
-MAX_POST_WORDS = 100
+MIN_POST_WORDS = 200
+MAX_POST_WORDS = 500
 
 NAMES = [
     "Asha",
@@ -301,16 +302,46 @@ def save_history(path: Path, history: dict[str, Any]) -> None:
 def build_story(rng: random.Random, scenario: dict[str, str]) -> Story:
     name = rng.choice(NAMES)
     mentor = rng.choice(MENTORS)
+    quick_win = rng.choice(
+        [
+            "rewrite one project with a result",
+            "send one specific message to a mentor",
+            "record a two-minute explanation of one project",
+            "apply to one role instead of saving five links",
+            "turn one class assignment into a portfolio proof",
+        ]
+    )
+    tiny_deadline = rng.choice(["tonight", "before breakfast", "in the next 30 minutes"])
     story_text = (
         f"{scenario['hook']}\n\n"
+        f"{name} did not feel inspired. The screen was open, the internship tab was "
+        f"still waiting, and the easy choice was to say, \"I will do it later.\" "
+        f"But later had already stolen too many chances.\n\n"
         f"{name}: \"{scenario['fear']}\"\n"
         f"{mentor}: \"{scenario['reply']}\"\n"
+        f"{name}: \"But what if I still look ordinary?\"\n"
+        f"{mentor}: \"Ordinary is what it looks like before you show the proof. "
+        f"Pick one small proof and make it impossible to ignore.\"\n"
+        f"{name}: \"So what should I do first?\"\n"
+        f"{mentor}: \"Do not plan a perfect career today. Just {quick_win} "
+        f"{tiny_deadline}. One visible step is enough to change the next reply.\"\n\n"
         f"{scenario['action']}\n\n"
+        f"The shift was not magic. No one suddenly handed over a dream internship. "
+        f"But one action created evidence. Evidence created confidence. Confidence "
+        f"made the next application sound different. That is how students move from "
+        f"waiting to being noticed: not by feeling ready, but by building proof "
+        f"while they are still nervous.\n\n"
+        f"If you are a student sitting on a saved internship link, an unfinished "
+        f"resume, or a project you are scared to show, this is your sign. Start "
+        f"small. Make your effort visible. Let the next opportunity see you.\n\n"
         f"Stop waiting to feel ready. Start here: {SIGNUP_URL}"
     )
     count = word_count(story_text)
-    if count > MAX_POST_WORDS:
-        raise ValueError(f"Generated story exceeded {MAX_POST_WORDS} words: {count}")
+    if not MIN_POST_WORDS <= count <= MAX_POST_WORDS:
+        raise ValueError(
+            f"Generated story must be between {MIN_POST_WORDS} and "
+            f"{MAX_POST_WORDS} words; got {count}."
+        )
     unique_id = f"{scenario['id']}-{story_hash(story_text)[:12]}"
     return Story(
         story_id=unique_id,

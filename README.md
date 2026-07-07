@@ -151,9 +151,9 @@ python3 linkedin_company_page_agent.py \
 
 ## Daily student story automation
 
-`daily_story_linkedin_agent.py` creates one short real-life conversation story,
+`daily_story_linkedin_agent.py` creates one real-life conversation story,
 generates a related PNG image card, and can post both to LinkedIn. Each story is
-kept under 100 words and ends with:
+kept between 200 and 500 words and ends with:
 
 ```text
 https://student.worldofinterns.com
