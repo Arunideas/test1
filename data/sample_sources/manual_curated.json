@@ -1,0 +1,78 @@
+{
+  "source": "manual_curated",
+  "collected_at": "2026-07-07T09:00:00Z",
+  "jobs": [
+    {
+      "company": "NovaStack Labs",
+      "role": "Backend Engineering Intern",
+      "category": "Software Engineering",
+      "location": "Bangalore",
+      "stipend": "₹30,000/month",
+      "work_mode": "Hybrid",
+      "duration": "6 months",
+      "apply_link": "https://example.com/jobs/novastack-backend",
+      "last_date": "2026-07-20",
+      "verified": true
+    },
+    {
+      "company": "PixelForge",
+      "role": "Frontend Intern",
+      "category": "Software Engineering",
+      "location": "Pune",
+      "stipend": "₹22,000/month",
+      "work_mode": "Remote",
+      "duration": "3 months",
+      "apply_link": "https://example.com/jobs/pixelforge-frontend",
+      "last_date": "2026-07-18",
+      "verified": true
+    },
+    {
+      "company": "GrowthLoop",
+      "role": "Performance Marketing Intern",
+      "category": "Digital Marketing",
+      "location": "Mumbai",
+      "stipend": "₹18,000/month",
+      "work_mode": "Onsite",
+      "duration": "4 months",
+      "apply_link": "https://example.com/jobs/growthloop-performance",
+      "last_date": "2026-07-16",
+      "verified": true
+    },
+    {
+      "company": "InsightBridge",
+      "role": "Data Analytics Intern",
+      "category": "Data Analytics",
+      "location": "Hyderabad",
+      "stipend": "₹25,000/month",
+      "work_mode": "Hybrid",
+      "duration": "6 months",
+      "apply_link": "https://example.com/jobs/insightbridge-analytics",
+      "last_date": "2026-07-22",
+      "verified": true
+    },
+    {
+      "company": "PeopleFirst HR",
+      "role": "HR Operations Intern",
+      "category": "HR",
+      "location": "Chennai",
+      "stipend": "₹15,000/month",
+      "work_mode": "Onsite",
+      "duration": "3 months",
+      "apply_link": "https://example.com/jobs/peoplefirst-hr",
+      "last_date": "2026-07-14",
+      "verified": true
+    },
+    {
+      "company": "LedgerPoint",
+      "role": "Finance Analyst Intern",
+      "category": "Finance",
+      "location": "Delhi NCR",
+      "stipend": "₹20,000/month",
+      "work_mode": "Hybrid",
+      "duration": "6 months",
+      "apply_link": "https://example.com/jobs/ledgerpoint-finance",
+      "last_date": "2026-07-19",
+      "verified": true
+    }
+  ]
+}

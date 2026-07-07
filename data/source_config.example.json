@@ -1,0 +1,40 @@
+{
+  "output_dir": "data/live_sources",
+  "sources": [
+    {
+      "type": "linkedin_search",
+      "source_name": "linkedin_internship_india",
+      "enabled": true,
+      "keywords": "internship",
+      "location": "India",
+      "pages": 2,
+      "count": 25
+    },
+    {
+      "type": "greenhouse",
+      "source_name": "greenhouse_stripe",
+      "enabled": true,
+      "board": "stripe",
+      "company_name": "Stripe",
+      "category_default": "Software Engineering",
+      "keywords": ["intern", "internship"]
+    },
+    {
+      "type": "lever",
+      "source_name": "lever_palantir",
+      "enabled": false,
+      "company": "palantir",
+      "company_name": "Palantir",
+      "keywords": ["intern", "internship"]
+    },
+    {
+      "type": "career_page",
+      "source_name": "microsoft_internships",
+      "enabled": false,
+      "url": "https://careers.microsoft.com/us/en/search-results?keywords=intern",
+      "company_name": "Microsoft",
+      "link_keywords": ["intern", "internship"],
+      "location_default": "Multiple locations"
+    }
+  ]
+}
