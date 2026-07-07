@@ -253,7 +253,7 @@ def normalize_scopes(
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Post a sample text message to a LinkedIn company page.",
+        description="Post a sample text message to LinkedIn.",
     )
     parser.add_argument(
         "--message",
@@ -314,7 +314,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         action="append",
         help=(
             "OAuth scope to request. May be passed multiple times or as a "
-            "space/comma-separated value. Defaults to organization posting scopes."
+            "space/comma-separated value. Defaults depend on --post-as."
         ),
     )
     parser.add_argument(
