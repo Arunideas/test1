@@ -202,6 +202,7 @@ class Story:
     story_id: str
     text: str
     content_type: str
+    assets: dict[str, str]
     hook: str
     headline: str
     subhead: str
@@ -347,8 +348,12 @@ def save_history(path: Path, history: dict[str, Any]) -> None:
     path.write_text(json.dumps(history, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
-def build_story(rng: random.Random, angle: dict[str, Any]) -> Story:
-    name = rng.choice(NAMES)
+def build_content_assets(
+    rng: random.Random,
+    angle: dict[str, Any],
+    *,
+    student_name: str,
+) -> dict[str, str]:
     proof_task = rng.choice(
         [
             "rewrite one resume bullet",
@@ -361,28 +366,55 @@ def build_story(rng: random.Random, angle: dict[str, Any]) -> Story:
     sections = "\n".join(
         f"{index}. {section}" for index, section in enumerate(angle["sections"], start=1)
     )
-    story_text = (
-        f"{angle['hook']}\n\n"
-        f"Today's content engine: {angle['content_type']}.\n\n"
-        f"{angle['setup']} For a student like {name}, this is not theory. It is the "
-        f"difference between being another applicant and becoming a candidate with "
-        f"a signal recruiters can remember.\n\n"
-        f"Here is the breakdown:\n\n"
-        f"{sections}\n\n"
-        f"What most students miss is that employability is built in public signals. "
-        f"A certificate helps only when it connects to a project. A project helps "
-        f"only when it explains a problem. A profile helps only when it tells a "
-        f"recruiter what to trust. The student who makes proof easy to see wins "
-        f"attention faster than the student who only says, \"I am passionate.\"\n\n"
+    topic = f"{angle['content_type']}: {angle['hook']}"
+    insight = (
+        f"{angle['setup']} For a student like {student_name}, this is not theory. "
+        f"It is the difference between being another applicant and becoming a "
+        f"candidate with a signal recruiters can remember.\n\n"
+        f"Here is the breakdown:\n{sections}"
+    )
+    story = (
+        "What most students miss is that employability is built in public signals. "
+        "A certificate helps only when it connects to a project. A project helps "
+        "only when it explains a problem. A profile helps only when it tells a "
+        "recruiter what to trust. The student who makes proof easy to see wins "
+        "attention faster than the student who only says, \"I am passionate.\"\n\n"
         f"Your move today: {angle['action']} If you want a small starting point, "
         f"{proof_task}. Do not wait until your profile feels perfect. Make one "
-        f"useful improvement, then make the next application with more evidence "
-        f"than yesterday.\n\n"
-        f"This is how internships become more than luck: stronger proof, sharper "
-        f"communication, and consistent action. Save this, try the action, and "
-        f"check your employability score again tomorrow.\n\n"
-        f"Stop waiting to feel ready. Start here: {SIGNUP_URL}"
+        "useful improvement, then make the next application with more evidence "
+        "than yesterday.\n\n"
+        "This is how internships become more than luck: stronger proof, sharper "
+        "communication, and consistent action. Save this, try the action, and "
+        "check your employability score again tomorrow."
     )
+    visual = (
+        f"Photorealistic LinkedIn image concept: {angle['headline']} - "
+        f"{angle['subhead']}. Show students in a realistic campus or early-career "
+        "workspace moment with curiosity, proof, and action visible."
+    )
+    cta = f"Stop waiting to feel ready. Start here: {SIGNUP_URL}"
+    return {
+        "topic": topic,
+        "insight": insight,
+        "story": story,
+        "visual": visual,
+        "cta": cta,
+    }
+
+
+def format_content_text(assets: dict[str, str]) -> str:
+    return (
+        f"Topic:\n{assets['topic']}\n\n"
+        f"Insight:\n{assets['insight']}\n\n"
+        f"Story:\n{assets['story']}\n\n"
+        f"CTA:\n{assets['cta']}"
+    )
+
+
+def build_story(rng: random.Random, angle: dict[str, Any]) -> Story:
+    name = rng.choice(NAMES)
+    assets = build_content_assets(rng, angle, student_name=name)
+    story_text = format_content_text(assets)
     count = word_count(story_text)
     if not MIN_POST_WORDS <= count <= MAX_POST_WORDS:
         raise ValueError(
@@ -394,6 +426,7 @@ def build_story(rng: random.Random, angle: dict[str, Any]) -> Story:
         story_id=unique_id,
         text=story_text,
         content_type=angle["content_type"],
+        assets=assets,
         hook=angle["hook"],
         headline=angle["headline"],
         subhead=angle["subhead"],
@@ -594,6 +627,7 @@ def build_photographic_image_prompt(story: Story) -> str:
         "life moment connected to this topic: "
         f"{story.content_type}. "
         f"{story.hook} "
+        f"Visual direction: {story.assets['visual']} "
         "The image should feel cinematic, curious, practical, and aspirational, "
         "with natural lighting, realistic faces, modern campus or workspace "
         "environment, shallow depth of field, and a clear focal person. Add "
@@ -773,6 +807,7 @@ def record_story(
         "story_id": story.story_id,
         "content_type": story.content_type,
         "content_hash": content_hash,
+        "assets": story.assets,
         "word_count": story.word_count,
         "text": story.text,
         "image_path": str(image_path),
@@ -929,6 +964,7 @@ def main(argv: list[str] | None = None) -> int:
         "dry_run": not args.post,
         "story_id": story.story_id,
         "content_type": story.content_type,
+        "assets": story.assets,
         "word_count": story.word_count,
         "content": story.text,
         "image_path": str(image_path),

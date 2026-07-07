@@ -173,6 +173,14 @@ The content engine rotates through formats such as:
 The agent tracks used content in a JSON history file so successful posts are not
 reused.
 
+Each generated post is built as five assets:
+
+1. `topic` - the content angle and hook.
+2. `insight` - the practical lesson or breakdown.
+3. `story` - the expanded explanation or scenario.
+4. `visual` - the image direction used for AI photo/card generation.
+5. `cta` - the signup push to `https://student.worldofinterns.com`.
+
 Dry-run generation:
 
 ```bash
