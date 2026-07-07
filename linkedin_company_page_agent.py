@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import mimetypes
 import os
 import secrets
 import sys
@@ -27,6 +28,7 @@ DEFAULT_ORGANIZATION_OAUTH_SCOPES = ("w_organization_social", "r_organization_so
 DEFAULT_MEMBER_OAUTH_SCOPES = ("openid", "profile", "email", "w_member_social")
 PLACEHOLDER_ORGANIZATION_URN = "urn:li:organization:YOUR_ORGANIZATION_ID"
 PLACEHOLDER_MEMBER_URN = "urn:li:person:YOUR_MEMBER_ID"
+PLACEHOLDER_IMAGE_ASSET = "urn:li:digitalmediaAsset:DRY_RUN_IMAGE_ASSET"
 
 
 class LinkedInPostError(RuntimeError):
@@ -84,6 +86,29 @@ class LinkedInCompanyPageAgent:
             },
         }
 
+    def build_image_post_payload(
+        self,
+        message: str,
+        *,
+        image_asset_urn: str,
+        author_urn: str | None = None,
+        image_title: str | None = None,
+        image_description: str | None = None,
+    ) -> dict[str, Any]:
+        payload = self.build_text_post_payload(message, author_urn=author_urn)
+        share_content = payload["specificContent"]["com.linkedin.ugc.ShareContent"]
+        share_content["shareMediaCategory"] = "IMAGE"
+        media: dict[str, Any] = {
+            "status": "READY",
+            "media": image_asset_urn,
+        }
+        if image_title:
+            media["title"] = {"text": image_title}
+        if image_description:
+            media["description"] = {"text": image_description}
+        share_content["media"] = [media]
+        return payload
+
     def post_text(
         self,
         message: str,
@@ -106,6 +131,48 @@ class LinkedInCompanyPageAgent:
         self._validate_publish_configuration(post_as)
         return self._send_post(payload)
 
+    def post_image(
+        self,
+        message: str,
+        *,
+        image_path: str,
+        dry_run: bool = True,
+        post_as: str = "organization",
+        image_title: str | None = None,
+        image_description: str | None = None,
+    ) -> dict[str, Any]:
+        author_urn = self.author_urn_for(post_as)
+        payload = self.build_image_post_payload(
+            message,
+            author_urn=author_urn,
+            image_asset_urn=PLACEHOLDER_IMAGE_ASSET,
+            image_title=image_title,
+            image_description=image_description,
+        )
+
+        if dry_run:
+            return {
+                "dry_run": True,
+                "post_as": post_as,
+                "endpoint": self.post_endpoint,
+                "image_path": image_path,
+                "payload": payload,
+                "note": "No request was sent. Run with --post to upload and publish.",
+            }
+
+        self._validate_publish_configuration(post_as)
+        asset_urn = self._upload_image(image_path, owner_urn=author_urn)
+        payload = self.build_image_post_payload(
+            message,
+            author_urn=author_urn,
+            image_asset_urn=asset_urn,
+            image_title=image_title,
+            image_description=image_description,
+        )
+        result = self._send_post(payload)
+        result["image_asset"] = asset_urn
+        return result
+
     def author_urn_for(self, post_as: str) -> str:
         if post_as == "organization":
             return self.organization_urn
@@ -116,6 +183,10 @@ class LinkedInCompanyPageAgent:
     @property
     def post_endpoint(self) -> str:
         return f"{self.api_base_url.rstrip('/')}/v2/ugcPosts"
+
+    @property
+    def asset_registration_endpoint(self) -> str:
+        return f"{self.api_base_url.rstrip('/')}/v2/assets?action=registerUpload"
 
     def _validate_publish_configuration(self, post_as: str) -> None:
         if not self.access_token:
@@ -169,6 +240,112 @@ class LinkedInCompanyPageAgent:
             "endpoint": self.post_endpoint,
             "response": parsed_body,
         }
+
+    def _upload_image(self, image_path: str, *, owner_urn: str) -> str:
+        if not os.path.isfile(image_path):
+            raise ValueError(f"Image file does not exist: {image_path}")
+
+        registration_payload = {
+            "registerUploadRequest": {
+                "recipes": ["urn:li:digitalmediaRecipe:feedshare-image"],
+                "owner": owner_urn,
+                "serviceRelationships": [
+                    {
+                        "relationshipType": "OWNER",
+                        "identifier": "urn:li:userGeneratedContent",
+                    }
+                ],
+            }
+        }
+        registration = self._send_json_request(
+            self.asset_registration_endpoint,
+            registration_payload,
+            method="POST",
+        )
+        value = registration.get("value", {})
+        asset_urn = value.get("asset")
+        upload_mechanism = value.get("uploadMechanism", {})
+        upload_request = upload_mechanism.get(
+            "com.linkedin.digitalmedia.uploading.MediaUploadHttpRequest",
+            {},
+        )
+        upload_url = upload_request.get("uploadUrl")
+
+        if not asset_urn or not upload_url:
+            raise LinkedInPostError(
+                f"LinkedIn did not return an image upload target: {registration}"
+            )
+
+        content_type = mimetypes.guess_type(image_path)[0] or "application/octet-stream"
+        with open(image_path, "rb") as image_file:
+            image_data = image_file.read()
+
+        upload = urllib.request.Request(
+            upload_url,
+            data=image_data,
+            method="PUT",
+            headers={
+                "Authorization": f"Bearer {self.access_token}",
+                "Content-Type": content_type,
+            },
+        )
+        try:
+            with urllib.request.urlopen(upload, timeout=self.timeout_seconds) as response:
+                response.read()
+        except urllib.error.HTTPError as error:
+            error_body = error.read().decode("utf-8", errors="replace")
+            raise LinkedInPostError(
+                f"LinkedIn image upload returned HTTP {error.code}: {error_body}"
+            ) from error
+        except urllib.error.URLError as error:
+            raise LinkedInPostError(
+                f"Unable to upload image to LinkedIn: {error.reason}"
+            ) from error
+
+        return asset_urn
+
+    def _send_json_request(
+        self,
+        url: str,
+        payload: dict[str, Any],
+        *,
+        method: str,
+    ) -> dict[str, Any]:
+        body = json.dumps(payload).encode("utf-8")
+        request = urllib.request.Request(
+            url,
+            data=body,
+            method=method,
+            headers={
+                "Authorization": f"Bearer {self.access_token}",
+                "Content-Type": "application/json",
+                "X-Restli-Protocol-Version": "2.0.0",
+            },
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=self.timeout_seconds) as response:
+                response_body = response.read().decode("utf-8")
+        except urllib.error.HTTPError as error:
+            error_body = error.read().decode("utf-8", errors="replace")
+            raise LinkedInPostError(
+                f"LinkedIn API returned HTTP {error.code}: {error_body}"
+            ) from error
+        except urllib.error.URLError as error:
+            raise LinkedInPostError(f"Unable to reach LinkedIn API: {error.reason}") from error
+
+        if not response_body:
+            return {}
+        try:
+            parsed_body = json.loads(response_body)
+        except json.JSONDecodeError as error:
+            raise LinkedInPostError(
+                f"LinkedIn API returned non-JSON response: {response_body}"
+            ) from error
+        if not isinstance(parsed_body, dict):
+            raise LinkedInPostError(
+                f"LinkedIn API returned unexpected response: {response_body}"
+            )
+        return parsed_body
 
 
 def normalize_organization_urn(
@@ -259,6 +436,21 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         "--message",
         default=os.getenv("LINKEDIN_POST_MESSAGE", DEFAULT_MESSAGE),
         help="Message text to publish. Defaults to a sample testing message.",
+    )
+    parser.add_argument(
+        "--image-path",
+        default=os.getenv("LINKEDIN_IMAGE_PATH"),
+        help="Optional local image path to upload and attach to the post.",
+    )
+    parser.add_argument(
+        "--image-title",
+        default=os.getenv("LINKEDIN_IMAGE_TITLE"),
+        help="Optional title for the attached LinkedIn image.",
+    )
+    parser.add_argument(
+        "--image-description",
+        default=os.getenv("LINKEDIN_IMAGE_DESCRIPTION"),
+        help="Optional description for the attached LinkedIn image.",
     )
     parser.add_argument(
         "--organization-id",
@@ -385,7 +577,17 @@ def main(argv: list[str] | None = None) -> int:
         )
 
     try:
-        result = agent.post_text(args.message, dry_run=not args.post, post_as=args.post_as)
+        if args.image_path:
+            result = agent.post_image(
+                args.message,
+                image_path=args.image_path,
+                dry_run=not args.post,
+                post_as=args.post_as,
+                image_title=args.image_title,
+                image_description=args.image_description,
+            )
+        else:
+            result = agent.post_text(args.message, dry_run=not args.post, post_as=args.post_as)
     except (LinkedInPostError, ValueError) as error:
         print(f"Error: {error}", file=sys.stderr)
         return 1

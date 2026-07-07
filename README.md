@@ -135,6 +135,20 @@ You can also provide a full member/person URN:
 export LINKEDIN_MEMBER_URN="urn:li:person:abc123"
 ```
 
+To attach an image, provide a local image path:
+
+```bash
+python3 linkedin_company_page_agent.py \
+  --post-as member \
+  --access-token "your-linkedin-access-token" \
+  --member-id "your-authenticated-linkedin-member-id" \
+  --message "Proud to share our latest employability ranking milestone." \
+  --image-path "/path/to/employability-ranking-linkedin.png" \
+  --image-title "Employability Ranking" \
+  --image-description "Recognizing skills, readiness, and career potential" \
+  --post
+```
+
 ## Configuration
 
 | Variable | Description |
@@ -146,6 +160,9 @@ export LINKEDIN_MEMBER_URN="urn:li:person:abc123"
 | `LINKEDIN_MEMBER_ID` | Authenticated LinkedIn member id used to build `urn:li:person:<id>`. |
 | `LINKEDIN_MEMBER_URN` | Full member/person URN. Takes priority over member id. |
 | `LINKEDIN_POST_MESSAGE` | Optional default message for the agent. |
+| `LINKEDIN_IMAGE_PATH` | Optional local image path to upload and attach to the post. |
+| `LINKEDIN_IMAGE_TITLE` | Optional title for the attached image. |
+| `LINKEDIN_IMAGE_DESCRIPTION` | Optional description for the attached image. |
 | `LINKEDIN_API_BASE_URL` | Optional API base URL. Defaults to `https://api.linkedin.com`. |
 | `LINKEDIN_CLIENT_ID` | LinkedIn app client id used by `--auth-url`. |
 | `LINKEDIN_REDIRECT_URI` | OAuth redirect URI used by `--auth-url`. |
