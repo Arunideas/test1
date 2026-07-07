@@ -57,6 +57,22 @@ DEFAULT_METRICS = {
     "hiring_trend_year": "2026",
     "salary_benchmark_role": "Data Analyst Intern",
     "salary_benchmark_growth": "22%",
+    "students_screened": "250",
+    "students_shortlisted": "12",
+    "ai_screening_reduction": "80%",
+    "internship_application_count": "14",
+    "suspicious_stipend_amount": "₹50,000/month",
+    "suspicious_hours_per_day": "2 hours/day",
+    "top_skill_python": "Python",
+    "top_skill_excel": "Excel",
+    "top_skill_powerbi": "Power BI",
+    "top_skill_java": "Java",
+    "top_skill_prompt": "Prompt Engineering",
+    "top_hiring_city": "Bangalore",
+    "top_paying_domain": "Data Analytics",
+    "most_applied_role": "Data Analyst Intern",
+    "verification_checks_count": "7",
+    "campus_partner_title": "Campus Growth Partner",
 }
 
 NAMES = [
@@ -72,561 +88,582 @@ NAMES = [
     "Neel",
 ]
 
+# Temporary file - content angles for splice into daily_story_linkedin_agent.py
 CONTENT_ANGLES = [
     {
-        "id": "student-employability-score",
-        "content_group": "For Students",
-        "content_type": "Employability Score",
-        "hook": "Your employability score is not a label. It is a map.",
-        "headline": "SCORE MAP",
-        "subhead": "Know what to fix first.",
-        "visual": "clock",
-        "setup": (
-            "An employability score helps students see readiness across resume, "
-            "skills, assessments, projects, and interview confidence. The point is "
-            "not to judge the student; the point is to reveal the next best action."
-        ),
-        "sections": [
-            "A resume score shows whether your proof is visible in the first scan.",
-            "A skill score shows whether you can apply knowledge without hints.",
-            "An interview score shows whether your projects sound clear, relevant, and credible.",
-        ],
-        "action": "Check your weakest area first. Improving one low-scoring category can change how recruiters read your entire profile.",
-    },
-    {
-        "id": "student-resume-improvement",
-        "content_group": "For Students",
-        "content_type": "Resume Improvement",
-        "hook": "One resume bullet can change the whole interview.",
-        "headline": "FIX ONE LINE",
-        "subhead": "Better proof gets better calls.",
-        "visual": "document",
-        "setup": (
-            "Resume improvement is not only about formatting. The bigger upgrade "
-            "is changing vague activity into proof a recruiter can trust."
-        ),
-        "sections": [
-            "Weak line: 'Worked on college project.' Strong line: 'Built a dashboard that tracked attendance trends for 500 students.'",
-            "Weak resumes describe effort. Strong resumes describe problem, tool, action, and result.",
-            "The fastest improvement is to rewrite the top three project lines before sending another application.",
-        ],
-        "action": "Open your resume and rewrite one bullet with this structure: problem, tool, action, result.",
-    },
-    {
-        "id": "student-mock-assessments",
-        "content_group": "For Students",
-        "content_type": "Mock Assessments",
-        "hook": "Mock assessments show the gap before the recruiter does.",
-        "headline": "MOCK TEST",
-        "subhead": "Practice before pressure.",
-        "visual": "laptop",
-        "setup": (
-            "Mock assessments are useful because they turn confidence into evidence. "
-            "A student may feel ready after watching tutorials, but timed tasks reveal "
-            "whether the skill works under pressure."
-        ),
-        "sections": [
-            "A good mock assessment tests basics, edge cases, and problem understanding.",
-            "The score matters, but the error pattern matters more: syntax, logic, speed, or clarity.",
-            "Students who review mistakes immediately improve faster than students who simply retake tests.",
-        ],
-        "action": "Take one mock assessment this week and write down the top three mistakes. That list is your next study plan.",
-    },
-    {
-        "id": "student-career-challenges",
-        "content_group": "For Students",
-        "content_type": "Career Challenges",
-        "hook": "A seven-day career challenge can beat one month of overthinking.",
-        "headline": "7 DAY PUSH",
-        "subhead": "Small actions compound.",
-        "visual": "rocket",
-        "setup": (
-            "Career challenges work because they replace vague ambition with daily "
-            "proof. Students do not need a perfect plan to begin; they need a repeatable action."
-        ),
-        "sections": [
-            "Day one: fix one resume bullet. Day two: publish one project screenshot.",
-            "Day three: record one project explanation. Day four: apply to one matched role.",
-            "By day seven, the student has more visible proof than they had all month.",
-        ],
-        "action": "Start a seven-day challenge today. Do one employability action daily and track what changed.",
-    },
-    {
-        "id": "student-internship-discovery",
-        "content_group": "For Students",
-        "content_type": "Internship Discovery",
-        "hook": "The best internship is not always the most famous one.",
-        "headline": "FIND FIT",
-        "subhead": "Discover roles that match proof.",
-        "visual": "path",
-        "setup": (
-            "Internship discovery should not begin with brand names alone. It should "
-            "begin with fit: skills, learning goals, role expectations, and proof the "
-            "student can actually show."
-        ),
-        "sections": [
-            "A smaller startup role can teach more if the student gets real ownership.",
-            "A famous company role can still fail if the student is not ready for the task.",
-            "Better discovery means matching your strongest proof to the role that needs it.",
-        ],
-        "action": "List your top three proofs, then search for internships where those proofs matter most.",
-    },
-    {
-        "id": "company-hire-interns-ten-days",
-        "content_group": "For Companies",
-        "content_type": "Hire interns within 10 days",
-        "hook": "Hiring interns within {intern_hiring_days} days is possible when screening starts with proof.",
-        "headline": "10 DAY HIRE",
-        "subhead": "Shortlist by evidence.",
-        "visual": "door",
-        "setup": (
-            "Companies lose time when internship hiring begins with unstructured resumes "
-            "and unclear role expectations. A faster process starts by defining the role "
-            "task, assessment, and proof signal before applications arrive."
-        ),
-        "sections": [
-            "Day one: define the role outcome. Day two: run a role-specific assessment.",
-            "Day three to five: shortlist candidates by proof, not just keywords.",
-            "By day ten, interviews can focus on ownership, communication, and fit instead of basic filtering.",
-        ],
-        "action": "Before opening the next intern role, define one task the intern must perform in the first two weeks.",
-    },
-    {
-        "id": "company-ai-candidate-screening",
-        "content_group": "For Companies",
-        "content_type": "AI-powered candidate screening",
-        "hook": "AI screening should not reject students faster. It should find proof faster.",
-        "headline": "AI SCREENING",
-        "subhead": "Use AI to find signals.",
-        "visual": "spotlight",
-        "setup": (
-            "AI-powered candidate screening is useful only when it searches for evidence: "
-            "projects, assessment performance, role fit, and communication signals. "
-            "Speed without context only creates faster mistakes."
-        ),
-        "sections": [
-            "Good screening compares candidates against role-specific tasks, not generic buzzwords.",
-            "It can reduce manual resume review time by {screening_time_saved} when the inputs are structured.",
-            "The best result is a shortlist that hiring managers can trust and explain.",
-        ],
-        "action": "Use AI screening to rank proof, skill match, and assessment evidence before scheduling interviews.",
-    },
-    {
-        "id": "company-role-specific-assessments",
-        "content_group": "For Companies",
-        "content_type": "Role-specific assessments",
-        "hook": "Generic tests create generic shortlists.",
-        "headline": "ROLE TESTS",
-        "subhead": "Assess the actual job.",
-        "visual": "laptop",
-        "setup": (
-            "Role-specific assessments help companies identify interns who can perform "
-            "the work, not just talk about it. A marketing intern, data intern, and "
-            "operations intern should not face the same test."
-        ),
-        "sections": [
-            "A data role should test cleaning, querying, and explaining insights.",
-            "A marketing role should test audience understanding, copy, and campaign logic.",
-            "An operations role should test process thinking, Excel comfort, and follow-through.",
-        ],
-        "action": "Replace one generic screening test with a 45-minute task that mirrors the intern's real work.",
-    },
-    {
-        "id": "company-campus-hiring-campaigns",
-        "content_group": "For Companies",
-        "content_type": "Campus hiring campaigns",
-        "hook": "A campus hiring campaign should measure readiness, not just registrations.",
-        "headline": "CAMPUS HIRING",
-        "subhead": "Reach is not readiness.",
-        "visual": "conversation",
-        "setup": (
-            "Campus hiring campaigns can reach {campus_campaign_reach} students, but "
-            "reach alone does not create a strong shortlist. The campaign needs assessment, "
-            "resume review, and role matching."
-        ),
-        "sections": [
-            "The first metric is participation. The second is assessment completion.",
-            "The third is employability score movement: how many students became more role-ready during the campaign.",
-            "Companies get stronger pipelines when campuses see preparation as part of hiring, not an afterthought.",
-        ],
-        "action": "Design every campus campaign with a readiness score, not only an application count.",
-    },
-    {
-        "id": "company-bulk-internship-recruitment",
-        "content_group": "For Companies",
-        "content_type": "Bulk internship recruitment",
-        "hook": "Bulk internship recruitment fails when every role uses the same filter.",
-        "headline": "BULK HIRING",
-        "subhead": "Segment before shortlisting.",
-        "visual": "arrow",
-        "setup": (
-            "Bulk internship recruitment can cover {bulk_recruitment_roles} roles, but "
-            "quality drops when every applicant goes through one generic funnel."
-        ),
-        "sections": [
-            "Segment candidates by role family: tech, analytics, operations, sales, marketing, design, and support.",
-            "Use role-specific assessments to avoid comparing unrelated skills.",
-            "Track shortlist quality by interview conversion, not only application volume.",
-        ],
-        "action": "For the next bulk drive, create separate scorecards for each role family before screening begins.",
-    },
-    {
-        "id": "industry-hiring-trends",
-        "content_group": "Industry Insights",
-        "content_type": "Hiring trends",
-        "hook": "The hiring trend in {hiring_trend_year}: proof is replacing promises.",
-        "headline": "HIRING TREND",
-        "subhead": "Proof moves faster.",
-        "visual": "rocket",
-        "setup": (
-            "Hiring trends show a clear shift: companies want students who can show "
-            "work, explain decisions, and adapt quickly. Certificates still help, but "
-            "proof is becoming the stronger signal."
-        ),
-        "sections": [
-            "Recruiters are spending less time on generic profiles and more time on portfolios.",
-            "Assessments are becoming common because they reveal applied ability.",
-            "Students who package proof clearly are easier to shortlist across roles.",
-        ],
-        "action": "If your profile still depends on claims, add one visible proof this week.",
-    },
-    {
-        "id": "industry-skill-gap-reports",
-        "content_group": "Industry Insights",
-        "content_type": "Skill gap reports",
-        "hook": "Skill gap reports are useful only when they lead to action.",
-        "headline": "GAP REPORT",
-        "subhead": "Data should change training.",
-        "visual": "document",
-        "setup": (
-            "Skill gap reports help colleges, students, and companies see where readiness "
-            "breaks down. The value is not the report itself; the value is the training "
-            "plan it creates."
-        ),
-        "sections": [
-            "A strong report separates resume gaps, assessment gaps, and interview gaps.",
-            "It shows which departments need role-specific preparation.",
-            "It helps companies design better hiring campaigns and colleges design better practice plans.",
-        ],
-        "action": "Use every skill gap report to create one weekly challenge students can actually complete.",
-    },
-    {
-        "id": "industry-college-rankings",
-        "content_group": "Industry Insights",
-        "content_type": "College rankings",
-        "hook": "College rankings should include employability proof, not just reputation.",
-        "headline": "COLLEGE RANK",
-        "subhead": "Rank readiness, not noise.",
-        "visual": "arrow",
-        "setup": (
-            "Industry-facing college rankings become more useful when they include "
-            "student readiness: assessment scores, resume quality, project proof, "
-            "internship conversion, and role fit."
-        ),
-        "sections": [
-            "A college with strong practice systems can outperform a better-known college in employability outcomes.",
-            "Rankings should show where students are improving, not only where they started.",
-            "Employability rankings can push campuses toward measurable preparation.",
-        ],
-        "action": "When comparing colleges, ask for proof: assessment performance, project completion, and internship outcomes.",
-    },
-    {
-        "id": "industry-salary-benchmarks",
-        "content_group": "Industry Insights",
-        "content_type": "Salary benchmarks",
-        "hook": "{salary_benchmark_role} benchmarks are rising, but only for students who can show proof.",
-        "headline": "SALARY SIGNAL",
-        "subhead": "Pay follows readiness.",
-        "visual": "spotlight",
-        "setup": (
-            "Salary benchmarks help students understand market value, but they can also "
-            "mislead students if they ignore readiness. In-demand roles may grow by "
-            "{salary_benchmark_growth}, yet companies still pay for credible proof."
-        ),
-        "sections": [
-            "Higher benchmarks usually follow stronger business impact, not only tool familiarity.",
-            "Students with role-ready projects can negotiate from evidence.",
-            "Students without proof often compete only on availability, which weakens outcomes.",
-        ],
-        "action": "Before chasing a salary benchmark, build one project that proves you can create value in that role.",
-    },
-    {
-        "id": "industry-recruiter-tips",
-        "content_group": "Industry Insights",
-        "content_type": "Recruiter tips",
-        "hook": "Recruiter tip: make the shortlist decision easy.",
-        "headline": "RECRUITER TIP",
-        "subhead": "Clarity gets calls.",
-        "visual": "message",
-        "setup": (
-            "Recruiters do not have time to decode every student profile. The easier "
-            "you make your proof, role fit, and next step, the easier it is to shortlist you."
-        ),
-        "sections": [
-            "Use a headline that names your target role and strongest proof.",
-            "Put the most relevant project near the top, not hidden at the bottom.",
-            "Explain outcomes in plain language so non-technical recruiters can understand value.",
-        ],
-        "action": "Review your profile like a recruiter with 30 seconds. If the strongest proof is not obvious, move it up.",
-    },
-    {
-        "id": "assessment-python-function-errors",
-        "content_type": "Assessment Scores",
-        "hook": "{python_assessment_students} students took our Python assessment this month. Only {python_function_success_rate} could write a function without errors.",
-        "headline": "PYTHON GAP",
-        "subhead": "Syntax is not the skill. Problem solving is.",
-        "visual": "laptop",
-        "setup": (
-            "{python_assessment_students} students attempted a Python readiness "
-            "assessment this month, and only {python_function_success_rate} could "
-            "write a clean function without errors. That gap matters because most "
-            "internship tasks start with small, reliable functions."
-        ),
-        "sections": [
-            "The issue is rarely motivation. Students watch tutorials, but they do not practice enough blank-screen coding.",
-            "The most common gap is function structure: inputs, return values, edge cases, and readable naming.",
-            "The employability signal is not 'I know Python.' It is 'I can solve a small problem correctly without hand-holding.'",
-        ],
-        "action": "Take one basic problem today and write it as a function without copying. Then explain what input it accepts, what output it returns, and where it can fail.",
-    },
-    {
-        "id": "mechanical-resume-skill-gaps",
-        "content_type": "Skill Gap Analysis",
-        "hook": "Top 5 skills missing from Mechanical Engineering resumes in {mechanical_resume_year}.",
-        "headline": "SKILL GAPS",
-        "subhead": "Mechanical resumes need proof.",
-        "visual": "document",
-        "setup": (
-            "Mechanical Engineering resumes often list workshops, software names, "
-            "and college projects, but the missing skills are usually the signals "
-            "that make a recruiter believe the student can contribute on day one."
-        ),
-        "sections": [
-            "The top missing skills are: {mechanical_resume_missing_skills}.",
-            "The problem is not that students never touched these areas. The problem is that resumes rarely show applied proof.",
-            "A stronger resume connects each skill to a project, drawing, analysis, process improvement, or measurable output.",
-        ],
-        "action": "Pick one missing skill from the list and attach it to a real project line. Do not write 'knowledge of CAD.' Write what you designed, why it mattered, and what constraint you handled.",
-    },
-    {
-        "id": "github-portfolio-interview-calls",
-        "content_type": "Resume Data",
-        "hook": "Students with GitHub portfolios received {github_interview_multiplier} more interview calls than those without one.",
-        "headline": "PORTFOLIO WINS",
-        "subhead": "Proof beats claims.",
-        "visual": "message",
-        "setup": (
-            "A resume can claim skills, but a portfolio lets recruiters inspect "
-            "proof. Students with GitHub portfolios received {github_interview_multiplier} "
-            "more interview calls than students who listed skills without visible work."
-        ),
-        "sections": [
-            "The portfolio does not need to be huge. Two clean projects with README files can outperform ten unsupported skill keywords.",
-            "Recruiters look for structure: what the project solves, how to run it, what tools were used, and what the student learned.",
-            "A visible portfolio reduces risk. It tells the company the student can finish, document, and explain work.",
-        ],
-        "action": "If you have one project sitting on your laptop, upload it, write a simple README, add screenshots, and link it on your resume today.",
-    },
-    {
-        "id": "employability-score-distribution",
-        "content_type": "Employability Scores",
-        "hook": "The average employability score this cycle is {average_employability_score}. That number explains why applications feel stuck.",
-        "headline": "SCORE CHECK",
-        "subhead": "Readiness can be measured.",
-        "visual": "clock",
-        "setup": (
-            "Employability becomes easier to improve when students stop treating it "
-            "as a vague feeling. The average score this cycle is {average_employability_score}, "
-            "which means many students are close, but not yet role-ready."
-        ),
-        "sections": [
-            "Low scores usually come from weak proof: resumes list skills but do not show outcomes.",
-            "Medium scores usually have projects, but the role fit is unclear.",
-            "High scores combine resume clarity, assessment performance, portfolio proof, and interview readiness.",
-        ],
-        "action": "Score yourself across resume, skills, projects, profile, and interview answers. Then improve the lowest area first instead of randomly applying everywhere.",
-    },
-    {
-        "id": "college-wise-performance-gap",
-        "content_type": "College-wise Performance",
-        "hook": "The top college scored {top_college_score}. The lowest scored {bottom_college_score}. The difference was not branding.",
-        "headline": "COLLEGE GAP",
-        "subhead": "Performance beats perception.",
-        "visual": "arrow",
-        "setup": (
-            "College-wise performance becomes useful when it focuses on student "
-            "readiness, not reputation alone. In the latest comparison, the top "
-            "college scored {top_college_score}, while the lowest scored {bottom_college_score}."
-        ),
-        "sections": [
-            "The strongest colleges had more students with completed projects, clearer resumes, and better assessment consistency.",
-            "The weaker colleges were not missing talent. They were missing visible proof and structured preparation.",
-            "A college can improve its employability score when students practice role-specific tasks before placement season begins.",
-        ],
-        "action": "If you are a college team, track proof weekly: project completion, resume quality, assessment scores, and interview readiness. That is where ranking improvement starts.",
-    },
-    {
-        "id": "role-wise-ranking-data-analyst",
-        "content_type": "Role-wise Rankings",
-        "hook": "{role_ranking_top_role} is ranking high, but one gap keeps students out: {data_analyst_resume_gap}.",
-        "headline": "ROLE RANKING",
-        "subhead": "Role fit needs evidence.",
-        "visual": "spotlight",
-        "setup": (
-            "{role_ranking_top_role} is ranking high among student targets, but "
-            "the resume gap that keeps appearing is {data_analyst_resume_gap}. "
-            "Students want the role, but the proof often does not match the job."
-        ),
-        "sections": [
-            "A role-wise ranking is useful only when it shows the gap between demand and readiness.",
-            "For analytics roles, recruiters expect evidence of cleaning data, querying data, visualizing insights, and explaining decisions.",
-            "Students who show one complete analytics workflow look more credible than students who list five disconnected tools.",
-        ],
-        "action": "Choose one target role and build one project that proves the core workflow for that role. Generic preparation creates generic results.",
-    },
-    {
-        "id": "recruiter-secret-eight-seconds",
-        "content_type": "Recruiter Secrets",
-        "hook": "Why I rejected this resume in 8 seconds.",
-        "headline": "8 SECOND REJECT",
-        "subhead": "Recruiters scan for proof first.",
-        "visual": "spotlight",
-        "setup": (
-            "A recruiter opens a resume and does not read it like a student does. "
-            "They scan for proof, signal, and fit. If those three things are hidden, "
-            "the resume feels risky before the candidate gets a chance."
-        ),
-        "sections": [
-            "The first problem: the top half says 'hardworking student' but does not show one specific skill used in a real project.",
-            "The second problem: the project line says 'worked on app' instead of explaining the problem, tool, and result.",
-            "The fix: replace vague effort with evidence. Example: 'Built a Python dashboard that reduced manual report time by 30%.'",
-        ],
-        "action": "Open your resume today and underline every line that proves a skill. If a line only says you participated, rewrite it until it shows evidence.",
-    },
-    {
-        "id": "resume-roast-before-after",
-        "content_type": "Resume Roast",
-        "hook": "Resume roast: this line sounds busy, not employable.",
-        "headline": "RESUME ROAST",
-        "subhead": "Before and after that gets noticed.",
+        "id": "student-resume-before-after",
+        "content_group": "Student Employability",
+        "content_type": "Resume Before vs After",
+        "hook": "This profile got ignored. Nothing was wrong with it. It was just forgettable.",
+        "headline": "BEFORE AFTER",
+        "subhead": "One line changed everything.",
         "visual": "document",
         "setup": (
             "Most students do not have a weak resume because they lack talent. "
             "They have a weak resume because their strongest work is written like a classroom note."
         ),
         "sections": [
-            "Before: 'Completed machine learning project in college.' This tells the recruiter almost nothing.",
-            "After: 'Trained a model to predict student drop-off risk using Python, cleaned 2,000 rows, and presented accuracy trade-offs.'",
-            "Why it works: the after version shows tool, scale, problem, and communication. That is employability language.",
+            "Before: 'B.Tech Student. Looking for opportunities.'",
+            "After: 'Python Developer. Built inventory management software used by 120 students.'",
+            "The difference is not design. It is proof.",
         ],
-        "action": "Pick one project and rewrite it with this formula: built what, using which tool, for what problem, with what result.",
+        "action": "Rewrite one resume line with problem, tool, action, and result.",
     },
     {
-        "id": "interview-mistake-real-scenario",
-        "content_type": "Interview Mistakes",
+        "id": "student-employability-score-explained",
+        "content_group": "Student Employability",
+        "content_type": "Employability Score Explained",
+        "hook": "Your employability score is not a label. It is a map.",
+        "headline": "SCORE MAP",
+        "subhead": "Know what to fix first.",
+        "visual": "clock",
+        "setup": (
+            "An employability score shows readiness across resume, skills, assessments, "
+            "projects, and interview confidence. The average score this cycle is "
+            "{average_employability_score}."
+        ),
+        "sections": [
+            "Before: guessing which area to fix.",
+            "After: a score map showing resume, skills, projects, and interview gaps.",
+            "Fix the lowest area first. One upgrade can change how recruiters read your profile.",
+        ],
+        "action": "Check your weakest area first instead of randomly applying everywhere.",
+    },
+    {
+        "id": "student-resume-mistakes",
+        "content_group": "Student Employability",
+        "content_type": "Resume Mistakes",
+        "hook": "Recruiters do not reject students. They reject unclear profiles.",
+        "headline": "RESUME TRAP",
+        "subhead": "Three lines kill shortlists.",
+        "visual": "document",
+        "setup": (
+            "A recruiter opens a resume and scans for proof, signal, and fit. "
+            "If those three things are hidden, the resume feels risky in seconds."
+        ),
+        "sections": [
+            "Mistake one: 'Hardworking student' with no specific project proof.",
+            "Mistake two: 'Worked on app' instead of problem, tool, and result.",
+            "Mistake three: skills listed with nothing a recruiter can inspect.",
+        ],
+        "action": "Underline every line that proves a skill. Rewrite lines that only show participation.",
+    },
+    {
+        "id": "student-interview-questions",
+        "content_group": "Student Employability",
+        "content_type": "Interview Questions",
         "hook": "The interview was going well until this answer.",
         "headline": "INTERVIEW TRAP",
-        "subhead": "One common answer kills trust.",
+        "subhead": "One answer kills trust.",
         "visual": "interview",
         "setup": (
             "A student is asked, 'Tell me about a project you are proud of.' "
-            "The answer starts with confidence, but then becomes a list of features. "
-            "That is where many interviews quietly fall apart."
+            "The answer becomes a list of features. That is where interviews quietly fall apart."
         ),
         "sections": [
-            "Mistake: explaining every screen, library, and feature without naming the problem.",
-            "Better answer: 'The problem was slow manual tracking. My role was data cleanup and dashboard logic. The result was faster weekly reporting.'",
-            "Recruiters are not testing memory. They are testing whether you understand impact, ownership, and trade-offs.",
+            "Before: explaining every screen and library without naming the problem.",
+            "After: 'The problem was slow manual tracking. My role was cleanup and dashboard logic.'",
+            "Recruiters test impact, ownership, and trade-offs — not memory.",
         ],
-        "action": "Prepare one project answer with four parts: problem, your role, hard decision, measurable result.",
+        "action": "Prepare one project answer with four parts: problem, your role, hard decision, result.",
     },
     {
-        "id": "skill-battle-python-excel",
-        "content_type": "Skill Battles",
-        "hook": "Python vs Excel: which one gets more internships?",
-        "headline": "SKILL BATTLE",
-        "subhead": "The winner depends on proof.",
+        "id": "student-skill-gap-analysis",
+        "content_group": "Student Employability",
+        "content_type": "Skill Gap Analysis",
+        "hook": "Top skills missing from resumes in {mechanical_resume_year}.",
+        "headline": "SKILL GAPS",
+        "subhead": "The gap nobody sees on a certificate.",
         "visual": "laptop",
         "setup": (
-            "Students often ask which skill is more valuable. The honest answer is that companies do not hire tools. "
-            "They hire people who can solve problems with tools."
+            "Skill gap analysis is useful only when it leads to action. "
+            "The most common missing skills are: {mechanical_resume_missing_skills}."
         ),
         "sections": [
-            "Excel wins when the role needs reporting, cleanup, dashboards, and business decisions quickly.",
-            "Python wins when the role needs automation, analysis at scale, scraping, APIs, or repeatable workflows.",
-            "The real winner is the student who can show one before-and-after result: messy data to useful decision.",
+            "Before: listing software names without applied proof.",
+            "After: connecting each skill to a project, analysis, or measurable output.",
+            "Students who close one gap visibly move faster than students who collect more certificates.",
         ],
-        "action": "Build one mini project twice: solve it in Excel, then automate one part in Python. That comparison becomes interview gold.",
+        "action": "Pick one missing skill and attach it to a real project line today.",
     },
     {
-        "id": "student-transformation-profile",
-        "content_type": "Student Transformations",
-        "hook": "Same student. Same skills. Completely different profile.",
-        "headline": "PROFILE UPGRADE",
-        "subhead": "Small changes can change perception.",
+        "id": "student-portfolio-reviews",
+        "content_group": "Student Employability",
+        "content_type": "Portfolio Reviews",
+        "hook": "Students with portfolios received {github_interview_multiplier} more interview calls.",
+        "headline": "PORTFOLIO WINS",
+        "subhead": "Proof beats claims.",
         "visual": "message",
         "setup": (
-            "A student profile can look average even when the student has done meaningful work. "
-            "The transformation usually starts by moving from claims to proof."
+            "A resume can claim skills, but a portfolio lets recruiters inspect proof. "
+            "Two clean projects with README files can outperform ten unsupported keywords."
         ),
         "sections": [
-            "Before: headline says 'B.Tech student looking for opportunities.' It sounds passive and common.",
-            "After: headline says 'Data analytics student building Excel and Python dashboards for campus problems.' Now there is direction.",
-            "Before: projects are hidden. After: one pinned project, one result-driven summary, and one clear skill stack are visible.",
+            "Before: skills listed. Nothing to inspect.",
+            "After: README, screenshots, code, and one clear project outcome.",
+            "A visible portfolio reduces risk for the recruiter.",
         ],
-        "action": "Update your profile today with one proof line, one pinned project, and one sentence about the problem you want to solve.",
+        "action": "Upload one project, write a README, add screenshots, and link it on your resume.",
     },
     {
-        "id": "weekly-employability-challenge",
-        "content_type": "Weekly Employability Challenges",
-        "hook": "Can you score 80/100 on employability this week?",
-        "headline": "80 OUT OF 100",
-        "subhead": "A simple weekly readiness challenge.",
-        "visual": "clock",
+        "id": "student-project-ideas",
+        "content_group": "Student Employability",
+        "content_type": "Project Ideas",
+        "hook": "You do not need a perfect project. You need one visible proof.",
+        "headline": "PROJECT PROOF",
+        "subhead": "Start small. Ship once.",
+        "visual": "rocket",
         "setup": (
-            "Employability is not a mood. It can be scored through visible signals: proof, clarity, communication, consistency, and role fit."
+            "The best student projects solve a real campus or local problem with a clear outcome. "
+            "Recruiters do not need a massive app. They need evidence you can finish and explain."
         ),
         "sections": [
-            "20 points: your resume has at least three project lines with tools and outcomes.",
-            "20 points: your profile explains what role you want and why you are credible for it.",
-            "20 points: you can explain one project in 60 seconds. 20 points: you applied to roles that match your proof. 20 points: you asked for feedback.",
+            "Before: waiting for the perfect idea.",
+            "After: attendance tracker, expense splitter, inventory dashboard, or event registration tool.",
+            "One shipped project beats five unfinished ideas on a resume.",
         ],
-        "action": "Score yourself honestly. If you are below 80, do not panic. Fix the lowest category first and check again tomorrow.",
+        "action": "Pick one campus problem and build a small solution you can demo in 60 seconds.",
     },
     {
-        "id": "college-employability-ranking",
-        "content_type": "College Rankings",
-        "hook": "A college ranking that actually matters: employability score.",
-        "headline": "RANK BY PROOF",
-        "subhead": "Placements start before final year.",
-        "visual": "arrow",
+        "id": "student-career-roadmaps",
+        "content_group": "Student Employability",
+        "content_type": "Career Roadmaps",
+        "hook": "The difference between no interview and interview is usually one clear proof.",
+        "headline": "ROADMAP",
+        "subhead": "Direction beats drift.",
+        "visual": "path",
         "setup": (
-            "The useful question is not only which college has the biggest name. "
-            "The sharper question is which college helps students become visibly employable."
+            "A career roadmap is not a five-year fantasy. It is a sequence of visible proofs: "
+            "one role target, one skill stack, one project, one application cycle."
         ),
         "sections": [
-            "A strong employability score looks at project proof, internship readiness, interview practice, recruiter access, and student consistency.",
-            "A college with average branding but strong student proof can outperform a famous college where students wait passively.",
-            "Rankings become useful when they push action: better resumes, better projects, better employer conversations.",
+            "Before: 'Open to any opportunity.'",
+            "After: 'Data analyst intern building Excel and Python dashboards for campus problems.'",
+            "Roadmaps work when each step produces something a recruiter can verify.",
         ],
-        "action": "Ask your college community this week: how many students can show a role-ready project today, not just a certificate?",
+        "action": "Name your target role, list three proofs you need, and build the first one this week.",
     },
     {
-        "id": "company-expectations-startups",
-        "content_type": "Company Expectations",
-        "hook": "What startups actually test before hiring interns.",
-        "headline": "STARTUP TEST",
-        "subhead": "Speed, ownership, and proof matter.",
+        "id": "hire-screened-two-fifty-twelve",
+        "content_group": "Hire Interns in 10 Days",
+        "content_type": "Screened to shortlist",
+        "hook": "We screened {students_screened} students to shortlist {students_shortlisted}.",
+        "headline": "250 TO 12",
+        "subhead": "Proof before interviews.",
         "visual": "door",
         "setup": (
-            "Startups rarely have time to train someone from zero. They look for students who can learn fast, communicate clearly, and finish useful work."
+            "Intern hiring slows down when every resume gets equal attention. "
+            "A faster process starts with role tasks, assessments, and proof signals."
         ),
         "sections": [
-            "They test whether you can understand an unclear problem without waiting for perfect instructions.",
-            "They test whether your portfolio shows shipped work, not just course completion.",
-            "They test whether you ask better questions, share progress early, and recover when something breaks.",
+            "Before: 250 resumes in one inbox. No clear ranking.",
+            "After: 12 candidates with role-specific proof and assessment scores.",
+            "Interviews become about fit, not basic filtering.",
         ],
-        "action": "Before applying to a startup, prepare one example where you took ownership without being pushed. That story can separate you from dozens of applicants.",
+        "action": "Define one task the intern must perform in the first two weeks before opening applications.",
+    },
+    {
+        "id": "hire-startups-no-weeks",
+        "content_group": "Hire Interns in 10 Days",
+        "content_type": "Startup hiring speed",
+        "hook": "Why startups should not spend weeks hiring interns.",
+        "headline": "10 DAY HIRE",
+        "subhead": "Speed without chaos.",
+        "visual": "clock",
+        "setup": (
+            "Startups lose momentum when internship hiring becomes an endless resume review cycle. "
+            "The hidden cost is not just time — it is delayed work and wrong shortlists."
+        ),
+        "sections": [
+            "Before: open role, wait three weeks, interview unprepared candidates.",
+            "After: role task on day one, assessment by day three, shortlist by day five.",
+            "By day {intern_hiring_days}, interviews focus on ownership and communication.",
+        ],
+        "action": "Replace one resume screen with one 45-minute role-specific task this week.",
+    },
+    {
+        "id": "hire-ai-screening-eighty",
+        "content_group": "Hire Interns in 10 Days",
+        "content_type": "AI screening reduction",
+        "hook": "How AI reduces internship screening by {ai_screening_reduction}.",
+        "headline": "AI SCREENING",
+        "subhead": "Find proof faster.",
+        "visual": "spotlight",
+        "setup": (
+            "AI screening is useful only when it searches for evidence: projects, assessment "
+            "performance, role fit, and communication signals. Speed without context creates faster mistakes."
+        ),
+        "sections": [
+            "Before: manual review of every resume keyword.",
+            "After: ranked shortlist by proof, skill match, and assessment evidence.",
+            "Good screening compares candidates against role-specific tasks, not buzzwords.",
+        ],
+        "action": "Use structured inputs so AI ranks proof before scheduling interviews.",
+    },
+    {
+        "id": "hire-unqualified-intern-cost",
+        "content_group": "Hire Interns in 10 Days",
+        "content_type": "Unqualified intern cost",
+        "hook": "The hidden cost of unqualified interns is not the stipend.",
+        "headline": "HIDDEN COST",
+        "subhead": "Wrong hire, real damage.",
+        "visual": "document",
+        "setup": (
+            "An unqualified intern costs more than salary. It costs manager time, rework, "
+            "missed deadlines, and team frustration — especially in startups with no training bandwidth."
+        ),
+        "sections": [
+            "Before: hire fast, hope they learn on the job.",
+            "After: pre-assess role tasks, verify proof, then interview for fit.",
+            "One wrong intern can consume more manager time than hiring the right one properly.",
+        ],
+        "action": "Add one role-specific assessment before your next intern interview round.",
+    },
+    {
+        "id": "verify-unrealistic-stipend",
+        "content_group": "Internship Verification",
+        "content_type": "Stipend investigation",
+        "hook": "This internship promised {suspicious_stipend_amount} for {suspicious_hours_per_day}.",
+        "headline": "LEGIT CHECK",
+        "subhead": "Let's investigate.",
+        "visual": "spotlight",
+        "setup": (
+            "Students constantly ask: is this internship genuine? Unrealistic pay for minimal "
+            "work is one of the strongest scam signals. Legitimate? Let's investigate."
+        ),
+        "sections": [
+            "Red flag: stipend far above market for part-time remote work.",
+            "Check: company website, domain age, LinkedIn presence, and HR email domain.",
+            "Result options: Verified, Proceed with Caution, or Potential Scam.",
+        ],
+        "action": "Before accepting any offer, verify company existence, website legitimacy, and stipend realism.",
+    },
+    {
+        "id": "verify-my-internship",
+        "content_group": "Internship Verification",
+        "content_type": "Verify My Internship",
+        "hook": "Is this internship genuine? Send us the offer letter.",
+        "headline": "VERIFY OFFER",
+        "subhead": "Trust before you commit.",
+        "visual": "document",
+        "setup": (
+            "Students can send an offer letter, company name, job description, website, and HR email. "
+            "We verify company existence, website legitimacy, domain age, LinkedIn presence, "
+            "Glassdoor reviews, stipend realism, and scam indicators."
+        ),
+        "sections": [
+            "Before: accepting an offer because the stipend looked good.",
+            "After: verified check across {verification_checks_count} trust signals.",
+            "Outcome: Verified, Proceed with Caution, or Potential Scam.",
+        ],
+        "action": "Never commit to an internship you have not verified. Check before you celebrate.",
+    },
+    {
+        "id": "verify-scam-indicators",
+        "content_group": "Internship Verification",
+        "content_type": "Scam indicators",
+        "hook": "Three scam signals hiding in a polished internship offer.",
+        "headline": "SCAM CHECK",
+        "subhead": "Spot it early.",
+        "visual": "message",
+        "setup": (
+            "Fake internships look professional until you inspect the details. "
+            "Personal Gmail for HR, no company website, upfront payment requests, "
+            "and unrealistic stipends are common scam indicators."
+        ),
+        "sections": [
+            "Signal one: HR contact uses personal email, not company domain.",
+            "Signal two: website created last month with no LinkedIn company page.",
+            "Signal three: offer asks for payment, training fee, or sensitive documents upfront.",
+        ],
+        "action": "Run every offer through a verification checklist before sharing personal documents.",
+    },
+    {
+        "id": "recruiter-rejected-twelve-seconds",
+        "content_group": "Recruiter Secrets",
+        "content_type": "12 second reject",
+        "hook": "Why I rejected this resume in 12 seconds.",
+        "headline": "12 SEC REJECT",
+        "subhead": "Recruiters scan for proof first.",
+        "visual": "spotlight",
+        "setup": (
+            "A recruiter opens a resume and scans for proof, signal, and fit. "
+            "If those three things are hidden, the resume feels risky before the candidate gets a chance."
+        ),
+        "sections": [
+            "Problem one: top half says 'hardworking student' but shows no specific skill in a real project.",
+            "Problem two: project line says 'worked on app' instead of problem, tool, and result.",
+            "Fix: 'Built a Python dashboard that reduced manual report time by 30%.'",
+        ],
+        "action": "Review your resume like a recruiter with 30 seconds. Move your strongest proof to the top.",
+    },
+    {
+        "id": "recruiter-top-five-mistakes",
+        "content_group": "Recruiter Secrets",
+        "content_type": "Application mistakes",
+        "hook": "Top 5 mistakes in internship applications.",
+        "headline": "TOP 5 TRAPS",
+        "subhead": "Fix before you apply.",
+        "visual": "document",
+        "setup": (
+            "Most internship applications fail before the interview because the profile "
+            "does not make the shortlist decision easy for HR."
+        ),
+        "sections": [
+            "Mistake one: generic headline with no target role.",
+            "Mistake two: applying everywhere instead of matching proof to role.",
+            "Mistake three: no portfolio link, no project outcome, no clear skill stack.",
+        ],
+        "action": "Fix your headline, top project line, and role fit before sending the next application.",
+    },
+    {
+        "id": "recruiter-what-hr-notices",
+        "content_group": "Recruiter Secrets",
+        "content_type": "What HR notices first",
+        "hook": "What HR notices first is never your CGPA.",
+        "headline": "HR SCAN",
+        "subhead": "First 8 seconds.",
+        "visual": "interview",
+        "setup": (
+            "HR does not read resumes like students do. They scan for headline clarity, "
+            "project proof near the top, and whether the profile matches the role."
+        ),
+        "sections": [
+            "First scan: headline — does it name a role and proof?",
+            "Second scan: top project — is there a problem, tool, and result?",
+            "Third scan: fit — does this profile match what the JD actually needs?",
+        ],
+        "action": "Make your headline, top project, and role target obvious in the first screen.",
+    },
+    {
+        "id": "market-top-skills-week",
+        "content_group": "Market Intelligence",
+        "content_type": "Top Skills This Week",
+        "hook": "Top skills this week: {top_skill_python} ↑ {top_skill_excel} ↑ {top_skill_powerbi} ↑",
+        "headline": "SKILL TREND",
+        "subhead": "This week’s demand.",
+        "visual": "rocket",
+        "setup": (
+            "Skill demand shifts weekly. Right now students targeting internships should "
+            "watch which skills appear most in applications and shortlists."
+        ),
+        "sections": [
+            "Rising: {top_skill_python}, {top_skill_excel}, {top_skill_powerbi}, {top_skill_java}, {top_skill_prompt}.",
+            "Before: learning randomly.",
+            "After: building one project that proves the skill employers are hiring for this week.",
+        ],
+        "action": "Pick one rising skill and ship one small proof project this week.",
+    },
+    {
+        "id": "market-top-hiring-cities",
+        "content_group": "Market Intelligence",
+        "content_type": "Top Hiring Cities",
+        "hook": "Top hiring city this cycle: {top_hiring_city}.",
+        "headline": "CITY SIGNAL",
+        "subhead": "Where demand is moving.",
+        "visual": "arrow",
+        "setup": (
+            "Internship demand is not evenly spread. Some cities show higher application "
+            "volume, faster shortlists, and more role openings in specific domains."
+        ),
+        "sections": [
+            "Before: applying nationally with one generic profile.",
+            "After: targeting cities and roles where your proof matches local demand.",
+            "{top_hiring_city} is leading internship activity in tech and analytics roles.",
+        ],
+        "action": "Align your target city, role, and proof instead of sending the same profile everywhere.",
+    },
+    {
+        "id": "market-top-paying-domains",
+        "content_group": "Market Intelligence",
+        "content_type": "Top Paying Internship Domains",
+        "hook": "Top paying internship domain this cycle: {top_paying_domain}.",
+        "headline": "PAY SIGNAL",
+        "subhead": "Pay follows proof.",
+        "visual": "spotlight",
+        "setup": (
+            "Higher stipends usually follow roles with stronger business impact and clearer proof requirements. "
+            "{top_paying_domain} leads when students can show dashboards, analysis, or shipped tools."
+        ),
+        "sections": [
+            "Before: chasing stipend numbers without readiness.",
+            "After: building role-ready proof in a high-demand domain.",
+            "Pay benchmarks rise, but companies still hire for credible evidence.",
+        ],
+        "action": "Before chasing a high-paying domain, build one project that proves you can create value there.",
+    },
+    {
+        "id": "market-most-applied-jobs",
+        "content_group": "Market Intelligence",
+        "content_type": "Most Applied Jobs",
+        "hook": "Most applied role this week: {most_applied_role}.",
+        "headline": "MOST APPLIED",
+        "subhead": "Crowded lane.",
+        "visual": "laptop",
+        "setup": (
+            "The most applied roles are also the most competitive. Students need sharper proof "
+            "to stand out when hundreds apply to the same title."
+        ),
+        "sections": [
+            "Before: applying to {most_applied_role} with a generic resume.",
+            "After: one portfolio project that proves the core workflow for that role.",
+            "In crowded roles, proof beats keywords.",
+        ],
+        "action": "If you target a popular role, show one complete workflow project — not five disconnected tools.",
+    },
+    {
+        "id": "market-average-employability-score",
+        "content_group": "Market Intelligence",
+        "content_type": "Average Employability Score",
+        "hook": "Average employability score this cycle: {average_employability_score}.",
+        "headline": "SCORE CHECK",
+        "subhead": "Readiness can be measured.",
+        "visual": "clock",
+        "setup": (
+            "Employability becomes easier to improve when students stop treating it as a vague feeling. "
+            "The average score this cycle is {average_employability_score}."
+        ),
+        "sections": [
+            "Low scores: weak proof — skills listed without outcomes.",
+            "Medium scores: projects exist, but role fit is unclear.",
+            "High scores: resume clarity, assessment performance, portfolio proof, interview readiness.",
+        ],
+        "action": "Score yourself across resume, skills, projects, and interview answers. Fix the lowest area first.",
+    },
+    {
+        "id": "employer-low-applications",
+        "content_group": "Employer Branding",
+        "content_type": "Low application count",
+        "hook": "Why your internship gets only {internship_application_count} applications.",
+        "headline": "14 APPS",
+        "subhead": "The JD is the problem.",
+        "visual": "message",
+        "setup": (
+            "Low application counts usually mean the JD is vague, the stipend unclear, "
+            "or the role sounds like unpaid busywork. Students apply where the opportunity feels real."
+        ),
+        "sections": [
+            "Before: 'Looking for motivated intern.' No tasks. No stipend. No learning path.",
+            "After: clear tasks, stipend range, tools used, and what the intern will ship in 30 days.",
+            "Better JDs attract better candidates faster.",
+        ],
+        "action": "Rewrite your JD with three concrete tasks, one learning outcome, and clear stipend details.",
+    },
+    {
+        "id": "employer-improve-jd",
+        "content_group": "Employer Branding",
+        "content_type": "Improve your JD",
+        "hook": "Your JD is not boring. It is unclear.",
+        "headline": "FIX THE JD",
+        "subhead": "Clarity attracts proof.",
+        "visual": "document",
+        "setup": (
+            "Students skip JDs that read like generic HR templates. "
+            "The best internship posts explain what you will do in week one, what tools you will use, "
+            "and what proof you will build."
+        ),
+        "sections": [
+            "Before: long paragraph of company history. No intern tasks.",
+            "After: bullet tasks, expected outputs, mentor support, and application steps.",
+            "Clarity reduces bad applications and increases strong ones.",
+        ],
+        "action": "Replace one vague paragraph with three task bullets and one expected deliverable.",
+    },
+    {
+        "id": "employer-salary-benchmark",
+        "content_group": "Employer Branding",
+        "content_type": "Salary Benchmark",
+        "hook": "{salary_benchmark_role} stipends grew {salary_benchmark_growth} — but only for role-ready candidates.",
+        "headline": "PAY BENCHMARK",
+        "subhead": "Market rate matters.",
+        "visual": "spotlight",
+        "setup": (
+            "Salary benchmarks help companies compete for talent and help students understand market value. "
+            "Underpaying or hiding stipend ranges pushes strong candidates away."
+        ),
+        "sections": [
+            "Before: 'Stipend negotiable' with no range.",
+            "After: transparent benchmark aligned with role tasks and market demand.",
+            "Companies that publish fair ranges get stronger application quality.",
+        ],
+        "action": "Benchmark your stipend against role tasks and market data before posting.",
+    },
+    {
+        "id": "employer-campus-hiring-guide",
+        "content_group": "Employer Branding",
+        "content_type": "Campus Hiring Guide",
+        "hook": "Campus hiring fails when it measures registrations, not readiness.",
+        "headline": "CAMPUS GUIDE",
+        "subhead": "Reach is not readiness.",
+        "visual": "conversation",
+        "setup": (
+            "Campus hiring campaigns can reach {campus_campaign_reach} students, but reach alone "
+            "does not create a strong shortlist. The campaign needs assessment, resume review, and role matching."
+        ),
+        "sections": [
+            "Before: webinar, form, silence.",
+            "After: assessment, employability score movement, and role-specific shortlists.",
+            "Strong campus hiring shows students a path from preparation to interview.",
+        ],
+        "action": "Design every campus campaign with a readiness score, not only an application count.",
+    },
+    {
+        "id": "employer-internship-program-design",
+        "content_group": "Employer Branding",
+        "content_type": "Internship Program Design",
+        "hook": "Great internship programs are designed, not improvised.",
+        "headline": "PROGRAM DESIGN",
+        "subhead": "Structure wins.",
+        "visual": "path",
+        "setup": (
+            "The best internship programs define onboarding, weekly tasks, mentor check-ins, "
+            "and a final deliverable. Students stay when they know what success looks like."
+        ),
+        "sections": [
+            "Before: intern joins, waits for tasks, leaves confused.",
+            "After: week-one task, mid-point review, final demo, and conversion path.",
+            "Structured programs produce better work and stronger employer brand.",
+        ],
+        "action": "Define week-one tasks, mentor cadence, and a final deliverable before your next intern joins.",
+    },
+    {
+        "id": "campus-growth-partner-role",
+        "content_group": "Campus Ambassador / Job Acquisition",
+        "content_type": "Campus Growth Partner",
+        "hook": "Don't call them sales interns. Call them {campus_partner_title}.",
+        "headline": "GROWTH PARTNER",
+        "subhead": "Bring jobs, not pitches.",
+        "visual": "rocket",
+        "setup": (
+            "Campus Growth Partners find startups hiring interns, contact HR, schedule demos, "
+            "and bring internship opportunities to students. They build employer relationships "
+            "while helping peers get hired."
+        ),
+        "sections": [
+            "Before: 'Sales intern' with unclear targets.",
+            "After: Employer Outreach Intern with clear mission — find roles, verify companies, connect HR.",
+            "The role works because it helps both students and companies.",
+        ],
+        "action": "If you know startups hiring, you can connect them to pre-assessed student talent.",
+    },
+    {
+        "id": "campus-earn-while-helping",
+        "content_group": "Campus Ambassador / Job Acquisition",
+        "content_type": "Earn while helping",
+        "hook": "Want to earn while helping students get hired?",
+        "headline": "EARN AND HELP",
+        "subhead": "Campus Growth Partner.",
+        "visual": "conversation",
+        "setup": (
+            "Campus Growth Partners earn by connecting verified employers with pre-assessed students. "
+            "Responsibilities: find startups hiring, contact HR, schedule demos, and bring opportunities."
+        ),
+        "sections": [
+            "Before: scrolling job boards alone.",
+            "After: building a pipeline of verified internships for your campus.",
+            "You grow skills in outreach, employer relations, and hiring — while helping peers.",
+        ],
+        "action": "Become a Campus Growth Partner and turn employer connections into internship opportunities.",
     },
 ]
 
@@ -823,25 +860,43 @@ def render_content_angle(angle: dict[str, Any], metrics: dict[str, str]) -> dict
 
 def choose_human_hook(rng: random.Random, angle: dict[str, Any]) -> str:
     hooks_by_type = {
-        "Student Transformations": [
-            "This profile was not weak; it was invisible.",
+        "Resume Before vs After": [
+            "This profile got ignored. Nothing was wrong with it. It was just forgettable.",
             "The difference between no interview and interview is usually one clear proof.",
-            "Recruiters do not reject students; they reject unclear profiles.",
         ],
-        "Resume Improvement": [
-            "This resume did not need a redesign; it needed one line of proof.",
-            "The resume looked clean, but clean is not the same as convincing.",
-        ],
-        "Resume Roast": [
-            "This resume line sounds busy, but it does not sound employable.",
-            "A recruiter does not need more adjectives; they need proof.",
-        ],
-        "Resume Data": [
-            "The students getting more calls are not always better; they are easier to verify.",
-            f"{angle['hook']} That is not a design trick; it is a trust signal.",
-        ],
-        "Assessment Scores": [
+        "Employability Score Explained": [
+            "Your employability score is not a label. It is a map.",
             f"{angle['hook']} This is the gap nobody sees on a certificate.",
+        ],
+        "Resume Mistakes": [
+            "Recruiters do not reject students. They reject unclear profiles.",
+            "This resume did not need a redesign. It needed one line of proof.",
+        ],
+        "Portfolio Reviews": [
+            "The students getting more calls are not always better. They are easier to verify.",
+            f"{angle['hook']} That is not a design trick. It is a trust signal.",
+        ],
+        "Stipend investigation": [
+            f"{angle['hook']} Legitimate? Let's investigate.",
+            "If the stipend looks too good for the work, pause before you celebrate.",
+        ],
+        "Verify My Internship": [
+            "Is this internship genuine? Most students find out too late.",
+            "Before you share documents, verify the company behind the offer.",
+        ],
+        "12 second reject": [
+            "Why I rejected this resume in 12 seconds.",
+            "A recruiter does not need more adjectives. They need proof.",
+        ],
+        "Top Skills This Week": [
+            f"{angle['hook']} The market moved. Did your profile?",
+        ],
+        "Low application count": [
+            f"{angle['hook']} The role is not invisible. The JD is.",
+        ],
+        "Campus Growth Partner": [
+            "Don't call them sales interns. Call them Campus Growth Partners.",
+            "Want to earn while helping students get hired?",
         ],
     }
     return rng.choice(hooks_by_type.get(angle["content_type"], [angle["hook"]]))
@@ -849,7 +904,7 @@ def choose_human_hook(rng: random.Random, angle: dict[str, Any]) -> str:
 
 def build_before_after(angle: dict[str, Any]) -> str:
     before_after_by_type = {
-        "Student Transformations": (
+        "Resume Before vs After": (
             "Before\n"
             "B.Tech Student\n"
             "Looking for opportunities\n\n"
@@ -858,54 +913,159 @@ def build_before_after(angle: dict[str, Any]) -> str:
             "Python Developer\n"
             "Built inventory management software used by 120 students."
         ),
-        "Resume Improvement": (
+        "Employability Score Explained": (
             "Before\n"
-            "Completed machine learning project\n\n"
+            "Guessing which area to fix first.\n\n"
             "↓\n\n"
             "After\n"
-            "Built a Python model to predict attendance risk and explained the result in a dashboard."
+            "Score map showing resume, skills, projects, and interview gaps."
         ),
-        "Resume Roast": (
+        "Resume Mistakes": (
             "Before\n"
-            "Worked on app development project\n\n"
+            "Hardworking student. Worked on app.\n\n"
             "↓\n\n"
             "After\n"
-            "Built login, search, and reporting flows for a student event app used by 300 participants."
+            "Built a Python dashboard that reduced manual report time by 30%."
         ),
-        "Resume Data": (
+        "Interview Questions": (
+            "Before\n"
+            "Lists every feature and library.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Problem, my role, hard decision, measurable result."
+        ),
+        "Skill Gap Analysis": (
+            "Before\n"
+            "Lists CAD, Excel, and workshops.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Designed a bracket, documented tolerances, and explained trade-offs."
+        ),
+        "Portfolio Reviews": (
             "Without portfolio\n"
             "Skills listed. Nothing to inspect.\n\n"
             "↓\n\n"
             "With portfolio\n"
             "README, screenshots, code, and one clear project outcome."
         ),
-        "Assessment Scores": (
-            "Before assessment\n"
-            "I know Python.\n\n"
-            "↓\n\n"
-            "After assessment\n"
-            "I can write a function, handle inputs, and explain where it fails."
-        ),
-        "Skill Gap Analysis": (
+        "Project Ideas": (
             "Before\n"
-            "Mechanical Engineering student with CAD knowledge\n\n"
+            "Waiting for the perfect idea.\n\n"
             "↓\n\n"
             "After\n"
-            "Designed a bracket, documented tolerances, estimated material cost, and explained trade-offs."
+            "One campus problem solved and demo-ready in 60 seconds."
         ),
-        "Mock Assessments": (
+        "Career Roadmaps": (
             "Before\n"
-            "I watched the tutorial.\n\n"
+            "Open to any opportunity.\n\n"
             "↓\n\n"
             "After\n"
-            "I solved the task under time and found exactly where I got stuck."
+            "Data analyst intern building dashboards for campus problems."
         ),
-        "Role-specific assessments": (
-            "Generic test\n"
-            "Same questions for every intern.\n\n"
+        "Screened to shortlist": (
+            "Before\n"
+            "250 resumes. No ranking.\n\n"
             "↓\n\n"
-            "Role test\n"
-            "A data intern cleans data. A marketing intern writes a campaign. An operations intern fixes a process."
+            "After\n"
+            "12 candidates with role-specific proof and assessment scores."
+        ),
+        "Startup hiring speed": (
+            "Before\n"
+            "Three weeks of resume review.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Role task on day one. Shortlist by day five. Hire by day ten."
+        ),
+        "AI screening reduction": (
+            "Before\n"
+            "Manual keyword review.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Ranked shortlist by proof, assessment, and role fit."
+        ),
+        "Unqualified intern cost": (
+            "Before\n"
+            "Hire fast. Hope they learn.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Pre-assess tasks. Verify proof. Then interview."
+        ),
+        "Stipend investigation": (
+            "Offer claims\n"
+            "₹50,000/month for 2 hours/day.\n\n"
+            "↓\n\n"
+            "Verification\n"
+            "Domain age, LinkedIn presence, HR email, stipend realism."
+        ),
+        "Verify My Internship": (
+            "Before\n"
+            "Accepting the offer because the stipend looked good.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Verified, Proceed with Caution, or Potential Scam."
+        ),
+        "Scam indicators": (
+            "Before\n"
+            "Polished offer letter. Personal Gmail. No website.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Scam signals flagged before documents are shared."
+        ),
+        "12 second reject": (
+            "Before\n"
+            "Worked on app development project.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Built login, search, and reporting flows used by 300 participants."
+        ),
+        "Application mistakes": (
+            "Before\n"
+            "Generic headline. Same resume everywhere.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Target role, top proof, and matched applications."
+        ),
+        "What HR notices first": (
+            "Before\n"
+            "CGPA at the top. Projects at the bottom.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Headline, top project, and role fit visible in 8 seconds."
+        ),
+        "Top Skills This Week": (
+            "Before\n"
+            "Learning randomly.\n\n"
+            "↓\n\n"
+            "After\n"
+            "One project proving the skill employers want this week."
+        ),
+        "Low application count": (
+            "Before\n"
+            "Looking for motivated intern.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Three tasks, stipend range, tools, and a 30-day deliverable."
+        ),
+        "Improve your JD": (
+            "Before\n"
+            "Long company history. No intern tasks.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Task bullets, expected outputs, mentor support, clear steps."
+        ),
+        "Campus Growth Partner": (
+            "Before\n"
+            "Sales intern with unclear targets.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Employer Outreach Intern bringing verified roles to campus."
+        ),
+        "Earn while helping": (
+            "Before\n"
+            "Scrolling job boards alone.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Building a pipeline of verified internships for your campus."
         ),
     }
     if angle["content_type"] in before_after_by_type:
@@ -913,126 +1073,316 @@ def build_before_after(angle: dict[str, Any]) -> str:
     sections = angle["sections"]
     return (
         "Before\n"
-        "Claims, keywords, and unclear effort.\n\n"
+        f"{sections[0]}\n\n"
         "↓\n\n"
         "After\n"
         f"{sections[-1]}"
     )
 
 
-def build_interactive_question() -> str:
-    return (
-        "What's the first thing you'd change?\n\n"
-        "□ Headline\n"
-        "□ Resume\n"
-        "□ Projects\n"
-        "□ Skills\n"
-        "□ Experience"
+def build_pillar_question(angle: dict[str, Any]) -> str:
+    questions_by_group = {
+        "Student Employability": (
+            "What's holding back your employability score?\n\n"
+            "□ Headline\n"
+            "□ Resume\n"
+            "□ Projects\n"
+            "□ Skills\n"
+            "□ Interview answers"
+        ),
+        "Hire Interns in 10 Days": (
+            "What's slowing your intern hiring?\n\n"
+            "□ JD clarity\n"
+            "□ Screening time\n"
+            "□ Assessment quality\n"
+            "□ Shortlist accuracy\n"
+            "□ Interview bandwidth"
+        ),
+        "Internship Verification": (
+            "Have you seen a suspicious internship offer?\n\n"
+            "□ Unrealistic stipend\n"
+            "□ No company website\n"
+            "□ Personal email only\n"
+            "□ Upfront payment\n"
+            "□ No LinkedIn presence"
+        ),
+        "Recruiter Secrets": (
+            "What's your weakest section?\n\n"
+            "□ Headline\n"
+            "□ Resume\n"
+            "□ Projects\n"
+            "□ Skills\n"
+            "□ Experience"
+        ),
+        "Market Intelligence": (
+            "Which skill are you building this week?\n\n"
+            "□ Python\n"
+            "□ Excel\n"
+            "□ Power BI\n"
+            "□ SQL\n"
+            "□ Communication"
+        ),
+        "Employer Branding": (
+            "What would improve your internship JD first?\n\n"
+            "□ Salary clarity\n"
+            "□ Role tasks\n"
+            "□ Learning path\n"
+            "□ Application process\n"
+            "□ Brand story"
+        ),
+        "Campus Ambassador / Job Acquisition": (
+            "Would you become a Campus Growth Partner?\n\n"
+            "□ Yes, I know startups hiring\n"
+            "□ Yes, I want to earn while helping\n"
+            "□ Maybe, tell me more\n"
+            "□ Not now"
+        ),
+    }
+    return questions_by_group.get(
+        angle.get("content_group", "Student Employability"),
+        (
+            "What's the first thing you'd change?\n\n"
+            "□ Headline\n"
+            "□ Resume\n"
+            "□ Projects\n"
+            "□ Skills\n"
+            "□ Experience"
+        ),
     )
 
 
 def build_curiosity_visual(angle: dict[str, Any]) -> str:
     scenes_by_type = {
-        "Student Transformations": (
-            "Split-screen recruiter view. Left side: a plain student profile card "
-            "labeled 'Ignored' with vague headline. Right side: upgraded profile "
-            "card labeled 'Interview' with project proof highlighted. Add a red "
-            "circle around the missing proof on the left."
+        "Resume Before vs After": (
+            "Split-screen recruiter view. Left: plain profile labeled 'Ignored'. "
+            "Right: upgraded profile labeled 'Interview' with one project proof highlighted."
         ),
-        "Resume Improvement": (
-            "Close-up recruiter desk with two resume versions. One has a sticky note "
-            "that says 'Too vague'. The improved one has one highlighted project "
-            "line and a green check mark. Make the viewer wonder what changed."
+        "Employability Score Explained": (
+            "Employability score dashboard on a laptop: score meter, red gap area, "
+            "and one highlighted section labeled 'Projects'."
         ),
-        "Resume Roast": (
-            "Recruiter desk scene. A resume is stamped 'REJECTED'. Next to it, a "
-            "small note says 'Reason: no projects'. A second resume nearby has "
-            "one project line highlighted but is not fully readable."
+        "Resume Mistakes": (
+            "Recruiter desk scene. A resume stamped 'REJECTED' with a sticky note: "
+            "'Too vague'. A second resume has one project line highlighted."
         ),
-        "Resume Data": (
-            "Laptop analytics dashboard on a desk: 'Applications sent: 84' and "
-            "'Replies: 3' on one side, then a portfolio link card glowing on the "
-            "other side. The mood should feel like a painful but useful discovery."
-        ),
-        "Assessment Scores": (
-            "Assessment result screen on a laptop: '12,487 attempted' and '18% "
-            "passed function task'. Show a student staring at the result, with "
-            "code errors faintly visible on the screen."
+        "Interview Questions": (
+            "Interview room whiteboard with four boxes: problem, role, decision, result. "
+            "One answer sheet crossed out for listing features instead of impact."
         ),
         "Skill Gap Analysis": (
-            "Mechanical engineering resume on a desk with five missing skill tags "
-            "floating above it: CAD docs, GD&T, Excel reports, manufacturing, cost. "
-            "Use a curious audit-board style."
+            "Resume on a desk with missing skill tags floating above it. "
+            "Use an audit-board style with red markers on gaps."
         ),
-        "Employability Score": (
-            "Employability score dashboard on a laptop: score meter, red gap area, "
-            "and one highlighted section labeled 'Projects'. A student points at "
-            "the weakest score with a pen."
+        "Portfolio Reviews": (
+            "Laptop dashboard: 'Applications sent: 84' and 'Replies: 3'. "
+            "A portfolio link card glows beside a rejected resume stack."
         ),
-        "College-wise Performance": (
-            "College employability ranking board with two score cards: top college "
-            "84/100 and lowest 42/100. Add sticky notes showing 'projects', "
-            "'assessments', and 'interview readiness'."
+        "Project Ideas": (
+            "Student desk with sticky notes of small project ideas and one laptop "
+            "showing a simple shipped dashboard labeled 'Demo ready'."
         ),
-        "Role-wise Rankings": (
-            "Role ranking dashboard showing 'Data Analyst Intern' at the top, with "
-            "a warning tag: 'Missing proof: SQL portfolio'. Make it look like a "
-            "real hiring insights screen."
+        "Career Roadmaps": (
+            "Roadmap board with four steps: role target, skill stack, project, application. "
+            "The 'proof' step is circled in red."
         ),
-        "Role-specific assessments": (
-            "Hiring table with three assessment cards: Data task, Marketing task, "
-            "Operations task. A generic test paper is crossed out in the corner."
+        "Screened to shortlist": (
+            "Recruiter desk with 250 resume printouts and a shortlist tray labeled '12'. "
+            "Assessment scorecards sit on top of the selected stack."
         ),
-        "Hire interns within 10 days": (
-            "Recruiter planning board with a bold 10-day hiring timeline. Day 1: "
-            "role task, Day 3: shortlist, Day 10: intern selected. Include resumes "
-            "and assessment cards on the table."
+        "Startup hiring speed": (
+            "10-day hiring timeline board: Day 1 role task, Day 3 assessment, "
+            "Day 5 shortlist, Day 10 intern selected."
         ),
-        "AI-powered candidate screening": (
-            "AI screening dashboard sorting candidate cards by proof, assessment, "
-            "and role fit. Avoid robot imagery; show a recruiter reviewing a clear "
-            "shortlist with one card highlighted."
+        "AI screening reduction": (
+            "AI screening dashboard sorting candidate cards by proof and assessment. "
+            "Show a recruiter reviewing a clear shortlist, not robot imagery."
         ),
-        "Campus hiring campaigns": (
-            "Campus hiring command center: student registrations, assessment "
-            "completion, and employability score movement on a large screen. "
-            "Show a campus coordinator looking at the data."
+        "Unqualified intern cost": (
+            "Manager desk with rework notes, missed deadline sticky notes, and an "
+            "intern folder labeled 'Wrong hire'. Mood should feel costly and tense."
         ),
-        "Bulk internship recruitment": (
-            "Large hiring dashboard with role-family columns: tech, analytics, "
-            "operations, sales, marketing. Generic funnel crossed out; segmented "
-            "shortlists highlighted."
+        "Stipend investigation": (
+            "Internship offer letter on a desk promising unrealistic pay. "
+            "Magnifying glass over stipend amount with verification checklist nearby."
         ),
-        "Hiring trends": (
-            "Industry trend board showing 'Proof > Promises' with portfolio, "
-            "assessment, and project proof cards pinned like evidence on a wall."
+        "Verify My Internship": (
+            "Verification desk with offer letter, company website screenshot, "
+            "domain age check, LinkedIn page, and three result stamps: "
+            "Verified, Caution, Scam."
         ),
-        "Skill gap reports": (
-            "Skill gap report spread across a desk with red markers over resume "
-            "gaps, assessment gaps, and interview gaps. Make it feel investigative."
+        "Scam indicators": (
+            "Investigation board with red flags: personal Gmail, new domain, "
+            "upfront payment request, and no LinkedIn company page."
         ),
-        "College rankings": (
-            "College ranking table focused on employability proof, not reputation. "
-            "Show scorecards, project completion bars, and interview readiness notes."
+        "12 second reject": (
+            "Recruiter monitor with an 8-second timer. Resume top half highlighted "
+            "showing vague headline and missing project proof."
         ),
-        "Salary benchmarks": (
-            "Salary benchmark chart beside two candidate profiles: one with proof, "
-            "one without. The proof profile has a brighter opportunity marker."
+        "Application mistakes": (
+            "Application inbox with five identical generic profiles and one standout "
+            "profile with a clear headline and project proof circled."
         ),
-        "Recruiter tips": (
-            "Recruiter monitor with a 30-second scan timer. A profile section is "
-            "highlighted: headline, project, outcome. Add a note: 'make it obvious'."
+        "What HR notices first": (
+            "HR scan screen highlighting headline, top project, and role fit in order. "
+            "CGPA section faded into the background."
+        ),
+        "Top Skills This Week": (
+            "Market intelligence screen showing rising skills with up arrows: "
+            "Python, Excel, Power BI, Java, Prompt Engineering."
+        ),
+        "Top Hiring Cities": (
+            "Map-style hiring dashboard with one city highlighted as top demand "
+            "and internship role tags pinned around it."
+        ),
+        "Top Paying Internship Domains": (
+            "Salary benchmark chart beside two profiles: one with proof, one without. "
+            "The proof profile has a brighter opportunity marker."
+        ),
+        "Most Applied Jobs": (
+            "Job board screen showing one role with hundreds of applications and "
+            "a warning tag: 'Proof required to stand out'."
+        ),
+        "Average Employability Score": (
+            "Score distribution dashboard showing average employability score with "
+            "breakdown bars for resume, skills, projects, and interviews."
+        ),
+        "Low application count": (
+            "Internship posting with '14 applications' counter beside a vague JD. "
+            "An improved JD draft nearby shows task bullets and stipend range."
+        ),
+        "Improve your JD": (
+            "Two JD printouts side by side. Left: long company history, no tasks. "
+            "Right: task bullets, deliverables, and stipend range highlighted."
+        ),
+        "Salary Benchmark": (
+            "Stipend benchmark chart on a recruiter desk with role tasks pinned "
+            "beside pay ranges. Transparent range beats 'negotiable'."
+        ),
+        "Campus Hiring Guide": (
+            "Campus hiring command center: registrations, assessment completion, "
+            "and employability score movement on a large screen."
+        ),
+        "Internship Program Design": (
+            "Program design board: week-one task, mentor check-ins, mid-point review, "
+            "final demo, and conversion path."
+        ),
+        "Campus Growth Partner": (
+            "Campus ambassador desk connecting startup HR contacts to student talent. "
+            "Badge reads 'Campus Growth Partner', not 'Sales Intern'."
+        ),
+        "Earn while helping": (
+            "Student connecting employers to pre-assessed peers on a laptop. "
+            "Pipeline board shows verified internships brought to campus."
+        ),
+    }
+    scenes_by_group = {
+        "Hire Interns in 10 Days": (
+            "Recruiter planning board with a bold 10-day hiring timeline, "
+            "assessment cards, and a shortlist tray on the desk."
+        ),
+        "Internship Verification": (
+            "Investigation desk with offer letter, website check, domain age, "
+            "LinkedIn page, and verification result stamps."
+        ),
+        "Market Intelligence": (
+            "Market intelligence dashboard with trend arrows, city demand map, "
+            "and employability score distribution on one screen."
+        ),
+        "Employer Branding": (
+            "Employer desk with two JD versions, application counter, and stipend "
+            "benchmark chart showing how clarity changes applicant quality."
         ),
     }
     return scenes_by_type.get(
         angle["content_type"],
-        (
-            "Curiosity-driven employability evidence scene. Use objects that tell "
-            "the story: resumes, sticky notes, dashboards, scorecards, rejected "
-            "applications, project proof, and highlighted gaps. Make the viewer ask "
-            "'why did this happen?' before reading the caption."
+        scenes_by_group.get(
+            angle.get("content_group", ""),
+            (
+                "Curiosity-driven employability evidence scene. Use objects that tell "
+                "the story: resumes, sticky notes, dashboards, scorecards, rejected "
+                "applications, project proof, and highlighted gaps. Make the viewer ask "
+                "'why did this happen?' before reading the caption."
+            ),
         ),
     )
+
+
+def build_insight(rng: random.Random, angle: dict[str, Any], *, student_name: str) -> str:
+    proof_lines_by_group = {
+        "Student Employability": [
+            "Same student. Different signal.",
+            "The skill was already there. The proof was missing.",
+            "Nothing fancy. Just easier to trust.",
+        ],
+        "Hire Interns in 10 Days": [
+            "Same role. Different screening.",
+            "Speed without proof creates expensive mistakes.",
+            "The shortlist gets better when evidence comes first.",
+        ],
+        "Internship Verification": [
+            "Same offer letter. Different outcome after verification.",
+            "A polished PDF is not proof of a real company.",
+            "Verify first. Celebrate later.",
+        ],
+        "Recruiter Secrets": [
+            "Same profile. Different first impression.",
+            "Recruiters do not read resumes. They scan for proof.",
+            "Clarity beats confidence in the first 12 seconds.",
+        ],
+        "Market Intelligence": [
+            "Same market. Different preparation.",
+            "Demand moves weekly. Profiles should move with it.",
+            "Data is useful only when it changes what you build next.",
+        ],
+        "Employer Branding": [
+            "Same role. Different response rate.",
+            "Students apply where the opportunity feels real.",
+            "Clarity in the JD changes applicant quality.",
+        ],
+        "Campus Ambassador / Job Acquisition": [
+            "Same campus. Different pipeline.",
+            "Opportunities come from relationships, not job boards alone.",
+            "One verified employer connection can help dozens of students.",
+        ],
+    }
+    insight_lines_by_group = {
+        "Student Employability": (
+            f"For a student like {student_name}, this is usually the difference between "
+            "being skipped and being understood."
+        ),
+        "Hire Interns in 10 Days": (
+            "For HR teams and founders, this is usually the difference between "
+            "three weeks of screening and a trusted shortlist in ten days."
+        ),
+        "Internship Verification": (
+            "For students evaluating offers, this is the difference between "
+            "trusting a stipend number and trusting a verified company."
+        ),
+        "Recruiter Secrets": (
+            f"For a student like {student_name}, this is usually the difference between "
+            "a profile that gets scanned and a profile that gets shortlisted."
+        ),
+        "Market Intelligence": (
+            "For students preparing this week, this is the difference between "
+            "learning randomly and building proof the market is actually hiring for."
+        ),
+        "Employer Branding": (
+            "For companies posting internships, this is usually the difference between "
+            "fourteen applications and a stronger, better-matched pipeline."
+        ),
+        "Campus Ambassador / Job Acquisition": (
+            f"For a student like {student_name}, this is the difference between "
+            "waiting for roles and bringing verified opportunities to campus."
+        ),
+    }
+    group = angle.get("content_group", "Student Employability")
+    proof_line = rng.choice(
+        proof_lines_by_group.get(group, proof_lines_by_group["Student Employability"])
+    )
+    insight_line = insight_lines_by_group.get(
+        group, insight_lines_by_group["Student Employability"]
+    )
+    return f"{proof_line}\n\n{insight_line}"
 
 
 def build_content_assets(
@@ -1043,21 +1393,10 @@ def build_content_assets(
 ) -> dict[str, str]:
     hook = choose_human_hook(rng, angle)
     before_after = build_before_after(angle)
-    proof_line = rng.choice(
-        [
-            "Same student. Different signal.",
-            "The skill was already there. The proof was missing.",
-            "Nothing fancy. Just easier to trust.",
-        ]
-    )
     proof = before_after
-    insight = (
-        f"{proof_line}\n\n"
-        f"For a student like {student_name}, this is usually the difference between "
-        "being skipped and being understood."
-    )
+    insight = build_insight(rng, angle, student_name=student_name)
     visual = build_curiosity_visual(angle)
-    question = build_interactive_question()
+    question = build_pillar_question(angle)
     return {
         "hook": hook,
         "proof": proof,

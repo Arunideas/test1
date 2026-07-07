@@ -155,48 +155,29 @@ python3 linkedin_company_page_agent.py \
 generates a related image, and can post both to LinkedIn. Captions are short,
 comment-first LinkedIn posts rather than long teaching posts.
 
-The content engine rotates through formats such as:
+The content engine rotates through seven World of Interns pillars:
 
-For students:
+1. **Student Employability** — Resume Before vs After, Employability Score Explained,
+   Resume Mistakes, Interview Questions, Skill Gap Analysis, Portfolio Reviews,
+   Project Ideas, Career Roadmaps.
 
-- Employability Score
-- Resume Improvement
-- Mock Assessments
-- Career Challenges
-- Internship Discovery
+2. **Hire Interns in 10 Days** — Screened 250 to shortlist 12, startup hiring speed,
+   AI screening reduction, hidden cost of unqualified interns.
 
-For companies:
+3. **Internship Verification** — Stipend investigations, Verify My Internship checks,
+   scam indicator posts.
 
-- Hire interns within 10 days
-- AI-powered candidate screening
-- Role-specific assessments
-- Campus hiring campaigns
-- Bulk internship recruitment
+4. **Recruiter Secrets** — 12-second rejects, top application mistakes, what HR
+   notices first.
 
-Industry insights:
+5. **Market Intelligence** — Top Skills This Week, Top Hiring Cities, Top Paying
+   Internship Domains, Most Applied Jobs, Average Employability Score.
 
-- Hiring trends
-- Skill gap reports
-- College rankings
-- Salary benchmarks
-- Recruiter tips
+6. **Employer Branding** — Low application counts, improve your JD, salary
+   benchmarks, campus hiring guide, internship program design.
 
-Additional content formats:
-
-- Recruiter Secrets
-- Resume Roast
-- Interview Mistakes
-- Skill Battles
-- Student Transformations
-- Weekly Employability Challenges
-- College Rankings based on employability scores
-- Company Expectations
-- Employability Scores
-- Resume Data
-- Assessment Scores
-- Skill Gap Analysis
-- College-wise Performance
-- Role-wise Rankings
+7. **Campus Ambassador / Job Acquisition** — Campus Growth Partner role, earn while
+   helping students get hired.
 
 The agent tracks used content in a JSON history file so successful posts are not
 reused.
@@ -213,8 +194,8 @@ The five assets are preserved in the JSON output and history tracking. The
 LinkedIn caption is formatted as a natural post without exposing internal labels.
 
 Public captions use a show-first style: strong hook, before/after proof, short
-human insight, and an interactive checkbox question to invite comments. They do
-not include a website CTA.
+human insight, and a pillar-specific interactive checkbox question to invite
+comments. They do not include a website CTA.
 
 Dry-run generation:
 
@@ -266,7 +247,23 @@ Data-led posts can use metrics from a JSON file:
   "bulk_recruitment_roles": "120",
   "hiring_trend_year": "2026",
   "salary_benchmark_role": "Data Analyst Intern",
-  "salary_benchmark_growth": "22%"
+  "salary_benchmark_growth": "22%",
+  "students_screened": "250",
+  "students_shortlisted": "12",
+  "ai_screening_reduction": "80%",
+  "internship_application_count": "14",
+  "suspicious_stipend_amount": "₹50,000/month",
+  "suspicious_hours_per_day": "2 hours/day",
+  "top_skill_python": "Python",
+  "top_skill_excel": "Excel",
+  "top_skill_powerbi": "Power BI",
+  "top_skill_java": "Java",
+  "top_skill_prompt": "Prompt Engineering",
+  "top_hiring_city": "Bangalore",
+  "top_paying_domain": "Data Analytics",
+  "most_applied_role": "Data Analyst Intern",
+  "verification_checks_count": "7",
+  "campus_partner_title": "Campus Growth Partner"
 }
 ```
 
