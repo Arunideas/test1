@@ -36,6 +36,23 @@ DEFAULT_OPENAI_IMAGE_SIZE = "1024x1024"
 MIN_POST_WORDS = 200
 MAX_POST_WORDS = 500
 
+DEFAULT_METRICS = {
+    "python_assessment_students": "12,487",
+    "python_function_success_rate": "18%",
+    "mechanical_resume_year": "2026",
+    "mechanical_resume_missing_skills": (
+        "CAD documentation, Excel reporting, GD&T basics, manufacturing process "
+        "knowledge, and project cost estimation"
+    ),
+    "github_interview_multiplier": "2.8x",
+    "average_employability_score": "61/100",
+    "top_college_score": "84/100",
+    "bottom_college_score": "42/100",
+    "data_analyst_resume_gap": "SQL portfolio projects",
+    "startup_shortlist_rate": "31%",
+    "role_ranking_top_role": "Data Analyst Intern",
+}
+
 NAMES = [
     "Asha",
     "Dev",
@@ -50,6 +67,121 @@ NAMES = [
 ]
 
 CONTENT_ANGLES = [
+    {
+        "id": "assessment-python-function-errors",
+        "content_type": "Assessment Scores",
+        "hook": "{python_assessment_students} students took our Python assessment this month. Only {python_function_success_rate} could write a function without errors.",
+        "headline": "PYTHON GAP",
+        "subhead": "Syntax is not the skill. Problem solving is.",
+        "visual": "laptop",
+        "setup": (
+            "{python_assessment_students} students attempted a Python readiness "
+            "assessment this month, and only {python_function_success_rate} could "
+            "write a clean function without errors. That gap matters because most "
+            "internship tasks start with small, reliable functions."
+        ),
+        "sections": [
+            "The issue is rarely motivation. Students watch tutorials, but they do not practice enough blank-screen coding.",
+            "The most common gap is function structure: inputs, return values, edge cases, and readable naming.",
+            "The employability signal is not 'I know Python.' It is 'I can solve a small problem correctly without hand-holding.'",
+        ],
+        "action": "Take one basic problem today and write it as a function without copying. Then explain what input it accepts, what output it returns, and where it can fail.",
+    },
+    {
+        "id": "mechanical-resume-skill-gaps",
+        "content_type": "Skill Gap Analysis",
+        "hook": "Top 5 skills missing from Mechanical Engineering resumes in {mechanical_resume_year}.",
+        "headline": "SKILL GAPS",
+        "subhead": "Mechanical resumes need proof.",
+        "visual": "document",
+        "setup": (
+            "Mechanical Engineering resumes often list workshops, software names, "
+            "and college projects, but the missing skills are usually the signals "
+            "that make a recruiter believe the student can contribute on day one."
+        ),
+        "sections": [
+            "The top missing skills are: {mechanical_resume_missing_skills}.",
+            "The problem is not that students never touched these areas. The problem is that resumes rarely show applied proof.",
+            "A stronger resume connects each skill to a project, drawing, analysis, process improvement, or measurable output.",
+        ],
+        "action": "Pick one missing skill from the list and attach it to a real project line. Do not write 'knowledge of CAD.' Write what you designed, why it mattered, and what constraint you handled.",
+    },
+    {
+        "id": "github-portfolio-interview-calls",
+        "content_type": "Resume Data",
+        "hook": "Students with GitHub portfolios received {github_interview_multiplier} more interview calls than those without one.",
+        "headline": "PORTFOLIO WINS",
+        "subhead": "Proof beats claims.",
+        "visual": "message",
+        "setup": (
+            "A resume can claim skills, but a portfolio lets recruiters inspect "
+            "proof. Students with GitHub portfolios received {github_interview_multiplier} "
+            "more interview calls than students who listed skills without visible work."
+        ),
+        "sections": [
+            "The portfolio does not need to be huge. Two clean projects with README files can outperform ten unsupported skill keywords.",
+            "Recruiters look for structure: what the project solves, how to run it, what tools were used, and what the student learned.",
+            "A visible portfolio reduces risk. It tells the company the student can finish, document, and explain work.",
+        ],
+        "action": "If you have one project sitting on your laptop, upload it, write a simple README, add screenshots, and link it on your resume today.",
+    },
+    {
+        "id": "employability-score-distribution",
+        "content_type": "Employability Scores",
+        "hook": "The average employability score this cycle is {average_employability_score}. That number explains why applications feel stuck.",
+        "headline": "SCORE CHECK",
+        "subhead": "Readiness can be measured.",
+        "visual": "clock",
+        "setup": (
+            "Employability becomes easier to improve when students stop treating it "
+            "as a vague feeling. The average score this cycle is {average_employability_score}, "
+            "which means many students are close, but not yet role-ready."
+        ),
+        "sections": [
+            "Low scores usually come from weak proof: resumes list skills but do not show outcomes.",
+            "Medium scores usually have projects, but the role fit is unclear.",
+            "High scores combine resume clarity, assessment performance, portfolio proof, and interview readiness.",
+        ],
+        "action": "Score yourself across resume, skills, projects, profile, and interview answers. Then improve the lowest area first instead of randomly applying everywhere.",
+    },
+    {
+        "id": "college-wise-performance-gap",
+        "content_type": "College-wise Performance",
+        "hook": "The top college scored {top_college_score}. The lowest scored {bottom_college_score}. The difference was not branding.",
+        "headline": "COLLEGE GAP",
+        "subhead": "Performance beats perception.",
+        "visual": "arrow",
+        "setup": (
+            "College-wise performance becomes useful when it focuses on student "
+            "readiness, not reputation alone. In the latest comparison, the top "
+            "college scored {top_college_score}, while the lowest scored {bottom_college_score}."
+        ),
+        "sections": [
+            "The strongest colleges had more students with completed projects, clearer resumes, and better assessment consistency.",
+            "The weaker colleges were not missing talent. They were missing visible proof and structured preparation.",
+            "A college can improve its employability score when students practice role-specific tasks before placement season begins.",
+        ],
+        "action": "If you are a college team, track proof weekly: project completion, resume quality, assessment scores, and interview readiness. That is where ranking improvement starts.",
+    },
+    {
+        "id": "role-wise-ranking-data-analyst",
+        "content_type": "Role-wise Rankings",
+        "hook": "{role_ranking_top_role} is ranking high, but one gap keeps students out: {data_analyst_resume_gap}.",
+        "headline": "ROLE RANKING",
+        "subhead": "Role fit needs evidence.",
+        "visual": "spotlight",
+        "setup": (
+            "{role_ranking_top_role} is ranking high among student targets, but "
+            "the resume gap that keeps appearing is {data_analyst_resume_gap}. "
+            "Students want the role, but the proof often does not match the job."
+        ),
+        "sections": [
+            "A role-wise ranking is useful only when it shows the gap between demand and readiness.",
+            "For analytics roles, recruiters expect evidence of cleaning data, querying data, visualizing insights, and explaining decisions.",
+            "Students who show one complete analytics workflow look more credible than students who list five disconnected tools.",
+        ],
+        "action": "Choose one target role and build one project that proves the core workflow for that role. Generic preparation creates generic results.",
+    },
     {
         "id": "recruiter-secret-eight-seconds",
         "content_type": "Recruiter Secrets",
@@ -348,6 +480,44 @@ def save_history(path: Path, history: dict[str, Any]) -> None:
     path.write_text(json.dumps(history, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
+class SafeMetrics(dict[str, str]):
+    def __missing__(self, key: str) -> str:
+        return "{" + key + "}"
+
+
+def load_metrics(path: Path | None) -> dict[str, str]:
+    metrics = dict(DEFAULT_METRICS)
+    if path is None:
+        return metrics
+    if not path.exists():
+        raise FileNotFoundError(f"Metrics file does not exist: {path}")
+    loaded = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(loaded, dict):
+        raise ValueError("Metrics file must contain a JSON object.")
+    for key, value in loaded.items():
+        metrics[str(key)] = str(value)
+    return metrics
+
+
+def render_metric_template(value: str, metrics: dict[str, str]) -> str:
+    return value.format_map(SafeMetrics(metrics))
+
+
+def render_content_angle(angle: dict[str, Any], metrics: dict[str, str]) -> dict[str, Any]:
+    rendered: dict[str, Any] = {}
+    for key, value in angle.items():
+        if isinstance(value, str):
+            rendered[key] = render_metric_template(value, metrics)
+        elif isinstance(value, list):
+            rendered[key] = [
+                render_metric_template(item, metrics) if isinstance(item, str) else item
+                for item in value
+            ]
+        else:
+            rendered[key] = value
+    return rendered
+
+
 def build_content_assets(
     rng: random.Random,
     angle: dict[str, Any],
@@ -411,7 +581,13 @@ def format_content_text(assets: dict[str, str]) -> str:
     )
 
 
-def build_story(rng: random.Random, angle: dict[str, Any]) -> Story:
+def build_story(
+    rng: random.Random,
+    angle: dict[str, Any],
+    *,
+    metrics: dict[str, str],
+) -> Story:
+    angle = render_content_angle(angle, metrics)
     name = rng.choice(NAMES)
     assets = build_content_assets(rng, angle, student_name=name)
     story_text = format_content_text(assets)
@@ -435,11 +611,16 @@ def build_story(rng: random.Random, angle: dict[str, Any]) -> Story:
     )
 
 
-def choose_unused_story(history: dict[str, Any], *, seed: int | None = None) -> Story:
+def choose_unused_story(
+    history: dict[str, Any],
+    *,
+    metrics: dict[str, str],
+    seed: int | None = None,
+) -> Story:
     used_hashes = set(history.get("used_hashes", []))
     rng = random.Random(seed)
     for _ in range(300):
-        story = build_story(rng, rng.choice(CONTENT_ANGLES))
+        story = build_story(rng, rng.choice(CONTENT_ANGLES), metrics=metrics)
         if story_hash(story.text) not in used_hashes:
             return story
     raise RuntimeError("Could not create a new unused story after 300 attempts.")
@@ -836,6 +1017,11 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         help="Directory for generated content images.",
     )
     parser.add_argument(
+        "--metrics-path",
+        default=os.getenv("DAILY_CONTENT_METRICS_PATH"),
+        help="Optional JSON metrics file for data-led employability posts.",
+    )
+    parser.add_argument(
         "--image-mode",
         choices=("ai", "card"),
         default=os.getenv("DAILY_STORY_IMAGE_MODE", "ai"),
@@ -907,7 +1093,8 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         history = load_history(history_path)
-        story = choose_unused_story(history, seed=args.seed)
+        metrics = load_metrics(Path(args.metrics_path) if args.metrics_path else None)
+        story = choose_unused_story(history, metrics=metrics, seed=args.seed)
         image_path, image_generation = create_story_image(
             story,
             output_dir,

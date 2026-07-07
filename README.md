@@ -169,6 +169,12 @@ The content engine rotates through formats such as:
 - Weekly Employability Challenges
 - College Rankings based on employability scores
 - Company Expectations
+- Employability Scores
+- Resume Data
+- Assessment Scores
+- Skill Gap Analysis
+- College-wise Performance
+- Role-wise Rankings
 
 The agent tracks used content in a JSON history file so successful posts are not
 reused.
@@ -205,6 +211,30 @@ To force the local card image:
 
 ```bash
 python3 daily_story_linkedin_agent.py --image-mode card
+```
+
+Data-led posts can use metrics from a JSON file:
+
+```json
+{
+  "python_assessment_students": "12,487",
+  "python_function_success_rate": "18%",
+  "mechanical_resume_year": "2026",
+  "mechanical_resume_missing_skills": "CAD documentation, Excel reporting, GD&T basics, manufacturing process knowledge, and project cost estimation",
+  "github_interview_multiplier": "2.8x",
+  "average_employability_score": "61/100",
+  "top_college_score": "84/100",
+  "bottom_college_score": "42/100",
+  "data_analyst_resume_gap": "SQL portfolio projects",
+  "startup_shortlist_rate": "31%",
+  "role_ranking_top_role": "Data Analyst Intern"
+}
+```
+
+Pass that file to the automation:
+
+```bash
+python3 daily_story_linkedin_agent.py --metrics-path "/path/to/metrics.json"
 ```
 
 Dry-run with deterministic output for testing:
@@ -261,6 +291,7 @@ Dry runs do not mark content as used unless you pass `--record-dry-run`.
 | `DAILY_STORY_HISTORY_PATH` | Optional JSON path for daily content tracking. |
 | `DAILY_STORY_OUTPUT_DIR` | Optional directory for generated daily story images. |
 | `DAILY_STORY_IMAGE_MODE` | Optional image mode: `ai` or `card`. Defaults to `ai`. |
+| `DAILY_CONTENT_METRICS_PATH` | Optional JSON file for assessment, resume, skill gap, college, and ranking metrics. |
 | `OPENAI_API_KEY` | Required for photorealistic AI story images. |
 | `OPENAI_IMAGE_MODEL` | Optional OpenAI image model. Defaults to `gpt-image-1`. |
 | `OPENAI_IMAGE_SIZE` | Optional OpenAI image size. Defaults to `1024x1024`. |
