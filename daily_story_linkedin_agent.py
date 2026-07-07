@@ -968,7 +968,8 @@ def build_content_assets(
         f"That is why this matters: {angle['action']}\n\n"
         "No long lecture needed. Just make the proof impossible to miss.\n\n"
         "Because on LinkedIn, in a resume, or in an interview, clarity travels "
-        "faster than potential."
+        "faster than potential. The clearer the proof, the easier it is for "
+        "someone to say yes."
     )
     visual = (
         f"Photorealistic LinkedIn image concept: {angle['headline']} - "
