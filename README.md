@@ -179,6 +179,29 @@ The content engine rotates through seven World of Interns pillars:
 7. **Campus Ambassador / Job Acquisition** — Campus Growth Partner role, earn while
    helping students get hired.
 
+8. **AI Career Survival** — Jobs AI won't replace, AI as a 5× multiplier,
+   AI + Humans vs Humans, how recruiters evaluate AI-assisted work, mentioning
+   AI tools on resumes.
+
+9. **Learn One AI Tool Every Week** — ChatGPT, Claude, Cursor, GitHub Copilot,
+   Canva AI, Figma AI, Perplexity, Gemini, Notion AI, n8n, Zapier AI with real
+   work examples.
+
+10. **AI Challenge of the Week** — Portfolio website in 30 minutes, AI dataset
+    dashboard challenge with featured submissions.
+
+11. **AI Resume Upgrade** — Replace generic tool lines with AI-assisted workflow
+    proof (e.g. Excel + AI reporting workflows).
+
+12. **AI Interview Practice** — AI scoring for confidence, clarity, communication,
+    and technical depth.
+
+13. **AI Mythbusters** — Developers replaced myth, prompt engineering vs business
+    problem solving.
+
+14. **Future Skills** — Agentic AI, MCP, RAG, Vector Databases explained simply
+    with practical examples.
+
 The agent tracks used content in a JSON history file so successful posts are not
 reused.
 
@@ -263,7 +286,12 @@ Data-led posts can use metrics from a JSON file:
   "top_paying_domain": "Data Analytics",
   "most_applied_role": "Data Analyst Intern",
   "verification_checks_count": "7",
-  "campus_partner_title": "Campus Growth Partner"
+  "campus_partner_title": "Campus Growth Partner",
+  "ai_speed_multiplier": "5×",
+  "ai_challenge_minutes": "30",
+  "ai_jobs_safe_count": "5",
+  "future_skill_current": "Agentic AI",
+  "future_skill_next": "MCP"
 }
 ```
 

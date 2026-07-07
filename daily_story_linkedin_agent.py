@@ -73,6 +73,11 @@ DEFAULT_METRICS = {
     "most_applied_role": "Data Analyst Intern",
     "verification_checks_count": "7",
     "campus_partner_title": "Campus Growth Partner",
+    "ai_speed_multiplier": "5×",
+    "ai_challenge_minutes": "30",
+    "ai_jobs_safe_count": "5",
+    "future_skill_current": "Agentic AI",
+    "future_skill_next": "MCP",
 }
 
 NAMES = [
@@ -88,7 +93,6 @@ NAMES = [
     "Neel",
 ]
 
-# Temporary file - content angles for splice into daily_story_linkedin_agent.py
 CONTENT_ANGLES = [
     {
         "id": "student-resume-before-after",
@@ -665,6 +669,519 @@ CONTENT_ANGLES = [
         ],
         "action": "Become a Campus Growth Partner and turn employer connections into internship opportunities.",
     },
+{
+        "id": "ai-career-jobs-wont-replace",
+        "content_group": "AI Career Survival",
+        "content_type": "Jobs AI won't replace",
+        "hook": "5 jobs AI won't replace — and why.",
+        "headline": "AI SAFE",
+        "subhead": "Humans still win here.",
+        "visual": "spotlight",
+        "setup": (
+            "Students fear AI will erase careers overnight. The sharper question is "
+            "which roles still need judgment, ownership, trust, and real-world context."
+        ),
+        "sections": [
+            "Before: 'AI will take every job.'",
+            "After: roles needing client trust, physical work, ethical judgment, and cross-team leadership.",
+            "AI changes the work inside jobs. It does not erase every job category.",
+        ],
+        "action": "Pick one role you want and learn how AI makes that role faster, not irrelevant.",
+    },
+    {
+        "id": "ai-career-developer-five-x",
+        "content_group": "AI Career Survival",
+        "content_type": "AI made developer faster",
+        "hook": "AI didn't replace this developer. It made them {ai_speed_multiplier} faster.",
+        "headline": "5X FASTER",
+        "subhead": "AI as multiplier.",
+        "visual": "laptop",
+        "setup": (
+            "The fear story is replacement. The real story is leverage. Developers using AI "
+            "well ship faster, debug faster, and document faster — without skipping thinking."
+        ),
+        "sections": [
+            "Before: writing boilerplate, tests, and docs manually for hours.",
+            "After: AI drafts, human reviews, human ships.",
+            "The developer still owns architecture, trade-offs, and final quality.",
+        ],
+        "action": "Use AI for one repetitive task today, then review and improve the output yourself.",
+    },
+    {
+        "id": "ai-career-plus-humans",
+        "content_group": "AI Career Survival",
+        "content_type": "AI plus Humans",
+        "hook": "The future isn't AI vs Humans. It's AI + Humans vs Humans.",
+        "headline": "AI PLUS YOU",
+        "subhead": "The new competition.",
+        "visual": "rocket",
+        "setup": (
+            "Students who ignore AI compete against students who use it well. "
+            "The edge is not prompting alone. It is combining AI speed with human judgment."
+        ),
+        "sections": [
+            "Before: manual research, manual drafts, manual analysis.",
+            "After: AI-assisted research, drafts, and analysis with human verification.",
+            "The winner is not the tool. It is the person who uses the tool with proof.",
+        ],
+        "action": "Build one project where AI helps, but your decisions and review are visible.",
+    },
+    {
+        "id": "ai-career-recruiter-evaluation",
+        "content_group": "AI Career Survival",
+        "content_type": "Recruiter AI evaluation",
+        "hook": "How recruiters evaluate AI-assisted work.",
+        "headline": "AI PROOF",
+        "subhead": "Show your judgment.",
+        "visual": "interview",
+        "setup": (
+            "Recruiters do not reject AI use. They reject students who cannot explain "
+            "what they built, what they changed, and what they verified."
+        ),
+        "sections": [
+            "Before: 'I used ChatGPT for the project.'",
+            "After: 'I used AI to draft the dashboard layout, then I validated the logic and fixed three edge cases.'",
+            "Recruiters hire judgment, ownership, and explainability.",
+        ],
+        "action": "For every AI-assisted project, write what AI did and what you verified.",
+    },
+    {
+        "id": "ai-career-resume-mention",
+        "content_group": "AI Career Survival",
+        "content_type": "Mention AI on resume",
+        "hook": "Should you mention AI tools on your resume?",
+        "headline": "AI ON CV",
+        "subhead": "Yes, with proof.",
+        "visual": "document",
+        "setup": (
+            "Listing 'ChatGPT' as a skill is weak. Showing an AI-assisted workflow "
+            "with your review and outcome is strong."
+        ),
+        "sections": [
+            "Before: 'Good with AI tools.'",
+            "After: 'Built an automated reporting workflow using Excel + AI and validated every formula.'",
+            "Mention AI when it shows how you work, not when it replaces proof.",
+        ],
+        "action": "Rewrite one resume line to show AI-assisted workflow plus your verification step.",
+    },
+    {
+        "id": "ai-tool-chatgpt",
+        "content_group": "Learn One AI Tool Every Week",
+        "content_type": "ChatGPT",
+        "hook": "This week: learn ChatGPT for real work, not random prompts.",
+        "headline": "CHATGPT",
+        "subhead": "One tool. One use case.",
+        "visual": "laptop",
+        "setup": (
+            "ChatGPT is useful when you give it context, constraints, and a review step. "
+            "Use it to draft, summarize, debug explanations, and rewrite project descriptions."
+        ),
+        "sections": [
+            "Before: asking vague questions and copying answers.",
+            "After: giving context, asking for options, then editing the final output yourself.",
+            "Real work example: turn messy project notes into a resume bullet with metrics.",
+        ],
+        "action": "Take one project note and ask ChatGPT for three resume bullet options. Pick and edit the best one.",
+    },
+    {
+        "id": "ai-tool-claude",
+        "content_group": "Learn One AI Tool Every Week",
+        "content_type": "Claude",
+        "hook": "This week: learn Claude for long-form thinking and code review.",
+        "headline": "CLAUDE",
+        "subhead": "Think deeper.",
+        "visual": "laptop",
+        "setup": (
+            "Claude works well for long documents, structured reasoning, and reviewing code "
+            "with explanations. Use it when you need clarity, not just speed."
+        ),
+        "sections": [
+            "Before: reading a 20-page PDF without a plan.",
+            "After: asking Claude to extract key points, risks, and action items.",
+            "Real work example: review your project README before sharing it with recruiters.",
+        ],
+        "action": "Paste one project README into Claude and ask what is unclear to a recruiter.",
+    },
+    {
+        "id": "ai-tool-cursor",
+        "content_group": "Learn One AI Tool Every Week",
+        "content_type": "Cursor",
+        "hook": "This week: learn Cursor to build faster without skipping understanding.",
+        "headline": "CURSOR",
+        "subhead": "Build with AI.",
+        "visual": "laptop",
+        "setup": (
+            "Cursor helps you write, refactor, and debug code in context. "
+            "The skill is not auto-accepting everything. It is directing the AI and reviewing changes."
+        ),
+        "sections": [
+            "Before: stuck on setup errors for hours.",
+            "After: using Cursor to fix setup, then explaining every change you kept.",
+            "Real work example: build a small portfolio page and document what you changed manually.",
+        ],
+        "action": "Use Cursor to fix one bug, then write a one-line explanation of the root cause.",
+    },
+    {
+        "id": "ai-tool-github-copilot",
+        "content_group": "Learn One AI Tool Every Week",
+        "content_type": "GitHub Copilot",
+        "hook": "This week: learn GitHub Copilot for functions, tests, and boilerplate.",
+        "headline": "COPILOT",
+        "subhead": "Code faster.",
+        "visual": "laptop",
+        "setup": (
+            "Copilot is strongest for repetitive code: functions, tests, parsing, and documentation. "
+            "You still need to understand what it generated."
+        ),
+        "sections": [
+            "Before: writing the same helper functions repeatedly.",
+            "After: generating a draft, reading it, and editing edge cases yourself.",
+            "Real work example: generate unit tests, then break one on purpose to verify they work.",
+        ],
+        "action": "Write one function with Copilot, then add one test case Copilot missed.",
+    },
+    {
+        "id": "ai-tool-canva-ai",
+        "content_group": "Learn One AI Tool Every Week",
+        "content_type": "Canva AI",
+        "hook": "This week: learn Canva AI for portfolio visuals and LinkedIn posts.",
+        "headline": "CANVA AI",
+        "subhead": "Design faster.",
+        "visual": "message",
+        "setup": (
+            "Canva AI helps students create clean visuals without a design degree. "
+            "Use it for project screenshots, case study slides, and profile banners."
+        ),
+        "sections": [
+            "Before: plain screenshots with no visual story.",
+            "After: one project case study slide with problem, tool, and result.",
+            "Real work example: turn a dashboard screenshot into a portfolio card.",
+        ],
+        "action": "Create one project visual in Canva AI and add it to your portfolio today.",
+    },
+    {
+        "id": "ai-tool-figma-ai",
+        "content_group": "Learn One AI Tool Every Week",
+        "content_type": "Figma AI",
+        "hook": "This week: learn Figma AI for UI ideas and quick prototypes.",
+        "headline": "FIGMA AI",
+        "subhead": "Prototype fast.",
+        "visual": "laptop",
+        "setup": (
+            "Figma AI helps you explore layouts, components, and UI flows faster. "
+            "Useful for product, design, and frontend students who need visible proof."
+        ),
+        "sections": [
+            "Before: blank canvas and no structure.",
+            "After: AI-generated layout, then your edits for clarity and usability.",
+            "Real work example: prototype one app screen and explain one UX decision.",
+        ],
+        "action": "Build one screen in Figma AI and write why you changed one element.",
+    },
+    {
+        "id": "ai-tool-perplexity",
+        "content_group": "Learn One AI Tool Every Week",
+        "content_type": "Perplexity",
+        "hook": "This week: learn Perplexity for research with sources.",
+        "headline": "PERPLEXITY",
+        "subhead": "Research better.",
+        "visual": "spotlight",
+        "setup": (
+            "Perplexity is useful when you need fast research with citations: market trends, "
+            "tool comparisons, company background checks, and interview prep."
+        ),
+        "sections": [
+            "Before: ten open tabs and no clear answer.",
+            "After: one research query with sources you can verify.",
+            "Real work example: research a company before an internship interview.",
+        ],
+        "action": "Use Perplexity to research one target company and write three interview-ready facts.",
+    },
+    {
+        "id": "ai-tool-gemini",
+        "content_group": "Learn One AI Tool Every Week",
+        "content_type": "Gemini",
+        "hook": "This week: learn Gemini for multimodal tasks — text, images, and docs.",
+        "headline": "GEMINI",
+        "subhead": "More than text.",
+        "visual": "laptop",
+        "setup": (
+            "Gemini can help analyze images, PDFs, and mixed inputs. "
+            "Useful for students working with screenshots, charts, and document-heavy projects."
+        ),
+        "sections": [
+            "Before: manually retyping data from screenshots.",
+            "After: extracting structured notes from images or PDFs, then verifying accuracy.",
+            "Real work example: summarize a chart screenshot into three insights.",
+        ],
+        "action": "Upload one project screenshot to Gemini and ask for three insights you can verify.",
+    },
+    {
+        "id": "ai-tool-notion-ai",
+        "content_group": "Learn One AI Tool Every Week",
+        "content_type": "Notion AI",
+        "hook": "This week: learn Notion AI to organize projects and study plans.",
+        "headline": "NOTION AI",
+        "subhead": "Plan smarter.",
+        "visual": "document",
+        "setup": (
+            "Notion AI helps students turn messy notes into action plans, project docs, "
+            "and weekly learning trackers."
+        ),
+        "sections": [
+            "Before: scattered notes in five apps.",
+            "After: one project page with tasks, proof links, and weekly goals.",
+            "Real work example: build a 7-day employability tracker in Notion.",
+        ],
+        "action": "Create one Notion page for your top project with tasks, links, and outcomes.",
+    },
+    {
+        "id": "ai-tool-n8n",
+        "content_group": "Learn One AI Tool Every Week",
+        "content_type": "n8n",
+        "hook": "This week: learn n8n to automate boring student workflows.",
+        "headline": "N8N",
+        "subhead": "Automate once.",
+        "visual": "arrow",
+        "setup": (
+            "n8n lets you connect apps and automate repetitive tasks without heavy coding. "
+            "Great for operations, marketing, and no-code curious students."
+        ),
+        "sections": [
+            "Before: manually copying form responses into a sheet.",
+            "After: one automation that collects, labels, and notifies you.",
+            "Real work example: automate internship application tracking.",
+        ],
+        "action": "Automate one repetitive task this week and screenshot the workflow as proof.",
+    },
+    {
+        "id": "ai-tool-zapier-ai",
+        "content_group": "Learn One AI Tool Every Week",
+        "content_type": "Zapier AI",
+        "hook": "This week: learn Zapier AI to connect tools and save hours.",
+        "headline": "ZAPIER AI",
+        "subhead": "Connect apps.",
+        "visual": "path",
+        "setup": (
+            "Zapier AI helps students connect forms, sheets, email, and notifications quickly. "
+            "The employability signal is showing a workflow you built, not just a tool name."
+        ),
+        "sections": [
+            "Before: manual follow-ups and missed reminders.",
+            "After: one zap that moves data and sends alerts automatically.",
+            "Real work example: new form entry → sheet update → reminder email.",
+        ],
+        "action": "Build one simple Zap and document the before/after time saved.",
+    },
+    {
+        "id": "ai-challenge-portfolio-30",
+        "content_group": "AI Challenge of the Week",
+        "content_type": "Portfolio in 30 minutes",
+        "hook": "Can you build a portfolio website using AI in {ai_challenge_minutes}?",
+        "headline": "30 MIN BUILD",
+        "subhead": "Challenge accepted?",
+        "visual": "rocket",
+        "setup": (
+            "This week's challenge: build a portfolio website using AI in 30 minutes. "
+            "The goal is not perfection. The goal is a shipped page with your projects visible."
+        ),
+        "sections": [
+            "Before: no portfolio link on your resume.",
+            "After: one live page with projects, tools, and one outcome per project.",
+            "Top submissions get featured. Ship first, polish later.",
+        ],
+        "action": "Build one portfolio page in 30 minutes and share the link in the comments.",
+    },
+    {
+        "id": "ai-challenge-dataset-dashboard",
+        "content_group": "AI Challenge of the Week",
+        "content_type": "AI dataset dashboard",
+        "hook": "Use AI to analyze a dataset and create a dashboard.",
+        "headline": "DATA CHALLENGE",
+        "subhead": "Show your workflow.",
+        "visual": "laptop",
+        "setup": (
+            "This week's challenge: take a public dataset, use AI to help clean and analyze it, "
+            "then build a dashboard and explain one insight you verified yourself."
+        ),
+        "sections": [
+            "Before: raw CSV and no story.",
+            "After: cleaned data, one chart, one insight, one README line.",
+            "Students submit entries. Top submissions get featured.",
+        ],
+        "action": "Analyze one dataset with AI help and post one insight you checked manually.",
+    },
+    {
+        "id": "ai-resume-excel-workflow",
+        "content_group": "AI Resume Upgrade",
+        "content_type": "Excel plus AI workflow",
+        "hook": "Stop writing 'Good at Excel' on your resume.",
+        "headline": "AI RESUME",
+        "subhead": "Show the workflow.",
+        "visual": "document",
+        "setup": (
+            "Recruiters ignore generic tool claims. They respond to workflows with outcomes. "
+            "AI-assisted reporting is employable only when you show what you built and verified."
+        ),
+        "sections": [
+            "Before: 'Good at Excel.'",
+            "After: 'Built an automated reporting workflow using Excel + AI and validated every formula.'",
+            "The upgrade is proof, not tool listing.",
+        ],
+        "action": "Replace one tool line with one workflow line that includes AI and your review step.",
+    },
+    {
+        "id": "ai-resume-workflow-proof",
+        "content_group": "AI Resume Upgrade",
+        "content_type": "AI workflow proof",
+        "hook": "Your resume should show workflows, not tool names.",
+        "headline": "WORKFLOW PROOF",
+        "subhead": "AI plus judgment.",
+        "visual": "document",
+        "setup": (
+            "AI resume upgrades work when they show the full chain: problem, tool, AI assist, "
+            "human review, and result."
+        ),
+        "sections": [
+            "Before: 'Used Python and ChatGPT.'",
+            "After: 'Automated weekly report generation with Python + AI, then fixed edge cases manually.'",
+            "Recruiters trust process and outcome, not buzzwords.",
+        ],
+        "action": "Rewrite one project line using this chain: problem, tool, AI assist, review, result.",
+    },
+    {
+        "id": "ai-interview-practice-scoring",
+        "content_group": "AI Interview Practice",
+        "content_type": "AI interview scoring",
+        "hook": "Your interview answer might sound confident. But does it score well?",
+        "headline": "AI SCORE",
+        "subhead": "Practice before pressure.",
+        "visual": "interview",
+        "setup": (
+            "Students upload interview answers. AI scores confidence, clarity, communication, "
+            "and technical depth. The score matters less than the pattern it reveals."
+        ),
+        "sections": [
+            "Before: 'I think I answered well.'",
+            "After: scores on confidence, clarity, communication, and technical depth.",
+            "Weak clarity with high confidence is a common trap.",
+        ],
+        "action": "Record one 60-second project answer and score yourself on clarity and technical depth.",
+    },
+    {
+        "id": "ai-myth-replace-developers",
+        "content_group": "AI Mythbusters",
+        "content_type": "Developers replaced myth",
+        "hook": "❌ AI will replace all developers. ✅ AI will replace developers who don't use AI.",
+        "headline": "MYTH BUST",
+        "subhead": "Update the story.",
+        "visual": "spotlight",
+        "setup": (
+            "The scary headline is total replacement. The practical headline is selective leverage. "
+            "Developers who combine AI speed with strong judgment become more valuable."
+        ),
+        "sections": [
+            "Myth: all coding jobs disappear.",
+            "Reality: repetitive coding gets faster; architecture and ownership still matter.",
+            "The risk is not AI. The risk is ignoring it.",
+        ],
+        "action": "Use AI on one coding task this week and document what you still decided yourself.",
+    },
+    {
+        "id": "ai-myth-prompt-engineering",
+        "content_group": "AI Mythbusters",
+        "content_type": "Prompt engineering myth",
+        "hook": "❌ Prompt Engineering is a career. ✅ Understanding business problems is a career.",
+        "headline": "REAL CAREER",
+        "subhead": "Problems first.",
+        "visual": "message",
+        "setup": (
+            "Prompt tricks fade fast. Careers built on business understanding, communication, "
+            "and proof last longer."
+        ),
+        "sections": [
+            "Myth: learn prompts, get hired.",
+            "Reality: learn problems, build proof, use AI to move faster.",
+            "Employers hire people who solve useful problems, not people who write fancy prompts.",
+        ],
+        "action": "Pick one business problem and solve it with AI help, then explain the outcome plainly.",
+    },
+    {
+        "id": "future-skill-agentic-ai",
+        "content_group": "Future Skills",
+        "content_type": "Agentic AI",
+        "hook": "This week: Agentic AI — explained in plain English.",
+        "headline": "AGENTIC AI",
+        "subhead": "Future skill.",
+        "visual": "rocket",
+        "setup": (
+            "Agentic AI means AI that can plan steps, use tools, and complete tasks with guidance. "
+            "Think less 'one answer' and more 'one workflow with checkpoints.'"
+        ),
+        "sections": [
+            "Before: asking AI one question at a time.",
+            "After: giving AI a goal, tools, and review points across a workflow.",
+            "Practical example: research → draft → verify → publish.",
+        ],
+        "action": "Run one small task as a 3-step agent workflow and review each step yourself.",
+    },
+    {
+        "id": "future-skill-mcp",
+        "content_group": "Future Skills",
+        "content_type": "MCP",
+        "hook": "Next week: MCP — what it is and why it matters.",
+        "headline": "MCP",
+        "subhead": "Connect AI to tools.",
+        "visual": "path",
+        "setup": (
+            "MCP (Model Context Protocol) helps AI connect to external tools and data safely. "
+            "In simple terms: it lets AI work with your apps instead of guessing."
+        ),
+        "sections": [
+            "Before: AI answers from memory only.",
+            "After: AI reads live data from connected tools with permission.",
+            "Practical example: AI pulling project tasks from Notion or code context from GitHub.",
+        ],
+        "action": "Learn one MCP use case relevant to your target role and write it in one sentence.",
+    },
+    {
+        "id": "future-skill-rag",
+        "content_group": "Future Skills",
+        "content_type": "RAG",
+        "hook": "Next up: RAG — how AI uses your documents instead of guessing.",
+        "headline": "RAG",
+        "subhead": "Grounded answers.",
+        "visual": "document",
+        "setup": (
+            "RAG (Retrieval-Augmented Generation) means AI searches your documents first, "
+            "then answers using that evidence. Less hallucination. More useful work."
+        ),
+        "sections": [
+            "Before: AI inventing facts about your project.",
+            "After: AI answering from your PDFs, notes, and codebase snippets.",
+            "Practical example: chat with your project README and meeting notes.",
+        ],
+        "action": "Try RAG on one project folder and ask one question only your docs can answer.",
+    },
+    {
+        "id": "future-skill-vector-databases",
+        "content_group": "Future Skills",
+        "content_type": "Vector Databases",
+        "hook": "Next: Vector Databases — the memory behind smart AI search.",
+        "headline": "VECTOR DB",
+        "subhead": "Search by meaning.",
+        "visual": "laptop",
+        "setup": (
+            "Vector databases store meaning, not just keywords. They help AI find the most "
+            "relevant notes, docs, or code when answering questions."
+        ),
+        "sections": [
+            "Before: keyword search misses the right document.",
+            "After: semantic search finds the closest useful chunk.",
+            "Practical example: search 100 project notes and pull the best three matches.",
+        ],
+        "action": "Explain vector search in one sentence using a real example from your projects.",
+    },
 ]
 
 
@@ -898,6 +1415,24 @@ def choose_human_hook(rng: random.Random, angle: dict[str, Any]) -> str:
             "Don't call them sales interns. Call them Campus Growth Partners.",
             "Want to earn while helping students get hired?",
         ],
+        "Jobs AI won't replace": [
+            "Everyone asks which jobs AI will take. Fewer ask which jobs still need human judgment.",
+        ],
+        "AI made developer faster": [
+            f"{angle['hook']} The fear story is replacement. The real story is leverage.",
+        ],
+        "Portfolio in 30 minutes": [
+            f"{angle['hook']} Ship first. Polish later.",
+        ],
+        "Excel plus AI workflow": [
+            "Stop writing 'Good at Excel.' Show the workflow.",
+        ],
+        "Developers replaced myth": [
+            "The scary headline is total replacement. The practical headline is selective leverage.",
+        ],
+        "Agentic AI": [
+            f"{angle['hook']} Less one answer. More one workflow with checkpoints.",
+        ],
     }
     return rng.choice(hooks_by_type.get(angle["content_type"], [angle["hook"]]))
 
@@ -1067,6 +1602,125 @@ def build_before_after(angle: dict[str, Any]) -> str:
             "After\n"
             "Building a pipeline of verified internships for your campus."
         ),
+        "Jobs AI won't replace": (
+            "Before\n"
+            "AI will take every job.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Focus on roles needing judgment, trust, ownership, and real-world context."
+        ),
+        "AI made developer faster": (
+            "Before\n"
+            "Writing boilerplate, tests, and docs manually for hours.\n\n"
+            "↓\n\n"
+            "After\n"
+            "AI drafts. Human reviews. Human ships."
+        ),
+        "AI plus Humans": (
+            "Before\n"
+            "Manual research, drafts, and analysis.\n\n"
+            "↓\n\n"
+            "After\n"
+            "AI-assisted speed with human verification and proof."
+        ),
+        "Recruiter AI evaluation": (
+            "Before\n"
+            "I used ChatGPT for the project.\n\n"
+            "↓\n\n"
+            "After\n"
+            "AI drafted the layout. I validated logic and fixed three edge cases."
+        ),
+        "Mention AI on resume": (
+            "Before\n"
+            "Good with AI tools.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Built an automated reporting workflow using Excel + AI and validated every formula."
+        ),
+        "ChatGPT": (
+            "Before\n"
+            "Vague prompts. Copied answers.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Context, options, edit, and one resume bullet with metrics."
+        ),
+        "Portfolio in 30 minutes": (
+            "Before\n"
+            "No portfolio link on your resume.\n\n"
+            "↓\n\n"
+            "After\n"
+            "One live page with projects, tools, and outcomes."
+        ),
+        "AI dataset dashboard": (
+            "Before\n"
+            "Raw CSV and no story.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Cleaned data, one chart, one insight, one README line."
+        ),
+        "Excel plus AI workflow": (
+            "Before\n"
+            "Good at Excel.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Built an automated reporting workflow using Excel + AI and validated every formula."
+        ),
+        "AI workflow proof": (
+            "Before\n"
+            "Used Python and ChatGPT.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Automated weekly reports with Python + AI, then fixed edge cases manually."
+        ),
+        "AI interview scoring": (
+            "Before\n"
+            "I think I answered well.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Scored on confidence, clarity, communication, and technical depth."
+        ),
+        "Developers replaced myth": (
+            "Myth\n"
+            "AI will replace all developers.\n\n"
+            "↓\n\n"
+            "Reality\n"
+            "AI will replace developers who do not use AI."
+        ),
+        "Prompt engineering myth": (
+            "Myth\n"
+            "Prompt Engineering is a career.\n\n"
+            "↓\n\n"
+            "Reality\n"
+            "Understanding business problems is a career."
+        ),
+        "Agentic AI": (
+            "Before\n"
+            "One question at a time.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Goal, tools, review points across a workflow."
+        ),
+        "MCP": (
+            "Before\n"
+            "AI answers from memory only.\n\n"
+            "↓\n\n"
+            "After\n"
+            "AI reads live data from connected tools with permission."
+        ),
+        "RAG": (
+            "Before\n"
+            "AI inventing facts about your project.\n\n"
+            "↓\n\n"
+            "After\n"
+            "AI answering from your PDFs, notes, and codebase snippets."
+        ),
+        "Vector Databases": (
+            "Before\n"
+            "Keyword search misses the right document.\n\n"
+            "↓\n\n"
+            "After\n"
+            "Semantic search finds the closest useful chunk."
+        ),
     }
     if angle["content_type"] in before_after_by_type:
         return before_after_by_type[angle["content_type"]]
@@ -1136,6 +1790,61 @@ def build_pillar_question(angle: dict[str, Any]) -> str:
             "□ Yes, I want to earn while helping\n"
             "□ Maybe, tell me more\n"
             "□ Not now"
+        ),
+        "AI Career Survival": (
+            "How are you adapting to AI at work?\n\n"
+            "□ Learning AI tools\n"
+            "□ Showing AI-assisted proof\n"
+            "□ Ignoring AI for now\n"
+            "□ Worried about replacement\n"
+            "□ Already using AI daily"
+        ),
+        "Learn One AI Tool Every Week": (
+            "Which AI tool do you want to learn next?\n\n"
+            "□ ChatGPT\n"
+            "□ Claude\n"
+            "□ Cursor\n"
+            "□ GitHub Copilot\n"
+            "□ Other"
+        ),
+        "AI Challenge of the Week": (
+            "Would you try this week's AI challenge?\n\n"
+            "□ Yes, I'll submit\n"
+            "□ Maybe, need more time\n"
+            "□ Already building\n"
+            "□ Not this week"
+        ),
+        "AI Resume Upgrade": (
+            "Which resume line needs an AI workflow upgrade?\n\n"
+            "□ Excel / Sheets\n"
+            "□ Python / coding\n"
+            "□ Design / portfolio\n"
+            "□ Research / analysis\n"
+            "□ Communication"
+        ),
+        "AI Interview Practice": (
+            "Which interview skill needs the most practice?\n\n"
+            "□ Confidence\n"
+            "□ Clarity\n"
+            "□ Communication\n"
+            "□ Technical depth\n"
+            "□ All of the above"
+        ),
+        "AI Mythbusters": (
+            "Which AI myth did you believe recently?\n\n"
+            "□ AI replaces all jobs\n"
+            "□ Prompt engineering is enough\n"
+            "□ AI means no learning\n"
+            "□ AI use hurts your resume\n"
+            "□ None of these"
+        ),
+        "Future Skills": (
+            "Which future skill should we explain next?\n\n"
+            "□ Agentic AI\n"
+            "□ MCP\n"
+            "□ RAG\n"
+            "□ Vector Databases\n"
+            "□ Something else"
         ),
     }
     return questions_by_group.get(
@@ -1292,6 +2001,34 @@ def build_curiosity_visual(angle: dict[str, Any]) -> str:
             "Employer desk with two JD versions, application counter, and stipend "
             "benchmark chart showing how clarity changes applicant quality."
         ),
+        "AI Career Survival": (
+            "Split desk scene: left shows 'AI vs Humans' headline crossed out, "
+            "right shows 'AI + Humans' with a developer workflow and review checklist."
+        ),
+        "Learn One AI Tool Every Week": (
+            "Student desk with one AI tool open on laptop, sticky notes showing "
+            "a real work use case, and a before/after output comparison."
+        ),
+        "AI Challenge of the Week": (
+            "Challenge board with timer showing 30 minutes, a portfolio website "
+            "in progress on laptop, and a 'Submit entry' card."
+        ),
+        "AI Resume Upgrade": (
+            "Resume on desk with 'Good at Excel' crossed out and replaced by "
+            "'Built automated reporting workflow using Excel + AI' highlighted."
+        ),
+        "AI Interview Practice": (
+            "Interview practice screen scoring confidence, clarity, communication, "
+            "and technical depth with one weak area circled in red."
+        ),
+        "AI Mythbusters": (
+            "Myth-buster board with red X myths and green check realities side by side, "
+            "investigative sticky-note style."
+        ),
+        "Future Skills": (
+            "Future skills timeline board: Agentic AI, MCP, RAG, Vector Databases "
+            "with simple plain-English labels and one practical example each."
+        ),
     }
     return scenes_by_type.get(
         angle["content_type"],
@@ -1344,6 +2081,41 @@ def build_insight(rng: random.Random, angle: dict[str, Any], *, student_name: st
             "Opportunities come from relationships, not job boards alone.",
             "One verified employer connection can help dozens of students.",
         ],
+        "AI Career Survival": [
+            "Same career. Different leverage.",
+            "AI is not the competition. AI plus you is.",
+            "The edge is judgment, not just prompting.",
+        ],
+        "Learn One AI Tool Every Week": [
+            "Same week. Different skill.",
+            "One tool learned with proof beats ten tools listed on a resume.",
+            "Real work examples make AI tools employable.",
+        ],
+        "AI Challenge of the Week": [
+            "Same time box. Different outcome.",
+            "A shipped project in 30 minutes beats a perfect plan never started.",
+            "Challenges turn AI curiosity into visible proof.",
+        ],
+        "AI Resume Upgrade": [
+            "Same tool. Different resume line.",
+            "Workflows beat tool names.",
+            "Show what AI helped and what you verified.",
+        ],
+        "AI Interview Practice": [
+            "Same answer. Different score.",
+            "Confidence without clarity still fails interviews.",
+            "Practice reveals the gap before recruiters do.",
+        ],
+        "AI Mythbusters": [
+            "Same headline. Different truth.",
+            "Scary myths spread fast. Practical truths hire faster.",
+            "Update the story before the market updates you.",
+        ],
+        "Future Skills": [
+            "Same future. Different preparation.",
+            "Future skills matter only when you can explain them simply.",
+            "Learn the concept, then show one practical example.",
+        ],
     }
     insight_lines_by_group = {
         "Student Employability": (
@@ -1373,6 +2145,34 @@ def build_insight(rng: random.Random, angle: dict[str, Any], *, student_name: st
         "Campus Ambassador / Job Acquisition": (
             f"For a student like {student_name}, this is the difference between "
             "waiting for roles and bringing verified opportunities to campus."
+        ),
+        "AI Career Survival": (
+            f"For a student like {student_name}, this is the difference between "
+            "fearing AI and using it with proof, judgment, and ownership."
+        ),
+        "Learn One AI Tool Every Week": (
+            f"For a student like {student_name}, this is the difference between "
+            "listing AI tools and showing one real workflow you can explain."
+        ),
+        "AI Challenge of the Week": (
+            "For students building proof this week, this is the difference between "
+            "watching AI demos and shipping one entry worth featuring."
+        ),
+        "AI Resume Upgrade": (
+            f"For a student like {student_name}, this is the difference between "
+            "a tool list and a resume line that shows AI-assisted work plus review."
+        ),
+        "AI Interview Practice": (
+            f"For a student like {student_name}, this is the difference between "
+            "thinking you sound confident and scoring well on clarity and depth."
+        ),
+        "AI Mythbusters": (
+            "For students entering the AI era, this is the difference between "
+            "viral fear and the practical truth recruiters actually hire for."
+        ),
+        "Future Skills": (
+            "For students preparing for next year's market, this is the difference between "
+            "buzzword collecting and understanding one future skill with a real example."
         ),
     }
     group = angle.get("content_group", "Student Employability")
