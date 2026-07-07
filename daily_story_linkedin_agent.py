@@ -559,7 +559,7 @@ def build_content_assets(
     )
     visual = (
         f"Photorealistic LinkedIn image concept: {angle['headline']} - "
-        f"{angle['subhead']}. Show students in a realistic campus or early-career "
+        f"{angle['subhead'].rstrip('.')}. Show students in a realistic campus or early-career "
         "workspace moment with curiosity, proof, and action visible."
     )
     cta = f"Stop waiting to feel ready. Start here: {SIGNUP_URL}"

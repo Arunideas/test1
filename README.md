@@ -237,6 +237,10 @@ Pass that file to the automation:
 python3 daily_story_linkedin_agent.py --metrics-path "/path/to/metrics.json"
 ```
 
+If no metrics file is provided, built-in sample metrics are used. For production
+scheduled posts, provide a metrics file populated from real assessment, resume,
+skill-gap, college, and role-ranking data.
+
 Dry-run with deterministic output for testing:
 
 ```bash
