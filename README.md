@@ -248,6 +248,19 @@ one takeaway, and a checkbox question. They do not include a website CTA.
 Each post also ends with meaningful hashtags based on the content pillar and
 topic (for example `#WorldOfInterns`, `#ResumeTips`, `#Claude`).
 
+Monday **AI Tool of the Week** posts also end with a fixed
+**Why Students Should Care** block:
+
+```text
+Why this matters
+
+✓ Save 2 hours/week
+✓ Improve assignments
+✓ Prepare for interviews
+✓ Build better projects
+✓ Write better documentation
+```
+
 Dry-run generation requires OpenAI:
 
 ```bash

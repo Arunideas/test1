@@ -237,6 +237,14 @@ AI_TOOL_CONTENT_TYPES = frozenset(
     }
 )
 
+AI_TOOL_WHY_STUDENTS_SHOULD_CARE_BLOCK = """Why this matters
+
+✓ Save 2 hours/week
+✓ Improve assignments
+✓ Prepare for interviews
+✓ Build better projects
+✓ Write better documentation"""
+
 RESUME_MAKEOVER_CONTENT_TYPES = frozenset(
     {
         "Resume Before vs After",
@@ -1910,6 +1918,12 @@ def build_content_user_prompt(angle: dict[str, Any], *, series: WeeklySeries) ->
         f"Proof points:\n{sections}\n"
         f"Suggested action: {angle.get('action', '')}\n"
         f"Write for today's {series.label} installment. Do not repeat the series title in the opening line.\n"
+        + (
+            "Do not include a Why this matters section or student benefit checklist; "
+            "that block is appended automatically after generation.\n"
+            if series.key == "ai_tool_of_the_week"
+            else ""
+        )
     )
 
 
@@ -1924,6 +1938,26 @@ def format_hashtag(tag: str) -> str:
 
 def extract_hashtags(text: str) -> set[str]:
     return {normalize_hashtag(match) for match in re.findall(r"#(\w+)", text) if normalize_hashtag(match)}
+
+
+def strip_ai_tool_why_students_should_care(text: str) -> str:
+    body = text.strip()
+    for marker in (
+        "Why Students Should Care",
+        "Why this matters",
+        "✓ Save 2 hours/week",
+    ):
+        index = body.find(marker)
+        if index != -1:
+            body = body[:index].rstrip()
+    return body
+
+
+def append_ai_tool_why_students_should_care(caption: str) -> str:
+    body = strip_ai_tool_why_students_should_care(caption)
+    if not body:
+        return AI_TOOL_WHY_STUDENTS_SHOULD_CARE_BLOCK
+    return f"{body}\n\n{AI_TOOL_WHY_STUDENTS_SHOULD_CARE_BLOCK}"
 
 
 def build_hashtags_for_angle(
@@ -3021,6 +3055,8 @@ def build_story(
                     f"Generated story must be between {MIN_POST_WORDS} and "
                     f"{MAX_POST_WORDS} words; got {count}."
                 )
+            if series.key == "ai_tool_of_the_week":
+                caption_body = append_ai_tool_why_students_should_care(caption_body)
             caption = append_hashtags_to_caption(caption_body, angle, series=series)
             caption = prepend_series_header(caption, series)
             assets = {
