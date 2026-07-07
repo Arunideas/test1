@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Create and post a daily student motivation story to LinkedIn.
+"""Create and post daily employability content to LinkedIn using AI only.
 
-The agent creates a short conversation-style story, tracks every used story in
-a JSON history file, generates a related PNG image card, and can post both to
-LinkedIn through the existing LinkedIn posting agent.
+The agent selects a content brief, generates the LinkedIn caption with an OpenAI
+LLM, generates a photorealistic image with OpenAI, tracks used content in a JSON
+history file, and can post both to LinkedIn.
 """
 
 from __future__ import annotations
@@ -30,10 +30,33 @@ from linkedin_company_page_agent import LinkedInCompanyPageAgent, LinkedInPostEr
 
 DEFAULT_HISTORY_PATH = Path("daily_story_history.json")
 DEFAULT_OUTPUT_DIR = Path("daily_story_output")
+DEFAULT_OPENAI_TEXT_MODEL = "gpt-4o-mini"
 DEFAULT_OPENAI_IMAGE_MODEL = "gpt-image-1"
 DEFAULT_OPENAI_IMAGE_SIZE = "1024x1024"
+DEFAULT_OPENAI_CHAT_URL = "https://api.openai.com/v1/chat/completions"
+MAX_CONTENT_GENERATION_ATTEMPTS = 3
 MIN_POST_WORDS = 35
 MAX_POST_WORDS = 180
+
+CONTENT_SYSTEM_PROMPT = """You write LinkedIn posts for World of Interns.
+
+Write one post that sounds human, specific, and scroll-stopping.
+
+Rules:
+- Stay between WORD_MIN and WORD_MAX words
+- Open with a sharp hook
+- Show proof with a before/after, concrete example, or scenario — do not lecture
+- Include one short takeaway line
+- End with an interactive checkbox question; put each option on its own line starting with □
+- Do not use labels like "Topic:", "Insight:", "Hook:", or "Proof:"
+- Do not add website links or signup CTAs
+- Use the provided pillar, brief, and metrics naturally when relevant
+- Sound like a real LinkedIn post, not a template
+
+Return JSON with exactly these keys:
+- caption: the full LinkedIn post text ready to publish
+- image_prompt: a detailed prompt for a square photorealistic curiosity-driven image using objects, desks, screens, resumes, dashboards, or evidence — not generic stock photos of students smiling
+"""
 
 DEFAULT_METRICS = {
     "python_assessment_students": "12,487",
@@ -1375,6 +1398,88 @@ def render_content_angle(angle: dict[str, Any], metrics: dict[str, str]) -> dict
     return rendered
 
 
+def openai_chat_completion(
+    *,
+    api_key: str,
+    model: str,
+    messages: list[dict[str, str]],
+    temperature: float = 0.9,
+) -> dict[str, Any]:
+    payload = {
+        "model": model,
+        "messages": messages,
+        "temperature": temperature,
+        "response_format": {"type": "json_object"},
+    }
+    request = urllib.request.Request(
+        DEFAULT_OPENAI_CHAT_URL,
+        data=json.dumps(payload).encode("utf-8"),
+        method="POST",
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        },
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=120) as response:
+            response_body = response.read().decode("utf-8")
+    except urllib.error.HTTPError as error:
+        error_body = error.read().decode("utf-8", errors="replace")
+        raise RuntimeError(
+            f"OpenAI chat completion returned HTTP {error.code}: {error_body}"
+        ) from error
+    except urllib.error.URLError as error:
+        raise RuntimeError(f"Unable to reach OpenAI chat API: {error.reason}") from error
+
+    data = json.loads(response_body)
+    content = data.get("choices", [{}])[0].get("message", {}).get("content", "")
+    if not content:
+        raise RuntimeError(f"OpenAI chat response did not include content: {data}")
+    parsed = json.loads(content)
+    if not isinstance(parsed, dict):
+        raise ValueError("OpenAI chat response must be a JSON object.")
+    return parsed
+
+
+def build_content_user_prompt(angle: dict[str, Any]) -> str:
+    sections = "\n".join(f"- {section}" for section in angle.get("sections", []))
+    return (
+        f"WORD_MIN: {MIN_POST_WORDS}\n"
+        f"WORD_MAX: {MAX_POST_WORDS}\n\n"
+        f"Content pillar: {angle.get('content_group', 'General')}\n"
+        f"Content type: {angle['content_type']}\n"
+        f"Hook direction: {angle['hook']}\n"
+        f"Headline: {angle['headline']}\n"
+        f"Subhead: {angle['subhead']}\n"
+        f"Setup: {angle.get('setup', '')}\n"
+        f"Proof points:\n{sections}\n"
+        f"Suggested action: {angle.get('action', '')}\n"
+    )
+
+
+def generate_ai_content(
+    angle: dict[str, Any],
+    *,
+    api_key: str,
+    model: str,
+) -> dict[str, str]:
+    parsed = openai_chat_completion(
+        api_key=api_key,
+        model=model,
+        messages=[
+            {"role": "system", "content": CONTENT_SYSTEM_PROMPT},
+            {"role": "user", "content": build_content_user_prompt(angle)},
+        ],
+    )
+    caption = str(parsed.get("caption", "")).strip()
+    image_prompt = str(parsed.get("image_prompt", "")).strip()
+    if not caption:
+        raise ValueError("OpenAI content response missing caption.")
+    if not image_prompt:
+        raise ValueError("OpenAI content response missing image_prompt.")
+    return {"caption": caption, "image_prompt": image_prompt}
+
+
 def choose_human_hook(rng: random.Random, angle: dict[str, Any]) -> str:
     hooks_by_type = {
         "Resume Before vs After": [
@@ -2372,29 +2477,46 @@ def build_story(
     angle: dict[str, Any],
     *,
     metrics: dict[str, str],
+    api_key: str,
+    text_model: str,
 ) -> Story:
+    del rng
     angle = render_content_angle(angle, metrics)
-    name = rng.choice(NAMES)
-    assets = build_content_assets(rng, angle, student_name=name)
-    story_text = format_content_text(assets)
-    count = word_count(story_text)
-    if not MIN_POST_WORDS <= count <= MAX_POST_WORDS:
-        raise ValueError(
-            f"Generated story must be between {MIN_POST_WORDS} and "
-            f"{MAX_POST_WORDS} words; got {count}."
-        )
-    unique_id = f"{angle['id']}-{story_hash(story_text)[:12]}"
-    return Story(
-        story_id=unique_id,
-        text=story_text,
-        content_group=angle.get("content_group", "General"),
-        content_type=angle["content_type"],
-        assets=assets,
-        hook=angle["hook"],
-        headline=angle["headline"],
-        subhead=angle["subhead"],
-        visual=angle["visual"],
-        word_count=count,
+    last_error: Exception | None = None
+    for _ in range(MAX_CONTENT_GENERATION_ATTEMPTS):
+        try:
+            generated = generate_ai_content(angle, api_key=api_key, model=text_model)
+            caption = generated["caption"]
+            count = word_count(caption)
+            if not MIN_POST_WORDS <= count <= MAX_POST_WORDS:
+                raise ValueError(
+                    f"Generated story must be between {MIN_POST_WORDS} and "
+                    f"{MAX_POST_WORDS} words; got {count}."
+                )
+            assets = {
+                "caption": caption,
+                "visual": generated["image_prompt"],
+                "generation": "openai_llm",
+                "prompt_brief": angle["id"],
+            }
+            unique_id = f"{angle['id']}-{story_hash(caption)[:12]}"
+            return Story(
+                story_id=unique_id,
+                text=caption,
+                content_group=angle.get("content_group", "General"),
+                content_type=angle["content_type"],
+                assets=assets,
+                hook=angle["hook"],
+                headline=angle["headline"],
+                subhead=angle["subhead"],
+                visual=angle["visual"],
+                word_count=count,
+            )
+        except (ValueError, RuntimeError, json.JSONDecodeError) as error:
+            last_error = error
+            continue
+    raise ValueError(
+        f"Failed to generate AI content for {angle['id']}: {last_error}"
     )
 
 
@@ -2402,15 +2524,31 @@ def choose_unused_story(
     history: dict[str, Any],
     *,
     metrics: dict[str, str],
+    api_key: str,
+    text_model: str,
     seed: int | None = None,
 ) -> Story:
     used_hashes = set(history.get("used_hashes", []))
     rng = random.Random(seed)
-    for _ in range(300):
-        story = build_story(rng, rng.choice(CONTENT_ANGLES), metrics=metrics)
+    angles = list(CONTENT_ANGLES)
+    rng.shuffle(angles)
+    errors: list[str] = []
+    for angle in angles:
+        try:
+            story = build_story(
+                rng,
+                angle,
+                metrics=metrics,
+                api_key=api_key,
+                text_model=text_model,
+            )
+        except ValueError as error:
+            errors.append(str(error))
+            continue
         if story_hash(story.text) not in used_hashes:
             return story
-    raise RuntimeError("Could not create a new unused story after 300 attempts.")
+    detail = errors[-1] if errors else "No unused content available."
+    raise RuntimeError(f"Could not create a new unused story after AI generation attempts. {detail}")
 
 
 def sanitize_filename(value: str) -> str:
@@ -2588,23 +2726,10 @@ def draw_visual(canvas: PngCanvas, visual: str) -> None:
 
 
 def build_photographic_image_prompt(story: Story) -> str:
-    return (
-        "Create a square photorealistic LinkedIn image that tells a clear micro-story. "
-        "Do not make a generic stock photo of a student holding a resume or laptop. "
-        "The image must create curiosity through objects, evidence, and tension: "
-        "rejected resumes, sticky notes, dashboards, scorecards, application counts, "
-        "highlighted gaps, recruiter desk details, before/after profile screens, or "
-        "assessment results. Topic: "
-        f"{story.content_type}. "
-        f"{story.hook} "
-        f"Visual direction: {story.assets['visual']} "
-        "Use a cinematic realistic style with natural lighting and shallow depth of "
-        "field. People can appear, but the central story must be told by the desk, "
-        "screen, papers, notes, or dashboard. Add subtle editorial overlays like "
-        "circles, arrows, red/green stamps, or notification-style labels. Keep any "
-        "text minimal, large, and readable. Do not include brand logos. The image "
-        "should make someone pause and ask what happened before reading the post."
-    )
+    llm_prompt = story.assets.get("visual", "").strip()
+    if llm_prompt:
+        return llm_prompt
+    raise ValueError("AI image prompt is missing from generated story assets.")
 
 
 def create_ai_story_image(
@@ -2729,35 +2854,22 @@ def create_story_image(
     story: Story,
     output_dir: Path,
     *,
-    image_mode: str,
-    openai_api_key: str | None,
+    api_key: str,
     openai_image_model: str,
     openai_image_size: str,
-    require_ai_image: bool,
 ) -> tuple[Path, str]:
-    if image_mode == "card":
-        return create_card_story_image(story, output_dir), "card"
-
-    if not openai_api_key:
-        if require_ai_image:
-            raise RuntimeError("OPENAI_API_KEY is required when --require-ai-image is set.")
-        return create_card_story_image(story, output_dir), "card_fallback_missing_openai_key"
-
-    try:
-        return (
-            create_ai_story_image(
-                story,
-                output_dir,
-                api_key=openai_api_key,
-                model=openai_image_model,
-                size=openai_image_size,
-            ),
-            "ai_photo",
-        )
-    except RuntimeError:
-        if require_ai_image:
-            raise
-        return create_card_story_image(story, output_dir), "card_fallback_ai_error"
+    if not api_key:
+        raise RuntimeError("OPENAI_API_KEY is required for AI image generation.")
+    return (
+        create_ai_story_image(
+            story,
+            output_dir,
+            api_key=api_key,
+            model=openai_image_model,
+            size=openai_image_size,
+        ),
+        "ai_photo",
+    )
 
 
 def record_story(
@@ -2809,15 +2921,14 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         help="Optional JSON metrics file for data-led employability posts.",
     )
     parser.add_argument(
-        "--image-mode",
-        choices=("ai", "card"),
-        default=os.getenv("DAILY_STORY_IMAGE_MODE", "ai"),
-        help="Use AI photorealistic images or the local graphic card fallback.",
-    )
-    parser.add_argument(
         "--openai-api-key",
         default=os.getenv("OPENAI_API_KEY"),
-        help="OpenAI API key used for AI photo generation.",
+        help="OpenAI API key required for AI caption and image generation.",
+    )
+    parser.add_argument(
+        "--openai-text-model",
+        default=os.getenv("OPENAI_TEXT_MODEL", DEFAULT_OPENAI_TEXT_MODEL),
+        help="OpenAI chat model for LinkedIn caption generation.",
     )
     parser.add_argument(
         "--openai-image-model",
@@ -2828,11 +2939,6 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         "--openai-image-size",
         default=os.getenv("OPENAI_IMAGE_SIZE", DEFAULT_OPENAI_IMAGE_SIZE),
         help="OpenAI image size for AI photo generation.",
-    )
-    parser.add_argument(
-        "--require-ai-image",
-        action="store_true",
-        help="Fail instead of falling back to the card image when AI generation fails.",
     )
     parser.add_argument(
         "--seed",
@@ -2879,17 +2985,23 @@ def main(argv: list[str] | None = None) -> int:
     output_dir = Path(args.output_dir)
 
     try:
+        if not args.openai_api_key:
+            raise ValueError("OPENAI_API_KEY is required for AI caption and image generation.")
         history = load_history(history_path)
         metrics = load_metrics(Path(args.metrics_path) if args.metrics_path else None)
-        story = choose_unused_story(history, metrics=metrics, seed=args.seed)
+        story = choose_unused_story(
+            history,
+            metrics=metrics,
+            api_key=args.openai_api_key,
+            text_model=args.openai_text_model,
+            seed=args.seed,
+        )
         image_path, image_generation = create_story_image(
             story,
             output_dir,
-            image_mode=args.image_mode,
-            openai_api_key=args.openai_api_key,
+            api_key=args.openai_api_key,
             openai_image_model=args.openai_image_model,
             openai_image_size=args.openai_image_size,
-            require_ai_image=args.require_ai_image,
         )
     except (OSError, ValueError, RuntimeError, json.JSONDecodeError) as error:
         print(f"Error: {error}", file=sys.stderr)
