@@ -9,6 +9,7 @@ LinkedIn through the existing LinkedIn posting agent.
 from __future__ import annotations
 
 import argparse
+import base64
 import datetime as dt
 import hashlib
 import json
@@ -17,6 +18,8 @@ import random
 import re
 import struct
 import sys
+import urllib.error
+import urllib.request
 import zlib
 from dataclasses import dataclass
 from pathlib import Path
@@ -28,6 +31,8 @@ from linkedin_company_page_agent import LinkedInCompanyPageAgent, LinkedInPostEr
 SIGNUP_URL = "https://student.worldofinterns.com"
 DEFAULT_HISTORY_PATH = Path("daily_story_history.json")
 DEFAULT_OUTPUT_DIR = Path("daily_story_output")
+DEFAULT_OPENAI_IMAGE_MODEL = "gpt-image-1"
+DEFAULT_OPENAI_IMAGE_SIZE = "1024x1024"
 MIN_POST_WORDS = 200
 MAX_POST_WORDS = 500
 
@@ -538,7 +543,78 @@ def draw_visual(canvas: PngCanvas, visual: str) -> None:
         canvas.rect(690, 560, 120, 365, orange)
 
 
-def create_story_image(story: Story, output_dir: Path) -> Path:
+def build_photographic_image_prompt(story: Story) -> str:
+    return (
+        "Create a square photorealistic LinkedIn social image for students. "
+        "Show diverse college students or early-career young adults in a real "
+        "life moment connected to this story: "
+        f"{story.hook} "
+        "The image should feel cinematic, curious, emotional, and aspirational, "
+        "with natural lighting, realistic faces, modern campus or workspace "
+        "environment, shallow depth of field, and a clear focal person. Add "
+        "subtle editorial graphic modifications on top, such as a translucent "
+        "gradient, small arrow marks, notification-style highlights, or a "
+        "spotlight effect. Make it attractive for LinkedIn and motivational "
+        "for students to click or sign up. Do not include brand logos. If text "
+        "is included, keep it minimal and readable: "
+        f"'{story.headline}' and 'Start here'."
+    )
+
+
+def create_ai_story_image(
+    story: Story,
+    output_dir: Path,
+    *,
+    api_key: str,
+    model: str = DEFAULT_OPENAI_IMAGE_MODEL,
+    size: str = DEFAULT_OPENAI_IMAGE_SIZE,
+) -> Path:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    image_path = (
+        output_dir
+        / f"{dt.date.today().isoformat()}-{sanitize_filename(story.story_id)}-photo.png"
+    )
+    payload = {
+        "model": model,
+        "prompt": build_photographic_image_prompt(story),
+        "size": size,
+    }
+    request = urllib.request.Request(
+        "https://api.openai.com/v1/images/generations",
+        data=json.dumps(payload).encode("utf-8"),
+        method="POST",
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        },
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=120) as response:
+            response_body = response.read().decode("utf-8")
+    except urllib.error.HTTPError as error:
+        error_body = error.read().decode("utf-8", errors="replace")
+        raise RuntimeError(
+            f"OpenAI image generation returned HTTP {error.code}: {error_body}"
+        ) from error
+    except urllib.error.URLError as error:
+        raise RuntimeError(f"Unable to reach OpenAI image API: {error.reason}") from error
+
+    data = json.loads(response_body)
+    first_image = data.get("data", [{}])[0]
+    if first_image.get("b64_json"):
+        image_path.write_bytes(base64.b64decode(first_image["b64_json"]))
+        return image_path
+
+    if first_image.get("url"):
+        download = urllib.request.Request(first_image["url"], method="GET")
+        with urllib.request.urlopen(download, timeout=120) as response:
+            image_path.write_bytes(response.read())
+        return image_path
+
+    raise RuntimeError(f"OpenAI image response did not include image data: {data}")
+
+
+def create_card_story_image(story: Story, output_dir: Path) -> Path:
     output_dir.mkdir(parents=True, exist_ok=True)
     image_path = output_dir / f"{dt.date.today().isoformat()}-{sanitize_filename(story.story_id)}.png"
 
@@ -603,11 +679,47 @@ def create_story_image(story: Story, output_dir: Path) -> Path:
     return image_path
 
 
+def create_story_image(
+    story: Story,
+    output_dir: Path,
+    *,
+    image_mode: str,
+    openai_api_key: str | None,
+    openai_image_model: str,
+    openai_image_size: str,
+    require_ai_image: bool,
+) -> tuple[Path, str]:
+    if image_mode == "card":
+        return create_card_story_image(story, output_dir), "card"
+
+    if not openai_api_key:
+        if require_ai_image:
+            raise RuntimeError("OPENAI_API_KEY is required when --require-ai-image is set.")
+        return create_card_story_image(story, output_dir), "card_fallback_missing_openai_key"
+
+    try:
+        return (
+            create_ai_story_image(
+                story,
+                output_dir,
+                api_key=openai_api_key,
+                model=openai_image_model,
+                size=openai_image_size,
+            ),
+            "ai_photo",
+        )
+    except RuntimeError:
+        if require_ai_image:
+            raise
+        return create_card_story_image(story, output_dir), "card_fallback_ai_error"
+
+
 def record_story(
     history: dict[str, Any],
     story: Story,
     *,
     image_path: Path,
+    image_generation: str,
     post_result: dict[str, Any] | None,
     dry_run: bool,
 ) -> None:
@@ -618,6 +730,7 @@ def record_story(
         "word_count": story.word_count,
         "text": story.text,
         "image_path": str(image_path),
+        "image_generation": image_generation,
         "posted_at": dt.datetime.now(dt.timezone.utc).isoformat(),
         "dry_run": dry_run,
         "post_response": post_result,
@@ -640,6 +753,32 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         "--output-dir",
         default=os.getenv("DAILY_STORY_OUTPUT_DIR", str(DEFAULT_OUTPUT_DIR)),
         help="Directory for generated story images.",
+    )
+    parser.add_argument(
+        "--image-mode",
+        choices=("ai", "card"),
+        default=os.getenv("DAILY_STORY_IMAGE_MODE", "ai"),
+        help="Use AI photorealistic images or the local graphic card fallback.",
+    )
+    parser.add_argument(
+        "--openai-api-key",
+        default=os.getenv("OPENAI_API_KEY"),
+        help="OpenAI API key used for AI photo generation.",
+    )
+    parser.add_argument(
+        "--openai-image-model",
+        default=os.getenv("OPENAI_IMAGE_MODEL", DEFAULT_OPENAI_IMAGE_MODEL),
+        help="OpenAI image model for AI photo generation.",
+    )
+    parser.add_argument(
+        "--openai-image-size",
+        default=os.getenv("OPENAI_IMAGE_SIZE", DEFAULT_OPENAI_IMAGE_SIZE),
+        help="OpenAI image size for AI photo generation.",
+    )
+    parser.add_argument(
+        "--require-ai-image",
+        action="store_true",
+        help="Fail instead of falling back to the card image when AI generation fails.",
     )
     parser.add_argument(
         "--seed",
@@ -688,7 +827,15 @@ def main(argv: list[str] | None = None) -> int:
     try:
         history = load_history(history_path)
         story = choose_unused_story(history, seed=args.seed)
-        image_path = create_story_image(story, output_dir)
+        image_path, image_generation = create_story_image(
+            story,
+            output_dir,
+            image_mode=args.image_mode,
+            openai_api_key=args.openai_api_key,
+            openai_image_model=args.openai_image_model,
+            openai_image_size=args.openai_image_size,
+            require_ai_image=args.require_ai_image,
+        )
     except (OSError, ValueError, RuntimeError, json.JSONDecodeError) as error:
         print(f"Error: {error}", file=sys.stderr)
         return 1
@@ -722,6 +869,7 @@ def main(argv: list[str] | None = None) -> int:
             history,
             story,
             image_path=image_path,
+            image_generation=image_generation,
             post_result=post_result,
             dry_run=not args.post,
         )
@@ -737,6 +885,7 @@ def main(argv: list[str] | None = None) -> int:
         "word_count": story.word_count,
         "story": story.text,
         "image_path": str(image_path),
+        "image_generation": image_generation,
         "history_path": str(history_path),
         "recorded": args.post or args.record_dry_run,
         "post_response": post_result,

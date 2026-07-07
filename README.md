@@ -152,8 +152,8 @@ python3 linkedin_company_page_agent.py \
 ## Daily student story automation
 
 `daily_story_linkedin_agent.py` creates one real-life conversation story,
-generates a related PNG image card, and can post both to LinkedIn. Each story is
-kept between 200 and 500 words and ends with:
+generates a related image, and can post both to LinkedIn. Each story is kept
+between 200 and 500 words and ends with:
 
 ```text
 https://student.worldofinterns.com
@@ -166,6 +166,26 @@ Dry-run generation:
 
 ```bash
 python3 daily_story_linkedin_agent.py
+```
+
+By default the daily agent tries to create a photorealistic AI image with
+students/people and subtle editorial overlays. Configure:
+
+```bash
+export OPENAI_API_KEY="your-openai-api-key"
+```
+
+If `OPENAI_API_KEY` is not available, the agent falls back to a local graphic
+card image. To fail instead of falling back:
+
+```bash
+python3 daily_story_linkedin_agent.py --require-ai-image
+```
+
+To force the local card image:
+
+```bash
+python3 daily_story_linkedin_agent.py --image-mode card
 ```
 
 Dry-run with deterministic output for testing:
@@ -221,3 +241,7 @@ Dry runs do not mark stories as used unless you pass `--record-dry-run`.
 | `LINKEDIN_OAUTH_STATE` | Optional state value for `--auth-url`; generated when omitted. |
 | `DAILY_STORY_HISTORY_PATH` | Optional JSON path for daily story tracking. |
 | `DAILY_STORY_OUTPUT_DIR` | Optional directory for generated daily story images. |
+| `DAILY_STORY_IMAGE_MODE` | Optional image mode: `ai` or `card`. Defaults to `ai`. |
+| `OPENAI_API_KEY` | Required for photorealistic AI story images. |
+| `OPENAI_IMAGE_MODEL` | Optional OpenAI image model. Defaults to `gpt-image-1`. |
+| `OPENAI_IMAGE_SIZE` | Optional OpenAI image size. Defaults to `1024x1024`. |
