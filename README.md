@@ -188,19 +188,14 @@ By default the daily agent writes:
 - `daily_story_history.json` for used story tracking.
 - `daily_story_output/` for generated PNG images.
 
-Use a persistent history path if the script runs in a scheduled environment:
+For a scheduled automation, configure the automation to run the command below
+with the LinkedIn token and member id available as environment variables:
 
 ```bash
 python3 daily_story_linkedin_agent.py \
   --history-path "/var/lib/worldofinterns/daily_story_history.json" \
   --output-dir "/var/lib/worldofinterns/daily_story_images" \
   --post
-```
-
-Example cron entry for every day at 9 AM:
-
-```cron
-0 9 * * * cd /path/to/repo && /usr/bin/python3 daily_story_linkedin_agent.py --post >> daily_story.log 2>&1
 ```
 
 Dry runs do not mark stories as used unless you pass `--record-dry-run`.
