@@ -325,6 +325,79 @@ python3 daily_story_linkedin_agent.py \
 
 Dry runs do not mark content as used unless you pass `--record-dry-run`.
 
+## Live internship scrapers
+
+`collect_internships.py` pulls live listings into JSON feeds that the daily
+intelligence agent can publish.
+
+Supported source types:
+
+| Type | What it pulls |
+| --- | --- |
+| `linkedin_search` | Live LinkedIn guest job search results |
+| `greenhouse` | Public Greenhouse career boards |
+| `lever` | Public Lever job boards |
+| `career_page` | HTML career pages with internship links |
+
+Configure sources in `data/source_config.example.json`:
+
+```json
+{
+  "output_dir": "data/live_sources",
+  "sources": [
+    {
+      "type": "linkedin_search",
+      "source_name": "linkedin_internship_india",
+      "enabled": true,
+      "keywords": "internship",
+      "location": "India",
+      "pages": 2
+    },
+    {
+      "type": "greenhouse",
+      "source_name": "greenhouse_stripe",
+      "enabled": true,
+      "board": "stripe",
+      "company_name": "Stripe"
+    }
+  ]
+}
+```
+
+Collect live jobs:
+
+```bash
+python3 collect_internships.py \
+  --config-path data/source_config.example.json \
+  --output-dir data/live_sources
+```
+
+Then build the daily briefing from the collected feeds:
+
+```bash
+python3 daily_internship_intelligence_agent.py \
+  --sources-path data/live_sources \
+  --include-unverified
+```
+
+Live scrapes are marked `verified: false` until your verification workflow
+approves them. The post shows `Proceed with Caution ⚠️` instead of `Verified ✅`
+for those listings.
+
+Recommended schedule:
+
+```bash
+python3 collect_internships.py --config-path data/source_config.json --output-dir data/live_sources
+python3 daily_internship_intelligence_agent.py --sources-path data/live_sources --include-unverified --post
+```
+
+Notes:
+
+- LinkedIn guest search is live but can break if LinkedIn changes HTML or blocks requests.
+- Greenhouse and Lever use official public JSON APIs and are the most stable sources.
+- Career page scraping depends on each site's HTML structure; tune `link_keywords` per site.
+- Respect site terms of service and rate limits in production.
+
 ## Daily Internship Intelligence
 
 `daily_internship_intelligence_agent.py` is separate from the employability
@@ -452,6 +525,8 @@ python3 daily_internship_intelligence_agent.py \
 | Variable | Description |
 | --- | --- |
 | `INTERNSHIP_SOURCES_PATH` | Directory or JSON file containing internship source feeds. |
+| `INTERNSHIP_COLLECTOR_CONFIG` | JSON config for `collect_internships.py`. |
+| `INTERNSHIP_LIVE_SOURCES_DIR` | Output directory for live scraped JSON feeds. |
 | `INTERNSHIP_HISTORY_PATH` | JSON file for posted daily report tracking. |
 | `INTERNSHIP_OUTPUT_DIR` | Directory for generated `.txt` and `.json` artifacts. |
 | `INTERNSHIP_MAX_LINKEDIN_CHARS` | LinkedIn post character limit. Defaults to `3000`. |
@@ -478,8 +553,8 @@ python3 daily_internship_intelligence_agent.py \
 | `LINKEDIN_OAUTH_STATE` | Optional state value for `--auth-url`; generated when omitted. |
 | `DAILY_STORY_HISTORY_PATH` | Optional JSON path for daily content tracking. |
 | `DAILY_STORY_OUTPUT_DIR` | Optional directory for generated daily story images. |
-| `DAILY_STORY_IMAGE_MODE` | Optional image mode: `ai` or `card`. Defaults to `ai`. |
 | `DAILY_CONTENT_METRICS_PATH` | Optional JSON file for assessment, resume, skill gap, college, and ranking metrics. |
-| `OPENAI_API_KEY` | Required for photorealistic AI story images. |
+| `OPENAI_API_KEY` | Required for AI caption and image generation. |
+| `OPENAI_TEXT_MODEL` | Optional OpenAI chat model. Defaults to `gpt-4o-mini`. |
 | `OPENAI_IMAGE_MODEL` | Optional OpenAI image model. Defaults to `gpt-image-1`. |
 | `OPENAI_IMAGE_SIZE` | Optional OpenAI image size. Defaults to `1024x1024`. |

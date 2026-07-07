@@ -224,7 +224,11 @@ def collect_jobs_from_sources(
 
     files: list[Path]
     if sources_path.is_dir():
-        files = sorted(path for path in sources_path.glob("*.json") if path.is_file())
+        files = sorted(
+            path
+            for path in sources_path.glob("*.json")
+            if path.is_file() and path.name not in {"collection_summary.json"}
+        )
         if not files:
             raise ValueError(f"No JSON source files found in {sources_path}")
     else:
