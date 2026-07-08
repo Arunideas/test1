@@ -37,6 +37,9 @@ export async function readDb(): Promise<Database> {
       : seed.imageTemplates,
     images: parsed.images ?? [],
     posts: parsed.posts ?? [],
+    calendar: parsed.calendar ?? [],
+    performance: parsed.performance ?? [],
+    config: parsed.config ?? seed.config,
   };
   cache = merged;
   return merged;

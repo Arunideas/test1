@@ -14,6 +14,7 @@ export async function GET() {
     brandStyle: db.brandStyle,
     prompts: db.prompts,
     topics: db.topics,
+    config: db.config,
     engine: hasOpenAI() ? "openai" : "rule-based",
   });
 }

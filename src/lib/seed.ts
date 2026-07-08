@@ -3,9 +3,11 @@ import type {
   Category,
   Database,
   ImageTemplate,
+  PlatformConfig,
   PromptTemplate,
   Topic,
 } from "./types";
+import { TOPIC_BANK } from "./content/topicBank";
 
 function slug(s: string): string {
   return s
@@ -325,121 +327,120 @@ const PROMPTS: PromptTemplate[] = [
   },
 ];
 
-const TOPIC_SEEDS: Array<{
-  topic: string;
-  categoryId: string;
-  subcategory?: string;
-  difficulty: Topic["difficulty"];
-  priority: number;
-  keywords: string[];
-  source: string;
-}> = [
-  {
-    topic: "The one resume line recruiters read first",
-    categoryId: "resume-review",
-    subcategory: "Formatting",
-    difficulty: "beginner",
-    priority: 5,
-    keywords: ["resume", "recruiter", "summary"],
-    source: "platform-insight",
-  },
-  {
-    topic: "How to verify an internship before you apply",
-    categoryId: "internship-verification",
-    difficulty: "beginner",
-    priority: 5,
-    keywords: ["scam", "trust", "verify", "internship"],
-    source: "platform-insight",
-  },
-  {
-    topic: "Using an AI tool to tailor your resume in 10 minutes",
-    categoryId: "ai-tools",
-    difficulty: "intermediate",
-    priority: 4,
-    keywords: ["ai", "resume", "tool"],
-    source: "trend",
-  },
-  {
-    topic: "The skill gap between college projects and real work",
-    categoryId: "skill-gap",
-    difficulty: "intermediate",
-    priority: 4,
-    keywords: ["skills", "projects", "gap"],
-    source: "research",
-  },
-  {
-    topic: "Why your STAR interview answers fall flat",
-    categoryId: "interview-tips",
-    difficulty: "intermediate",
-    priority: 4,
-    keywords: ["interview", "star", "answers"],
-    source: "platform-insight",
-  },
-  {
-    topic: "A realistic 4-week roadmap to learn data skills",
-    categoryId: "ai-learning",
-    difficulty: "beginner",
-    priority: 3,
-    keywords: ["roadmap", "learning", "data"],
-    source: "platform-insight",
-  },
-  {
-    topic: "How hiring teams can run a 10-day internship pipeline",
-    categoryId: "hire-interns",
-    difficulty: "advanced",
-    priority: 4,
-    keywords: ["hiring", "pipeline", "internship"],
-    source: "platform-insight",
-  },
-  {
-    topic: "What recruiters actually notice in the first 7 seconds",
-    categoryId: "recruiter-tips",
-    difficulty: "beginner",
-    priority: 4,
-    keywords: ["recruiter", "screening", "resume"],
-    source: "platform-insight",
-  },
-  {
-    topic: "Building a portfolio when you have no work experience",
-    categoryId: "portfolio",
-    difficulty: "beginner",
-    priority: 3,
-    keywords: ["portfolio", "projects", "beginner"],
-    source: "platform-insight",
-  },
-  {
-    topic: "The future skill most students are ignoring",
-    categoryId: "future-skills",
-    difficulty: "intermediate",
-    priority: 3,
-    keywords: ["future", "skills", "ai"],
-    source: "trend",
-  },
+function hashStr(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return (h >>> 0) / 0xffffffff; // 0..1
+}
+
+const DIFFICULTIES: Topic["difficulty"][] = [
+  "beginner",
+  "intermediate",
+  "advanced",
 ];
+
+const STOPWORDS = new Set([
+  "the","a","an","to","of","for","and","or","in","on","with","your","you","how",
+  "why","what","when","is","are","that","this","it","not","without","before",
+  "into","from","at","as","but","if","do","does","most","one","two","three",
+]);
+
+export function keywordsFrom(topic: string): string[] {
+  return topic
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .split(/\s+/)
+    .filter((w) => w.length > 3 && !STOPWORDS.has(w))
+    .slice(0, 4);
+}
 
 export function buildTopics(categories: Category[]): Topic[] {
   const valid = new Set(categories.map((c) => c.id));
-  const now = new Date();
-  return TOPIC_SEEDS.filter((t) => valid.has(t.categoryId)).map((t, i) => ({
-    id: `topic-${i + 1}`,
-    topic: t.topic,
-    categoryId: t.categoryId,
-    subcategory: t.subcategory,
-    difficulty: t.difficulty,
-    priority: t.priority,
-    status: "idea" as const,
-    lastGeneratedAt: null,
-    lastPublishedAt: null,
-    performanceScore: 50,
-    duplicateScore: 0,
-    popularity: 40 + ((i * 7) % 40),
-    trendScore: 30 + ((i * 11) % 50),
-    source: t.source,
-    keywords: t.keywords,
-    // stagger created time via topic id ordering
-    ...(now ? {} : {}),
-  }));
+  const out: Topic[] = [];
+  let i = 0;
+  for (const entry of TOPIC_BANK) {
+    if (!valid.has(entry.categoryId)) continue;
+    for (const topic of entry.topics) {
+      i++;
+      const r = hashStr(topic);
+      const r2 = hashStr(topic + "x");
+      out.push({
+        id: `topic-${i}`,
+        topic,
+        categoryId: entry.categoryId,
+        difficulty: DIFFICULTIES[Math.floor(r * 3)],
+        priority: 2 + Math.floor(r2 * 4), // 2..5
+        status: "idea",
+        lastGeneratedAt: null,
+        lastPublishedAt: null,
+        performanceScore: 45 + Math.floor(r * 30),
+        duplicateScore: 0,
+        popularity: 30 + Math.floor(r2 * 60),
+        trendScore: 25 + Math.floor(r * 70),
+        source: "bank",
+        keywords: keywordsFrom(topic),
+        tags: entry.tags,
+      });
+    }
+  }
+  return out;
 }
+
+// Weekday plan (0 = Sunday ... 6 = Saturday), based on the content-frequency example.
+const WEEKDAY_PLAN: PlatformConfig["weekdayPlan"] = [
+  {
+    weekday: 0,
+    label: "Weekly Report",
+    contentTypeId: "linkedin_post",
+    categoryIds: ["employability-reports", "industry-trends", "salary-reports", "research"],
+  },
+  {
+    weekday: 1,
+    label: "AI Tool",
+    contentTypeId: "ai_tool_of_the_week",
+    categoryIds: ["ai-tools", "productivity", "ai-learning"],
+  },
+  {
+    weekday: 2,
+    label: "Resume Review",
+    contentTypeId: "resume_review",
+    categoryIds: ["resume-review", "resume-mistakes"],
+  },
+  {
+    weekday: 3,
+    label: "Internship Jobs",
+    contentTypeId: "linkedin_post",
+    categoryIds: ["internship-opportunities", "internship-verification"],
+  },
+  {
+    weekday: 4,
+    label: "Recruiter Insight",
+    contentTypeId: "recruiter_tips",
+    categoryIds: ["recruiter-tips", "hr-insights", "hiring-trends"],
+  },
+  {
+    weekday: 5,
+    label: "Future Skill",
+    contentTypeId: "ai_career",
+    categoryIds: ["future-skills", "ai-careers", "skill-gap"],
+  },
+  {
+    weekday: 6,
+    label: "Student Story",
+    contentTypeId: "student_tips",
+    categoryIds: ["student-success", "interview-tips", "communication-skills", "soft-skills"],
+  },
+];
+
+const CONFIG: PlatformConfig = {
+  rotationWindowDays: 45,
+  postsPerDay: 1,
+  duplicateThreshold: 0.6,
+  weekdayPlan: WEEKDAY_PLAN,
+};
 
 export function buildSeedDatabase(): Database {
   const categories = buildCategories();
@@ -451,5 +452,8 @@ export function buildSeedDatabase(): Database {
     imageTemplates: IMAGE_TEMPLATES,
     images: [],
     posts: [],
+    calendar: [],
+    performance: [],
+    config: CONFIG,
   };
 }

@@ -37,6 +37,7 @@ export interface Topic {
   trendScore: number; // 0-100
   source: string;
   keywords: string[];
+  tags: string[];
 }
 
 export interface BrandStyle {
@@ -135,6 +136,67 @@ export interface GeneratedPost {
   updatedAt: string;
 }
 
+export type CalendarStatus =
+  | "planned"
+  | "approved"
+  | "rejected"
+  | "generated"
+  | "published"
+  | "skipped";
+
+export interface CalendarEntry {
+  id: string;
+  date: string; // YYYY-MM-DD
+  slot: string; // weekday theme label, e.g. "AI Tool"
+  contentTypeId: ContentTypeId;
+  categoryId: string;
+  topicId: string;
+  topicText: string;
+  audience: Audience;
+  status: CalendarStatus;
+  duplicateScore: number; // 0-1 similarity to nearest scheduled/published topic
+  topicScore: number; // 0-100 ranking score used when scheduled
+  postId?: string | null;
+  approvedBy?: string | null;
+  approvedAt?: string | null;
+  note?: string;
+  createdAt: string;
+}
+
+export interface PerformanceRecord {
+  id: string;
+  calendarEntryId?: string | null;
+  postId?: string | null;
+  topicId: string;
+  categoryId: string;
+  date: string;
+  metrics: {
+    views: number;
+    likes: number;
+    comments: number;
+    shares: number;
+    impressions: number;
+    ctr: number; // 0-1
+    engagementRate: number; // 0-1
+  };
+  score: number; // 0-100 blended performance score
+  createdAt: string;
+}
+
+export interface PlatformConfig {
+  rotationWindowDays: number; // avoid repeating a topic within this window (default 45)
+  postsPerDay: number;
+  duplicateThreshold: number; // 0-1 similarity above which a topic is a duplicate
+  weekdayPlan: WeekdaySlot[]; // 7 entries, Sunday..Saturday
+}
+
+export interface WeekdaySlot {
+  weekday: number; // 0 = Sunday ... 6 = Saturday
+  label: string; // "AI Tool", "Resume Review", ...
+  contentTypeId: ContentTypeId;
+  categoryIds: string[]; // rotate across these categories
+}
+
 export interface Database {
   categories: Category[];
   topics: Topic[];
@@ -143,6 +205,9 @@ export interface Database {
   imageTemplates: ImageTemplate[];
   images: GeneratedImage[];
   posts: GeneratedPost[];
+  calendar: CalendarEntry[];
+  performance: PerformanceRecord[];
+  config: PlatformConfig;
 }
 
 export interface GenerateRequest {
