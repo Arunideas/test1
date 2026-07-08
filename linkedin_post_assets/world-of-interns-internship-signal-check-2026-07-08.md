@@ -36,4 +36,6 @@ What would you add?
 
 - Intended channel: LinkedIn
 - Visibility: Public
-- Status: Prepared for publishing with image; live publishing requires LinkedIn authentication (`LINKEDIN_ACCESS_TOKEN` and `LINKEDIN_AUTHOR_URN`) or an authenticated browser session.
+- Status: Prepared for publishing with image.
+- Live API publishing: Blocked because `LINKEDIN_ACCESS_TOKEN` and `LINKEDIN_AUTHOR_URN` are not set in this run.
+- Browser publishing: Attempted on 2026-07-08; blocked because LinkedIn opened to the login page and no authenticated session was available.
