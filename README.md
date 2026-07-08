@@ -157,6 +157,67 @@ Data is stored in a local JSON file at `data/db.json` (created and seeded on fir
 
 ---
 
+## Running on a schedule (automation)
+
+There are three layers of automation, from least to most hands-off.
+
+**1. Built-in background scheduler (nothing to configure).**
+While the server is running, an in-process loop publishes any *due scheduled* jobs every ~10s.
+So if you schedule posts (in the Studio or via auto-schedule), they go out on time on their own.
+
+**2. Publish-only cron.**
+For extra reliability (or serverless hosts where the process may sleep), hit the publish tick on a
+schedule:
+
+```bash
+curl -X POST https://your-host/api/publish/process
+```
+
+**3. Full daily pipeline (recommended).**
+One endpoint runs the entire loop: ensure a calendar exists → generate posts + images for entries
+due today → auto-schedule them → publish what's due.
+
+```bash
+curl -X POST "https://your-host/api/cron/run?timeOfDay=09:00"
+# optional query params: days=90, horizonDays=0, planIfEmpty=true, generate=true, secret=...
+```
+
+It's idempotent — running it repeatedly only acts on newly-due work. Returns a summary like
+`{ "planned": 90, "generated": 1, "scheduled": 1, "published": 1 }`.
+
+If `CRON_SECRET` is set, include `?secret=...` or an `x-cron-secret` header.
+
+### Wiring it to a scheduler
+
+**System crontab** (run daily at 09:00):
+
+```cron
+0 9 * * *  curl -fsS -X POST "https://your-host/api/cron/run?timeOfDay=09:00&secret=$CRON_SECRET" >/dev/null 2>&1
+```
+
+**GitHub Actions** (`.github/workflows/publish.yml`):
+
+```yaml
+on:
+  schedule:
+    - cron: "0 9 * * *"   # daily 09:00 UTC
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -fsS -X POST "${{ secrets.APP_URL }}/api/cron/run?timeOfDay=09:00&secret=${{ secrets.CRON_SECRET }}"
+```
+
+**Vercel Cron** (`vercel.json`):
+
+```json
+{ "crons": [{ "path": "/api/cron/run?timeOfDay=09:00", "schedule": "0 9 * * *" }] }
+```
+
+**systemd timer / Docker:** run the same `curl` from a `*.timer` unit or a sidecar loop
+(`while true; do curl -X POST .../api/cron/run; sleep 3600; done`). Keep the app itself running
+with `npm run start` (see the Dockerfile), and the background scheduler + your cron do the rest.
+
 ## Architecture
 
 ```
@@ -193,6 +254,7 @@ src/
     growth/campaign.ts      one-click campaign orchestration (build/list/get/delete)
     publishing/linkedin.ts  LinkedIn UGC client (real API + simulation)
     publishing/service.ts   schedule/approve/retry/cancel, background scheduler, auto-schedule
+    publishing/pipeline.ts  one-call daily pipeline (plan -> generate -> schedule -> publish)
     service.ts            content generation orchestration
     db.ts / seed.ts / types.ts
 ```
@@ -202,6 +264,8 @@ API additions:
 - Publishing: `POST /api/publish`, `GET /api/publish/jobs`, `POST /api/publish/jobs/[id]`
   (approve/cancel/retry), `POST /api/publish/process` (cron tick), `GET /api/publish/status`,
   `POST /api/publish/auto-schedule`.
+- Scheduling: `GET|POST /api/cron/run` — the full daily pipeline (plan → generate → schedule →
+  publish), guarded by optional `CRON_SECRET`.
 
 ## Brand principles enforced in code
 
