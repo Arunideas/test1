@@ -197,6 +197,55 @@ export interface WeekdaySlot {
   categoryIds: string[]; // rotate across these categories
 }
 
+export type CampaignAudience = "employer" | "student" | "community";
+
+export type CampaignAssetKind =
+  | "linkedin_post"
+  | "hr_email"
+  | "linkedin_message"
+  | "follow_up"
+  | "proposal"
+  | "poll"
+  | "quiz"
+  | "student_spotlight"
+  | "company_spotlight"
+  | "recruiter_insight";
+
+export interface QuizQuestion {
+  question: string;
+  options: string[];
+  answerIndex: number;
+}
+
+export interface CampaignAsset {
+  id: string;
+  kind: CampaignAssetKind;
+  title: string;
+  subject?: string; // for emails
+  body: string;
+  hashtags?: string[];
+  meta?: {
+    pollOptions?: string[];
+    quiz?: QuizQuestion[];
+    placeholders?: string[]; // e.g. ["First name", "Company"]
+  };
+  scores?: QualityScores;
+  warnings?: string[];
+  engine: "rule-based" | "openai";
+}
+
+export interface Campaign {
+  id: string;
+  name: string;
+  audience: CampaignAudience;
+  serviceId: string;
+  serviceName: string;
+  goal: string;
+  assets: CampaignAsset[];
+  createdAt: string;
+  status: "draft" | "ready";
+}
+
 export interface Database {
   categories: Category[];
   topics: Topic[];
@@ -208,6 +257,7 @@ export interface Database {
   calendar: CalendarEntry[];
   performance: PerformanceRecord[];
   config: PlatformConfig;
+  campaigns: Campaign[];
 }
 
 export interface GenerateRequest {

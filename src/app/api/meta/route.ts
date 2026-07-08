@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { readDb } from "@/lib/db";
 import { CONTENT_TYPES } from "@/lib/content/contentTypes";
+import { GROWTH_SERVICES } from "@/lib/growth/services";
 import { hasOpenAI } from "@/lib/llm/openai";
 
 export const dynamic = "force-dynamic";
@@ -15,6 +16,7 @@ export async function GET() {
     prompts: db.prompts,
     topics: db.topics,
     config: db.config,
+    growthServices: GROWTH_SERVICES,
     engine: hasOpenAI() ? "openai" : "rule-based",
   });
 }

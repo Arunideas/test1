@@ -455,5 +455,6 @@ export function buildSeedDatabase(): Database {
     calendar: [],
     performance: [],
     config: CONFIG,
+    campaigns: [],
   };
 }

@@ -38,6 +38,9 @@ export default function RootLayout({
               <Link className="rounded-lg px-3 py-2 text-slate-600 hover:bg-slate-100" href="/calendar">
                 Calendar
               </Link>
+              <Link className="rounded-lg px-3 py-2 text-slate-600 hover:bg-slate-100" href="/campaigns">
+                Campaigns
+              </Link>
               <Link className="rounded-lg px-3 py-2 text-slate-600 hover:bg-slate-100" href="/drafts">
                 Drafts
               </Link>

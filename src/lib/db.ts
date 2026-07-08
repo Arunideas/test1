@@ -40,6 +40,7 @@ export async function readDb(): Promise<Database> {
     calendar: parsed.calendar ?? [],
     performance: parsed.performance ?? [],
     config: parsed.config ?? seed.config,
+    campaigns: parsed.campaigns ?? [],
   };
   cache = merged;
   return merged;

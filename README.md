@@ -6,11 +6,13 @@ consistent **World of Interns** brand voice.
 > **Deliverable met:** generate a LinkedIn-ready post *with* an image in **under 2 minutes** —
 > in practice it takes well under a second with the built-in offline engine.
 
-This is the foundation of the larger AI Content Intelligence vision. It now covers two phases:
+This is the foundation of the larger AI Content Intelligence vision. It now covers:
 
 - **Phase 1 — Content generation + brand voice** (Studio)
 - **Phase 2 — Content intelligence & planning** (Calendar) — plan months of content
   automatically with **no duplicate topics**.
+- **Phase 4 — Employer & Student Growth Engine** (Campaigns) — turn content into growth with
+  **one-click campaigns targeting HRs or students**.
 
 ---
 
@@ -60,6 +62,27 @@ underrepresented? · Which topics are trending?*
 
 > **Phase 2 deliverable met:** one click produces a **90-day content calendar with 0 duplicate
 > topics** (90 unique topics, max pairwise similarity ~0.26, 21 categories balanced).
+
+### Phase 4 — Employer & Student Growth Engine (`/campaigns`)
+
+Turn content into platform growth with **one-click campaigns**. Pick a target
+(Employers/HR, Students, or Community), pick a service, and generate a ready-to-use asset bundle.
+
+- **Employer services** — Hire Interns in 10 Days · Campus Hiring · Employer Branding ·
+  Assessment Platform · Recruitment Automation. Each campaign includes an educational LinkedIn
+  post plus an **outreach kit**: HR outreach email (subject + body), LinkedIn message
+  (connection note + first message), follow-up email, and a proposal — all brand-voiced (honest,
+  calm, no hype) with `[First name]` / `[Company]` / `[Role]` placeholders.
+- **Student services** — Employability Score · Resume Review · AI Career · Interview Prep ·
+  Internship Verification · Skill Gap Analysis. Each campaign includes a LinkedIn post, a poll,
+  and a short quiz.
+- **Community** — Polls · Weekly Quiz · Student Spotlight · Company Spotlight · Recruiter Insights.
+  Spotlights are placeholder templates (never invented stories), staying true to the brand rules.
+
+Every asset can be copied with one click; campaigns are saved and re-openable.
+
+> **Phase 4 deliverable met:** one click builds a full campaign targeting HRs (post + email +
+> message + follow-up + proposal) or students (post + poll + quiz).
 
 ### Content types
 
@@ -143,9 +166,16 @@ src/
     planning/similarity.ts  topic similarity / duplicate detection
     planning/planner.ts     scheduler, rotation, balancing, trending, scoring
     planning/service.ts     calendar persistence, approval, queue, insights, performance
+    growth/services.ts      employer/student/community service catalog + campaign templates
+    growth/outreach.ts      HR emails, LinkedIn messages, follow-ups, proposals
+    growth/community.ts     polls, quizzes, spotlights
+    growth/campaign.ts      one-click campaign orchestration (build/list/get/delete)
     service.ts            content generation orchestration
     db.ts / seed.ts / types.ts
 ```
+
+API additions for campaigns: `GET/POST /api/campaigns`, `GET/DELETE /api/campaigns/[id]`,
+and `growthServices` in `/api/meta`.
 
 ## Brand principles enforced in code
 

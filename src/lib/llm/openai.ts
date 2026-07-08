@@ -69,6 +69,37 @@ export async function generatePostWithLLM(params: {
   }
 }
 
+export async function generateTextWithLLM(
+  system: string,
+  user: string,
+  temperature = 0.7
+): Promise<string | null> {
+  if (!hasOpenAI()) return null;
+  try {
+    const res = await fetch(`${OPENAI_BASE}/chat/completions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: TEXT_MODEL,
+        temperature,
+        messages: [
+          { role: "system", content: system },
+          { role: "user", content: user },
+        ],
+      }),
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const text: string | undefined = data?.choices?.[0]?.message?.content;
+    return text?.trim() || null;
+  } catch {
+    return null;
+  }
+}
+
 export async function generateImageWithOpenAI(prompt: string): Promise<string | null> {
   if (!hasOpenAI()) return null;
   try {
