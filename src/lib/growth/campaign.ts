@@ -1,5 +1,7 @@
 import { newId, readDb, updateDb } from "../db";
-import { generateDraft, scoreDraft } from "../content/generator";
+import { keywordsFromTopic, pickHashtags } from "../content/hashtags";
+import { analyzeText } from "../voice/styleEngine";
+import { AiRequiredError } from "../service";
 import {
   generatePostWithLLM,
   generateTextWithLLM,
@@ -44,70 +46,67 @@ async function buildPostAsset(
   service: GrowthService,
   db: Awaited<ReturnType<typeof readDb>>
 ): Promise<CampaignAsset> {
-  const category =
-    db.categories.find((c) => c.id === service.categoryId) || db.categories[0];
   const brand = db.brandStyle;
 
-  const rule = generateDraft(
-    service.contentTypeId,
-    service.topic,
-    category,
-    service.postAudience,
-    brand,
-    service.topic.toLowerCase().split(/\s+/).filter((w) => w.length > 4).slice(0, 3)
-  );
-
-  let body = rule.body;
-  let engine: CampaignAsset["engine"] = "rule-based";
-  const llm = await generatePostWithLLM({
+  if (!hasOpenAI()) {
+    throw new AiRequiredError(
+      "AI writing is required. Set OPENAI_API_KEY to generate campaigns."
+    );
+  }
+  const body = await generatePostWithLLM({
     brand,
     systemHint: service.goal,
     topic: service.topic,
     audience: service.postAudience,
   });
-  if (llm) {
-    body = llm;
-    engine = "openai";
+  if (!body) {
+    throw new AiRequiredError(
+      "AI generation failed. Check OPENAI_API_KEY, model access, and try again."
+    );
   }
 
-  const analysis = scoreDraft(body, brand);
+  const analysis = analyzeText(body, brand);
   return {
     id: newId("asset"),
     kind,
     title: ASSET_TITLES[kind],
     body,
-    hashtags: rule.hashtags,
+    hashtags: pickHashtags(brand, keywordsFromTopic(service.topic), service.topic),
     scores: analysis.scores,
     warnings: analysis.warnings,
-    engine,
+    engine: "openai",
   };
 }
 
 async function buildOutreachAsset(
   kind: CampaignAssetKind,
   service: GrowthService,
-  rule: DraftAsset
+  scaffold: DraftAsset
 ): Promise<CampaignAsset> {
-  let body = rule.body;
-  let engine: CampaignAsset["engine"] = "rule-based";
-  if (hasOpenAI() && kind !== "linkedin_message") {
-    const llm = await generateTextWithLLM(
-      outreachSystemPrompt(ASSET_TITLES[kind], service),
-      `Service: ${service.name}. Goal: ${service.goal}.`
+  // Outreach copy is written by AI only. The scaffold supplies the subject,
+  // title, and placeholders — the body comes from the model.
+  if (!hasOpenAI()) {
+    throw new AiRequiredError(
+      "AI writing is required. Set OPENAI_API_KEY to generate outreach."
     );
-    if (llm) {
-      body = llm;
-      engine = "openai";
-    }
+  }
+  const body = await generateTextWithLLM(
+    outreachSystemPrompt(ASSET_TITLES[kind], service),
+    `Service: ${service.name}. Goal: ${service.goal}.`
+  );
+  if (!body) {
+    throw new AiRequiredError(
+      "AI generation failed. Check OPENAI_API_KEY, model access, and try again."
+    );
   }
   return {
     id: newId("asset"),
     kind,
-    title: rule.title,
-    subject: rule.subject,
+    title: scaffold.title,
+    subject: scaffold.subject,
     body,
-    meta: rule.meta,
-    engine,
+    meta: scaffold.meta,
+    engine: "openai",
   };
 }
 

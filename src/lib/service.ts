@@ -9,7 +9,8 @@ import type {
   Topic,
 } from "./types";
 import { getContentType } from "./content/contentTypes";
-import { generateDraft, scoreDraft } from "./content/generator";
+import { pickHashtags } from "./content/hashtags";
+import { analyzeText } from "./voice/styleEngine";
 import { buildAltText, buildImagePrompt } from "./image/imagePrompt";
 import { renderSvg, svgToDataUri } from "./image/svgRenderer";
 import {
@@ -17,6 +18,13 @@ import {
   generatePostWithLLM,
   hasOpenAI,
 } from "./llm/openai";
+
+export class AiRequiredError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "AiRequiredError";
+  }
+}
 
 function nowIso(): string {
   return new Date().toISOString();
@@ -123,12 +131,12 @@ export async function generatePost(req: GenerateRequest): Promise<GenerateResult
 
   const audience: Audience = req.audience || ct.defaultAudience;
 
-  // Generate body: try LLM, fall back to rule-based engine.
-  let body: string;
-  let hook: string;
-  let cta: string;
-  let hashtags: string[];
-  let engine: GeneratedPost["engine"] = "rule-based";
+  // Posts are written by AI only. There is no rule-based fallback.
+  if (!hasOpenAI()) {
+    throw new AiRequiredError(
+      "AI writing is required. Set OPENAI_API_KEY to generate posts."
+    );
+  }
 
   const prompt = db.prompts.find((p) => p.contentTypeId === ct.id);
   const llmText = await generatePostWithLLM({
@@ -139,31 +147,20 @@ export async function generatePost(req: GenerateRequest): Promise<GenerateResult
     extra: req.extraContext,
   });
 
-  const ruleDraft = generateDraft(
-    ct.id,
-    topicText,
-    category,
-    audience,
-    brand,
-    keywords,
-    req.extraContext
-  );
-
-  if (llmText) {
-    engine = "openai";
-    body = llmText;
-    hook = llmText.split(/\n+/)[0] || ruleDraft.hook;
-    const q = llmText.split(/\n+/).find((l) => l.trim().endsWith("?"));
-    cta = q?.trim() || ruleDraft.cta;
-    hashtags = ruleDraft.hashtags;
-  } else {
-    body = ruleDraft.body;
-    hook = ruleDraft.hook;
-    cta = ruleDraft.cta;
-    hashtags = ruleDraft.hashtags;
+  if (!llmText) {
+    throw new AiRequiredError(
+      "AI generation failed. Check OPENAI_API_KEY, model access, and try again."
+    );
   }
 
-  const analysis = scoreDraft(body, brand);
+  const engine: GeneratedPost["engine"] = "openai";
+  const body = llmText;
+  const hook = llmText.split(/\n+/)[0] || topicText;
+  const q = llmText.split(/\n+/).find((l) => l.trim().endsWith("?"));
+  const cta = q?.trim() || brand.allowedCtas[0];
+  const hashtags = pickHashtags(brand, keywords, topicText);
+
+  const analysis = analyzeText(body, brand);
 
   // Image
   const template =
@@ -177,7 +174,7 @@ export async function generatePost(req: GenerateRequest): Promise<GenerateResult
     body,
     imageId: image.id,
     createdAt: ts,
-    note: engine === "openai" ? "Generated with OpenAI" : "Generated with rule-based engine",
+    note: "Generated with OpenAI",
   };
 
   const post: GeneratedPost = {
@@ -241,7 +238,7 @@ export async function updatePostBody(
 ): Promise<GeneratedPost | null> {
   const db = await readDb();
   const brand = db.brandStyle;
-  const analysis = scoreDraft(body, brand);
+  const analysis = analyzeText(body, brand);
   return updateDb((d) => {
     const post = d.posts.find((p) => p.id === id);
     if (!post) return null;

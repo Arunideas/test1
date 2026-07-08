@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { ensureScheduler } from "@/lib/publishing/service";
 import { runDailyPipeline } from "@/lib/publishing/pipeline";
+import { AiRequiredError } from "@/lib/service";
 
 export const dynamic = "force-dynamic";
 
@@ -24,14 +25,21 @@ async function handle(req: Request) {
     const v = url.searchParams.get(k);
     return v == null ? undefined : Number(v);
   };
-  const result = await runDailyPipeline({
-    days: num("days"),
-    horizonDays: num("horizonDays"),
-    timeOfDay: url.searchParams.get("timeOfDay") || undefined,
-    planIfEmpty: url.searchParams.get("planIfEmpty") !== "false",
-    generate: url.searchParams.get("generate") !== "false",
-  });
-  return NextResponse.json(result);
+  try {
+    const result = await runDailyPipeline({
+      days: num("days"),
+      horizonDays: num("horizonDays"),
+      timeOfDay: url.searchParams.get("timeOfDay") || undefined,
+      planIfEmpty: url.searchParams.get("planIfEmpty") !== "false",
+      generate: url.searchParams.get("generate") !== "false",
+    });
+    return NextResponse.json(result);
+  } catch (err) {
+    if (err instanceof AiRequiredError) {
+      return NextResponse.json({ error: err.message }, { status: 422 });
+    }
+    throw err;
+  }
 }
 
 export async function POST(req: Request) {

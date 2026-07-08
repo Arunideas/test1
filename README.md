@@ -3,8 +3,11 @@
 Generate high-quality, human-sounding LinkedIn posts with authentic supporting images in a
 consistent **World of Interns** brand voice.
 
-> **Deliverable met:** generate a LinkedIn-ready post *with* an image in **under 2 minutes** —
-> in practice it takes well under a second with the built-in offline engine.
+> **Deliverable met:** generate a LinkedIn-ready post *with* an image in **under 2 minutes**.
+>
+> **Writing is AI-only.** Posts and outreach copy are written exclusively by an AI model
+> (OpenAI). If `OPENAI_API_KEY` is not configured, generation returns a clear error instead of
+> falling back to any templated text — there is no rule-based writing engine.
 
 This is the foundation of the larger AI Content Intelligence vision. It now covers:
 
@@ -117,15 +120,16 @@ Brand Style · Prompt Library · Image Templates · Generated Posts / Images / D
 
 ---
 
-## Works offline, upgrades with a key
+## What needs an API key
 
-The platform is designed to always work:
-
-- **No API key** → uses the built-in **rule-based writing engine** and **local SVG image
-  renderer**. Fully deterministic, no network, no cost.
-- **`OPENAI_API_KEY` set** → transparently upgrades to OpenAI for post text and real photographic
-  images, while still applying and scoring the same brand rules. Any failure gracefully falls back
-  to the offline engine.
+- **Writing (AI-only, requires `OPENAI_API_KEY`)** — LinkedIn posts and outreach copy (HR emails,
+  LinkedIn messages, follow-ups, proposals) are written **only** by the AI model. Without a key,
+  these endpoints return a clear `422` error (`"AI writing is required…"`). There is **no**
+  rule-based writing fallback.
+- **Works without a key** — image generation (local SVG renderer; upgrades to OpenAI images when a
+  key is set), the 90-day planner and duplicate detection, publishing/scheduling (LinkedIn
+  simulation), and community scaffolds (poll options, quiz Q&A, spotlight fill-in templates).
+- **Brand rules & scoring** are always applied to the AI's output (they validate, they don't write).
 
 See `.env.example` for configuration.
 
@@ -239,7 +243,7 @@ src/
       meta/               content types, categories, brand, prompts, topics, config
   lib/
     voice/styleEngine.ts  brand rules + quality scoring
-    content/generator.ts  rule-based post composition per content type
+    content/hashtags.ts   hashtag/tag helper (metadata, not writing)
     content/topicBank.ts  curated topic bank (enough unique topics for 90+ days)
     content/contentTypes.ts
     image/imagePrompt.ts  documentary-style image prompts (+ negatives)

@@ -29,7 +29,7 @@ interface Meta {
   imageTemplates: ImageTemplate[];
   prompts: PromptTemplate[];
   topics: Topic[];
-  engine: "openai" | "rule-based";
+  engine: "openai" | "unavailable";
 }
 
 type Result = { post: GeneratedPost; image: GeneratedImage | null };
@@ -199,8 +199,14 @@ export default function StudioPage() {
         <div className="mb-4 flex items-center justify-between">
           <h1 className="text-lg font-bold text-brand-ink">Content Studio</h1>
           {meta && (
-            <span className="chip">
-              {meta.engine === "openai" ? "OpenAI" : "Offline engine"}
+            <span
+              className={`chip ${
+                meta.engine === "openai"
+                  ? ""
+                  : "border-rose-200 bg-rose-50 text-rose-600"
+              }`}
+            >
+              {meta.engine === "openai" ? "AI: OpenAI" : "AI key required"}
             </span>
           )}
         </div>
@@ -302,6 +308,12 @@ export default function StudioPage() {
           value={extra}
           onChange={(e) => setExtra(e.target.value)}
         />
+
+        {meta && meta.engine !== "openai" && (
+          <p className="mb-2 rounded-lg bg-rose-50 px-3 py-2 text-xs text-rose-600">
+            Posts are written by AI only. Set <code>OPENAI_API_KEY</code> to enable generation.
+          </p>
+        )}
 
         <button
           className="btn-primary w-full"

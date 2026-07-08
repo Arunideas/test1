@@ -17,6 +17,7 @@ export async function GET() {
     topics: db.topics,
     config: db.config,
     growthServices: GROWTH_SERVICES,
-    engine: hasOpenAI() ? "openai" : "rule-based",
+    engine: hasOpenAI() ? "openai" : "unavailable",
+    aiConfigured: hasOpenAI(),
   });
 }

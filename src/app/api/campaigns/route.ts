@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { buildCampaign, listCampaigns } from "@/lib/growth/campaign";
+import { AiRequiredError } from "@/lib/service";
 
 export const dynamic = "force-dynamic";
 
@@ -20,6 +21,9 @@ export async function POST(req: Request) {
     }
     return NextResponse.json({ campaign });
   } catch (err) {
+    if (err instanceof AiRequiredError) {
+      return NextResponse.json({ error: err.message }, { status: 422 });
+    }
     console.error("campaign error", err);
     return NextResponse.json({ error: "Failed to build campaign" }, { status: 500 });
   }
