@@ -2,24 +2,22 @@
 # ("Create from manifest" → Deploy from a Git repository, path: k8s/woi.yaml).
 #
 # IMPORTANT:
+#  - This manifest is namespace-agnostic on purpose. Portainer injects the
+#    namespace you select in the deploy form, so do NOT add `namespace:` fields
+#    here (Portainer rejects manifests whose namespace differs from the form).
+#    Create/select the target namespace (e.g. "woi") in Portainer first.
 #  - Single instance only: the app uses a JSON file store + an in-process
 #    scheduler, so keep replicas: 1 and strategy: Recreate.
 #  - The env Secret ("woi-secrets") is intentionally NOT in this Git-managed
 #    file, so GitOps auto-sync never overwrites your OPENAI_API_KEY. Create it
-#    once from k8s/secret.example.yaml (see the deploy steps).
+#    once (in the same namespace) from k8s/secret.example.yaml.
 #  - If the GHCR image is PRIVATE, create a pull secret "ghcr-cred" and
 #    uncomment imagePullSecrets in the Deployment below.
 
 apiVersion: v1
-kind: Namespace
-metadata:
-  name: woi
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: woi-data
-  namespace: woi
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:
@@ -32,7 +30,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: woi-content
-  namespace: woi
   labels:
     app: woi-content
 spec:
@@ -94,7 +91,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: woi-content
-  namespace: woi
   labels:
     app: woi-content
 spec:
