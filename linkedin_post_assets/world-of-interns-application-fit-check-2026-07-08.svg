@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">World of Interns application fit checklist</title>
+  <desc id="desc">A checklist card with four questions students should ask before applying to an internship.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="250" font-size="58" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Before you apply,</text>
+  <text x="80" y="320" font-size="58" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">check the fit.</text>
+  <text x="82" y="372" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">A 2-minute filter for internship applications.</text>
+
+  <g>
+    <rect x="80" y="440" width="1040" height="112" rx="18" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+    <rect x="112" y="474" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M122 497 l12 14 l26 -32" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="185" y="505" font-size="34" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Can I name the actual work?</text>
+  </g>
+
+  <g>
+    <rect x="80" y="585" width="1040" height="112" rx="18" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+    <rect x="112" y="619" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M122 642 l12 14 l26 -32" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="185" y="650" font-size="34" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Do I have one proof point?</text>
+  </g>
+
+  <g>
+    <rect x="80" y="730" width="1040" height="112" rx="18" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+    <rect x="112" y="764" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M122 787 l12 14 l26 -32" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="185" y="795" font-size="34" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Will I learn one useful skill?</text>
+  </g>
+
+  <g>
+    <rect x="80" y="875" width="1040" height="112" rx="18" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+    <rect x="112" y="909" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M122 932 l12 14 l26 -32" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="185" y="940" font-size="34" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Can I write a specific first line?</text>
+  </g>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
