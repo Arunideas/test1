@@ -1,0 +1,36 @@
+# Portainer stack for the World of Interns Content Intelligence Platform.
+# Deploy this as a Stack in Portainer. Set the environment variables in the
+# Portainer stack editor (or via an attached .env).
+
+services:
+  woi:
+    # Image built and pushed by GitHub Actions to GHCR.
+    # Override IMAGE in the Portainer stack env if your repo path differs.
+    image: ${IMAGE:-ghcr.io/arunideas/test1:latest}
+    container_name: woi-content
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      # Writing is AI-only — required to generate posts/outreach.
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      # Optional model overrides
+      OPENAI_TEXT_MODEL: ${OPENAI_TEXT_MODEL:-gpt-4o-mini}
+      OPENAI_IMAGE_MODEL: ${OPENAI_IMAGE_MODEL:-gpt-image-1}
+      # Real LinkedIn publishing (leave blank for safe simulation mode)
+      LINKEDIN_ACCESS_TOKEN: ${LINKEDIN_ACCESS_TOKEN:-}
+      LINKEDIN_AUTHOR_URN: ${LINKEDIN_AUTHOR_URN:-}
+      # Guards the scheduled pipeline endpoint /api/cron/run
+      CRON_SECRET: ${CRON_SECRET:-}
+    volumes:
+      # Persists the JSON data store (calendar, drafts, jobs, campaigns).
+      - woi-data:/app/data
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/meta"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+volumes:
+  woi-data:

@@ -222,6 +222,31 @@ jobs:
 (`while true; do curl -X POST .../api/cron/run; sleep 3600; done`). Keep the app itself running
 with `npm run start` (see the Dockerfile), and the background scheduler + your cron do the rest.
 
+## Deploy to Portainer (GitHub Actions → GHCR → Portainer)
+
+CI builds the image and pushes it to the GitHub Container Registry; Portainer pulls and runs it.
+
+1. **Push to `master`.** The workflow `.github/workflows/docker-publish.yml` builds the Docker
+   image and pushes it to `ghcr.io/<owner>/<repo>` (tags: `latest`, branch, `sha-…`). Check the
+   run under the repo's **Actions** tab.
+2. **Make the package pullable.** In GitHub → your profile/org → **Packages** → the image →
+   *Package settings*: either set visibility to **Public**, or keep it private and create a PAT
+   with `read:packages` to use as Portainer registry credentials.
+3. **(Private only) Add the registry in Portainer:** *Registries → Add registry → Custom*, URL
+   `ghcr.io`, username = your GitHub user, password = the `read:packages` PAT.
+4. **Create the stack in Portainer:** *Stacks → Add stack*. Paste `docker-compose.yml` (or point it
+   at this repo via *Git repository*). Set env vars: `IMAGE=ghcr.io/<owner>/<repo>:latest`,
+   `OPENAI_API_KEY` (required for writing), optional `LINKEDIN_ACCESS_TOKEN` / `LINKEDIN_AUTHOR_URN`,
+   and `CRON_SECRET`. Deploy.
+5. **Auto-redeploy on new images:** enable the stack's **webhook** (Stack → *Webhook*), then add a
+   final CI step (or a repository→Portainer integration) that `curl -X POST <portainer-webhook-url>`
+   after the image is pushed, so Portainer pulls `:latest` and recreates the container.
+6. **Scheduled runs:** the app's in-process scheduler publishes due posts automatically. For the
+   full daily pipeline, point any cron at `POST https://<host>/api/cron/run?timeOfDay=09:00&secret=$CRON_SECRET`
+   (see "Running on a schedule").
+
+Data persists in the `woi-data` volume (`/app/data`). The container listens on port 3000.
+
 ## Architecture
 
 ```
