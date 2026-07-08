@@ -1,0 +1,56 @@
+{
+  "posted_job_ids": [],
+  "posted_reports": [
+    {
+      "category_counts": {
+        "Data Analytics": 4,
+        "Digital Marketing": 8,
+        "Finance": 4,
+        "HR": 3,
+        "Software Engineering": 5
+      },
+      "dry_run": true,
+      "job_ids": [
+        "fc27a2ed53744075",
+        "13c61fb26ca64ea8",
+        "2e2e8f78b975b3a6",
+        "aaa51ab5ae4185ca",
+        "8e281518b9a81486",
+        "c4205388924122f0",
+        "a995b63bd5d9b111",
+        "764a726aeb95c853",
+        "3ca74d0d63f211ca",
+        "1c8f184eb6359a66",
+        "f597b1e9fc28635d",
+        "f79584711cd197ac",
+        "7bc489bbd6c237f0",
+        "0910bd90a1a47abc",
+        "0cd0352edf0a8660",
+        "b06a40889a586110",
+        "ac13ff31468fcc21",
+        "47f4fbbbe59f2c0a",
+        "44ead8c5ec1b4b95",
+        "e9343b0900871ea9",
+        "3883963b8c831bd8",
+        "406fcc28512ede65",
+        "9d4e82080e228f5b",
+        "4f1534706e6f1d9b"
+      ],
+      "json_path": "daily_internship_output/2026-07-08-daily-internship-intelligence.json",
+      "omitted_job_count": 10,
+      "post_response": null,
+      "posted_at": "2026-07-08T06:02:23.694396+00:00",
+      "preview": "\ud83d\udcbc Internship Opportunities\n\n\ud83d\udd25 Today's Verified Internship Opportunities (24)\n\n\ud83d\udccd Software Engineering\n5 Openings\n\n\ud83d\udccd Digital Marketing\n8 Openings\n\n\ud83d\udccd Data Analytics\n4 Openings\n\n\ud83d\udccd HR\n3 Openings\n\n\ud83d\udccd Finance\n4 Openings\n\n\u2014\n\nSoftware Engineering\n\n1. AppNest \u2014 Mobile Engineering Intern\nLocation: Remote\nStipend: \u20b924,000/month\nMode: Remote\nDuration: 4 months\nApply: https://example.com/jobs/appnest-mobile\nLast Date: 2026-07-17\nVerified \u2705\n\n2. CloudRail \u2014 DevOps Intern\nLocation: Bangalore\nStipend: \u20b928,000/mont",
+      "report_date": "2026-07-08",
+      "report_hash": "68f0bb782d7b28b7ba1093be1c3fa6d8dea822570ad50484a8743519666185df",
+      "sources": [
+        "company_feeds.json",
+        "manual_curated.json",
+        "partner_portals.json"
+      ],
+      "text_path": "daily_internship_output/2026-07-08-daily-internship-intelligence.txt",
+      "total_count": 24,
+      "truncated": true
+    }
+  ]
+}
