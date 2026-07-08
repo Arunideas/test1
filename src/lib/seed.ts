@@ -456,5 +456,6 @@ export function buildSeedDatabase(): Database {
     performance: [],
     config: CONFIG,
     campaigns: [],
+    publishJobs: [],
   };
 }

@@ -246,6 +246,49 @@ export interface Campaign {
   status: "draft" | "ready";
 }
 
+export type PublishMode = "immediate" | "scheduled" | "draft" | "approval";
+
+export type PublishStatus =
+  | "draft"
+  | "pending_approval"
+  | "scheduled"
+  | "queued"
+  | "publishing"
+  | "published"
+  | "failed"
+  | "cancelled";
+
+export interface PublishJob {
+  id: string;
+  postId?: string | null;
+  calendarEntryId?: string | null;
+  target: "linkedin";
+  mode: PublishMode;
+  status: PublishStatus;
+  text: string;
+  hashtags: string[];
+  imageId?: string | null;
+  visibility: "PUBLIC" | "CONNECTIONS";
+  scheduledAt?: string | null;
+  attempts: number;
+  maxAttempts: number;
+  nextAttemptAt?: string | null;
+  lastError?: string | null;
+  postUrl?: string | null;
+  simulated: boolean;
+  createdAt: string;
+  updatedAt: string;
+  approvedAt?: string | null;
+  publishedAt?: string | null;
+  log: PublishLogLine[];
+}
+
+export interface PublishLogLine {
+  at: string;
+  message: string;
+  level: "info" | "error" | "success";
+}
+
 export interface Database {
   categories: Category[];
   topics: Topic[];
@@ -258,6 +301,7 @@ export interface Database {
   performance: PerformanceRecord[];
   config: PlatformConfig;
   campaigns: Campaign[];
+  publishJobs: PublishJob[];
 }
 
 export interface GenerateRequest {

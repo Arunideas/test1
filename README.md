@@ -11,6 +11,8 @@ This is the foundation of the larger AI Content Intelligence vision. It now cove
 - **Phase 1 — Content generation + brand voice** (Studio)
 - **Phase 2 — Content intelligence & planning** (Calendar) — plan months of content
   automatically with **no duplicate topics**.
+- **Phase 3 — LinkedIn Engine** (Publish) — **auto-publish to LinkedIn** with immediate /
+  scheduled / draft / approval modes and automatic retry.
 - **Phase 4 — Employer & Student Growth Engine** (Campaigns) — turn content into growth with
   **one-click campaigns targeting HRs or students**.
 
@@ -62,6 +64,25 @@ underrepresented? · Which topics are trending?*
 
 > **Phase 2 deliverable met:** one click produces a **90-day content calendar with 0 duplicate
 > topics** (90 unique topics, max pairwise similarity ~0.26, 21 categories balanced).
+
+### Phase 3 — LinkedIn Engine (`/publish`)
+
+Auto-publish content to LinkedIn.
+
+- **Publish modes** — Immediate, Scheduled (posts at a chosen time), Draft, and Approval-required.
+- **Background scheduler** — an in-process loop publishes due scheduled jobs automatically; a
+  `POST /api/publish/process` endpoint is also exposed for an external cron.
+- **Automatic retry** — failed publishes retry with exponential backoff (up to 4 attempts), with a
+  full per-job log; manual retry/cancel/approve actions too.
+- **Auto-schedule the calendar** — one click turns every approved/generated calendar post into a
+  scheduled LinkedIn job at a chosen time of day.
+- **Real or simulated** — set `LINKEDIN_ACCESS_TOKEN` + `LINKEDIN_AUTHOR_URN` to post for real via
+  the LinkedIn UGC Posts API; otherwise the entire flow runs in safe simulation mode (jobs progress
+  end-to-end with a simulated post URL). Publishing a post also marks its topic and calendar entry
+  as published.
+
+You can publish from the Studio (per-post panel) or manage everything on the Publish page
+(connection status, queue, live-updating log, and per-job actions).
 
 ### Phase 4 — Employer & Student Growth Engine (`/campaigns`)
 
@@ -170,12 +191,17 @@ src/
     growth/outreach.ts      HR emails, LinkedIn messages, follow-ups, proposals
     growth/community.ts     polls, quizzes, spotlights
     growth/campaign.ts      one-click campaign orchestration (build/list/get/delete)
+    publishing/linkedin.ts  LinkedIn UGC client (real API + simulation)
+    publishing/service.ts   schedule/approve/retry/cancel, background scheduler, auto-schedule
     service.ts            content generation orchestration
     db.ts / seed.ts / types.ts
 ```
 
-API additions for campaigns: `GET/POST /api/campaigns`, `GET/DELETE /api/campaigns/[id]`,
-and `growthServices` in `/api/meta`.
+API additions:
+- Campaigns: `GET/POST /api/campaigns`, `GET/DELETE /api/campaigns/[id]`, `growthServices` in `/api/meta`.
+- Publishing: `POST /api/publish`, `GET /api/publish/jobs`, `POST /api/publish/jobs/[id]`
+  (approve/cancel/retry), `POST /api/publish/process` (cron tick), `GET /api/publish/status`,
+  `POST /api/publish/auto-schedule`.
 
 ## Brand principles enforced in code
 

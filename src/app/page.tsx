@@ -55,6 +55,11 @@ export default function StudioPage() {
   const [copied, setCopied] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
+  const [pubMode, setPubMode] = useState<"immediate" | "scheduled" | "approval" | "draft">("immediate");
+  const [pubAt, setPubAt] = useState("");
+  const [publishing, setPublishing] = useState(false);
+  const [pubJob, setPubJob] = useState<{ status: string; postUrl?: string | null; simulated: boolean } | null>(null);
+
   useEffect(() => {
     fetch("/api/meta")
       .then((r) => r.json())
@@ -152,6 +157,27 @@ export default function StudioPage() {
       if (data.image) setResult({ post: data.post, image: data.image });
     } finally {
       setBusy(false);
+    }
+  }
+
+  async function onPublish() {
+    if (!result) return;
+    setPublishing(true);
+    setPubJob(null);
+    try {
+      const payload: Record<string, unknown> = { postId: result.post.id, mode: pubMode };
+      if (pubMode === "scheduled" && pubAt) {
+        payload.scheduledAt = new Date(pubAt).toISOString();
+      }
+      const res = await fetch("/api/publish", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (data.job) setPubJob(data.job);
+    } finally {
+      setPublishing(false);
     }
   }
 
@@ -399,6 +425,65 @@ export default function StudioPage() {
 
             {/* Insights */}
             <div className="space-y-4">
+              <div className="card border-l-4 border-l-brand p-4">
+                <div className="mb-2 flex items-center justify-between">
+                  <span className="text-sm font-bold text-brand-ink">Publish to LinkedIn</span>
+                  {meta && (
+                    <a href="/publish" className="text-xs font-medium text-brand hover:underline">
+                      Queue ↗
+                    </a>
+                  )}
+                </div>
+                <div className="mb-2 grid grid-cols-2 gap-1.5 text-xs font-semibold">
+                  {(["immediate", "scheduled", "approval", "draft"] as const).map((m) => (
+                    <button
+                      key={m}
+                      onClick={() => setPubMode(m)}
+                      className={`rounded-lg border px-2 py-1.5 capitalize transition ${
+                        pubMode === m
+                          ? "border-brand bg-brand-soft text-brand"
+                          : "border-slate-200 text-slate-500 hover:border-slate-300"
+                      }`}
+                    >
+                      {m}
+                    </button>
+                  ))}
+                </div>
+                {pubMode === "scheduled" && (
+                  <input
+                    type="datetime-local"
+                    value={pubAt}
+                    onChange={(e) => setPubAt(e.target.value)}
+                    className="input mb-2 text-xs"
+                  />
+                )}
+                <button
+                  className="btn-primary w-full"
+                  onClick={onPublish}
+                  disabled={publishing || (pubMode === "scheduled" && !pubAt)}
+                >
+                  {publishing ? "Working…" : "Publish"}
+                </button>
+                {pubJob && (
+                  <div className="mt-2 rounded-lg bg-slate-50 px-3 py-2 text-xs">
+                    <span className="font-semibold text-slate-600">
+                      {pubJob.status.replace(/_/g, " ")}
+                    </span>
+                    {pubJob.simulated && <span className="text-slate-400"> · simulated</span>}
+                    {pubJob.postUrl && (
+                      <a
+                        href={pubJob.postUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="ml-1 font-medium text-brand hover:underline"
+                      >
+                        View ↗
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+
               <div className="card p-4">
                 <ScorePanel scores={post.scores} />
               </div>

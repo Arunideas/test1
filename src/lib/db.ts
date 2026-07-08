@@ -41,6 +41,7 @@ export async function readDb(): Promise<Database> {
     performance: parsed.performance ?? [],
     config: parsed.config ?? seed.config,
     campaigns: parsed.campaigns ?? [],
+    publishJobs: parsed.publishJobs ?? [],
   };
   cache = merged;
   return merged;
