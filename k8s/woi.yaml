@@ -1,0 +1,120 @@
+# World of Interns — Kubernetes manifest (for Portainer "Create from manifest").
+#
+# IMPORTANT:
+#  - Single instance only: the app uses a JSON file store + an in-process
+#    scheduler, so keep replicas: 1 and strategy: Recreate.
+#  - Edit the Secret below with your real OPENAI_API_KEY (required for writing).
+#  - If the GHCR image is PRIVATE, uncomment imagePullSecrets and create the
+#    pull secret (see README/instructions).
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: woi
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: woi-secrets
+  namespace: woi
+type: Opaque
+stringData:
+  # Required — writing is AI-only. Paste your key here before deploying.
+  OPENAI_API_KEY: ""
+  OPENAI_TEXT_MODEL: "gpt-4o-mini"
+  OPENAI_IMAGE_MODEL: "gpt-image-1"
+  # Optional — real LinkedIn publishing (leave blank for simulation mode).
+  LINKEDIN_ACCESS_TOKEN: ""
+  LINKEDIN_AUTHOR_URN: ""
+  # Optional — protects the scheduled pipeline endpoint /api/cron/run.
+  CRON_SECRET: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: woi-data
+  namespace: woi
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 1Gi
+  # k3s ships the "local-path" default StorageClass; leave this unset to use it,
+  # or set storageClassName explicitly if your cluster differs.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: woi-content
+  namespace: woi
+  labels:
+    app: woi-content
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: woi-content
+  template:
+    metadata:
+      labels:
+        app: woi-content
+    spec:
+      # If the GHCR package is PRIVATE, create a pull secret named "ghcr-cred"
+      # and uncomment the next two lines:
+      # imagePullSecrets:
+      #   - name: ghcr-cred
+      containers:
+        - name: woi-content
+          image: ghcr.io/arunideas/test1:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: woi-secrets
+          volumeMounts:
+            - name: data
+              mountPath: /app/data
+          readinessProbe:
+            httpGet:
+              path: /api/meta
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/meta
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: woi-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: woi-content
+  namespace: woi
+  labels:
+    app: woi-content
+spec:
+  type: NodePort
+  selector:
+    app: woi-content
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+      # Access at http://<any-node-ip>:30080
+      nodePort: 30080
