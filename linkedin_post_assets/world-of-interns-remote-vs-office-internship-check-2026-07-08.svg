@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Remote or in-office internship check</title>
+  <desc id="desc">World of Interns checklist card advising students to check mentorship, weekly review, 30-day tasks, and proof of work before accepting a remote or in-office internship.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="paper-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.04"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#paper-grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="245" font-size="62" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Remote or in-office?</text>
+  <text x="80" y="315" font-size="44" fill="#5c6773" font-weight="700" font-family="Georgia, 'Times New Roman', serif">Check the support, not the location.</text>
+
+  <g>
+    <rect x="80" y="385" width="1040" height="610" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+    <line x1="600" y1="445" x2="600" y2="935" stroke="#d7cfbf" stroke-width="3"/>
+
+    <text x="320" y="465" font-size="34" fill="#0b5cff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">REMOTE WORKS IF</text>
+    <text x="880" y="465" font-size="34" fill="#2f7d4f" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">IN-OFFICE WORKS IF</text>
+
+    <circle cx="135" cy="550" r="22" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M124 548 l9 11 l19 -24" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="175" y="560" font-size="34" fill="#23303a" font-family="Arial, sans-serif">Named mentor.</text>
+
+    <circle cx="135" cy="665" r="22" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M124 663 l9 11 l19 -24" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="175" y="675" font-size="34" fill="#23303a" font-family="Arial, sans-serif">Weekly review call.</text>
+
+    <circle cx="135" cy="780" r="22" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M124 778 l9 11 l19 -24" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="175" y="790" font-size="34" fill="#23303a" font-family="Arial, sans-serif">Clear written tasks.</text>
+
+    <circle cx="655" cy="550" r="22" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M644 548 l9 11 l19 -24" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="695" y="560" font-size="34" fill="#23303a" font-family="Arial, sans-serif">Real work, not shadowing.</text>
+
+    <circle cx="655" cy="665" r="22" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M644 663 l9 11 l19 -24" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="695" y="675" font-size="34" fill="#23303a" font-family="Arial, sans-serif">Specific feedback.</text>
+
+    <circle cx="655" cy="780" r="22" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M644 778 l9 11 l19 -24" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="695" y="790" font-size="34" fill="#23303a" font-family="Arial, sans-serif">Proof of work to show.</text>
+
+    <rect x="150" y="865" width="900" height="78" rx="18" fill="#23303a"/>
+    <text x="600" y="916" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">Ask: what will I ship in the first 30 days?</text>
+  </g>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
