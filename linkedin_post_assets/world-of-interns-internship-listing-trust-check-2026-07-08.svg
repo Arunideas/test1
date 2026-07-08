@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">World of Interns internship listing trust check</title>
+  <desc id="desc">A checklist card with five quick checks before applying to an internship.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e8dfcf"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="78" width="48" height="48" rx="11" fill="#0b5cff"/>
+    <text x="104" y="112" font-size="27" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="144" y="112" font-size="27" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="234" font-size="32" fill="#0b5cff" font-weight="700" font-family="Arial, sans-serif">2-minute trust check</text>
+  <text x="80" y="306" font-size="64" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Before you apply</text>
+  <text x="80" y="374" font-size="64" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">to an internship</text>
+
+  <rect x="80" y="454" width="1040" height="560" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g font-family="Arial, sans-serif" fill="#23303a">
+    <g transform="translate(130 545)">
+      <rect x="0" y="-35" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M11 -10 L23 4 L47 -26" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="76" y="4" font-size="38" font-weight="700">Real company website</text>
+    </g>
+
+    <g transform="translate(130 642)">
+      <rect x="0" y="-35" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M11 -10 L23 4 L47 -26" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="76" y="4" font-size="38" font-weight="700">Active LinkedIn page</text>
+    </g>
+
+    <g transform="translate(130 739)">
+      <rect x="0" y="-35" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M11 -10 L23 4 L47 -26" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="76" y="4" font-size="38" font-weight="700">Clear work and skills</text>
+    </g>
+
+    <g transform="translate(130 836)">
+      <rect x="0" y="-35" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M11 -10 L23 4 L47 -26" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="76" y="4" font-size="38" font-weight="700">Official recruiter profile</text>
+    </g>
+
+    <g transform="translate(130 933)">
+      <rect x="0" y="-35" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M11 -10 L23 4 L47 -26" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="76" y="4" font-size="38" font-weight="700">No money request</text>
+    </g>
+  </g>
+
+  <text x="600" y="1108" font-size="24" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
