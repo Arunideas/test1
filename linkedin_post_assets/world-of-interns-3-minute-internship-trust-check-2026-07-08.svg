@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">3-minute internship trust check</title>
+  <desc id="desc">World of Interns checklist image showing three internship checks: company page, role details, and fee or pressure red flags.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <rect x="70" y="70" width="1060" height="1060" rx="36" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g>
+    <rect x="105" y="105" width="50" height="50" rx="12" fill="#0b5cff"/>
+    <text x="130" y="139" font-size="28" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="174" y="139" font-size="28" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="105" y="255" font-size="36" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Before you apply</text>
+  <text x="105" y="335" font-size="76" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">3-minute</text>
+  <text x="105" y="420" font-size="76" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">internship check</text>
+
+  <g font-family="Arial, sans-serif">
+    <rect x="105" y="500" width="990" height="120" rx="22" fill="#f3efe7" stroke="#d7cfbf" stroke-width="2"/>
+    <circle cx="162" cy="560" r="28" fill="#2f7d4f"/>
+    <path d="M149 559 l10 11 l20 -25" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="215" y="550" font-size="34" fill="#23303a" font-weight="700">Company page is real</text>
+    <text x="215" y="590" font-size="24" fill="#5c6773">Recent posts, real employees, matching website</text>
+
+    <rect x="105" y="650" width="990" height="120" rx="22" fill="#f3efe7" stroke="#d7cfbf" stroke-width="2"/>
+    <circle cx="162" cy="710" r="28" fill="#2f7d4f"/>
+    <path d="M149 709 l10 11 l20 -25" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="215" y="700" font-size="34" fill="#23303a" font-weight="700">Role details are clear</text>
+    <text x="215" y="740" font-size="24" fill="#5c6773">Work, reporting, duration, location, stipend</text>
+
+    <rect x="105" y="800" width="990" height="120" rx="22" fill="#fff4ef" stroke="#e2b8a9" stroke-width="2"/>
+    <circle cx="162" cy="860" r="28" fill="#c0492f"/>
+    <path d="M150 848 l24 24 M174 848 l-24 24" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+    <text x="215" y="850" font-size="34" fill="#23303a" font-weight="700">No fee or pressure</text>
+    <text x="215" y="890" font-size="24" fill="#5c6773">Deposit, training fee, or hurry-up messages are stop signs</text>
+  </g>
+
+  <rect x="105" y="965" width="990" height="88" rx="20" fill="#0b5cff" opacity="0.08"/>
+  <text x="600" y="1019" font-size="32" fill="#23303a" font-weight="700" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif">A quick check can save weeks of confusion.</text>
+
+  <text x="600" y="1094" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
