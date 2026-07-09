@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="A World of Interns checklist card titled The first screen test, showing four resume details recruiters should see quickly: role fit, strongest proof, matched skills, and clean spacing.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.08"/>
+
+  <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+  <text x="103" y="112" font-size="26" font-weight="700" fill="#ffffff" font-family="Arial, sans-serif" text-anchor="middle">W</text>
+  <text x="140" y="112" font-size="26" font-weight="700" fill="#23303a" font-family="Arial, sans-serif" text-anchor="start">World of Interns</text>
+
+  <text x="80" y="238" font-size="74" font-weight="800" fill="#23303a" font-family="Arial, sans-serif" text-anchor="start">THE FIRST</text>
+  <text x="80" y="324" font-size="74" font-weight="800" fill="#23303a" font-family="Arial, sans-serif" text-anchor="start">SCREEN TEST</text>
+  <text x="84" y="386" font-size="32" font-weight="400" fill="#5c6773" font-family="Georgia, serif" text-anchor="start">What should a recruiter understand in 10 seconds?</text>
+
+  <rect x="80" y="455" width="1040" height="450" rx="24" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <line x1="315" y1="455" x2="315" y2="905" stroke="#d7cfbf" stroke-width="3"/>
+  <line x1="80" y1="567" x2="1120" y2="567" stroke="#d7cfbf" stroke-width="3"/>
+  <line x1="80" y1="680" x2="1120" y2="680" stroke="#d7cfbf" stroke-width="3"/>
+  <line x1="80" y1="793" x2="1120" y2="793" stroke="#d7cfbf" stroke-width="3"/>
+
+  <text x="120" y="525" font-size="46" font-weight="800" fill="#0b5cff" font-family="Arial, sans-serif" text-anchor="start">1</text>
+  <text x="355" y="525" font-size="38" font-weight="700" fill="#23303a" font-family="Arial, sans-serif" text-anchor="start">Role fit is visible near the top</text>
+  <text x="120" y="638" font-size="46" font-weight="800" fill="#0b5cff" font-family="Arial, sans-serif" text-anchor="start">2</text>
+  <text x="355" y="638" font-size="38" font-weight="700" fill="#23303a" font-family="Arial, sans-serif" text-anchor="start">Strongest project has one proof line</text>
+  <text x="120" y="751" font-size="46" font-weight="800" fill="#0b5cff" font-family="Arial, sans-serif" text-anchor="start">3</text>
+  <text x="355" y="751" font-size="38" font-weight="700" fill="#23303a" font-family="Arial, sans-serif" text-anchor="start">Skills match the internship, not every tool</text>
+  <text x="120" y="864" font-size="46" font-weight="800" fill="#0b5cff" font-family="Arial, sans-serif" text-anchor="start">4</text>
+  <text x="355" y="864" font-size="38" font-weight="700" fill="#23303a" font-family="Arial, sans-serif" text-anchor="start">Spacing lets the signal breathe</text>
+
+  <rect x="80" y="960" width="1040" height="86" rx="18" fill="#23303a" opacity="0.95"/>
+  <text x="600" y="1015" font-size="32" font-weight="700" fill="#ffffff" font-family="Arial, sans-serif" text-anchor="middle">Cover the lower half. Can the top half explain your fit?</text>
+
+  <text x="600" y="1130" font-size="22" font-weight="400" fill="#5c6773" font-family="Arial, sans-serif" text-anchor="middle">worldofinterns.in  -  practical, not promotional</text>
+</svg>
