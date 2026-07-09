@@ -165,7 +165,7 @@ export async function publishToLinkedIn(
       ? await uploadImageAsset(payload.image, status.authorUrn!)
       : null;
 
-    if (uploadedImage && !uploadedImage.ok) {
+    if (uploadedImage?.ok === false) {
       return {
         ok: false,
         error: uploadedImage.error,
