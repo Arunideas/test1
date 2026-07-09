@@ -268,6 +268,7 @@ export interface PublishJob {
   text: string;
   hashtags: string[];
   imageId?: string | null;
+  imageAttached?: boolean;
   visibility: "PUBLIC" | "CONNECTIONS";
   scheduledAt?: string | null;
   attempts: number;

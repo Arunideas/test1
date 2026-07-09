@@ -1,5 +1,6 @@
 import { newId, readDb, updateDb } from "../db";
 import type {
+  GeneratedImage,
   PublishJob,
   PublishLogLine,
   PublishMode,
@@ -23,6 +24,11 @@ function line(message: string, level: PublishLogLine["level"] = "info"): Publish
 function composeText(body: string, hashtags: string[]): string {
   const tags = hashtags?.length ? "\n\n" + hashtags.join(" ") : "";
   return body + tags;
+}
+
+function toLinkedInImage(image?: GeneratedImage | null) {
+  if (!image) return null;
+  return { svg: image.svg, altText: image.altText };
 }
 
 export interface SchedulePublishInput {
@@ -68,6 +74,7 @@ export async function schedulePublish(
     text: composeText(post.body, post.hashtags),
     hashtags: post.hashtags,
     imageId: post.imageId ?? null,
+    imageAttached: Boolean(post.imageId),
     visibility: input.visibility ?? "PUBLIC",
     scheduledAt: input.mode === "scheduled" ? input.scheduledAt ?? iso() : null,
     attempts: 0,
@@ -171,11 +178,20 @@ export async function processDueJobs(): Promise<{ processed: number }> {
         j.updatedAt = iso();
         j.log.push(line(`Publishing attempt ${j.attempts}/${j.maxAttempts}`));
       }
-      return due.map((j) => ({ id: j.id, text: j.text, visibility: j.visibility }));
+      return due.map((j) => ({
+        id: j.id,
+        text: j.text,
+        visibility: j.visibility,
+        image: toLinkedInImage(d.images.find((img) => img.id === j.imageId)),
+      }));
     });
 
     for (const c of claimed) {
-      const result = await publishToLinkedIn({ text: c.text, visibility: c.visibility });
+      const result = await publishToLinkedIn({
+        text: c.text,
+        visibility: c.visibility,
+        image: c.image,
+      });
       await updateDb((d) => {
         const job = d.publishJobs.find((j) => j.id === c.id);
         if (!job) return;
@@ -186,11 +202,12 @@ export async function processDueJobs(): Promise<{ processed: number }> {
           job.lastError = null;
           job.nextAttemptAt = null;
           job.simulated = result.simulated;
+          job.imageAttached = result.imageAttached ?? Boolean(c.image);
           job.log.push(
             line(
               result.simulated
-                ? `Published (simulated): ${job.postUrl}`
-                : `Published: ${job.postUrl}`,
+                ? `Published (simulated${job.imageAttached ? " with image" : ""}): ${job.postUrl}`
+                : `Published${job.imageAttached ? " with image" : ""}: ${job.postUrl}`,
               "success"
             )
           );
@@ -280,6 +297,7 @@ export async function autoScheduleCalendar(timeOfDay = "09:00") {
       text: composeText(post.body, post.hashtags),
       hashtags: post.hashtags,
       imageId: post.imageId ?? null,
+      imageAttached: Boolean(post.imageId),
       visibility: "PUBLIC",
       scheduledAt: new Date(`${entry.date}T${timeOfDay}:00Z`).toISOString(),
       attempts: 0,
