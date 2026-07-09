@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">The 7-second recruiter scan</title>
+  <desc id="desc">A World of Interns square card with five checklist signals: role fit, relevant project, tool keywords, one proof, and availability.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e8e0d2"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#23303a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="245" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Recruiter Insight</text>
+  <text x="80" y="330" font-size="68" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">The 7-second</text>
+  <text x="80" y="405" font-size="68" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">recruiter scan</text>
+
+  <rect x="80" y="485" width="1040" height="445" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3" filter="url(#softShadow)"/>
+
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(130 555)">
+      <rect x="0" y="-34" width="42" height="42" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M10 -14 l10 12 l22 -28" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="72" y="0" font-size="38" fill="#23303a" font-weight="700">Role fit in one line</text>
+    </g>
+
+    <g transform="translate(130 635)">
+      <rect x="0" y="-34" width="42" height="42" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M10 -14 l10 12 l22 -28" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="72" y="0" font-size="38" fill="#23303a" font-weight="700">One relevant project</text>
+    </g>
+
+    <g transform="translate(130 715)">
+      <rect x="0" y="-34" width="42" height="42" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M10 -14 l10 12 l22 -28" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="72" y="0" font-size="38" fill="#23303a" font-weight="700">Tools that match the opening</text>
+    </g>
+
+    <g transform="translate(130 795)">
+      <rect x="0" y="-34" width="42" height="42" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M10 -14 l10 12 l22 -28" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="72" y="0" font-size="38" fill="#23303a" font-weight="700">A clear proof of outcome</text>
+    </g>
+
+    <g transform="translate(130 875)">
+      <rect x="0" y="-34" width="42" height="42" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M10 -14 l10 12 l22 -28" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="72" y="0" font-size="38" fill="#23303a" font-weight="700">Availability and location fit</text>
+    </g>
+  </g>
+
+  <line x1="80" y1="995" x2="1120" y2="995" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="80" y="1058" font-size="32" fill="#23303a" font-weight="700" font-family="Georgia, 'Times New Roman', serif">If the signal is hidden, it may be missed.</text>
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
