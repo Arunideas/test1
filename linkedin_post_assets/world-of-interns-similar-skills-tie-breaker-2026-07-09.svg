@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Similar skills are not the tie-breaker</title>
+  <desc id="desc">World of Interns card explaining that similar skills are not the recruiter tie-breaker; clear proof is.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="245" font-size="38" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Recruiter Insight</text>
+  <text x="80" y="330" font-size="64" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Similar skills</text>
+  <text x="80" y="405" font-size="64" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">are not the tie-breaker.</text>
+
+  <rect x="80" y="495" width="1040" height="250" rx="24" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="130" y="570" font-size="30" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Many resumes say:</text>
+  <text x="130" y="645" font-size="44" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Python. SQL. Dashboard. Teamwork.</text>
+  <text x="130" y="700" font-size="28" fill="#c0492f" font-weight="700" font-family="Arial, sans-serif">A list is easy to miss.</text>
+
+  <rect x="80" y="800" width="1040" height="250" rx="24" fill="#23303a"/>
+  <text x="130" y="875" font-size="30" fill="#d7cfbf" font-weight="700" font-family="Arial, sans-serif">The scan improves when it shows:</text>
+  <text x="130" y="950" font-size="44" fill="#ffffff" font-family="Georgia, 'Times New Roman', serif">where it was used + what changed</text>
+  <text x="130" y="1005" font-size="28" fill="#8fb0ff" font-weight="700" font-family="Arial, sans-serif">Proof helps recruiters decide faster.</text>
+
+  <line x1="600" y1="752" x2="600" y2="792" stroke="#0b5cff" stroke-width="8" stroke-linecap="round"/>
+  <path d="M570 770 L600 800 L630 770" fill="none" stroke="#0b5cff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
