@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Skill proof map</title>
+  <desc id="desc">A World of Interns checklist card titled Skill proof map with three checks: skill, where used, and proof.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="278" font-size="58" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Skill proof map</text>
+  <text x="80" y="338" font-size="32" fill="#5c6773" font-family="Arial, sans-serif">Make your skills easier to verify in one scan.</text>
+
+  <rect x="80" y="410" width="1040" height="505" rx="26" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g>
+    <rect x="135" y="490" width="48" height="48" rx="9" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M146 466 l14 17 l30 -39" transform="translate(0 52)" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="210" y="525" font-size="42" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Skill</text>
+    <text x="210" y="572" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">Name only the skills you can explain.</text>
+  </g>
+
+  <line x1="135" y1="625" x2="1065" y2="625" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g>
+    <rect x="135" y="680" width="48" height="48" rx="9" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M146 656 l14 17 l30 -39" transform="translate(0 52)" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="210" y="715" font-size="42" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Where used</text>
+    <text x="210" y="762" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">Project, internship, club work, or workflow.</text>
+  </g>
+
+  <line x1="135" y1="815" x2="1065" y2="815" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g>
+    <rect x="135" y="870" width="48" height="48" rx="9" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M146 846 l14 17 l30 -39" transform="translate(0 52)" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="210" y="905" font-size="42" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Proof</text>
+    <text x="210" y="952" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">What changed because you used it?</text>
+  </g>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
