@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Recruiter shortlist scan checklist</title>
+  <desc id="desc">A World of Interns checklist card showing four things recruiters scan first in a crowded internship application pile: role fit, proof, clarity, and risk.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="245" font-size="42" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">When 500 applications land</text>
+  <text x="80" y="320" font-size="66" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Recruiters scan for</text>
+  <text x="80" y="395" font-size="66" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">4 clear signals</text>
+
+  <rect x="80" y="470" width="1040" height="480" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g font-family="Arial, sans-serif">
+    <g>
+      <rect x="130" y="535" width="48" height="48" rx="9" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M140 558 l13 15 l27 -33" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round"/>
+      <text x="205" y="570" font-size="38" fill="#23303a" font-weight="700">Role fit is clear</text>
+      <text x="205" y="612" font-size="25" fill="#5c6773">The target role is visible near the top.</text>
+    </g>
+
+    <g>
+      <rect x="130" y="640" width="48" height="48" rx="9" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M140 663 l13 15 l27 -33" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round"/>
+      <text x="205" y="675" font-size="38" fill="#23303a" font-weight="700">Skill proof is visible</text>
+      <text x="205" y="717" font-size="25" fill="#5c6773">Skills connect to a project, result, or task.</text>
+    </g>
+
+    <g>
+      <rect x="130" y="745" width="48" height="48" rx="9" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M140 768 l13 15 l27 -33" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round"/>
+      <text x="205" y="780" font-size="38" fill="#23303a" font-weight="700">Latest work is easy to read</text>
+      <text x="205" y="822" font-size="25" fill="#5c6773">Dates, education, and recent projects are not hidden.</text>
+    </g>
+
+    <g>
+      <rect x="130" y="850" width="48" height="48" rx="9" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M140 873 l13 15 l27 -33" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round"/>
+      <text x="205" y="885" font-size="38" fill="#23303a" font-weight="700">Risk is low</text>
+      <text x="205" y="927" font-size="25" fill="#5c6773">No claim needs a long explanation to trust it.</text>
+    </g>
+  </g>
+
+  <rect x="80" y="995" width="1040" height="72" rx="18" fill="#23303a"/>
+  <text x="600" y="1041" font-size="28" fill="#ffffff" text-anchor="middle" font-family="Arial, sans-serif">If your resume needs you beside it, simplify the first scan.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
