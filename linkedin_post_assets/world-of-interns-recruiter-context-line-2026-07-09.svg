@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Make the first scan easier</title>
+  <desc id="desc">A World of Interns checklist card showing context, problem, proof, and fit.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+  <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+  <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+
+  <text x="80" y="260" font-size="56" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Make the first</text>
+  <text x="80" y="332" font-size="56" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">scan easier</text>
+  <rect x="80" y="366" width="210" height="8" rx="4" fill="#0b5cff"/>
+
+  <rect x="80" y="430" width="1040" height="520" rx="24" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g transform="translate(130 500)">
+    <circle cx="26" cy="26" r="26" fill="#0b5cff"/>
+    <path d="M14 26 l9 10 l18 -24" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="10" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Context</text>
+    <text x="80" y="54" font-size="34" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">What is this project?</text>
+  </g>
+
+  <g transform="translate(130 620)">
+    <circle cx="26" cy="26" r="26" fill="#0b5cff"/>
+    <path d="M14 26 l9 10 l18 -24" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="10" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Problem</text>
+    <text x="80" y="54" font-size="34" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Who did it help?</text>
+  </g>
+
+  <g transform="translate(130 740)">
+    <circle cx="26" cy="26" r="26" fill="#0b5cff"/>
+    <path d="M14 26 l9 10 l18 -24" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="10" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Proof</text>
+    <text x="80" y="54" font-size="34" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">What changed because of it?</text>
+  </g>
+
+  <g transform="translate(130 860)">
+    <circle cx="26" cy="26" r="26" fill="#0b5cff"/>
+    <path d="M14 26 l9 10 l18 -24" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="10" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Fit</text>
+    <text x="80" y="54" font-size="34" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Which role does it support?</text>
+  </g>
+
+  <text x="80" y="1030" font-size="32" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">One context line can do more than five generic bullets.</text>
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
