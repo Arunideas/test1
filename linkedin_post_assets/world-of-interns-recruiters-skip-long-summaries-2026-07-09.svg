@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Recruiters skip long summaries</title>
+  <desc id="desc">World of Interns card explaining that recruiters need role fit, visible proof, and one matching skill on the first screen of a resume.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="250" font-size="38" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Recruiter Insight</text>
+  <text x="80" y="335" font-size="64" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Long summaries</text>
+  <text x="80" y="410" font-size="64" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">get skipped.</text>
+
+  <rect x="80" y="505" width="1040" height="435" rx="24" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <text x="130" y="590" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">The first screen should answer:</text>
+
+  <circle cx="155" cy="690" r="34" fill="#0b5cff"/>
+  <text x="155" y="703" font-size="36" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+  <text x="220" y="704" font-size="42" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">What role do you fit?</text>
+
+  <circle cx="155" cy="785" r="34" fill="#0b5cff"/>
+  <text x="155" y="798" font-size="36" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+  <text x="220" y="799" font-size="42" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">What proof is visible?</text>
+
+  <circle cx="155" cy="880" r="34" fill="#0b5cff"/>
+  <text x="155" y="893" font-size="36" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+  <text x="220" y="894" font-size="42" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">What skill matches this opening?</text>
+
+  <rect x="80" y="995" width="1040" height="72" rx="18" fill="#23303a"/>
+  <text x="600" y="1043" font-size="30" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">First screen, not life story.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
