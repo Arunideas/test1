@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Recruiter scan zones</title>
+  <desc id="desc">World of Interns card showing three areas recruiters scan first: role match, proof point, and verify link.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.08"/>
+
+  <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+  <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+  <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+
+  <text x="80" y="255" font-size="58" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Recruiters scan</text>
+  <text x="80" y="325" font-size="58" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">for proof first.</text>
+  <text x="82" y="375" font-size="30" fill="#5c6773" font-family="Georgia, 'Times New Roman', serif">Make the top third of your resume easy to read.</text>
+
+  <rect x="80" y="455" width="1040" height="126" rx="22" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <circle cx="145" cy="518" r="34" fill="#0b5cff"/>
+  <text x="145" y="531" font-size="36" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+  <text x="205" y="511" font-size="34" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Role match</text>
+  <text x="205" y="552" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">Can this person do the work for this role?</text>
+
+  <rect x="80" y="620" width="1040" height="126" rx="22" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <circle cx="145" cy="683" r="34" fill="#0b5cff"/>
+  <text x="145" y="696" font-size="36" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+  <text x="205" y="676" font-size="34" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Proof point</text>
+  <text x="205" y="717" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">One project, result, internship, or assessment signal.</text>
+
+  <rect x="80" y="785" width="1040" height="126" rx="22" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <circle cx="145" cy="848" r="34" fill="#0b5cff"/>
+  <text x="145" y="861" font-size="36" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+  <text x="205" y="841" font-size="34" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Verify link</text>
+  <text x="205" y="882" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">A portfolio, GitHub, dashboard, case study, or live demo.</text>
+
+  <rect x="80" y="980" width="1040" height="72" rx="16" fill="#23303a"/>
+  <text x="600" y="1027" font-size="28" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">Clear scan path beats a long summary.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
