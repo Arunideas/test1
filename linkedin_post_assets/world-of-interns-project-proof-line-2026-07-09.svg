@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">One project proof line</title>
+  <desc id="desc">A World of Interns checklist card with three checks: what you built, who used it, and what changed.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#23303a" flood-opacity="0.14"/>
+    </filter>
+    <pattern id="grain" width="80" height="80" patternUnits="userSpaceOnUse">
+      <circle cx="9" cy="12" r="1.2" fill="#d7cfbf" opacity="0.38"/>
+      <circle cx="54" cy="36" r="1" fill="#d7cfbf" opacity="0.3"/>
+      <circle cx="31" cy="69" r="1.1" fill="#d7cfbf" opacity="0.28"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" fill="url(#grain)" opacity="0.45"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <rect x="100" y="210" width="1000" height="780" rx="34" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3" filter="url(#shadow)"/>
+  <text x="160" y="310" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Recruiter insight</text>
+  <text x="160" y="410" font-size="76" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">One project</text>
+  <text x="160" y="500" font-size="76" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">proof line</text>
+  <rect x="160" y="535" width="165" height="10" rx="5" fill="#0b5cff"/>
+
+  <g font-family="Arial, sans-serif">
+    <g>
+      <rect x="165" y="625" width="54" height="54" rx="12" fill="#ffffff" stroke="#23303a" stroke-width="4"/>
+      <path d="M178 652 l13 15 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="250" y="663" font-size="42" fill="#23303a" font-weight="700">What you built</text>
+    </g>
+    <g>
+      <rect x="165" y="725" width="54" height="54" rx="12" fill="#ffffff" stroke="#23303a" stroke-width="4"/>
+      <path d="M178 752 l13 15 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="250" y="763" font-size="42" fill="#23303a" font-weight="700">Who used it</text>
+    </g>
+    <g>
+      <rect x="165" y="825" width="54" height="54" rx="12" fill="#ffffff" stroke="#23303a" stroke-width="4"/>
+      <path d="M178 852 l13 15 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="250" y="863" font-size="42" fill="#23303a" font-weight="700">What changed</text>
+    </g>
+  </g>
+
+  <text x="160" y="950" font-size="28" fill="#5c6773" font-family="Georgia, 'Times New Roman', serif">Make evidence easier to place. Do not overclaim.</text>
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
