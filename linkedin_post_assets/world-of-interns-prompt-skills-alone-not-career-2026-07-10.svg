@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="Prompt skills alone are not a career">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="260" font-size="64" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Prompt skills</text>
+  <text x="80" y="338" font-size="64" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">alone are not</text>
+  <text x="80" y="416" font-size="64" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">a career</text>
+
+  <rect x="80" y="500" width="1040" height="430" rx="24" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="130" y="575" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Pair AI with judgment:</text>
+
+  <circle cx="145" cy="665" r="34" fill="#0b5cff"/>
+  <text x="145" y="677" font-size="32" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+  <text x="205" y="677" font-size="42" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Choose the real problem</text>
+
+  <circle cx="145" cy="765" r="34" fill="#0b5cff"/>
+  <text x="145" y="777" font-size="32" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+  <text x="205" y="777" font-size="42" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Check the weak assumption</text>
+
+  <circle cx="145" cy="865" r="34" fill="#0b5cff"/>
+  <text x="145" y="877" font-size="32" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+  <text x="205" y="877" font-size="42" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Ship usable proof</text>
+
+  <text x="80" y="1025" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">Future skill: use AI, but prove you can think.</text>
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
