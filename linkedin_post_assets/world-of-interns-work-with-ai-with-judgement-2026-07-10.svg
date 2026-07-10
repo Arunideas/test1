@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Work with AI. Keep your judgement on.</title>
+  <desc id="desc">A World of Interns card with three steps: draft with AI, check the claims, own the final answer.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="250" font-size="34" fill="#0b5cff" font-weight="700" font-family="Arial, sans-serif">FRIDAY FUTURE SKILL</text>
+  <text x="80" y="350" font-size="72" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Work with AI.</text>
+  <text x="80" y="435" font-size="72" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Keep your</text>
+  <text x="80" y="520" font-size="72" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">judgement on.</text>
+
+  <rect x="80" y="605" width="1040" height="360" rx="24" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g font-family="Arial, sans-serif">
+    <circle cx="140" cy="690" r="30" fill="#0b5cff"/>
+    <text x="140" y="702" font-size="32" fill="#ffffff" font-weight="800" text-anchor="middle">1</text>
+    <text x="195" y="702" font-size="38" fill="#23303a" font-weight="700">Draft with AI</text>
+
+    <circle cx="140" cy="790" r="30" fill="#0b5cff"/>
+    <text x="140" y="802" font-size="32" fill="#ffffff" font-weight="800" text-anchor="middle">2</text>
+    <text x="195" y="802" font-size="38" fill="#23303a" font-weight="700">Check the claims</text>
+
+    <circle cx="140" cy="890" r="30" fill="#0b5cff"/>
+    <text x="140" y="902" font-size="32" fill="#ffffff" font-weight="800" text-anchor="middle">3</text>
+    <text x="195" y="902" font-size="38" fill="#23303a" font-weight="700">Own the final answer</text>
+  </g>
+
+  <text x="600" y="1095" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
