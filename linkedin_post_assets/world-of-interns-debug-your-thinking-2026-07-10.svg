@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Debug your thinking</title>
+  <desc id="desc">A World of Interns checklist card with four prompts for checking assumptions and evidence before acting.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="250" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">FRIDAY FUTURE SKILL</text>
+  <text x="80" y="330" font-size="76" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Debug your</text>
+  <text x="80" y="415" font-size="76" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">thinking first.</text>
+  <rect x="80" y="458" width="250" height="8" rx="4" fill="#0b5cff"/>
+
+  <rect x="80" y="545" width="1040" height="430" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g font-family="Arial, sans-serif">
+    <circle cx="145" cy="630" r="30" fill="#0b5cff"/>
+    <text x="145" y="641" font-size="30" fill="#ffffff" font-weight="800" text-anchor="middle">1</text>
+    <text x="200" y="640" font-size="38" fill="#23303a" font-weight="700">What did I assume?</text>
+
+    <circle cx="145" cy="725" r="30" fill="#0b5cff"/>
+    <text x="145" y="736" font-size="30" fill="#ffffff" font-weight="800" text-anchor="middle">2</text>
+    <text x="200" y="735" font-size="38" fill="#23303a" font-weight="700">What evidence do I have?</text>
+
+    <circle cx="145" cy="820" r="30" fill="#0b5cff"/>
+    <text x="145" y="831" font-size="30" fill="#ffffff" font-weight="800" text-anchor="middle">3</text>
+    <text x="200" y="830" font-size="38" fill="#23303a" font-weight="700">Where did my reasoning jump?</text>
+
+    <circle cx="145" cy="915" r="30" fill="#0b5cff"/>
+    <text x="145" y="926" font-size="30" fill="#ffffff" font-weight="800" text-anchor="middle">4</text>
+    <text x="200" y="925" font-size="38" fill="#23303a" font-weight="700">What small test proves it?</text>
+  </g>
+
+  <text x="80" y="1060" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">Better thinking beats memorised answers.</text>
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
