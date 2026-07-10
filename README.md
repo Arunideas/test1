@@ -80,7 +80,8 @@ Auto-publish content to LinkedIn.
 - **Auto-schedule the calendar** — one click turns every approved/generated calendar post into a
   scheduled LinkedIn job at a chosen time of day.
 - **Real or simulated** — set `LINKEDIN_ACCESS_TOKEN` + `LINKEDIN_AUTHOR_URN` to post for real via
-  the LinkedIn UGC Posts API; otherwise the entire flow runs in safe simulation mode (jobs progress
+  the LinkedIn UGC Posts API; when a post has an image, the engine registers and uploads PNG image
+  media before publishing. Otherwise the entire flow runs in safe simulation mode (jobs progress
   end-to-end with a simulated post URL). Publishing a post also marks its topic and calendar entry
   as published.
 
