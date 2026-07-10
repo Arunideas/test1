@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Clear writing is technical work</title>
+  <desc id="desc">A World of Interns top-list card with three proof points: prompts, bug reports, and project notes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="270" font-size="58" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Clear writing is</text>
+  <text x="80" y="342" font-size="58" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">technical work</text>
+
+  <g>
+    <circle cx="122" cy="500" r="38" fill="#0b5cff"/>
+    <text x="122" y="514" font-size="40" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+    <text x="190" y="496" font-size="38" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Prompts need context</text>
+    <text x="190" y="542" font-size="27" fill="#5c6773" font-family="Arial, sans-serif">Vague input creates vague output.</text>
+  </g>
+
+  <g>
+    <circle cx="122" cy="690" r="38" fill="#0b5cff"/>
+    <text x="122" y="704" font-size="40" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+    <text x="190" y="686" font-size="38" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Bug reports need steps</text>
+    <text x="190" y="732" font-size="27" fill="#5c6773" font-family="Arial, sans-serif">Clear notes save real team time.</text>
+  </g>
+
+  <g>
+    <circle cx="122" cy="880" r="38" fill="#0b5cff"/>
+    <text x="122" y="894" font-size="40" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+    <text x="190" y="876" font-size="38" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Project notes need proof</text>
+    <text x="190" y="922" font-size="27" fill="#5c6773" font-family="Arial, sans-serif">Explain what changed and what is risky.</text>
+  </g>
+
+  <rect x="80" y="1000" width="1040" height="3" fill="#d7cfbf"/>
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
