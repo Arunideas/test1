@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Debug your thinking</title>
+  <desc id="desc">World of Interns card showing a student's thinking loop: question, check assumptions, verify evidence, decide.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4efe6"/>
+      <stop offset="1" stop-color="#e6decf"/>
+    </linearGradient>
+    <filter id="paper">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.035"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#paper)" opacity="0.22"/>
+
+  <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+  <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+  <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+
+  <text x="80" y="245" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">FRIDAY FUTURE SKILL</text>
+  <text x="80" y="335" font-size="72" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Debug your</text>
+  <text x="80" y="420" font-size="72" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">own thinking</text>
+
+  <rect x="80" y="500" width="1040" height="420" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <circle cx="205" cy="625" r="52" fill="#0b5cff"/>
+  <text x="205" y="643" font-size="40" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+  <text x="285" y="610" font-size="34" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Question</text>
+  <text x="285" y="655" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">What did I assume?</text>
+
+  <path d="M400 625 C470 555, 555 555, 625 625" fill="none" stroke="#c9bfac" stroke-width="6" stroke-linecap="round"/>
+  <path d="M613 598 L632 628 L598 625" fill="#c9bfac"/>
+
+  <circle cx="715" cy="625" r="52" fill="#2f7d4f"/>
+  <text x="715" y="643" font-size="40" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+  <text x="795" y="610" font-size="34" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Verify</text>
+  <text x="795" y="655" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">What proves it?</text>
+
+  <path d="M715 705 C715 780, 645 835, 570 835" fill="none" stroke="#c9bfac" stroke-width="6" stroke-linecap="round"/>
+  <path d="M595 814 L560 835 L595 856" fill="#c9bfac"/>
+
+  <circle cx="460" cy="835" r="52" fill="#c0492f"/>
+  <text x="460" y="853" font-size="40" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+  <text x="540" y="820" font-size="34" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Decide</text>
+  <text x="540" y="865" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">What needs human judgement?</text>
+
+  <rect x="80" y="975" width="1040" height="74" rx="18" fill="#23303a"/>
+  <text x="600" y="1023" font-size="30" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">AI moves fast. Your judgement keeps it useful.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in | practical, not promotional</text>
+</svg>
