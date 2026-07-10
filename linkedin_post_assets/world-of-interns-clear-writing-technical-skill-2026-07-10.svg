@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Clear writing is a technical skill</title>
+  <desc id="desc">World of Interns card explaining three ways to make technical work clear: name the task, explain the decision, and show the result.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4efe6"/>
+      <stop offset="0.55" stop-color="#ebe3d4"/>
+      <stop offset="1" stop-color="#dce5ef"/>
+    </linearGradient>
+    <filter id="paper-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.045"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#paper-grain)" opacity="0.08"/>
+
+  <rect x="78" y="76" width="48" height="48" rx="11" fill="#0b5cff"/>
+  <text x="102" y="109" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" font-weight="800" fill="#ffffff">W</text>
+  <text x="144" y="109" font-family="Arial, sans-serif" font-size="26" font-weight="800" fill="#23303a">World of Interns</text>
+
+  <text x="80" y="230" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#0b5cff" letter-spacing="2">FRIDAY FUTURE SKILL</text>
+
+  <text x="80" y="342" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="800" fill="#23303a">Clear writing</text>
+  <text x="80" y="430" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="800" fill="#23303a">is a technical skill.</text>
+
+  <rect x="80" y="505" width="1040" height="416" rx="28" fill="#fbf9f4" stroke="#d2c7b4" stroke-width="3"/>
+
+  <g transform="translate(130 585)">
+    <circle cx="28" cy="28" r="28" fill="#0b5cff"/>
+    <text x="28" y="39" text-anchor="middle" font-family="Arial, sans-serif" font-size="31" font-weight="800" fill="#ffffff">1</text>
+    <text x="92" y="22" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="#23303a">Name the task</text>
+    <text x="92" y="70" font-family="Arial, sans-serif" font-size="28" fill="#5c6773">What exactly did you work on?</text>
+  </g>
+
+  <g transform="translate(130 705)">
+    <circle cx="28" cy="28" r="28" fill="#0b5cff"/>
+    <text x="28" y="39" text-anchor="middle" font-family="Arial, sans-serif" font-size="31" font-weight="800" fill="#ffffff">2</text>
+    <text x="92" y="22" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="#23303a">Explain the decision</text>
+    <text x="92" y="70" font-family="Arial, sans-serif" font-size="28" fill="#5c6773">Why did you choose that approach?</text>
+  </g>
+
+  <g transform="translate(130 825)">
+    <circle cx="28" cy="28" r="28" fill="#0b5cff"/>
+    <text x="28" y="39" text-anchor="middle" font-family="Arial, sans-serif" font-size="31" font-weight="800" fill="#ffffff">3</text>
+    <text x="92" y="22" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="#23303a">Show the result</text>
+    <text x="92" y="70" font-family="Arial, sans-serif" font-size="28" fill="#5c6773">What changed because of your work?</text>
+  </g>
+
+  <rect x="80" y="980" width="1040" height="82" rx="20" fill="#23303a"/>
+  <text x="600" y="1034" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#ffffff">Good English helps. Clear thinking gets trusted.</text>
+
+  <text x="600" y="1130" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#5c6773">worldofinterns.in  -  practical, not promotional</text>
+</svg>
