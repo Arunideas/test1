@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Data literacy without fear</title>
+  <desc id="desc">World of Interns card showing a simple three-question data literacy checklist: what changed, why might it have changed, and what decision needs care.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4efe6"/>
+      <stop offset="1" stop-color="#e7dfd0"/>
+    </linearGradient>
+    <filter id="paper">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.035"/>
+      </feComponentTransfer>
+    </filter>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#b8ad99" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#paper)" opacity="0.22"/>
+
+  <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+  <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+  <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+
+  <text x="80" y="240" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">FRIDAY FUTURE SKILL</text>
+  <text x="80" y="330" font-size="74" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Data literacy</text>
+  <text x="80" y="415" font-size="74" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">without fear</text>
+
+  <rect x="80" y="500" width="1040" height="440" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3" filter="url(#shadow)"/>
+
+  <line x1="170" y1="812" x2="1030" y2="812" stroke="#d7cfbf" stroke-width="4"/>
+  <line x1="170" y1="632" x2="170" y2="812" stroke="#d7cfbf" stroke-width="4"/>
+  <rect x="240" y="720" width="82" height="92" rx="12" fill="#0b5cff" opacity="0.86"/>
+  <rect x="390" y="650" width="82" height="162" rx="12" fill="#2f7d4f" opacity="0.88"/>
+  <rect x="540" y="690" width="82" height="122" rx="12" fill="#c0492f" opacity="0.82"/>
+  <rect x="690" y="590" width="82" height="222" rx="12" fill="#23303a" opacity="0.9"/>
+
+  <path d="M235 685 C325 610, 410 610, 500 670 S690 730, 795 575" fill="none" stroke="#0b5cff" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="235" cy="685" r="12" fill="#0b5cff"/>
+  <circle cx="500" cy="670" r="12" fill="#0b5cff"/>
+  <circle cx="795" cy="575" r="12" fill="#0b5cff"/>
+
+  <rect x="820" y="560" width="240" height="250" rx="20" fill="#f4efe6" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="850" y="615" font-size="27" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Ask 3 things:</text>
+  <circle cx="862" cy="666" r="9" fill="#0b5cff"/>
+  <text x="885" y="675" font-size="25" fill="#23303a" font-family="Arial, sans-serif">What changed?</text>
+  <circle cx="862" cy="721" r="9" fill="#2f7d4f"/>
+  <text x="885" y="730" font-size="25" fill="#23303a" font-family="Arial, sans-serif">Why maybe?</text>
+  <circle cx="862" cy="776" r="9" fill="#c0492f"/>
+  <text x="885" y="785" font-size="25" fill="#23303a" font-family="Arial, sans-serif">What decision?</text>
+
+  <rect x="80" y="985" width="1040" height="72" rx="18" fill="#23303a"/>
+  <text x="600" y="1032" font-size="30" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">Read the pattern. Name the limit. Decide carefully.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in | practical, not promotional</text>
+</svg>
