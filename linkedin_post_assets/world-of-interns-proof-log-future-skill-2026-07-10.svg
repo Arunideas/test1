@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">The proof log</title>
+  <desc id="desc">World of Interns card showing a five-day proof log from trying a task to recording evidence and the next improvement.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4efe6"/>
+      <stop offset="1" stop-color="#e6decf"/>
+    </linearGradient>
+    <filter id="paper">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.035"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#paper)" opacity="0.22"/>
+
+  <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+  <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+  <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+
+  <text x="80" y="245" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">FRIDAY FUTURE SKILL</text>
+  <text x="80" y="338" font-size="78" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Keep a</text>
+  <text x="80" y="430" font-size="78" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">proof log</text>
+
+  <rect x="80" y="500" width="1040" height="435" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <line x1="172" y1="570" x2="172" y2="862" stroke="#d7cfbf" stroke-width="5"/>
+
+  <circle cx="172" cy="585" r="17" fill="#0b5cff"/>
+  <text x="220" y="596" font-size="30" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Mon: tried one real task</text>
+
+  <circle cx="172" cy="655" r="17" fill="#2f7d4f"/>
+  <text x="220" y="666" font-size="30" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Tue: wrote down errors fixed</text>
+
+  <circle cx="172" cy="725" r="17" fill="#0b5cff"/>
+  <text x="220" y="736" font-size="30" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Wed: explained the result</text>
+
+  <circle cx="172" cy="795" r="17" fill="#2f7d4f"/>
+  <text x="220" y="806" font-size="30" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Thu: added a link or screenshot</text>
+
+  <circle cx="172" cy="865" r="17" fill="#c0492f"/>
+  <text x="220" y="876" font-size="30" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Fri: noted the next improvement</text>
+
+  <rect x="705" y="590" width="330" height="230" rx="18" fill="#f4efe6" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="870" y="665" font-size="34" fill="#23303a" font-weight="800" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif">Skills are</text>
+  <text x="870" y="710" font-size="34" fill="#23303a" font-weight="800" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif">easier to trust</text>
+  <text x="870" y="755" font-size="34" fill="#23303a" font-weight="800" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif">when they</text>
+  <text x="870" y="800" font-size="34" fill="#23303a" font-weight="800" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif">leave evidence.</text>
+
+  <rect x="80" y="990" width="1040" height="74" rx="18" fill="#23303a"/>
+  <text x="600" y="1038" font-size="30" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">Track evidence, not just effort.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in | practical, not promotional</text>
+</svg>
