@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="A World of Interns checklist card titled AI work needs source notes with three checks: real source, my judgement, and needs proof.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.045"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#23303a" flood-opacity="0.11"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.07"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="238" font-size="32" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Friday Future Skill</text>
+  <text x="80" y="326" font-size="70" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">AI work needs</text>
+  <text x="80" y="408" font-size="70" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">source notes</text>
+  <rect x="80" y="448" width="240" height="8" rx="4" fill="#0b5cff"/>
+
+  <g filter="url(#softShadow)">
+    <rect x="100" y="520" width="1000" height="432" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+    <g>
+      <circle cx="174" cy="612" r="30" fill="#e6f0ff" stroke="#0b5cff" stroke-width="4"/>
+      <path d="M159 611 l12 13 l23 -28" fill="none" stroke="#0b5cff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="230" y="620" font-size="42" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Real source</text>
+      <text x="230" y="668" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">Can I point to where this line came from?</text>
+    </g>
+    <line x1="150" y1="704" x2="1050" y2="704" stroke="#d7cfbf" stroke-width="2"/>
+    <g>
+      <circle cx="174" cy="780" r="30" fill="#eaf6ee" stroke="#2f7d4f" stroke-width="4"/>
+      <path d="M159 779 l12 13 l23 -28" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="230" y="788" font-size="42" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">My judgement</text>
+      <text x="230" y="836" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">What did I keep, reject, or change?</text>
+    </g>
+    <line x1="150" y1="872" x2="1050" y2="872" stroke="#d7cfbf" stroke-width="2"/>
+    <g>
+      <circle cx="174" cy="948" r="30" fill="#fff2e9" stroke="#c0492f" stroke-width="4"/>
+      <text x="174" y="960" font-size="42" fill="#c0492f" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">?</text>
+      <text x="230" y="956" font-size="42" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Needs proof</text>
+      <text x="230" y="1004" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">What still needs checking before I trust it?</text>
+    </g>
+  </g>
+
+  <text x="600" y="1126" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in | practical, not promotional</text>
+</svg>
