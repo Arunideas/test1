@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Turn feedback into next action</title>
+  <desc id="desc">A World of Interns card with three feedback rows: listen, translate, test.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="245" font-size="34" fill="#0b5cff" font-weight="700" font-family="Arial, sans-serif">FRIDAY FUTURE SKILL</text>
+  <text x="80" y="350" font-size="74" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Turn feedback</text>
+  <text x="80" y="440" font-size="74" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">into next</text>
+  <text x="80" y="530" font-size="74" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">action.</text>
+
+  <rect x="80" y="610" width="1040" height="360" rx="24" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g font-family="Arial, sans-serif">
+    <rect x="130" y="670" width="940" height="76" rx="18" fill="#ffffff" stroke="#d7cfbf" stroke-width="2"/>
+    <circle cx="176" cy="708" r="24" fill="#0b5cff"/>
+    <text x="176" y="718" font-size="28" fill="#ffffff" font-weight="800" text-anchor="middle">1</text>
+    <text x="230" y="718" font-size="30" fill="#0b5cff" font-weight="800">LISTEN</text>
+    <text x="420" y="718" font-size="32" fill="#23303a" font-weight="700">Write the exact sentence.</text>
+
+    <rect x="130" y="780" width="940" height="76" rx="18" fill="#ffffff" stroke="#d7cfbf" stroke-width="2"/>
+    <circle cx="176" cy="818" r="24" fill="#0b5cff"/>
+    <text x="176" y="828" font-size="28" fill="#ffffff" font-weight="800" text-anchor="middle">2</text>
+    <text x="230" y="828" font-size="30" fill="#0b5cff" font-weight="800">TRANSLATE</text>
+    <text x="420" y="828" font-size="32" fill="#23303a" font-weight="700">Pick the part you control.</text>
+
+    <rect x="130" y="890" width="940" height="76" rx="18" fill="#ffffff" stroke="#d7cfbf" stroke-width="2"/>
+    <circle cx="176" cy="928" r="24" fill="#0b5cff"/>
+    <text x="176" y="938" font-size="28" fill="#ffffff" font-weight="800" text-anchor="middle">3</text>
+    <text x="230" y="938" font-size="30" fill="#0b5cff" font-weight="800">TEST</text>
+    <text x="420" y="938" font-size="32" fill="#23303a" font-weight="700">Try one smaller action.</text>
+  </g>
+
+  <text x="600" y="1095" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
