@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Work with AI. Keep your judgement.</title>
+  <desc id="desc">A World of Interns checklist card with four practical steps for students using AI responsibly.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e7dfcf"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#9a907f" flood-opacity="0.20"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.08"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <rect x="104" y="194" width="992" height="842" rx="34" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3" filter="url(#shadow)"/>
+  <text x="152" y="300" font-size="62" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Work with AI.</text>
+  <text x="152" y="372" font-size="62" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Keep your judgement.</text>
+  <rect x="152" y="418" width="170" height="8" rx="4" fill="#0b5cff"/>
+
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(152 512)">
+      <rect x="0" y="-36" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M11 -13 l13 15 l25 -31" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="78" y="0" font-size="41" fill="#23303a" font-weight="700">Start with what you know</text>
+      <text x="78" y="44" font-size="25" fill="#5c6773">Write your own rough answer first.</text>
+    </g>
+    <g transform="translate(152 662)">
+      <rect x="0" y="-36" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M11 -13 l13 15 l25 -31" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="78" y="0" font-size="41" fill="#23303a" font-weight="700">Ask for a better draft</text>
+      <text x="78" y="44" font-size="25" fill="#5c6773">Use the tool to improve, not replace.</text>
+    </g>
+    <g transform="translate(152 812)">
+      <rect x="0" y="-36" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M11 -13 l13 15 l25 -31" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="78" y="0" font-size="41" fill="#23303a" font-weight="700">Verify every claim</text>
+      <text x="78" y="44" font-size="25" fill="#5c6773">Check facts, numbers, links, and tone.</text>
+    </g>
+    <g transform="translate(152 962)">
+      <rect x="0" y="-36" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M11 -13 l13 15 l25 -31" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="78" y="0" font-size="41" fill="#23303a" font-weight="700">Explain it yourself</text>
+      <text x="78" y="44" font-size="25" fill="#5c6773">If you cannot explain it, keep working.</text>
+    </g>
+  </g>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
