@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Data literacy without fear</title>
+  <desc id="desc">A World of Interns checklist card with three practical questions: what is measured, compared with what, and what decision changes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e7dfd0"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#23303a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.08"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="238" font-size="42" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Friday Future Skill</text>
+  <text x="80" y="326" font-size="74" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Data literacy</text>
+  <text x="80" y="408" font-size="74" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">without fear.</text>
+
+  <rect x="80" y="500" width="1040" height="440" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3" filter="url(#shadow)"/>
+
+  <g>
+    <circle cx="157" cy="596" r="29" fill="#0b5cff"/>
+    <text x="157" y="607" font-size="31" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+    <text x="220" y="604" font-size="46" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">What is measured?</text>
+    <text x="220" y="654" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">Name the number before trusting it.</text>
+  </g>
+
+  <g>
+    <circle cx="157" cy="726" r="29" fill="#0b5cff"/>
+    <text x="157" y="737" font-size="31" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+    <text x="220" y="734" font-size="46" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Compared with what?</text>
+    <text x="220" y="784" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">A percentage needs a base.</text>
+  </g>
+
+  <g>
+    <circle cx="157" cy="856" r="29" fill="#0b5cff"/>
+    <text x="157" y="867" font-size="31" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+    <text x="220" y="864" font-size="46" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">What decision changes?</text>
+    <text x="220" y="914" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">If nothing changes, question the metric.</text>
+  </g>
+
+  <g opacity="0.95">
+    <rect x="860" y="228" width="230" height="140" rx="22" fill="#ffffff" stroke="#d7cfbf" stroke-width="3"/>
+    <line x1="910" y1="330" x2="910" y2="290" stroke="#0b5cff" stroke-width="18" stroke-linecap="round"/>
+    <line x1="970" y1="330" x2="970" y2="260" stroke="#2f7d4f" stroke-width="18" stroke-linecap="round"/>
+    <line x1="1030" y1="330" x2="1030" y2="302" stroke="#d97904" stroke-width="18" stroke-linecap="round"/>
+  </g>
+
+  <line x1="80" y1="1010" x2="1120" y2="1010" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="80" y="1078" font-size="32" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">You do not need to love maths.</text>
+  <text x="80" y="1128" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">Start by asking better questions about numbers.</text>
+  <text x="1120" y="1128" font-size="22" fill="#5c6773" text-anchor="end" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
