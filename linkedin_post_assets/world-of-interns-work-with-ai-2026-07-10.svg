@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Work with AI like a teammate</title>
+  <desc id="desc">A World of Interns checklist card with three practical steps: Question it, Edit it, Decide yourself.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#23303a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.08"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="238" font-size="42" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Friday Future Skill</text>
+  <text x="80" y="326" font-size="74" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Work with AI</text>
+  <text x="80" y="408" font-size="74" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">like a teammate.</text>
+
+  <rect x="80" y="500" width="1040" height="440" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3" filter="url(#shadow)"/>
+
+  <g>
+    <rect x="130" y="570" width="54" height="54" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M143 596 l14 16 l32 -40" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="220" y="604" font-size="46" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Question it.</text>
+    <text x="220" y="654" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">What is the task really asking?</text>
+  </g>
+
+  <g>
+    <rect x="130" y="700" width="54" height="54" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M143 726 l14 16 l32 -40" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="220" y="734" font-size="46" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Edit it.</text>
+    <text x="220" y="784" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">Which claim is assumed, not proven?</text>
+  </g>
+
+  <g>
+    <rect x="130" y="830" width="54" height="54" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M143 856 l14 16 l32 -40" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="220" y="864" font-size="46" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Decide yourself.</text>
+    <text x="220" y="914" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">Would the answer survive an interview?</text>
+  </g>
+
+  <line x1="80" y1="1010" x2="1120" y2="1010" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="80" y="1078" font-size="32" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Do not just copy the answer.</text>
+  <text x="80" y="1128" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">Make the final judgment yourself.</text>
+  <text x="1120" y="1128" font-size="22" fill="#5c6773" text-anchor="end" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
