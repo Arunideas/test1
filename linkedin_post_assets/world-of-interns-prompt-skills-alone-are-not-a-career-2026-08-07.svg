@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img">
+  <title>Prompt skills alone are not a career</title>
+  <desc>A World of Interns checklist card about turning AI output into trusted work.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="260" font-size="52" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Prompt skills alone</text>
+  <text x="80" y="325" font-size="52" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">are not a career</text>
+
+  <g font-family="Georgia, 'Times New Roman', serif" fill="#23303a">
+    <rect x="80" y="416" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M90 438 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="150" y="452" font-size="38">Check if it is true</text>
+
+    <rect x="80" y="566" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M90 588 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="150" y="602" font-size="38">Turn it into useful work</text>
+
+    <rect x="80" y="716" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M90 738 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="150" y="752" font-size="38">Explain the trade-off</text>
+
+    <rect x="80" y="866" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M90 888 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="150" y="902" font-size="38">Improve weak output</text>
+  </g>
+
+  <text x="600" y="1095" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
