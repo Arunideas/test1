@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Decision diary checklist</title>
+  <desc id="desc">A World of Interns checklist card with four decision diary prompts for students after project work.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.055"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#7c7364" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.08"/>
+  <circle cx="1040" cy="155" r="170" fill="#dbe6ff" opacity="0.48"/>
+  <circle cx="120" cy="1030" r="210" fill="#f5d6bf" opacity="0.38"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="800" text-anchor="start" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <rect x="80" y="178" width="1040" height="820" rx="34" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3" filter="url(#softShadow)"/>
+  <rect x="80" y="178" width="1040" height="126" rx="34" fill="#0b5cff"/>
+  <rect x="80" y="250" width="1040" height="80" fill="#0b5cff"/>
+  <text x="112" y="265" font-size="24" fill="#dbe6ff" font-weight="800" text-anchor="start" font-family="Arial, sans-serif">STUDENT STORY</text>
+  <text x="112" y="345" font-size="72" fill="#ffffff" font-weight="900" text-anchor="start" font-family="Georgia, Times New Roman, serif">Decision diary</text>
+  <text x="112" y="390" font-size="30" fill="#eef3ff" font-weight="500" text-anchor="start" font-family="Arial, sans-serif">A 3-minute habit after project work</text>
+
+  
+    <g>
+      <rect x="112" y="418" width="48" height="48" rx="12" fill="#fbf9f4" stroke="#23303a" stroke-width="4"/>
+      <path d="M123 442 l12 14 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="186" y="450" font-size="34" fill="#23303a" font-weight="800" text-anchor="start" font-family="Arial, sans-serif">Decision made</text>
+      <text x="186" y="490" font-size="24" fill="#5c6773" font-weight="400" text-anchor="start" font-family="Arial, sans-serif">What did I choose?</text>
+      <line x1="112" y1="528" x2="1088" y2="528" stroke="#d7cfbf" stroke-width="2"/>
+    </g>
+    <g>
+      <rect x="112" y="550" width="48" height="48" rx="12" fill="#fbf9f4" stroke="#23303a" stroke-width="4"/>
+      <path d="M123 574 l12 14 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="186" y="582" font-size="34" fill="#23303a" font-weight="800" text-anchor="start" font-family="Arial, sans-serif">Options compared</text>
+      <text x="186" y="622" font-size="24" fill="#5c6773" font-weight="400" text-anchor="start" font-family="Arial, sans-serif">What did I not choose?</text>
+      <line x1="112" y1="660" x2="1088" y2="660" stroke="#d7cfbf" stroke-width="2"/>
+    </g>
+    <g>
+      <rect x="112" y="682" width="48" height="48" rx="12" fill="#fbf9f4" stroke="#23303a" stroke-width="4"/>
+      <path d="M123 706 l12 14 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="186" y="714" font-size="34" fill="#23303a" font-weight="800" text-anchor="start" font-family="Arial, sans-serif">Evidence used</text>
+      <text x="186" y="754" font-size="24" fill="#5c6773" font-weight="400" text-anchor="start" font-family="Arial, sans-serif">What helped me decide?</text>
+      <line x1="112" y1="792" x2="1088" y2="792" stroke="#d7cfbf" stroke-width="2"/>
+    </g>
+    <g>
+      <rect x="112" y="814" width="48" height="48" rx="12" fill="#fbf9f4" stroke="#23303a" stroke-width="4"/>
+      <path d="M123 838 l12 14 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="186" y="846" font-size="34" fill="#23303a" font-weight="800" text-anchor="start" font-family="Arial, sans-serif">What changed</text>
+      <text x="186" y="886" font-size="24" fill="#5c6773" font-weight="400" text-anchor="start" font-family="Arial, sans-serif">What became clearer?</text>
+      <line x1="112" y1="924" x2="1088" y2="924" stroke="#d7cfbf" stroke-width="2"/>
+    </g>
+
+  <g>
+    <rect x="112" y="934" width="976" height="1" fill="#d7cfbf"/>
+    <text x="112" y="970" font-size="29" fill="#23303a" font-weight="800" text-anchor="start" font-family="Arial, sans-serif">Save the choice, not just the task.</text>
+    <text x="112" y="1010" font-size="25" fill="#5c6773" font-weight="400" text-anchor="start" font-family="Arial, sans-serif">Interview answers get stronger when they show judgement.</text>
+  </g>
+
+  <text x="600" y="1128" font-size="22" fill="#5c6773" font-weight="400" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
