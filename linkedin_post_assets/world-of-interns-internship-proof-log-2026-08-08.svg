@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Internship proof log</title>
+  <desc id="desc">A World of Interns checklist card with four rows: task, decision, blocker, next step.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4efe6"/>
+      <stop offset="1" stop-color="#e9e1d3"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.045"/>
+      </feComponentTransfer>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#8f8372" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#paper)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.08"/>
+
+  <g transform="translate(80 80)">
+    <rect x="0" y="0" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="23" y="32" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="60" y="32" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <rect x="94" y="180" width="1012" height="840" rx="30" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  </g>
+
+  <text x="150" y="290" font-size="32" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">SATURDAY STUDENT STORY</text>
+  <text x="150" y="380" font-size="72" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Internship</text>
+  <text x="150" y="465" font-size="72" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">proof log</text>
+  <line x1="150" y1="520" x2="1050" y2="520" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(150 610)">
+      <rect x="0" y="-42" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M10 -20 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+      <text x="70" y="-12" font-size="38" fill="#23303a" font-weight="700">Task</text>
+      <text x="280" y="-12" font-size="30" fill="#5c6773">What did I work on?</text>
+    </g>
+
+    <g transform="translate(150 725)">
+      <rect x="0" y="-42" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M10 -20 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+      <text x="70" y="-12" font-size="38" fill="#23303a" font-weight="700">Decision</text>
+      <text x="280" y="-12" font-size="30" fill="#5c6773">What did I choose?</text>
+    </g>
+
+    <g transform="translate(150 840)">
+      <rect x="0" y="-42" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M10 -20 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+      <text x="70" y="-12" font-size="38" fill="#23303a" font-weight="700">Blocker</text>
+      <text x="280" y="-12" font-size="30" fill="#5c6773">Where did I get stuck?</text>
+    </g>
+
+    <g transform="translate(150 955)">
+      <rect x="0" y="-42" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M10 -20 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+      <text x="70" y="-12" font-size="38" fill="#23303a" font-weight="700">Next step</text>
+      <text x="280" y="-12" font-size="30" fill="#5c6773">What will I do next?</text>
+    </g>
+  </g>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in | practical, not promotional</text>
+</svg>
