@@ -81,14 +81,6 @@ async function loadImageBytes(data: string): Promise<Buffer> {
     return Buffer.from(trimmed, "utf8");
   }
 
-  if (/^https?:\/\//i.test(trimmed)) {
-    const res = await fetch(trimmed);
-    if (!res.ok) {
-      throw new Error(`Image fetch failed ${res.status}`);
-    }
-    return Buffer.from(await res.arrayBuffer());
-  }
-
   return Buffer.from(trimmed, "base64");
 }
 
