@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">First assignment decision trail</title>
+  <desc id="desc">World of Interns checklist card with four short lines interns can include when sharing a first version of an assignment.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e8dfcf"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.045"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#a79a84" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.08"/>
+
+  <g aria-label="World of Interns logo">
+    <rect x="82" y="82" width="50" height="50" rx="12" fill="#0b5cff"/>
+    <text x="107" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff">W</text>
+    <text x="148" y="115" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#23303a">World of Interns</text>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <rect x="78" y="174" width="1044" height="842" rx="34" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  </g>
+
+  <text x="118" y="268" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="3" fill="#0b5cff">FIRST ASSIGNMENT</text>
+  <text x="118" y="343" font-family="Georgia, 'Times New Roman', serif" font-size="60" font-weight="800" fill="#23303a">Decision trail</text>
+  <text x="118" y="396" font-family="Arial, sans-serif" font-size="30" fill="#5c6773">Add four lines before you send the first version.</text>
+
+  <g font-family="Arial, sans-serif">
+    <g>
+      <rect x="118" y="476" width="64" height="64" rx="16" fill="#eef3ff" stroke="#0b5cff" stroke-width="3"/>
+      <text x="150" y="519" text-anchor="middle" font-size="30" font-weight="800" fill="#0b5cff">1</text>
+      <text x="214" y="505" font-size="35" font-weight="700" fill="#23303a">Task as understood</text>
+      <text x="214" y="550" font-size="25" fill="#5c6773">State the assignment in your own words.</text>
+    </g>
+
+    <g>
+      <rect x="118" y="612" width="64" height="64" rx="16" fill="#eef8f2" stroke="#2f7d4f" stroke-width="3"/>
+      <text x="150" y="655" text-anchor="middle" font-size="30" font-weight="800" fill="#2f7d4f">2</text>
+      <text x="214" y="641" font-size="35" font-weight="700" fill="#23303a">Option I chose</text>
+      <text x="214" y="686" font-size="25" fill="#5c6773">Name the direction you picked first.</text>
+    </g>
+
+    <g>
+      <rect x="118" y="748" width="64" height="64" rx="16" fill="#fff6e8" stroke="#c77a18" stroke-width="3"/>
+      <text x="150" y="791" text-anchor="middle" font-size="30" font-weight="800" fill="#c77a18">3</text>
+      <text x="214" y="777" font-size="35" font-weight="700" fill="#23303a">Why it fits</text>
+      <text x="214" y="822" font-size="25" fill="#5c6773">Share the constraint or example you used.</text>
+    </g>
+
+    <g>
+      <rect x="118" y="884" width="64" height="64" rx="16" fill="#fcefeb" stroke="#c0492f" stroke-width="3"/>
+      <text x="150" y="927" text-anchor="middle" font-size="30" font-weight="800" fill="#c0492f">4</text>
+      <text x="214" y="913" font-size="35" font-weight="700" fill="#23303a">Where I am unsure</text>
+      <text x="214" y="958" font-size="25" fill="#5c6773">Make it easy for someone to coach you.</text>
+    </g>
+  </g>
+
+  <line x1="118" y1="1048" x2="1082" y2="1048" stroke="#d7cfbf" stroke-width="2"/>
+  <text x="600" y="1112" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#5c6773">worldofinterns.in - practical, not promotional</text>
+</svg>
