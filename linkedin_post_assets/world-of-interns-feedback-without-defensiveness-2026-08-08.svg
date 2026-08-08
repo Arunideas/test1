@@ -1,0 +1,73 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Feedback without defensiveness</title>
+  <desc id="desc">A World of Interns checklist card with four steps for handling workplace feedback: listen, repeat, choose, and update.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="paperGrain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.04"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#23303a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#paperGrain)" opacity="0.1"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <rect x="76" y="176" width="1048" height="866" rx="34" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3" filter="url(#softShadow)"/>
+  <text x="120" y="262" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif" letter-spacing="2">FIRST FEEDBACK CHECK</text>
+  <text x="120" y="356" font-size="74" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Feedback without</text>
+  <text x="120" y="442" font-size="74" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">defensiveness.</text>
+
+  <line x1="120" y1="505" x2="1080" y2="505" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(120 568)">
+      <circle cx="22" cy="-12" r="24" fill="#f2efe8" stroke="#23303a" stroke-width="4"/>
+      <text x="22" y="-2" font-size="28" fill="#23303a" font-weight="800" text-anchor="middle">1</text>
+      <text x="70" y="0" font-size="42" fill="#23303a" font-weight="700">Listen.</text>
+      <text x="235" y="0" font-size="42" fill="#23303a">Do not solve immediately.</text>
+      <text x="70" y="44" font-size="27" fill="#5c6773">Let the full point land before explaining.</text>
+    </g>
+
+    <g transform="translate(120 692)">
+      <circle cx="22" cy="-12" r="24" fill="#f2efe8" stroke="#23303a" stroke-width="4"/>
+      <text x="22" y="-2" font-size="28" fill="#23303a" font-weight="800" text-anchor="middle">2</text>
+      <text x="70" y="0" font-size="42" fill="#23303a" font-weight="700">Repeat.</text>
+      <text x="238" y="0" font-size="42" fill="#23303a">Name the exact change.</text>
+      <text x="70" y="44" font-size="27" fill="#5c6773">Show you heard the feedback clearly.</text>
+    </g>
+
+    <g transform="translate(120 816)">
+      <circle cx="22" cy="-12" r="24" fill="#f2efe8" stroke="#23303a" stroke-width="4"/>
+      <text x="22" y="-2" font-size="28" fill="#23303a" font-weight="800" text-anchor="middle">3</text>
+      <text x="70" y="0" font-size="42" fill="#23303a" font-weight="700">Choose.</text>
+      <text x="255" y="0" font-size="42" fill="#23303a">Pick one next action.</text>
+      <text x="70" y="44" font-size="27" fill="#5c6773">Make improvement small enough to do today.</text>
+    </g>
+
+    <g transform="translate(120 940)">
+      <circle cx="22" cy="-12" r="24" fill="#f2efe8" stroke="#23303a" stroke-width="4"/>
+      <text x="22" y="-2" font-size="28" fill="#23303a" font-weight="800" text-anchor="middle">4</text>
+      <text x="70" y="0" font-size="42" fill="#23303a" font-weight="700">Update.</text>
+      <text x="247" y="0" font-size="42" fill="#23303a">Share what changed.</text>
+      <text x="70" y="44" font-size="27" fill="#5c6773">Trust grows when correction becomes visible.</text>
+    </g>
+  </g>
+
+  <text x="600" y="1128" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
