@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">First-week question ladder</title>
+  <desc id="desc">A World of Interns checklist card with four question prompts for interns: good version, look first, mistake to avoid, and rough version.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6efe3"/>
+      <stop offset="55%" stop-color="#efe0cc"/>
+      <stop offset="100%" stop-color="#d9c7ad"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#3b2f24" flood-opacity="0.18"/>
+    </filter>
+    <style>
+      .brand { font-family: Inter, Arial, sans-serif; fill: #473827; }
+      .muted { fill: #7c6a58; }
+      .small { font-size: 28px; letter-spacing: 0.06em; text-transform: uppercase; }
+      .headline { font-size: 76px; font-weight: 800; letter-spacing: -0.04em; }
+      .sub { font-size: 34px; line-height: 1.35; }
+      .step { font-size: 40px; font-weight: 750; letter-spacing: -0.02em; }
+      .note { font-size: 27px; }
+      .footer { font-size: 24px; letter-spacing: 0.03em; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <circle cx="1020" cy="135" r="175" fill="#d29d6b" opacity="0.18"/>
+  <circle cx="135" cy="1050" r="235" fill="#7aa095" opacity="0.16"/>
+  <path d="M118 215 C252 142 392 125 535 165" fill="none" stroke="#8a6d4e" stroke-width="3" opacity="0.18"/>
+  <path d="M705 1035 C825 965 963 960 1088 1018" fill="none" stroke="#8a6d4e" stroke-width="3" opacity="0.18"/>
+
+  <rect x="105" y="88" width="990" height="1024" rx="54" fill="#fff9ef" filter="url(#shadow)"/>
+  <rect x="105" y="88" width="990" height="1024" rx="54" fill="none" stroke="#e0ceb6" stroke-width="3"/>
+
+  <text x="156" y="169" class="brand small muted">World of Interns</text>
+  <text x="156" y="262" class="brand headline">First-week</text>
+  <text x="156" y="343" class="brand headline">question ladder</text>
+  <text x="158" y="411" class="brand sub muted">Use questions that reduce guessing before work begins.</text>
+
+  <g transform="translate(156 485)">
+    <line x1="38" y1="42" x2="38" y2="410" stroke="#d8c0a5" stroke-width="8" stroke-linecap="round"/>
+
+    <g>
+      <circle cx="38" cy="38" r="38" fill="#264653"/>
+      <text x="38" y="51" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#fff9ef">1</text>
+      <rect x="104" y="0" width="770" height="88" rx="28" fill="#f0e5d4"/>
+      <text x="138" y="56" class="brand step">What would a good version look like?</text>
+    </g>
+
+    <g transform="translate(0 116)">
+      <circle cx="38" cy="38" r="38" fill="#2a9d8f"/>
+      <text x="38" y="51" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#fff9ef">2</text>
+      <rect x="104" y="0" width="770" height="88" rx="28" fill="#eef3e7"/>
+      <text x="138" y="56" class="brand step">Where should I look first?</text>
+    </g>
+
+    <g transform="translate(0 232)">
+      <circle cx="38" cy="38" r="38" fill="#e9a94b"/>
+      <text x="38" y="51" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#473827">3</text>
+      <rect x="104" y="0" width="770" height="88" rx="28" fill="#f6ead7"/>
+      <text x="138" y="56" class="brand step">What mistake should I avoid?</text>
+    </g>
+
+    <g transform="translate(0 348)">
+      <circle cx="38" cy="38" r="38" fill="#b75d4f"/>
+      <text x="38" y="51" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#fff9ef">4</text>
+      <rect x="104" y="0" width="770" height="88" rx="28" fill="#f0dfda"/>
+      <text x="138" y="56" class="brand step">When should I show a rough version?</text>
+    </g>
+  </g>
+
+  <rect x="156" y="966" width="888" height="82" rx="28" fill="#473827"/>
+  <text x="600" y="1018" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="760" fill="#fff9ef">Ask early. Show rough. Reduce rework.</text>
+
+  <text x="156" y="1082" class="brand footer muted">worldofinterns.in - practical, not promotional</text>
+</svg>
