@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Sunday callback audit</title>
+  <desc id="desc">A World of Interns three-column card showing role asked, resume showed, and next edit.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <style>
+      .sans { font-family: Arial, Helvetica, sans-serif; }
+      .serif { font-family: Georgia, 'Times New Roman', serif; }
+      .ink { fill: #23303a; }
+      .sub { fill: #5c6773; }
+      .blue { fill: #0b5cff; }
+      .card { fill: #fbf9f4; stroke: #d7cfbf; stroke-width: 3; }
+      .line { stroke: #d7cfbf; stroke-width: 3; }
+      .rule { stroke: #23303a; stroke-width: 4; stroke-linecap: round; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g aria-label="World of Interns logo">
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" class="sans">W</text>
+    <text x="140" y="112" font-size="26" font-weight="700" class="sans ink">World of Interns</text>
+  </g>
+
+  <text x="80" y="250" font-size="64" font-weight="800" class="serif ink">Sunday callback audit</text>
+  <text x="82" y="305" font-size="28" class="sans sub">Before Monday, find one pattern in last week's silent applications.</text>
+
+  <rect x="80" y="385" width="1040" height="520" rx="22" class="card"/>
+  <line x1="426" y1="385" x2="426" y2="905" class="line"/>
+  <line x1="773" y1="385" x2="773" y2="905" class="line"/>
+
+  <g transform="translate(120 450)">
+    <circle cx="0" cy="-7" r="16" fill="#0b5cff"/>
+    <text x="0" y="2" font-size="22" fill="#ffffff" font-weight="700" text-anchor="middle" class="sans">1</text>
+    <text x="36" y="0" font-size="30" font-weight="700" class="sans ink">Role asked</text>
+    <text x="0" y="78" font-size="34" class="serif ink">What skill, tool,</text>
+    <text x="0" y="124" font-size="34" class="serif ink">or outcome was</text>
+    <text x="0" y="170" font-size="34" class="serif ink">the role really</text>
+    <text x="0" y="216" font-size="34" class="serif ink">asking for?</text>
+    <line x1="0" y1="290" x2="245" y2="290" class="rule" opacity="0.18"/>
+    <line x1="0" y1="340" x2="200" y2="340" class="rule" opacity="0.18"/>
+  </g>
+
+  <g transform="translate(466 450)">
+    <circle cx="0" cy="-7" r="16" fill="#0b5cff"/>
+    <text x="0" y="2" font-size="22" fill="#ffffff" font-weight="700" text-anchor="middle" class="sans">2</text>
+    <text x="36" y="0" font-size="30" font-weight="700" class="sans ink">Resume showed</text>
+    <text x="0" y="78" font-size="34" class="serif ink">What proof did</text>
+    <text x="0" y="124" font-size="34" class="serif ink">your resume show</text>
+    <text x="0" y="170" font-size="34" class="serif ink">in the first few</text>
+    <text x="0" y="216" font-size="34" class="serif ink">seconds?</text>
+    <line x1="0" y1="290" x2="245" y2="290" class="rule" opacity="0.18"/>
+    <line x1="0" y1="340" x2="185" y2="340" class="rule" opacity="0.18"/>
+  </g>
+
+  <g transform="translate(813 450)">
+    <circle cx="0" cy="-7" r="16" fill="#2f7d4f"/>
+    <text x="0" y="2" font-size="22" fill="#ffffff" font-weight="700" text-anchor="middle" class="sans">3</text>
+    <text x="36" y="0" font-size="30" font-weight="700" class="sans ink">Next edit</text>
+    <text x="0" y="78" font-size="34" class="serif ink">Move one proof</text>
+    <text x="0" y="124" font-size="34" class="serif ink">point higher, or</text>
+    <text x="0" y="170" font-size="34" class="serif ink">rename it in the</text>
+    <text x="0" y="216" font-size="34" class="serif ink">role's language.</text>
+    <path d="M0 310 l28 34 l72 -86" fill="none" stroke="#2f7d4f" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <rect x="145" y="960" width="910" height="80" rx="18" fill="#23303a" opacity="0.92"/>
+  <text x="600" y="1012" font-size="30" fill="#ffffff" text-anchor="middle" class="sans">If the same gap repeats, that is this week's resume edit.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" class="sans">worldofinterns.in - practical, not promotional</text>
+</svg>
