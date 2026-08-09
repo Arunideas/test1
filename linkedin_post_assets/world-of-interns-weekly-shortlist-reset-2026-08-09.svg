@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Weekly shortlist reset</title>
+  <desc id="desc">A World of Interns Sunday weekly report card with three checks for role fit, resume proof, and application readiness.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e8dfd0"/>
+    </linearGradient>
+    <filter id="paperGrain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+    </filter>
+    <style>
+      .sans { font-family: Arial, Helvetica, sans-serif; }
+      .serif { font-family: Georgia, "Times New Roman", serif; }
+      .ink { fill: #23303a; }
+      .sub { fill: #5c6773; }
+      .blue { fill: #0b5cff; }
+      .paper { fill: #fbf9f4; }
+      .line { stroke: #d7cfbf; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#paperGrain)" opacity="0.08"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" class="sans">W</text>
+    <text x="140" y="112" font-size="26" font-weight="700" class="sans ink">World of Interns</text>
+    <text x="80" y="180" font-size="28" class="sans sub">Sunday Weekly Report</text>
+  </g>
+
+  <text x="80" y="290" font-size="68" font-weight="800" class="serif ink">Weekly shortlist</text>
+  <text x="80" y="370" font-size="68" font-weight="800" class="serif ink">reset</text>
+  <text x="80" y="440" font-size="34" class="serif sub">Before Monday, reduce the list.</text>
+
+  <rect x="80" y="515" width="1040" height="420" rx="28" class="paper line" stroke-width="3"/>
+
+  <g transform="translate(130 590)">
+    <circle cx="0" cy="0" r="34" fill="#0b5cff"/>
+    <text x="0" y="13" font-size="38" fill="#ffffff" font-weight="800" text-anchor="middle" class="sans">1</text>
+    <text x="70" y="-8" font-size="38" font-weight="700" class="serif ink">Role fit</text>
+    <text x="70" y="42" font-size="28" class="sans sub">Can you explain why this role fits now?</text>
+  </g>
+
+  <g transform="translate(130 720)">
+    <circle cx="0" cy="0" r="34" fill="#0b5cff"/>
+    <text x="0" y="13" font-size="38" fill="#ffffff" font-weight="800" text-anchor="middle" class="sans">2</text>
+    <text x="70" y="-8" font-size="38" font-weight="700" class="serif ink">Resume proof</text>
+    <text x="70" y="42" font-size="28" class="sans sub">Does one project, result, or link support it?</text>
+  </g>
+
+  <g transform="translate(130 850)">
+    <circle cx="0" cy="0" r="34" fill="#0b5cff"/>
+    <text x="0" y="13" font-size="38" fill="#ffffff" font-weight="800" text-anchor="middle" class="sans">3</text>
+    <text x="70" y="-8" font-size="38" font-weight="700" class="serif ink">Ready to send</text>
+    <text x="70" y="42" font-size="28" class="sans sub">Can you apply without rushing a weak version?</text>
+  </g>
+
+  <text x="80" y="1030" font-size="34" font-weight="700" class="serif ink">Small review. Better applications.</text>
+  <text x="600" y="1130" font-size="22" text-anchor="middle" class="sans sub">worldofinterns.in - practical, not promotional</text>
+</svg>
