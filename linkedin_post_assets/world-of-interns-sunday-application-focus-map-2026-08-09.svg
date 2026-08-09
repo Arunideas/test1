@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Sunday application focus map</title>
+  <desc id="desc">A World of Interns card with three columns for planning Monday internship applications: roles worth applying, proof already ready, and one proof gap to fix.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.045"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.08"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="214" font-size="28" fill="#0b5cff" font-weight="700" font-family="Arial, sans-serif">SUNDAY WEEKLY REPORT</text>
+  <text x="80" y="294" font-size="64" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Application</text>
+  <text x="80" y="366" font-size="64" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">focus map</text>
+
+  <rect x="80" y="430" width="1040" height="474" rx="26" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <line x1="426" y1="430" x2="426" y2="904" stroke="#d7cfbf" stroke-width="3"/>
+  <line x1="773" y1="430" x2="773" y2="904" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g>
+    <circle cx="142" cy="514" r="32" fill="#0b5cff"/>
+    <text x="142" y="526" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+    <text x="190" y="506" font-size="33" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Roles worth</text>
+    <text x="190" y="548" font-size="33" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">applying</text>
+    <text x="120" y="644" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">Read the work,</text>
+    <text x="120" y="682" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">stipend, location,</text>
+    <text x="120" y="720" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">and eligibility.</text>
+  </g>
+
+  <g>
+    <circle cx="488" cy="514" r="32" fill="#2f7d4f"/>
+    <text x="488" y="526" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+    <text x="536" y="506" font-size="33" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Proof already</text>
+    <text x="536" y="548" font-size="33" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">ready</text>
+    <text x="466" y="644" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">Project. Result.</text>
+    <text x="466" y="682" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">Writing sample.</text>
+    <text x="466" y="720" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">Link or README.</text>
+  </g>
+
+  <g>
+    <circle cx="834" cy="514" r="32" fill="#c0492f"/>
+    <text x="834" y="526" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+    <text x="882" y="506" font-size="33" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">One proof gap</text>
+    <text x="882" y="548" font-size="33" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">to fix</text>
+    <text x="812" y="644" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">Improve one weak</text>
+    <text x="812" y="682" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">signal before five</text>
+    <text x="812" y="720" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">more applications.</text>
+  </g>
+
+  <rect x="80" y="954" width="1040" height="90" rx="18" fill="#23303a"/>
+  <text x="600" y="1009" font-size="31" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">Make Monday quieter: choose, prove, repair.</text>
+
+  <text x="600" y="1132" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
