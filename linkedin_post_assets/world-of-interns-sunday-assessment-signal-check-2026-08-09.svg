@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Sunday assessment signal check</title>
+  <desc id="desc">A World of Interns checklist card with three assessment signals to review before Monday internship applications.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.045"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.08"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="214" font-size="28" fill="#0b5cff" font-weight="700" font-family="Arial, sans-serif">SUNDAY WEEKLY REPORT</text>
+  <text x="80" y="294" font-size="64" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Assessment</text>
+  <text x="80" y="366" font-size="64" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">signal check</text>
+
+  <rect x="80" y="430" width="1040" height="520" rx="26" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g>
+    <circle cx="142" cy="526" r="32" fill="#0b5cff"/>
+    <text x="142" y="538" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+    <text x="200" y="515" font-size="38" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Repeated skill verbs</text>
+    <text x="200" y="562" font-size="27" fill="#5c6773" font-family="Arial, sans-serif">Analyse. Write. Debug. Present. Research.</text>
+  </g>
+
+  <line x1="126" y1="594" x2="1074" y2="594" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g>
+    <circle cx="142" cy="690" r="32" fill="#2f7d4f"/>
+    <text x="142" y="702" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+    <text x="200" y="679" font-size="38" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Proof visible early</text>
+    <text x="200" y="726" font-size="27" fill="#5c6773" font-family="Arial, sans-serif">One project or result for each top skill.</text>
+  </g>
+
+  <line x1="126" y1="758" x2="1074" y2="758" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g>
+    <circle cx="142" cy="854" r="32" fill="#c0492f"/>
+    <text x="142" y="866" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+    <text x="200" y="843" font-size="38" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">One focused practice hour</text>
+    <text x="200" y="890" font-size="27" fill="#5c6773" font-family="Arial, sans-serif">Fix the weakest signal before Monday applications.</text>
+  </g>
+
+  <rect x="80" y="1000" width="1040" height="74" rx="18" fill="#23303a"/>
+  <text x="600" y="1048" font-size="30" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">Use the market's signal before sending the next application.</text>
+
+  <text x="600" y="1132" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
