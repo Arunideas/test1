@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Sunday role-fit proof check</title>
+  <desc id="desc">World of Interns checklist card for a Sunday application review before Monday internship applications.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#23303a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <rect x="80" y="178" width="1040" height="818" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3" filter="url(#shadow)"/>
+  <text x="126" y="274" font-size="62" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Sunday role-fit</text>
+  <text x="126" y="346" font-size="62" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">proof check</text>
+  <rect x="126" y="388" width="210" height="8" rx="4" fill="#0b5cff"/>
+
+  <g>
+    <rect x="126" y="460" width="56" height="56" rx="12" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M139 489 l15 17 l31 -38" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="210" y="500" font-size="41" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Role asks for</text>
+    <text x="210" y="542" font-size="28" fill="#5c6773" font-weight="400" font-family="Arial, sans-serif">the skill or outcome</text>
+  </g>
+  <g>
+    <rect x="126" y="606" width="56" height="56" rx="12" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M139 635 l15 17 l31 -38" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="210" y="646" font-size="41" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Resume proves it</text>
+    <text x="210" y="688" font-size="28" fill="#5c6773" font-weight="400" font-family="Arial, sans-serif">with one clear project result</text>
+  </g>
+  <g>
+    <rect x="126" y="752" width="56" height="56" rx="12" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M139 781 l15 17 l31 -38" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="210" y="792" font-size="41" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Missing line fixed</text>
+    <text x="210" y="834" font-size="28" fill="#5c6773" font-weight="400" font-family="Arial, sans-serif">before Monday applications</text>
+  </g>
+
+  <rect x="676" y="472" width="348" height="338" rx="22" fill="#f3efe7" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="718" y="540" font-size="35" fill="#0b5cff" font-weight="800" font-family="Arial, sans-serif">Role-fit note</text>
+  <text x="718" y="610" font-size="28" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">“This role needs __.”</text>
+  <text x="718" y="670" font-size="28" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">“My closest proof is __.”</text>
+  <text x="718" y="744" font-size="28" fill="#5c6773" font-weight="400" font-family="Arial, sans-serif">Keep it short.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  ·  practical, not promotional</text>
+</svg>
