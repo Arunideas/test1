@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Monday application pack check</title>
+  <desc id="desc">A World of Interns checklist card listing role fit, proof, note, and next edit for Monday internship applications.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#23303a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="230" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Sunday Weekly Report</text>
+  <text x="80" y="305" font-size="70" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Monday application</text>
+  <text x="80" y="384" font-size="70" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">pack check</text>
+
+  <rect x="80" y="455" width="1040" height="520" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3" filter="url(#cardShadow)"/>
+
+  <g font-family="Arial, sans-serif">
+    <g>
+      <rect x="130" y="535" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M140 559 l13 15 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="205" y="568" font-size="38" fill="#23303a" font-weight="700">One role-fit line</text>
+      <text x="205" y="610" font-size="25" fill="#5c6773">Make the target internship obvious.</text>
+    </g>
+
+    <g>
+      <rect x="130" y="660" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M140 684 l13 15 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="205" y="693" font-size="38" fill="#23303a" font-weight="700">Two proof points</text>
+      <text x="205" y="735" font-size="25" fill="#5c6773">Projects, coursework, or real work.</text>
+    </g>
+
+    <g>
+      <rect x="130" y="785" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M140 809 l13 15 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="205" y="818" font-size="38" fill="#23303a" font-weight="700">One short note</text>
+      <text x="205" y="860" font-size="25" fill="#5c6773">Why this role, this company, you.</text>
+    </g>
+
+    <g>
+      <rect x="130" y="910" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M140 934 l13 15 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="205" y="943" font-size="38" fill="#23303a" font-weight="700">One next edit</text>
+      <text x="205" y="985" font-size="25" fill="#5c6773">Improve one resume bullet before sending.</text>
+    </g>
+  </g>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
