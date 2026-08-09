@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Sunday evidence gap review</title>
+  <desc id="desc">World of Interns checklist card for reviewing visible proof before Monday internship applications.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#23303a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <rect x="80" y="178" width="1040" height="826" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3" filter="url(#shadow)"/>
+  <text x="126" y="274" font-size="62" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Sunday evidence</text>
+  <text x="126" y="346" font-size="62" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">gap review</text>
+  <rect x="126" y="388" width="210" height="8" rx="4" fill="#0b5cff"/>
+
+  <g>
+    <circle cx="154" cy="488" r="30" fill="#0b5cff"/>
+    <text x="154" y="500" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+    <text x="210" y="484" font-size="39" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Job asks for</text>
+    <text x="210" y="526" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">the skill, tool, or outcome</text>
+  </g>
+  <g>
+    <circle cx="154" cy="626" r="30" fill="#0b5cff"/>
+    <text x="154" y="638" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+    <text x="210" y="622" font-size="39" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Resume shows</text>
+    <text x="210" y="664" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">what appears in the first screen</text>
+  </g>
+  <g>
+    <circle cx="154" cy="764" r="30" fill="#c0492f"/>
+    <text x="154" y="776" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+    <text x="210" y="760" font-size="39" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Proof gap</text>
+    <text x="210" y="802" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">missing, vague, or buried evidence</text>
+  </g>
+  <g>
+    <circle cx="154" cy="902" r="30" fill="#2f7d4f"/>
+    <text x="154" y="914" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">4</text>
+    <text x="210" y="898" font-size="39" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Monday edit</text>
+    <text x="210" y="940" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">one clearer result line before applying</text>
+  </g>
+
+  <rect x="700" y="488" width="332" height="340" rx="22" fill="#f3efe7" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="742" y="556" font-size="34" fill="#0b5cff" font-weight="800" font-family="Arial, sans-serif">Ask on Sunday</text>
+  <text x="742" y="628" font-size="31" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Can a recruiter</text>
+  <text x="742" y="672" font-size="31" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">see the proof?</text>
+  <line x1="742" y1="722" x2="990" y2="722" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="742" y="778" font-size="27" fill="#5c6773" font-family="Arial, sans-serif">If not, fix one line.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
