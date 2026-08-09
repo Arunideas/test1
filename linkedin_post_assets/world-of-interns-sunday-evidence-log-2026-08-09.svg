@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Sunday evidence log</title>
+  <desc id="desc">A World of Interns card with a checklist for reviewing internship proof before Monday applications.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="260" font-size="58" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Sunday evidence log</text>
+  <text x="80" y="322" font-size="32" fill="#5c6773" font-family="Arial, sans-serif">Before Monday applications, review what you can prove.</text>
+
+  <rect x="80" y="390" width="1040" height="520" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g font-family="Arial, sans-serif">
+    <rect x="130" y="460" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M142 484 l13 15 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="210" y="497" font-size="38" fill="#23303a" font-weight="700">1 completed task</text>
+    <text x="210" y="542" font-size="27" fill="#5c6773">What did you actually finish this week?</text>
+
+    <rect x="130" y="600" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M142 624 l13 15 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="210" y="637" font-size="38" fill="#23303a" font-weight="700">1 clearer problem</text>
+    <text x="210" y="682" font-size="27" fill="#5c6773">What do you understand better now?</text>
+
+    <rect x="130" y="740" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M142 764 l13 15 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="210" y="777" font-size="38" fill="#23303a" font-weight="700">1 visible proof</text>
+    <text x="210" y="822" font-size="27" fill="#5c6773">A result, link, screenshot, note, or number.</text>
+  </g>
+
+  <rect x="160" y="960" width="880" height="92" rx="24" fill="#0b5cff"/>
+  <text x="600" y="1019" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">Fix one proof gap before Monday.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
