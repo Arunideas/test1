@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Build your application evidence map</title>
+  <desc id="desc">A World of Interns Sunday weekly report card with three columns: role asks, resume proof, and where evidence lives.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7efe3"/>
+      <stop offset="0.52" stop-color="#edf4ec"/>
+      <stop offset="1" stop-color="#e0ebfb"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.78" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.04"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#22303a" flood-opacity="0.13"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.08"/>
+
+  <g>
+    <rect x="80" y="78" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="111" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="111" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="220" font-size="28" fill="#0b5cff" font-weight="700" font-family="Arial, sans-serif">SUNDAY WEEKLY REPORT</text>
+  <text x="80" y="300" font-size="58" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Build your application</text>
+  <text x="80" y="372" font-size="58" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">evidence map</text>
+
+  <rect x="80" y="442" width="1040" height="456" rx="30" fill="#fbf9f4" stroke="#d8cebd" stroke-width="3" filter="url(#shadow)"/>
+
+  <g>
+    <rect x="132" y="510" width="276" height="294" rx="24" fill="#e7f0ff" stroke="#0b5cff" stroke-width="4"/>
+    <circle cx="270" cy="580" r="34" fill="#0b5cff"/>
+    <text x="270" y="592" font-size="32" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+    <text x="270" y="662" font-size="32" fill="#23303a" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">Role asks</text>
+    <text x="270" y="716" font-size="25" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">What skill or</text>
+    <text x="270" y="752" font-size="25" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">signal matters?</text>
+  </g>
+
+  <path d="M426 656 H482" fill="none" stroke="#9aa6b2" stroke-width="6" stroke-linecap="round"/>
+  <path d="M468 640 L488 656 L468 672" fill="none" stroke="#9aa6b2" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g>
+    <rect x="462" y="510" width="276" height="294" rx="24" fill="#eef8f1" stroke="#2f7d4f" stroke-width="4"/>
+    <circle cx="600" cy="580" r="34" fill="#2f7d4f"/>
+    <text x="600" y="592" font-size="32" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+    <text x="600" y="662" font-size="32" fill="#23303a" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">Resume proof</text>
+    <text x="600" y="716" font-size="25" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">Where have you</text>
+    <text x="600" y="752" font-size="25" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">shown it clearly?</text>
+  </g>
+
+  <path d="M756 656 H812" fill="none" stroke="#9aa6b2" stroke-width="6" stroke-linecap="round"/>
+  <path d="M798 640 L818 656 L798 672" fill="none" stroke="#9aa6b2" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g>
+    <rect x="792" y="510" width="276" height="294" rx="24" fill="#fff4df" stroke="#d7902f" stroke-width="4"/>
+    <circle cx="930" cy="580" r="34" fill="#d7902f"/>
+    <text x="930" y="592" font-size="32" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+    <text x="930" y="662" font-size="32" fill="#23303a" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">Evidence lives</text>
+    <text x="930" y="716" font-size="25" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">Link, outcome,</text>
+    <text x="930" y="752" font-size="25" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">or example.</text>
+  </g>
+
+  <rect x="120" y="956" width="960" height="88" rx="22" fill="#23303a"/>
+  <text x="600" y="1012" font-size="30" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">Make the proof easy to see in 30 seconds.</text>
+
+  <text x="600" y="1128" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
