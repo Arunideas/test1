@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Sunday job-readiness scorecard</title>
+  <desc id="desc">A World of Interns checklist card prompting students to check role clarity, visible proof, and recent practice before applying.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.055"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.07"/>
+
+  <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+  <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+  <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+
+  <text x="80" y="238" font-size="36" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Sunday Weekly Report</text>
+  <text x="80" y="322" font-size="68" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Job-readiness</text>
+  <text x="80" y="398" font-size="68" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">scorecard</text>
+
+  <rect x="80" y="482" width="1040" height="450" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g>
+    <circle cx="142" cy="570" r="22" fill="#0b5cff"/>
+    <text x="142" y="580" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+    <text x="190" y="558" font-size="36" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Role clarity</text>
+    <text x="190" y="608" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">Can you name the role skill in one line?</text>
+  </g>
+
+  <line x1="130" y1="662" x2="1070" y2="662" stroke="#d7cfbf" stroke-width="2"/>
+
+  <g>
+    <circle cx="142" cy="738" r="22" fill="#2f7d4f"/>
+    <text x="142" y="748" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+    <text x="190" y="726" font-size="36" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Visible proof</text>
+    <text x="190" y="776" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">Is one project, result, or task easy to find?</text>
+  </g>
+
+  <line x1="130" y1="830" x2="1070" y2="830" stroke="#d7cfbf" stroke-width="2"/>
+
+  <g>
+    <circle cx="142" cy="906" r="22" fill="#c0492f"/>
+    <text x="142" y="916" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+    <text x="190" y="894" font-size="36" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Recent practice</text>
+    <text x="190" y="944" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">Did you fix one proof gap this week?</text>
+  </g>
+
+  <rect x="80" y="1000" width="1040" height="74" rx="18" fill="#23303a"/>
+  <text x="600" y="1048" font-size="28" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">Fewer applications. Clearer evidence.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
