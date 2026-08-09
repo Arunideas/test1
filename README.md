@@ -14,8 +14,8 @@ This is the foundation of the larger AI Content Intelligence vision. It now cove
 - **Phase 1 — Content generation + brand voice** (Studio)
 - **Phase 2 — Content intelligence & planning** (Calendar) — plan months of content
   automatically with **no duplicate topics**.
-- **Phase 3 — LinkedIn Engine** (Publish) — **auto-publish to LinkedIn** with immediate /
-  scheduled / draft / approval modes and automatic retry.
+- **Phase 3 — LinkedIn Engine** (Publish) — **auto-publish to LinkedIn with images** using
+  immediate / scheduled / draft / approval modes and automatic retry.
 - **Phase 4 — Employer & Student Growth Engine** (Campaigns) — turn content into growth with
   **one-click campaigns targeting HRs or students**.
 
@@ -80,9 +80,10 @@ Auto-publish content to LinkedIn.
 - **Auto-schedule the calendar** — one click turns every approved/generated calendar post into a
   scheduled LinkedIn job at a chosen time of day.
 - **Real or simulated** — set `LINKEDIN_ACCESS_TOKEN` + `LINKEDIN_AUTHOR_URN` to post for real via
-  the LinkedIn UGC Posts API; otherwise the entire flow runs in safe simulation mode (jobs progress
-  end-to-end with a simulated post URL). Publishing a post also marks its topic and calendar entry
-  as published.
+  the LinkedIn UGC Posts API. When a generated image is attached, the engine converts it to PNG,
+  uploads it as LinkedIn feed media, and publishes the post with `shareMediaCategory: IMAGE`.
+  Without credentials, the entire flow runs in safe simulation mode (jobs progress end-to-end with
+  a simulated post URL). Publishing a post also marks its topic and calendar entry as published.
 
 You can publish from the Studio (per-post panel) or manage everything on the Publish page
 (connection status, queue, live-updating log, and per-job actions).
