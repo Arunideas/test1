@@ -81,8 +81,9 @@ Auto-publish content to LinkedIn.
   scheduled LinkedIn job at a chosen time of day.
 - **Real or simulated** — set `LINKEDIN_ACCESS_TOKEN` + `LINKEDIN_AUTHOR_URN` to post for real via
   the LinkedIn UGC Posts API; otherwise the entire flow runs in safe simulation mode (jobs progress
-  end-to-end with a simulated post URL). Publishing a post also marks its topic and calendar entry
-  as published.
+  end-to-end with a simulated post URL). When a generated post has an image, the publisher converts
+  the stored SVG/OpenAI image to a LinkedIn-compatible PNG and attaches it to the share. Publishing
+  a post also marks its topic and calendar entry as published.
 
 You can publish from the Studio (per-post panel) or manage everything on the Publish page
 (connection status, queue, live-updating log, and per-job actions).
