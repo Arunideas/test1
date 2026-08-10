@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">AI resume bullet check</title>
+  <desc id="desc">A World of Interns checklist card with four checks: start with messy proof, ask for action plus result, remove fake numbers, keep your own words.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+  <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+  <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+
+  <text x="80" y="265" font-size="58" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">AI resume</text>
+  <text x="80" y="335" font-size="58" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">bullet check</text>
+  <text x="80" y="390" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">Clean the sentence. Do not invent the evidence.</text>
+
+  <g transform="translate(80 475)">
+    <rect x="0" y="-44" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M10 -22 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="70" y="-10" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Start with messy proof</text>
+
+    <rect x="0" y="106" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M10 128 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="70" y="140" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Ask for action + result</text>
+
+    <rect x="0" y="256" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M10 278 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="70" y="290" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Remove fake numbers</text>
+
+    <rect x="0" y="406" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M10 428 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="70" y="440" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Keep your own words</text>
+  </g>
+
+  <rect x="80" y="980" width="1040" height="2" fill="#d7cfbf"/>
+  <text x="600" y="1085" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
