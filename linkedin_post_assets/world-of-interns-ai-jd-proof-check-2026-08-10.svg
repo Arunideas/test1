@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">JD proof check before applying</title>
+  <desc id="desc">A World of Interns checklist card with four proof checks students can run before applying to an internship.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="250" font-size="58" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">JD proof check</text>
+  <text x="80" y="322" font-size="58" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">before applying</text>
+  <text x="82" y="375" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">Ask AI what you must be ready to prove in the interview.</text>
+
+  <g>
+    <rect x="80" y="456" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M90 478 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="150" y="488" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Skills they may test</text>
+  </g>
+
+  <g>
+    <rect x="80" y="606" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M90 628 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="150" y="638" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Project you can explain</text>
+  </g>
+
+  <g>
+    <rect x="80" y="756" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M90 778 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="150" y="788" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Missing proof in application</text>
+  </g>
+
+  <g>
+    <rect x="80" y="906" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M90 928 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="150" y="938" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Questions to ask yourself</text>
+  </g>
+
+  <rect x="822" y="430" width="250" height="330" rx="18" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <line x1="860" y1="500" x2="1034" y2="500" stroke="#d7cfbf" stroke-width="8" stroke-linecap="round"/>
+  <line x1="860" y1="560" x2="1010" y2="560" stroke="#d7cfbf" stroke-width="8" stroke-linecap="round"/>
+  <line x1="860" y1="620" x2="1034" y2="620" stroke="#d7cfbf" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="970" cy="703" r="42" fill="#0b5cff" opacity="0.9"/>
+  <text x="970" y="719" font-size="52" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">?</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
