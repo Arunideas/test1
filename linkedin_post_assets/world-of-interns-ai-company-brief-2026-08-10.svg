@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">10-minute AI company brief</title>
+  <desc id="desc">World of Interns checklist card with four checks: team builds, intern problems, skills to prove, and questions to ask.</desc>
+  <rect width="1200" height="1200" fill="#F7F2E8"/>
+  <circle cx="1024" cy="156" r="96" fill="#F4C95D" opacity="0.95"/>
+  <circle cx="132" cy="1048" r="130" fill="#D9E8FF" opacity="0.75"/>
+  <rect x="86" y="84" width="1028" height="1032" rx="52" fill="#FFFFFF" stroke="#17233C" stroke-width="8"/>
+
+  <text x="132" y="164" fill="#17233C" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="2">WORLD OF INTERNS</text>
+  <rect x="132" y="204" width="236" height="48" rx="24" fill="#F4C95D"/>
+  <text x="160" y="237" fill="#17233C" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">MONDAY AI TOOL</text>
+
+  <text x="132" y="350" fill="#17233C" font-family="Inter, Arial, sans-serif" font-size="78" font-weight="800">
+    <tspan x="132" dy="0">10-minute AI</tspan>
+    <tspan x="132" dy="88">company brief</tspan>
+  </text>
+  <text x="132" y="550" fill="#41506B" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="500">
+    <tspan x="132" dy="0">Before you apply, make AI</tspan>
+    <tspan x="132" dy="48">show what it is basing advice on.</tspan>
+  </text>
+
+  <g transform="translate(132 690)">
+    <rect x="0" y="0" width="936" height="300" rx="32" fill="#F7F9FC" stroke="#CAD5E6" stroke-width="4"/>
+    <g font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700" fill="#17233C">
+      <circle cx="54" cy="62" r="21" fill="#CFE8D6"/>
+      <path d="M43 61 l8 9 l18 -22" fill="none" stroke="#1F7A4D" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="96" y="74">What the team builds</text>
+
+      <circle cx="54" cy="132" r="21" fill="#CFE8D6"/>
+      <path d="M43 131 l8 9 l18 -22" fill="none" stroke="#1F7A4D" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="96" y="144">Problems the intern may touch</text>
+
+      <circle cx="54" cy="202" r="21" fill="#CFE8D6"/>
+      <path d="M43 201 l8 9 l18 -22" fill="none" stroke="#1F7A4D" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="96" y="214">Skills your resume should prove</text>
+
+      <circle cx="54" cy="272" r="21" fill="#CFE8D6"/>
+      <path d="M43 271 l8 9 l18 -22" fill="none" stroke="#1F7A4D" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="96" y="284">Questions to ask before applying</text>
+    </g>
+  </g>
+
+  <g transform="translate(790 256)">
+    <rect x="0" y="0" width="254" height="324" rx="28" fill="#17233C"/>
+    <rect x="22" y="48" width="210" height="244" rx="18" fill="#FFFFFF"/>
+    <circle cx="36" cy="24" r="7" fill="#F4C95D"/>
+    <circle cx="62" cy="24" r="7" fill="#F4C95D" opacity="0.7"/>
+    <circle cx="88" cy="24" r="7" fill="#F4C95D" opacity="0.45"/>
+    <rect x="48" y="82" width="152" height="18" rx="9" fill="#D9E8FF"/>
+    <rect x="48" y="126" width="108" height="16" rx="8" fill="#CAD5E6"/>
+    <rect x="48" y="166" width="156" height="16" rx="8" fill="#CAD5E6"/>
+    <rect x="48" y="206" width="132" height="16" rx="8" fill="#CAD5E6"/>
+    <rect x="48" y="246" width="88" height="16" rx="8" fill="#F4C95D"/>
+  </g>
+
+  <line x1="132" y1="1040" x2="1068" y2="1040" stroke="#E2E7F0" stroke-width="4"/>
+  <text x="132" y="1086" fill="#17233C" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">Verify before you trust.</text>
+  <text x="835" y="1086" fill="#41506B" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="600">worldofinterns.com</text>
+</svg>
