@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">AI reading map before an interview</title>
+  <desc id="desc">A World of Interns checklist card with four steps: ask for sections, verify numbers, write your own summary, bring one real question.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="260" font-size="58" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">AI reading map</text>
+  <text x="80" y="330" font-size="58" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">before an interview</text>
+  <text x="82" y="385" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">Use AI to focus your reading. Do not use it to fake preparation.</text>
+
+  <g>
+    <rect x="80" y="455" width="1040" height="112" rx="18" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+    <circle cx="132" cy="511" r="24" fill="#0b5cff"/>
+    <text x="132" y="521" font-size="26" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+    <text x="182" y="520" font-size="34" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Ask which sections need your own reading</text>
+  </g>
+
+  <g>
+    <rect x="80" y="600" width="1040" height="112" rx="18" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+    <circle cx="132" cy="656" r="24" fill="#0b5cff"/>
+    <text x="132" y="666" font-size="26" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+    <text x="182" y="665" font-size="34" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Verify every number in the original report</text>
+  </g>
+
+  <g>
+    <rect x="80" y="745" width="1040" height="112" rx="18" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+    <circle cx="132" cy="801" r="24" fill="#0b5cff"/>
+    <text x="132" y="811" font-size="26" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+    <text x="182" y="810" font-size="34" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Write your own 3-line summary</text>
+  </g>
+
+  <g>
+    <rect x="80" y="890" width="1040" height="112" rx="18" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+    <circle cx="132" cy="946" r="24" fill="#0b5cff"/>
+    <text x="132" y="956" font-size="26" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">4</text>
+    <text x="182" y="955" font-size="34" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Bring one real question to the interview</text>
+  </g>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
