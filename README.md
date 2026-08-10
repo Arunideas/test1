@@ -81,8 +81,9 @@ Auto-publish content to LinkedIn.
   scheduled LinkedIn job at a chosen time of day.
 - **Real or simulated** — set `LINKEDIN_ACCESS_TOKEN` + `LINKEDIN_AUTHOR_URN` to post for real via
   the LinkedIn UGC Posts API; otherwise the entire flow runs in safe simulation mode (jobs progress
-  end-to-end with a simulated post URL). Publishing a post also marks its topic and calendar entry
-  as published.
+  end-to-end with a simulated post URL). When a generated image is attached, the publisher converts
+  the stored image to a LinkedIn-ready PNG and publishes the post with `shareMediaCategory: IMAGE`.
+  Publishing a post also marks its topic and calendar entry as published.
 
 You can publish from the Studio (per-post panel) or manage everything on the Publish page
 (connection status, queue, live-updating log, and per-job actions).
@@ -292,7 +293,8 @@ API additions:
 - Campaigns: `GET/POST /api/campaigns`, `GET/DELETE /api/campaigns/[id]`, `growthServices` in `/api/meta`.
 - Publishing: `POST /api/publish`, `GET /api/publish/jobs`, `POST /api/publish/jobs/[id]`
   (approve/cancel/retry), `POST /api/publish/process` (cron tick), `GET /api/publish/status`,
-  `POST /api/publish/auto-schedule`.
+  `POST /api/publish/auto-schedule`. LinkedIn image publishing uses `sharp` to convert stored
+  generated images into uploadable PNG media.
 - Scheduling: `GET|POST /api/cron/run` — the full daily pipeline (plan → generate → schedule →
   publish), guarded by optional `CRON_SECRET`.
 
