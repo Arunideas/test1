@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">AI output trust check</title>
+  <desc id="desc">A World of Interns checklist card with four checks: source, numbers, fit, and voice.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#23303a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="242" font-size="68" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">AI output</text>
+  <text x="80" y="318" font-size="68" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">trust check</text>
+  <text x="82" y="374" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">Use AI. Verify like a human.</text>
+
+  <g filter="url(#softShadow)">
+    <rect x="80" y="430" width="1040" height="502" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+    <g transform="translate(128 504)">
+      <rect x="0" y="-38" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M11 -13 l12 14 l27 -35" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="82" y="-8" font-size="42" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Source</text>
+      <text x="82" y="34" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">Where did this point come from?</text>
+    </g>
+
+    <line x1="128" y1="610" x2="1072" y2="610" stroke="#d7cfbf" stroke-width="3"/>
+
+    <g transform="translate(128 666)">
+      <rect x="0" y="-38" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M11 -13 l12 14 l27 -35" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="82" y="-8" font-size="42" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Numbers</text>
+      <text x="82" y="34" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">Can you explain every metric?</text>
+    </g>
+
+    <line x1="128" y1="772" x2="1072" y2="772" stroke="#d7cfbf" stroke-width="3"/>
+
+    <g transform="translate(128 828)">
+      <rect x="0" y="-38" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M11 -13 l12 14 l27 -35" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="82" y="-8" font-size="42" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Fit</text>
+      <text x="82" y="34" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">Does it answer this role?</text>
+    </g>
+
+    <line x1="640" y1="772" x2="640" y2="932" stroke="#d7cfbf" stroke-width="3"/>
+
+    <g transform="translate(690 828)">
+      <rect x="0" y="-38" width="48" height="48" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M11 -13 l12 14 l27 -35" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="82" y="-8" font-size="42" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Voice</text>
+      <text x="82" y="34" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">Would you say it aloud?</text>
+    </g>
+  </g>
+
+  <rect x="80" y="972" width="1040" height="82" rx="22" fill="#23303a"/>
+  <text x="600" y="1025" font-size="32" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">Clear beats inflated.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
