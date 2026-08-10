@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Rejection to learning backlog checklist</title>
+  <desc id="desc">A World of Interns checklist card with four steps for using AI to turn an internship rejection into a learning backlog.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5f0e7"/>
+      <stop offset="1" stop-color="#e8dfcf"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.045"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+  <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+  <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+
+  <text x="80" y="242" font-size="58" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Rejection to</text>
+  <text x="80" y="312" font-size="58" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">learning backlog</text>
+  <text x="80" y="366" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">Use AI to plan the next honest improvement.</text>
+
+  <rect x="80" y="442" width="1040" height="508" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <rect x="130" y="505" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+  <path d="M140 527 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+  <text x="205" y="541" font-size="37" fill="#23303a" font-family="Arial, sans-serif">Do not guess the reason</text>
+
+  <rect x="130" y="620" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+  <path d="M140 642 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+  <text x="205" y="656" font-size="37" fill="#23303a" font-family="Arial, sans-serif">Compare role to proof</text>
+
+  <rect x="130" y="735" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+  <path d="M140 757 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+  <text x="205" y="771" font-size="37" fill="#23303a" font-family="Arial, sans-serif">Choose 5 improvements</text>
+
+  <rect x="130" y="850" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+  <path d="M140 872 l12 14 l24 -30" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+  <text x="205" y="886" font-size="37" fill="#23303a" font-family="Arial, sans-serif">Apply again with clearer evidence</text>
+
+  <text x="600" y="1038" font-size="31" fill="#23303a" text-anchor="middle" font-weight="700" font-family="Arial, sans-serif">A rejection can become a better next checklist.</text>
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
