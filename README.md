@@ -81,8 +81,9 @@ Auto-publish content to LinkedIn.
   scheduled LinkedIn job at a chosen time of day.
 - **Real or simulated** — set `LINKEDIN_ACCESS_TOKEN` + `LINKEDIN_AUTHOR_URN` to post for real via
   the LinkedIn UGC Posts API; otherwise the entire flow runs in safe simulation mode (jobs progress
-  end-to-end with a simulated post URL). Publishing a post also marks its topic and calendar entry
-  as published.
+  end-to-end with a simulated post URL). When a post has a generated image, the publisher converts
+  the stored SVG/data image to a LinkedIn-ready PNG and attaches it as feed image media. Publishing
+  a post also marks its topic and calendar entry as published.
 
 You can publish from the Studio (per-post panel) or manage everything on the Publish page
 (connection status, queue, live-updating log, and per-job actions).
@@ -237,7 +238,7 @@ CI builds the image and pushes it to the GitHub Container Registry; Portainer pu
 4. **Create the stack in Portainer:** *Stacks → Add stack*. Paste `docker-compose.yml` (or point it
    at this repo via *Git repository*). Set env vars: `IMAGE=ghcr.io/<owner>/<repo>:latest`,
    `OPENAI_API_KEY` (required for writing), optional `LINKEDIN_ACCESS_TOKEN` / `LINKEDIN_AUTHOR_URN`,
-   and `CRON_SECRET`. Deploy.
+   and `CRON_SECRET`. Generated images are converted to PNG before LinkedIn upload. Deploy.
 5. **Auto-redeploy on new images:** enable the stack's **webhook** (Stack → *Webhook*), then add a
    final CI step (or a repository→Portainer integration) that `curl -X POST <portainer-webhook-url>`
    after the image is pushed, so Portainer pulls `:latest` and recreates the container.
