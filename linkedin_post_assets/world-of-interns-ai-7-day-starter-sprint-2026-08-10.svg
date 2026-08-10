@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">7-day starter sprint</title>
+  <desc id="desc">A World of Interns checklist card with four preparation steps students can use before an internship conversation.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5efe4"/>
+      <stop offset="1" stop-color="#e7dfcf"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#28313a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.08"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="235" font-size="58" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">7-day starter</text>
+  <text x="80" y="307" font-size="58" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">sprint</text>
+  <text x="82" y="360" font-size="26" fill="#5c6773" font-family="Arial, sans-serif">Ask AI to turn a role into one practical week of preparation.</text>
+
+  <g filter="url(#softShadow)">
+    <rect x="70" y="420" width="650" height="560" rx="28" fill="#fbf8f0" stroke="#d6cdbb" stroke-width="3"/>
+
+    <g>
+      <circle cx="128" cy="505" r="27" fill="#0b5cff" opacity="0.95"/>
+      <text x="128" y="516" font-size="28" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+      <text x="178" y="514" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Learn the words</text>
+      <text x="180" y="552" font-size="22" fill="#6a7380" font-family="Arial, sans-serif">Role terms, product context, team language</text>
+    </g>
+
+    <g>
+      <circle cx="128" cy="632" r="27" fill="#0b5cff" opacity="0.95"/>
+      <text x="128" y="643" font-size="28" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+      <text x="178" y="641" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Revise the tools</text>
+      <text x="180" y="679" font-size="22" fill="#6a7380" font-family="Arial, sans-serif">One skill list you can actually practise</text>
+    </g>
+
+    <g>
+      <circle cx="128" cy="759" r="27" fill="#0b5cff" opacity="0.95"/>
+      <text x="128" y="770" font-size="28" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+      <text x="178" y="768" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Build one tiny task</text>
+      <text x="180" y="806" font-size="22" fill="#6a7380" font-family="Arial, sans-serif">Small proof before the big opportunity</text>
+    </g>
+
+    <g>
+      <circle cx="128" cy="886" r="27" fill="#0b5cff" opacity="0.95"/>
+      <text x="128" y="897" font-size="28" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">4</text>
+      <text x="178" y="895" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Write better questions</text>
+      <text x="180" y="933" font-size="22" fill="#6a7380" font-family="Arial, sans-serif">For the mentor, interviewer, or first meeting</text>
+    </g>
+  </g>
+
+  <g transform="translate(785 450)">
+    <rect x="0" y="0" width="310" height="410" rx="24" fill="#23303a"/>
+    <rect x="34" y="38" width="242" height="16" rx="8" fill="#ffffff" opacity="0.25"/>
+    <rect x="34" y="86" width="190" height="16" rx="8" fill="#ffffff" opacity="0.25"/>
+    <rect x="34" y="134" width="224" height="16" rx="8" fill="#ffffff" opacity="0.25"/>
+    <rect x="34" y="206" width="242" height="118" rx="16" fill="#f5efe4"/>
+    <path d="M76 266 l32 32 l78 -86" fill="none" stroke="#2f7d4f" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="241" cy="338" r="34" fill="#0b5cff"/>
+    <text x="241" y="351" font-size="42" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">?</text>
+  </g>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
