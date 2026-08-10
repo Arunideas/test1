@@ -45,4 +45,14 @@ What is one thing students should prepare before their first internship intervie
 
 ## Publishing status
 
-Live LinkedIn publishing has not been attempted yet for this prepared asset package.
+Live LinkedIn publishing was blocked in this environment because no LinkedIn credentials or authenticated posting tool/session were available:
+
+- `LINKEDIN_ACCESS_TOKEN`: missing
+- `LINKEDIN_AUTHOR_URN`: missing
+- `LINKEDIN_MEMBER_ID`: missing
+- `LINKEDIN_ORGANIZATION_URN`: missing
+- `LINKEDIN_COMPANY_ID`: missing
+- LinkedIn/social posting MCP tool: not registered
+- Browser publishing attempt: blocked by LinkedIn login page
+
+The prepared caption and image are ready for LinkedIn publishing once credentials are configured.
