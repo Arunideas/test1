@@ -1,11 +1,12 @@
 import { newId, readDb, updateDb } from "../db";
 import type {
+  GeneratedImage,
   PublishJob,
   PublishLogLine,
   PublishMode,
   PublishStatus,
 } from "../types";
-import { linkedInStatus, publishToLinkedIn } from "./linkedin";
+import { linkedInStatus, publishToLinkedIn, type PublishImage, type PublishResult } from "./linkedin";
 
 const TICK_MS = 10000;
 const BASE_BACKOFF_MS = 4000;
@@ -23,6 +24,57 @@ function line(message: string, level: PublishLogLine["level"] = "info"): Publish
 function composeText(body: string, hashtags: string[]): string {
   const tags = hashtags?.length ? "\n\n" + hashtags.join(" ") : "";
   return body + tags;
+}
+
+function parseDataUri(dataUri: string): { contentType: string; data: Buffer } | null {
+  const match = dataUri.match(/^data:([^;,]+)(;base64)?,([\s\S]*)$/);
+  if (!match) return null;
+  const [, contentType, base64Flag, payload] = match;
+  return {
+    contentType,
+    data: base64Flag
+      ? Buffer.from(payload, "base64")
+      : Buffer.from(decodeURIComponent(payload), "utf8"),
+  };
+}
+
+async function toLinkedInPng(data: Buffer | string): Promise<Buffer> {
+  const sharp = (await import("sharp")).default;
+  return sharp(data)
+    .resize(1200, 1200, { fit: "inside", withoutEnlargement: true })
+    .flatten({ background: "#ffffff" })
+    .png()
+    .toBuffer();
+}
+
+async function imageSourceToPng(image: GeneratedImage): Promise<Buffer> {
+  const source = image.svg.trim();
+  if (source.startsWith("<svg")) {
+    return toLinkedInPng(Buffer.from(source, "utf8"));
+  }
+
+  const dataUri = parseDataUri(source);
+  if (dataUri) return toLinkedInPng(dataUri.data);
+
+  if (/^https?:\/\//.test(source)) {
+    const res = await fetch(source);
+    if (!res.ok) throw new Error(`Image fetch failed with HTTP ${res.status}`);
+    return toLinkedInPng(Buffer.from(await res.arrayBuffer()));
+  }
+
+  throw new Error("Unsupported image source format");
+}
+
+async function resolvePublishImage(imageId: string | null | undefined): Promise<PublishImage | undefined> {
+  if (!imageId) return undefined;
+  const db = await readDb();
+  const image = db.images.find((i) => i.id === imageId);
+  if (!image) throw new Error(`Image ${imageId} was not found`);
+  return {
+    data: await imageSourceToPng(image),
+    contentType: "image/png",
+    altText: image.altText,
+  };
 }
 
 export interface SchedulePublishInput {
@@ -171,11 +223,26 @@ export async function processDueJobs(): Promise<{ processed: number }> {
         j.updatedAt = iso();
         j.log.push(line(`Publishing attempt ${j.attempts}/${j.maxAttempts}`));
       }
-      return due.map((j) => ({ id: j.id, text: j.text, visibility: j.visibility }));
+      return due.map((j) => ({
+        id: j.id,
+        text: j.text,
+        visibility: j.visibility,
+        imageId: j.imageId,
+      }));
     });
 
     for (const c of claimed) {
-      const result = await publishToLinkedIn({ text: c.text, visibility: c.visibility });
+      let result: PublishResult;
+      try {
+        const image = await resolvePublishImage(c.imageId);
+        result = await publishToLinkedIn({ text: c.text, visibility: c.visibility, image });
+      } catch (err) {
+        result = {
+          ok: false,
+          error: err instanceof Error ? err.message : "Image preparation failed",
+          simulated: linkedInStatus().simulated,
+        };
+      }
       await updateDb((d) => {
         const job = d.publishJobs.find((j) => j.id === c.id);
         if (!job) return;
@@ -189,8 +256,8 @@ export async function processDueJobs(): Promise<{ processed: number }> {
           job.log.push(
             line(
               result.simulated
-                ? `Published (simulated): ${job.postUrl}`
-                : `Published: ${job.postUrl}`,
+                ? `Published (simulated${result.imageAttached ? " with image" : ""}): ${job.postUrl}`
+                : `Published${result.imageAttached ? " with image" : ""}: ${job.postUrl}`,
               "success"
             )
           );
