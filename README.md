@@ -83,6 +83,9 @@ Auto-publish content to LinkedIn.
   the LinkedIn UGC Posts API; otherwise the entire flow runs in safe simulation mode (jobs progress
   end-to-end with a simulated post URL). Publishing a post also marks its topic and calendar entry
   as published.
+- **Image posts** — when a generated post has an attached image, publish jobs send it with the
+  LinkedIn share as feed image media. Local SVG images and AI-generated data URIs are converted to
+  PNG with `sharp` before upload; simulation mode records that the image would be attached.
 
 You can publish from the Studio (per-post panel) or manage everything on the Publish page
 (connection status, queue, live-updating log, and per-job actions).
