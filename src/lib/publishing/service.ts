@@ -5,7 +5,7 @@ import type {
   PublishMode,
   PublishStatus,
 } from "../types";
-import { linkedInStatus, publishToLinkedIn } from "./linkedin";
+import { linkedInStatus, publishToLinkedIn, type PublishImage } from "./linkedin";
 
 const TICK_MS = 10000;
 const BASE_BACKOFF_MS = 4000;
@@ -155,6 +155,18 @@ function isDue(job: PublishJob, t: number): boolean {
   return false;
 }
 
+async function resolvePublishImage(imageId: string | null | undefined): Promise<PublishImage | null> {
+  if (!imageId) return null;
+  const db = await readDb();
+  const image = db.images.find((i) => i.id === imageId);
+  if (!image) return null;
+  return {
+    data: image.svg,
+    altText: image.altText,
+    title: "World of Interns",
+  };
+}
+
 let processing = false;
 
 export async function processDueJobs(): Promise<{ processed: number }> {
@@ -171,11 +183,21 @@ export async function processDueJobs(): Promise<{ processed: number }> {
         j.updatedAt = iso();
         j.log.push(line(`Publishing attempt ${j.attempts}/${j.maxAttempts}`));
       }
-      return due.map((j) => ({ id: j.id, text: j.text, visibility: j.visibility }));
+      return due.map((j) => ({
+        id: j.id,
+        text: j.text,
+        visibility: j.visibility,
+        imageId: j.imageId,
+      }));
     });
 
     for (const c of claimed) {
-      const result = await publishToLinkedIn({ text: c.text, visibility: c.visibility });
+      const image = await resolvePublishImage(c.imageId);
+      const result = await publishToLinkedIn({
+        text: c.text,
+        visibility: c.visibility,
+        image,
+      });
       await updateDb((d) => {
         const job = d.publishJobs.find((j) => j.id === c.id);
         if (!job) return;
@@ -189,8 +211,8 @@ export async function processDueJobs(): Promise<{ processed: number }> {
           job.log.push(
             line(
               result.simulated
-                ? `Published (simulated): ${job.postUrl}`
-                : `Published: ${job.postUrl}`,
+                ? `Published (simulated${result.imageAttached ? " with image" : ""}): ${job.postUrl}`
+                : `Published${result.imageAttached ? " with image" : ""}: ${job.postUrl}`,
               "success"
             )
           );
