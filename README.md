@@ -80,9 +80,11 @@ Auto-publish content to LinkedIn.
 - **Auto-schedule the calendar** — one click turns every approved/generated calendar post into a
   scheduled LinkedIn job at a chosen time of day.
 - **Real or simulated** — set `LINKEDIN_ACCESS_TOKEN` + `LINKEDIN_AUTHOR_URN` to post for real via
-  the LinkedIn UGC Posts API; otherwise the entire flow runs in safe simulation mode (jobs progress
-  end-to-end with a simulated post URL). Publishing a post also marks its topic and calendar entry
-  as published.
+  the LinkedIn UGC Posts API. When a generated image is attached, the app registers a LinkedIn feed
+  image upload, converts local SVG cards to PNG, uploads the image, and publishes the share as
+  `shareMediaCategory: IMAGE`. Without credentials, the entire flow runs in safe simulation mode
+  (jobs progress end-to-end with a simulated post URL and image-attached log). Publishing a post
+  also marks its topic and calendar entry as published.
 
 You can publish from the Studio (per-post panel) or manage everything on the Publish page
 (connection status, queue, live-updating log, and per-job actions).
@@ -128,7 +130,8 @@ Brand Style · Prompt Library · Image Templates · Generated Posts / Images / D
   rule-based writing fallback.
 - **Works without a key** — image generation (local SVG renderer; upgrades to OpenAI images when a
   key is set), the 90-day planner and duplicate detection, publishing/scheduling (LinkedIn
-  simulation), and community scaffolds (poll options, quiz Q&A, spotlight fill-in templates).
+  simulation with attached generated images), and community scaffolds (poll options, quiz Q&A,
+  spotlight fill-in templates).
 - **Brand rules & scoring** are always applied to the AI's output (they validate, they don't write).
 
 See `.env.example` for configuration.
