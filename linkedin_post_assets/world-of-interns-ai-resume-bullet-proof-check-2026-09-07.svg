@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="World of Interns checklist card explaining an AI resume bullet proof check: paste raw notes, match the internship description, mark claims needing proof, keep only defensible bullets.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+  <rect x="64" y="64" width="1072" height="1072" rx="36" fill="#fbf9f4" opacity="0.58" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g>
+    <rect x="92" y="92" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="115" y="124" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="152" y="124" font-size="26" fill="#23303a" font-weight="700" text-anchor="start" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="92" y="244" font-size="64" fill="#23303a" font-weight="900" text-anchor="start" font-family="Georgia, serif">AI resume bullet</text>
+  <text x="92" y="316" font-size="64" fill="#23303a" font-weight="900" text-anchor="start" font-family="Georgia, serif">proof check</text>
+  <rect x="92" y="348" width="172" height="8" rx="4" fill="#0b5cff"/>
+
+  
+    <g>
+      <rect x="92" y="382" width="54" height="54" rx="12" fill="#fbf9f4" stroke="#23303a" stroke-width="4"/>
+      <path d="M105 410 l13 15 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="170" y="412" font-size="39" fill="#23303a" font-weight="800" text-anchor="start" font-family="Arial, sans-serif">Paste raw proof</text>
+      <text x="170" y="458" font-size="27" fill="#5c6773" font-weight="400" text-anchor="start" font-family="Arial, sans-serif">project note + JD + real result</text>
+    </g>
+    <g>
+      <rect x="92" y="520" width="54" height="54" rx="12" fill="#fbf9f4" stroke="#23303a" stroke-width="4"/>
+      <path d="M105 548 l13 15 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="170" y="550" font-size="39" fill="#23303a" font-weight="800" text-anchor="start" font-family="Arial, sans-serif">Ask AI to mark gaps</text>
+      <text x="170" y="596" font-size="27" fill="#5c6773" font-weight="400" text-anchor="start" font-family="Arial, sans-serif">which claims need proof?</text>
+    </g>
+    <g>
+      <rect x="92" y="658" width="54" height="54" rx="12" fill="#fbf9f4" stroke="#23303a" stroke-width="4"/>
+      <path d="M105 686 l13 15 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="170" y="688" font-size="39" fill="#23303a" font-weight="800" text-anchor="start" font-family="Arial, sans-serif">Delete weak bullets</text>
+      <text x="170" y="734" font-size="27" fill="#5c6773" font-weight="400" text-anchor="start" font-family="Arial, sans-serif">no line you cannot defend</text>
+    </g>
+    <g>
+      <rect x="92" y="796" width="54" height="54" rx="12" fill="#fbf9f4" stroke="#23303a" stroke-width="4"/>
+      <path d="M105 824 l13 15 l28 -34" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="170" y="826" font-size="39" fill="#23303a" font-weight="800" text-anchor="start" font-family="Arial, sans-serif">Keep action + tool + outcome</text>
+      <text x="170" y="872" font-size="27" fill="#5c6773" font-weight="400" text-anchor="start" font-family="Arial, sans-serif">specific beats polished</text>
+    </g>
+
+  <g>
+    <rect x="92" y="1000" width="1016" height="80" rx="18" fill="#eef3ff" stroke="#cbd8ff"/>
+    <text x="120" y="1051" font-size="31" fill="#23303a" font-weight="800" text-anchor="start" font-family="Arial, sans-serif">AI can polish. It should not invent your experience.</text>
+  </g>
+
+  <text x="600" y="1126" font-size="22" fill="#5c6773" font-weight="400" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  ·  practical, not promotional</text>
+</svg>
