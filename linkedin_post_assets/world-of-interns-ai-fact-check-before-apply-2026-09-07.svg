@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">AI application fact-check checklist</title>
+  <desc id="desc">A World of Interns checklist card showing four checks for AI-written internship applications.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="260" font-size="52" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Fact-check the AI draft</text>
+  <text x="80" y="326" font-size="52" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">before you apply</text>
+  <text x="80" y="390" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">Use AI for structure. Use your evidence for trust.</text>
+
+  <g>
+    <rect x="80" y="485" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M90 463 l12 14 l24 -30" transform="translate(0 42)" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="150" y="520" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">What claim is being made?</text>
+  </g>
+
+  <g>
+    <rect x="80" y="635" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M90 613 l12 14 l24 -30" transform="translate(0 42)" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="150" y="670" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Where is the real proof?</text>
+  </g>
+
+  <g>
+    <rect x="80" y="785" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M90 763 l12 14 l24 -30" transform="translate(0 42)" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="150" y="820" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Can I defend this line?</text>
+  </g>
+
+  <g>
+    <rect x="80" y="935" width="44" height="44" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M90 913 l12 14 l24 -30" transform="translate(0 42)" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="150" y="970" font-size="38" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Rewrite only what is true.</text>
+  </g>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
