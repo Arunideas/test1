@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Fresher resume order checklist</title>
+  <desc id="desc">A World of Interns checklist card showing a suggested resume section order for freshers with limited experience.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="230" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">Tuesday Resume Review</text>
+  <text x="80" y="305" font-size="66" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Fresher resume order</text>
+  <text x="80" y="360" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">Show evidence before labels.</text>
+
+  <rect x="92" y="425" width="1016" height="520" rx="26" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(150 500)">
+      <circle cx="0" cy="0" r="30" fill="#0b5cff"/>
+      <text x="0" y="11" font-size="30" fill="#ffffff" font-weight="800" text-anchor="middle">1</text>
+      <text x="62" y="8" font-size="36" fill="#23303a" font-weight="700">Target role line</text>
+      <text x="62" y="48" font-size="24" fill="#5c6773">Make the recruiter understand the direction.</text>
+    </g>
+
+    <g transform="translate(150 600)">
+      <circle cx="0" cy="0" r="30" fill="#0b5cff"/>
+      <text x="0" y="11" font-size="30" fill="#ffffff" font-weight="800" text-anchor="middle">2</text>
+      <text x="62" y="8" font-size="36" fill="#23303a" font-weight="700">Education</text>
+      <text x="62" y="48" font-size="24" fill="#5c6773">Keep it clean: degree, college, year, key result.</text>
+    </g>
+
+    <g transform="translate(150 700)">
+      <circle cx="0" cy="0" r="30" fill="#0b5cff"/>
+      <text x="0" y="11" font-size="30" fill="#ffffff" font-weight="800" text-anchor="middle">3</text>
+      <text x="62" y="8" font-size="36" fill="#23303a" font-weight="700">Two strongest projects</text>
+      <text x="62" y="48" font-size="24" fill="#5c6773">Use action, tool, and outcome in each bullet.</text>
+    </g>
+
+    <g transform="translate(150 800)">
+      <circle cx="0" cy="0" r="30" fill="#0b5cff"/>
+      <text x="0" y="11" font-size="30" fill="#ffffff" font-weight="800" text-anchor="middle">4</text>
+      <text x="62" y="8" font-size="36" fill="#23303a" font-weight="700">Internship or club work</text>
+      <text x="62" y="48" font-size="24" fill="#5c6773">Include volunteering if it proves responsibility.</text>
+    </g>
+
+    <g transform="translate(150 900)">
+      <circle cx="0" cy="0" r="30" fill="#0b5cff"/>
+      <text x="0" y="11" font-size="30" fill="#ffffff" font-weight="800" text-anchor="middle">5</text>
+      <text x="62" y="8" font-size="36" fill="#23303a" font-weight="700">Skills connected to proof</text>
+      <text x="62" y="48" font-size="24" fill="#5c6773">Let projects explain the keywords.</text>
+    </g>
+  </g>
+
+  <rect x="80" y="990" width="1040" height="3" fill="#d7cfbf"/>
+  <text x="600" y="1075" font-size="24" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in | practical, not promotional</text>
+</svg>
