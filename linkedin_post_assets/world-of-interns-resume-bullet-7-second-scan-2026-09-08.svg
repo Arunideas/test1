@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Resume bullet 7-second scan checklist</title>
+  <desc id="desc">Checklist card from World of Interns showing action, method, and result as the three parts of a stronger resume bullet.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <rect x="78" y="186" width="1044" height="834" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <text x="120" y="282" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">RESUME REVIEW</text>
+  <text x="120" y="358" font-size="62" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Will this bullet</text>
+  <text x="120" y="430" font-size="62" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">survive 7 seconds?</text>
+
+  <line x1="120" y1="488" x2="1080" y2="488" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g>
+    <rect x="122" y="562" width="46" height="46" rx="9" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M133 586 l13 14 l26 -33" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="194" y="594" font-size="40" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Action</text>
+    <text x="194" y="642" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">What did you build, fix, write, test, or improve?</text>
+  </g>
+
+  <g>
+    <rect x="122" y="712" width="46" height="46" rx="9" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M133 736 l13 14 l26 -33" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="194" y="744" font-size="40" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Method</text>
+    <text x="194" y="792" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">Which tool, process, or skill proves the work?</text>
+  </g>
+
+  <g>
+    <rect x="122" y="862" width="46" height="46" rx="9" fill="none" stroke="#23303a" stroke-width="4"/>
+    <path d="M133 886 l13 14 l26 -33" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+    <text x="194" y="894" font-size="40" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Result</text>
+    <text x="194" y="942" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">What changed because of your work?</text>
+  </g>
+
+  <rect x="702" y="542" width="332" height="112" rx="18" fill="#f3efe7" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="868" y="586" font-size="24" fill="#c0492f" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">WEAK</text>
+  <text x="868" y="626" font-size="24" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">Worked on a dashboard.</text>
+
+  <rect x="702" y="702" width="332" height="166" rx="18" fill="#ffffff" stroke="#0b5cff" stroke-width="4"/>
+  <text x="868" y="748" font-size="24" fill="#2f7d4f" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">STRONGER</text>
+  <text x="734" y="796" font-size="23" fill="#23303a" font-family="Arial, sans-serif">Built a dashboard in Excel</text>
+  <text x="734" y="830" font-size="23" fill="#23303a" font-family="Arial, sans-serif">to track weekly revenue</text>
+  <text x="734" y="864" font-size="23" fill="#23303a" font-family="Arial, sans-serif">across 4 regions.</text>
+
+  <text x="600" y="1132" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  .  practical, not promotional</text>
+</svg>

@@ -1,11 +1,14 @@
 import { newId, readDb, updateDb } from "../db";
 import type {
+  GeneratedImage,
   PublishJob,
   PublishLogLine,
   PublishMode,
   PublishStatus,
 } from "../types";
+import sharp from "sharp";
 import { linkedInStatus, publishToLinkedIn } from "./linkedin";
+import type { LinkedInImageMedia, PublishResult } from "./linkedin";
 
 const TICK_MS = 10000;
 const BASE_BACKOFF_MS = 4000;
@@ -23,6 +26,63 @@ function line(message: string, level: PublishLogLine["level"] = "info"): Publish
 function composeText(body: string, hashtags: string[]): string {
   const tags = hashtags?.length ? "\n\n" + hashtags.join(" ") : "";
   return body + tags;
+}
+
+function decodeDataUri(uri: string): Buffer | null {
+  if (!uri.startsWith("data:")) return null;
+  const comma = uri.indexOf(",");
+  if (comma === -1) return null;
+
+  const meta = uri.slice(5, comma);
+  const data = uri.slice(comma + 1);
+  if (meta.includes(";base64")) return Buffer.from(data, "base64");
+  return Buffer.from(decodeURIComponent(data), "utf8");
+}
+
+async function imageSourceToBuffer(image: GeneratedImage): Promise<Buffer | null> {
+  const source = image.svg.trim();
+  const dataUri = decodeDataUri(source);
+  if (dataUri) return dataUri;
+
+  if (source.startsWith("<svg")) return Buffer.from(source, "utf8");
+
+  if (/^https?:\/\//i.test(source)) {
+    const res = await fetch(source);
+    if (!res.ok) return null;
+    return Buffer.from(await res.arrayBuffer());
+  }
+
+  return null;
+}
+
+async function resolveLinkedInImage(
+  imageId?: string | null
+): Promise<LinkedInImageMedia | null> {
+  if (!imageId) return null;
+  const db = await readDb();
+  const image = db.images.find((i) => i.id === imageId);
+  if (!image) return null;
+
+  try {
+    const source = await imageSourceToBuffer(image);
+    if (!source) return null;
+
+    const png = await sharp(source, { limitInputPixels: false })
+      .resize(1200, 1200, { fit: "inside", withoutEnlargement: true })
+      .flatten({ background: "#ffffff" })
+      .png()
+      .toBuffer();
+
+    return {
+      bytes: png,
+      contentType: "image/png",
+      altText: image.altText,
+      title: "World of Interns",
+    };
+  } catch (err) {
+    console.error("Failed to prepare LinkedIn image", err);
+    return null;
+  }
 }
 
 export interface SchedulePublishInput {
@@ -171,11 +231,29 @@ export async function processDueJobs(): Promise<{ processed: number }> {
         j.updatedAt = iso();
         j.log.push(line(`Publishing attempt ${j.attempts}/${j.maxAttempts}`));
       }
-      return due.map((j) => ({ id: j.id, text: j.text, visibility: j.visibility }));
+      return due.map((j) => ({
+        id: j.id,
+        text: j.text,
+        visibility: j.visibility,
+        imageId: j.imageId,
+      }));
     });
 
     for (const c of claimed) {
-      const result = await publishToLinkedIn({ text: c.text, visibility: c.visibility });
+      const image = await resolveLinkedInImage(c.imageId);
+      const result: PublishResult =
+        c.imageId && !image
+          ? {
+              ok: false,
+              error: "LinkedIn image could not be prepared for upload",
+              simulated: linkedInStatus().simulated,
+              imageAttached: false,
+            }
+          : await publishToLinkedIn({
+              text: c.text,
+              visibility: c.visibility,
+              image: image ?? undefined,
+            });
       await updateDb((d) => {
         const job = d.publishJobs.find((j) => j.id === c.id);
         if (!job) return;
@@ -189,8 +267,8 @@ export async function processDueJobs(): Promise<{ processed: number }> {
           job.log.push(
             line(
               result.simulated
-                ? `Published (simulated): ${job.postUrl}`
-                : `Published: ${job.postUrl}`,
+                ? `Published (simulated${result.imageAttached ? " with image" : ""}): ${job.postUrl}`
+                : `Published${result.imageAttached ? " with image" : ""}: ${job.postUrl}`,
               "success"
             )
           );
