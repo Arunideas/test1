@@ -171,11 +171,29 @@ export async function processDueJobs(): Promise<{ processed: number }> {
         j.updatedAt = iso();
         j.log.push(line(`Publishing attempt ${j.attempts}/${j.maxAttempts}`));
       }
-      return due.map((j) => ({ id: j.id, text: j.text, visibility: j.visibility }));
+      return due.map((j) => {
+        const image = j.imageId ? d.images.find((i) => i.id === j.imageId) : null;
+        return {
+          id: j.id,
+          text: j.text,
+          visibility: j.visibility,
+          image: image
+            ? {
+                data: image.svg,
+                altText: image.altText,
+                title: "World of Interns",
+              }
+            : null,
+        };
+      });
     });
 
     for (const c of claimed) {
-      const result = await publishToLinkedIn({ text: c.text, visibility: c.visibility });
+      const result = await publishToLinkedIn({
+        text: c.text,
+        visibility: c.visibility,
+        image: c.image,
+      });
       await updateDb((d) => {
         const job = d.publishJobs.find((j) => j.id === c.id);
         if (!job) return;
@@ -189,8 +207,10 @@ export async function processDueJobs(): Promise<{ processed: number }> {
           job.log.push(
             line(
               result.simulated
-                ? `Published (simulated): ${job.postUrl}`
-                : `Published: ${job.postUrl}`,
+                ? `Published (simulated${result.imageAttached ? " with image" : ""}): ${
+                    job.postUrl
+                  }`
+                : `Published${result.imageAttached ? " with image" : ""}: ${job.postUrl}`,
               "success"
             )
           );
