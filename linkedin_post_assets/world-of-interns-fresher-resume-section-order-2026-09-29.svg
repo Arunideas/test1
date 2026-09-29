@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Fresher resume section order</title>
+  <desc id="desc">Checklist card showing a practical resume section order for freshers.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.10"/>
+  <rect x="62" y="62" width="1076" height="1076" rx="36" fill="none" stroke="#d7cfbf" stroke-width="3"/>
+  <g>
+    <rect x="90" y="88" width="48" height="48" rx="11" fill="#0b5cff"/>
+    <text x="114" y="121" font-family="Arial, sans-serif" font-size="27" font-weight="800" fill="#ffffff" text-anchor="middle">W</text>
+    <text x="154" y="120" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="#23303a">World of Interns</text>
+  </g>
+  <text x="96" y="220" font-family="Georgia, 'Times New Roman', serif" font-size="62" font-weight="800" fill="#23303a">Fresher resume order</text>
+  <text x="98" y="270" font-family="Arial, sans-serif" font-size="28" fill="#5c6773">Put the strongest proof where recruiters scan first.</text>
+  
+    <g>
+      <rect x="96" y="294" width="1008" height="96" rx="22" fill="#fbf9f4" stroke="#d9d0c0" stroke-width="3"/>
+      <circle cx="154" cy="342" r="30" fill="#0b5cff"/>
+      <text x="154" y="352" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff" text-anchor="middle">01</text>
+      <text x="214" y="330" font-family="Arial, sans-serif" font-size="34" font-weight="800" fill="#23303a">Role target</text>
+      <text x="214" y="370" font-family="Arial, sans-serif" font-size="25" fill="#5c6773">Make the first line match the internship you want.</text>
+    </g>
+    <g>
+      <rect x="96" y="420" width="1008" height="96" rx="22" fill="#fbf9f4" stroke="#d9d0c0" stroke-width="3"/>
+      <circle cx="154" cy="468" r="30" fill="#0b5cff"/>
+      <text x="154" y="478" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff" text-anchor="middle">02</text>
+      <text x="214" y="456" font-family="Arial, sans-serif" font-size="34" font-weight="800" fill="#23303a">Education</text>
+      <text x="214" y="496" font-family="Arial, sans-serif" font-size="25" fill="#5c6773">Keep the useful details, not every classroom detail.</text>
+    </g>
+    <g>
+      <rect x="96" y="546" width="1008" height="96" rx="22" fill="#fbf9f4" stroke="#d9d0c0" stroke-width="3"/>
+      <circle cx="154" cy="594" r="30" fill="#0b5cff"/>
+      <text x="154" y="604" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff" text-anchor="middle">03</text>
+      <text x="214" y="582" font-family="Arial, sans-serif" font-size="34" font-weight="800" fill="#23303a">Projects with proof</text>
+      <text x="214" y="622" font-family="Arial, sans-serif" font-size="25" fill="#5c6773">Show problem, tool, and result before certificates.</text>
+    </g>
+    <g>
+      <rect x="96" y="672" width="1008" height="96" rx="22" fill="#fbf9f4" stroke="#d9d0c0" stroke-width="3"/>
+      <circle cx="154" cy="720" r="30" fill="#0b5cff"/>
+      <text x="154" y="730" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff" text-anchor="middle">04</text>
+      <text x="214" y="708" font-family="Arial, sans-serif" font-size="34" font-weight="800" fill="#23303a">Experience</text>
+      <text x="214" y="748" font-family="Arial, sans-serif" font-size="25" fill="#5c6773">Internships, volunteering, freelance, campus work.</text>
+    </g>
+    <g>
+      <rect x="96" y="798" width="1008" height="96" rx="22" fill="#fbf9f4" stroke="#d9d0c0" stroke-width="3"/>
+      <circle cx="154" cy="846" r="30" fill="#0b5cff"/>
+      <text x="154" y="856" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff" text-anchor="middle">05</text>
+      <text x="214" y="834" font-family="Arial, sans-serif" font-size="34" font-weight="800" fill="#23303a">Relevant skills</text>
+      <text x="214" y="874" font-family="Arial, sans-serif" font-size="25" fill="#5c6773">Group skills by role. Avoid a keyword wall.</text>
+    </g>
+  <rect x="96" y="1004" width="1008" height="72" rx="20" fill="#23303a" opacity="0.95"/>
+  <text x="600" y="1050" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#ffffff" text-anchor="middle">If they only read 10 seconds, what should they see?</text>
+  <text x="600" y="1132" font-family="Arial, sans-serif" font-size="22" fill="#5c6773" text-anchor="middle">worldofinterns.in - practical, not promotional</text>
+</svg>
