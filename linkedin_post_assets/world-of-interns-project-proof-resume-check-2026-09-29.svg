@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Project proof resume check</title>
+  <desc id="desc">Checklist card for fresher resumes showing five proof points to add to a project line before applying.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <style>
+      .sans { font-family: Arial, Helvetica, sans-serif; }
+      .serif { font-family: Georgia, "Times New Roman", serif; }
+      .ink { fill: #23303a; }
+      .sub { fill: #5c6773; }
+      .accent { fill: #0b5cff; }
+      .line { stroke: #d7cfbf; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" class="sans">W</text>
+    <text x="140" y="112" font-size="26" font-weight="700" class="sans ink">World of Interns</text>
+  </g>
+
+  <text x="80" y="238" font-size="34" font-weight="700" class="sans sub">RESUME REVIEW</text>
+  <text x="80" y="310" font-size="58" font-weight="800" class="serif ink">Project proof check</text>
+  <text x="80" y="370" font-size="34" class="serif sub">Do not stop at the tech stack.</text>
+
+  <rect x="80" y="430" width="1040" height="540" rx="24" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g class="sans">
+    <g transform="translate(130 515)">
+      <rect x="0" y="-34" width="42" height="42" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M10 -14 l11 13 l23 -29" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+      <text x="70" y="0" font-size="36" class="ink">Problem it solved</text>
+    </g>
+    <g transform="translate(130 600)">
+      <rect x="0" y="-34" width="42" height="42" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M10 -14 l11 13 l23 -29" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+      <text x="70" y="0" font-size="36" class="ink">Your role</text>
+    </g>
+    <g transform="translate(130 685)">
+      <rect x="0" y="-34" width="42" height="42" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M10 -14 l11 13 l23 -29" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+      <text x="70" y="0" font-size="36" class="ink">Working feature</text>
+    </g>
+    <g transform="translate(130 770)">
+      <rect x="0" y="-34" width="42" height="42" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M10 -14 l11 13 l23 -29" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+      <text x="70" y="0" font-size="36" class="ink">Real metric or scope</text>
+    </g>
+    <g transform="translate(130 855)">
+      <rect x="0" y="-34" width="42" height="42" rx="8" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M10 -14 l11 13 l23 -29" fill="none" stroke="#2f7d4f" stroke-width="6" stroke-linecap="round"/>
+      <text x="70" y="0" font-size="36" class="ink">Link, demo, or repo</text>
+    </g>
+  </g>
+
+  <rect x="650" y="520" width="370" height="280" rx="18" fill="#f3efe7" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="690" y="590" font-size="28" font-weight="700" class="sans accent">Better format</text>
+  <text x="690" y="655" font-size="30" class="serif ink">Built [what] for</text>
+  <text x="690" y="700" font-size="30" class="serif ink">[who/problem].</text>
+  <text x="690" y="745" font-size="30" class="serif ink">Owned [part].</text>
+  <text x="690" y="790" font-size="30" class="serif ink">Proved [scope].</text>
+
+  <text x="600" y="1090" font-size="22" fill="#5c6773" text-anchor="middle" class="sans">worldofinterns.in  -  practical, not promotional</text>
+</svg>
