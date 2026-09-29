@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Resume summary fit check</title>
+  <desc id="desc">A World of Interns before-and-after resume card showing a generic summary replaced with a role, proof, and day-one work summary.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="230" font-size="56" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Resume summary</text>
+  <text x="80" y="292" font-size="56" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">fit check</text>
+  <text x="80" y="350" font-size="28" fill="#5c6773" font-family="Arial, sans-serif">If it can fit any student, it is not helping you.</text>
+
+  <rect x="80" y="430" width="490" height="450" rx="22" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <rect x="630" y="430" width="490" height="450" rx="22" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <text x="325" y="500" font-size="30" fill="#c0492f" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">BEFORE</text>
+  <text x="875" y="500" font-size="30" fill="#2f7d4f" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">AFTER</text>
+
+  <text x="120" y="585" font-size="34" fill="#5c6773" font-family="Georgia, 'Times New Roman', serif">"Motivated student</text>
+  <text x="120" y="632" font-size="34" fill="#5c6773" font-family="Georgia, 'Times New Roman', serif">seeking a challenging</text>
+  <text x="120" y="679" font-size="34" fill="#5c6773" font-family="Georgia, 'Times New Roman', serif">role to grow my skills."</text>
+  <line x1="120" y1="742" x2="530" y2="742" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="120" y="795" font-size="24" fill="#c0492f" font-weight="700" font-family="Arial, sans-serif">Too generic to prove fit</text>
+
+  <text x="670" y="575" font-size="30" fill="#23303a" font-weight="700" font-family="Georgia, 'Times New Roman', serif">Finance internship target</text>
+  <text x="670" y="636" font-size="30" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">2 Excel dashboards built</text>
+  <text x="670" y="697" font-size="30" fill="#23303a" font-family="Georgia, 'Times New Roman', serif">Reconciliation + reporting</text>
+  <line x1="670" y1="742" x2="1080" y2="742" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="670" y="795" font-size="24" fill="#2f7d4f" font-weight="700" font-family="Arial, sans-serif">Role + proof + day-one work</text>
+
+  <rect x="120" y="940" width="960" height="92" rx="18" fill="#23303a"/>
+  <text x="600" y="998" font-size="34" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">Your summary should make fit obvious in 5 seconds.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
