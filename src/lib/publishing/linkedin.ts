@@ -1,8 +1,8 @@
 // LinkedIn publishing client.
 //
 // When LINKEDIN_ACCESS_TOKEN and LINKEDIN_AUTHOR_URN are set, this posts a real
-// text share via the LinkedIn UGC Posts API. Otherwise it runs in simulation
-// mode so the whole publish/schedule/retry flow works end-to-end offline.
+// share via the LinkedIn UGC Posts API. Otherwise it runs in simulation mode so
+// the whole publish/schedule/retry flow works end-to-end offline.
 
 const API_BASE = process.env.LINKEDIN_API_BASE || "https://api.linkedin.com/v2";
 
@@ -29,16 +29,129 @@ export interface PublishResult {
   postUrn?: string;
   error?: string;
   simulated: boolean;
+  imageAttached?: boolean;
+}
+
+export interface PublishImage {
+  data: string;
+  altText?: string;
+  title?: string;
 }
 
 export interface PublishPayload {
   text: string;
   visibility: "PUBLIC" | "CONNECTIONS";
+  image?: PublishImage | null;
 }
 
 function urnToUrl(urn: string): string {
   // urn:li:share:123 or urn:li:ugcPost:123 -> feed permalink
   return `https://www.linkedin.com/feed/update/${encodeURIComponent(urn)}`;
+}
+
+function parseDataUri(uri: string): Buffer | null {
+  const match = uri.match(/^data:([^;,]+)?(;base64)?,(.*)$/s);
+  if (!match) return null;
+  const isBase64 = Boolean(match[2]);
+  const payload = match[3] || "";
+  return isBase64
+    ? Buffer.from(payload, "base64")
+    : Buffer.from(decodeURIComponent(payload), "utf8");
+}
+
+async function sourceToBuffer(source: string): Promise<Buffer> {
+  const trimmed = source.trim();
+  const dataUri = parseDataUri(trimmed);
+  if (dataUri) return dataUri;
+
+  if (/^https?:\/\//i.test(trimmed)) {
+    const res = await fetch(trimmed);
+    if (!res.ok) {
+      throw new Error(`Image fetch failed ${res.status}: ${trimmed.slice(0, 120)}`);
+    }
+    return Buffer.from(await res.arrayBuffer());
+  }
+
+  return Buffer.from(trimmed, "utf8");
+}
+
+async function toLinkedInPngBytes(source: string): Promise<Buffer> {
+  const input = await sourceToBuffer(source);
+  const sharp = (await import("sharp")).default;
+  return sharp(input)
+    .resize(1200, 1200, { fit: "inside", withoutEnlargement: true })
+    .flatten({ background: "#ffffff" })
+    .png()
+    .toBuffer();
+}
+
+interface UploadRegistration {
+  value?: {
+    asset?: string;
+    uploadMechanism?: {
+      "com.linkedin.digitalmedia.uploading.MediaUploadHttpRequest"?: {
+        uploadUrl?: string;
+      };
+    };
+  };
+}
+
+async function registerAndUploadImage(image: PublishImage): Promise<string> {
+  const registerBody = {
+    registerUploadRequest: {
+      owner: process.env.LINKEDIN_AUTHOR_URN,
+      recipes: ["urn:li:digitalmediaRecipe:feedshare-image"],
+      serviceRelationships: [
+        {
+          identifier: "urn:li:userGeneratedContent",
+          relationshipType: "OWNER",
+        },
+      ],
+      supportedUploadMechanism: ["SYNCHRONOUS_UPLOAD"],
+    },
+  };
+
+  const registerRes = await fetch(`${API_BASE}/assets?action=registerUpload`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.LINKEDIN_ACCESS_TOKEN}`,
+      "Content-Type": "application/json",
+      "X-Restli-Protocol-Version": "2.0.0",
+    },
+    body: JSON.stringify(registerBody),
+  });
+
+  if (!registerRes.ok) {
+    const errText = await registerRes.text().catch(() => "");
+    throw new Error(`LinkedIn image register ${registerRes.status}: ${errText.slice(0, 300)}`);
+  }
+
+  const registration = (await registerRes.json()) as UploadRegistration;
+  const uploadUrl =
+    registration.value?.uploadMechanism?.[
+      "com.linkedin.digitalmedia.uploading.MediaUploadHttpRequest"
+    ]?.uploadUrl;
+  const asset = registration.value?.asset;
+  if (!uploadUrl || !asset) {
+    throw new Error("LinkedIn image register response missing upload URL or asset URN");
+  }
+
+  const png = await toLinkedInPngBytes(image.data);
+  const uploadRes = await fetch(uploadUrl, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${process.env.LINKEDIN_ACCESS_TOKEN}`,
+      "Content-Type": "image/png",
+    },
+    body: png,
+  });
+
+  if (!uploadRes.ok) {
+    const errText = await uploadRes.text().catch(() => "");
+    throw new Error(`LinkedIn image upload ${uploadRes.status}: ${errText.slice(0, 300)}`);
+  }
+
+  return asset;
 }
 
 export async function publishToLinkedIn(
@@ -54,17 +167,33 @@ export async function publishToLinkedIn(
       postUrn: fake,
       postUrl: urnToUrl(fake),
       simulated: true,
+      imageAttached: Boolean(payload.image),
     };
   }
 
   try {
+    const asset = payload.image ? await registerAndUploadImage(payload.image) : null;
     const body = {
       author: status.authorUrn,
       lifecycleState: "PUBLISHED",
       specificContent: {
         "com.linkedin.ugc.ShareContent": {
           shareCommentary: { text: payload.text },
-          shareMediaCategory: "NONE",
+          shareMediaCategory: asset ? "IMAGE" : "NONE",
+          ...(asset
+            ? {
+                media: [
+                  {
+                    status: "READY",
+                    description: payload.image?.altText
+                      ? { text: payload.image.altText }
+                      : undefined,
+                    media: asset,
+                    title: { text: payload.image?.title || "World of Interns image" },
+                  },
+                ],
+              }
+            : {}),
         },
       },
       visibility: {
@@ -98,12 +227,14 @@ export async function publishToLinkedIn(
       postUrn: urn,
       postUrl: urn ? urnToUrl(urn) : undefined,
       simulated: false,
+      imageAttached: Boolean(asset),
     };
   } catch (err) {
     return {
       ok: false,
       error: err instanceof Error ? err.message : "Network error",
       simulated: false,
+      imageAttached: Boolean(payload.image),
     };
   }
 }

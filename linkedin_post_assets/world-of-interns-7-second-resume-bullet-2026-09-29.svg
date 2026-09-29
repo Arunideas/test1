@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">7-second resume bullet</title>
+  <desc id="desc">A World of Interns checklist card showing the three parts of a strong fresher resume bullet: action, tool, and result.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="255" font-size="58" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">7-second</text>
+  <text x="80" y="325" font-size="58" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">resume bullet</text>
+  <text x="80" y="380" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">Make the useful work visible in one line.</text>
+
+  <rect x="80" y="450" width="1040" height="128" rx="22" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <circle cx="145" cy="514" r="32" fill="#0b5cff"/>
+  <text x="145" y="526" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+  <text x="200" y="505" font-size="34" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Action</text>
+  <text x="200" y="545" font-size="25" fill="#5c6773" font-family="Arial, sans-serif">What you built, improved, analysed, or shipped.</text>
+
+  <rect x="80" y="610" width="1040" height="128" rx="22" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <circle cx="145" cy="674" r="32" fill="#0b5cff"/>
+  <text x="145" y="686" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+  <text x="200" y="665" font-size="34" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Tool</text>
+  <text x="200" y="705" font-size="25" fill="#5c6773" font-family="Arial, sans-serif">The skill, stack, method, or process you used.</text>
+
+  <rect x="80" y="770" width="1040" height="128" rx="22" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <circle cx="145" cy="834" r="32" fill="#0b5cff"/>
+  <text x="145" y="846" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+  <text x="200" y="825" font-size="34" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Result</text>
+  <text x="200" y="865" font-size="25" fill="#5c6773" font-family="Arial, sans-serif">What changed, even if the number is small.</text>
+
+  <rect x="80" y="955" width="1040" height="92" rx="18" fill="#23303a"/>
+  <text x="600" y="1013" font-size="30" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">One line: action + tool + result.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
