@@ -1,5 +1,6 @@
 import { newId, readDb, updateDb } from "../db";
 import type {
+  GeneratedImage,
   PublishJob,
   PublishLogLine,
   PublishMode,
@@ -23,6 +24,16 @@ function line(message: string, level: PublishLogLine["level"] = "info"): Publish
 function composeText(body: string, hashtags: string[]): string {
   const tags = hashtags?.length ? "\n\n" + hashtags.join(" ") : "";
   return body + tags;
+}
+
+function imageForJob(images: GeneratedImage[], job: PublishJob) {
+  if (!job.imageId) return null;
+  const image = images.find((img) => img.id === job.imageId);
+  if (!image) return null;
+  return {
+    data: image.svg,
+    altText: image.altText,
+  };
 }
 
 export interface SchedulePublishInput {
@@ -171,11 +182,29 @@ export async function processDueJobs(): Promise<{ processed: number }> {
         j.updatedAt = iso();
         j.log.push(line(`Publishing attempt ${j.attempts}/${j.maxAttempts}`));
       }
-      return due.map((j) => ({ id: j.id, text: j.text, visibility: j.visibility }));
+      return due.map((j) => {
+        const post = j.postId ? d.posts.find((p) => p.id === j.postId) : null;
+        const image = imageForJob(d.images, j);
+        return {
+          id: j.id,
+          text: j.text,
+          visibility: j.visibility,
+          image: image
+            ? {
+                ...image,
+                title: post?.topic || post?.title || "World of Interns image",
+              }
+            : null,
+        };
+      });
     });
 
     for (const c of claimed) {
-      const result = await publishToLinkedIn({ text: c.text, visibility: c.visibility });
+      const result = await publishToLinkedIn({
+        text: c.text,
+        visibility: c.visibility,
+        image: c.image,
+      });
       await updateDb((d) => {
         const job = d.publishJobs.find((j) => j.id === c.id);
         if (!job) return;
@@ -189,8 +218,10 @@ export async function processDueJobs(): Promise<{ processed: number }> {
           job.log.push(
             line(
               result.simulated
-                ? `Published (simulated): ${job.postUrl}`
-                : `Published: ${job.postUrl}`,
+                ? `Published (simulated${result.imageAttached ? " with image" : ""}): ${
+                    job.postUrl
+                  }`
+                : `Published${result.imageAttached ? " with image" : ""}: ${job.postUrl}`,
               "success"
             )
           );
