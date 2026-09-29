@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Skill proof lines resume checklist</title>
+  <desc id="desc">A World of Interns resume checklist card with columns for skill, where it shows up, and proof line.</desc>
+  <rect width="1200" height="1200" fill="#f4efe6"/>
+  <circle cx="1020" cy="165" r="130" fill="#eadfcd"/>
+  <circle cx="170" cy="1010" r="155" fill="#e8ddc9"/>
+  <path d="M96 250 C215 212 330 208 454 238 C588 271 705 278 818 245 C930 212 1027 219 1110 260" fill="none" stroke="#dbcdb8" stroke-width="16" stroke-linecap="round" opacity="0.75"/>
+  <rect x="150" y="116" width="900" height="968" rx="44" fill="#fffaf1" stroke="#2b2a28" stroke-width="4"/>
+  <rect x="150" y="116" width="900" height="130" rx="44" fill="#1f3d36"/>
+  <path d="M150 202 H1050 V246 H150 Z" fill="#1f3d36"/>
+  <text x="214" y="184" fill="#fffaf1" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" letter-spacing="2">WORLD OF INTERNS</text>
+  <text x="214" y="290" fill="#2b2a28" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="800">Skill proof lines</text>
+  <text x="216" y="340" fill="#6c655a" font-family="Arial, Helvetica, sans-serif" font-size="30">Do not only list the skill. Show where you used it.</text>
+
+  <rect x="214" y="404" width="772" height="92" rx="24" fill="#f1e6d3" stroke="#2b2a28" stroke-width="3"/>
+  <text x="254" y="462" fill="#2b2a28" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">Skill</text>
+  <text x="467" y="462" fill="#2b2a28" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">Where it shows up</text>
+  <text x="758" y="462" fill="#2b2a28" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">Proof line</text>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="214" y="524" width="772" height="118" rx="26" fill="#ffffff" stroke="#d5c7b3" stroke-width="3"/>
+    <circle cx="261" cy="583" r="22" fill="#f3b15e"/>
+    <path d="M250 583 l8 9 l16 -20" fill="none" stroke="#2b2a28" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="305" y="575" fill="#2b2a28" font-size="30" font-weight="800">Excel</text>
+    <text x="467" y="575" fill="#2b2a28" font-size="27">Project</text>
+    <text x="758" y="562" fill="#2b2a28" font-size="25">Cleaned data and</text>
+    <text x="758" y="596" fill="#2b2a28" font-size="25">built a summary</text>
+
+    <rect x="214" y="672" width="772" height="118" rx="26" fill="#ffffff" stroke="#d5c7b3" stroke-width="3"/>
+    <circle cx="261" cy="731" r="22" fill="#f3b15e"/>
+    <path d="M250 731 l8 9 l16 -20" fill="none" stroke="#2b2a28" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="305" y="723" fill="#2b2a28" font-size="30" font-weight="800">React</text>
+    <text x="467" y="723" fill="#2b2a28" font-size="27">Portfolio</text>
+    <text x="758" y="710" fill="#2b2a28" font-size="25">Built filters, forms,</text>
+    <text x="758" y="744" fill="#2b2a28" font-size="25">and local storage</text>
+
+    <rect x="214" y="820" width="772" height="118" rx="26" fill="#ffffff" stroke="#d5c7b3" stroke-width="3"/>
+    <circle cx="261" cy="879" r="22" fill="#f3b15e"/>
+    <path d="M250 879 l8 9 l16 -20" fill="none" stroke="#2b2a28" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="305" y="871" fill="#2b2a28" font-size="30" font-weight="800">Writing</text>
+    <text x="467" y="871" fill="#2b2a28" font-size="27">Club work</text>
+    <text x="758" y="858" fill="#2b2a28" font-size="25">Wrote weekly notes</text>
+    <text x="758" y="892" fill="#2b2a28" font-size="25">for the team</text>
+  </g>
+
+  <rect x="214" y="978" width="772" height="58" rx="29" fill="#1f3d36"/>
+  <text x="600" y="1016" text-anchor="middle" fill="#fffaf1" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">Ask: where is the evidence?</text>
+</svg>
