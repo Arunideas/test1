@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Resume skills need proof</title>
+  <desc id="desc">A World of Interns resume review card showing that skills listed on a fresher resume should be backed by project evidence.</desc>
+  <rect width="1200" height="1200" fill="#f8fafc"/>
+  <circle cx="1030" cy="150" r="190" fill="#dbeafe"/>
+  <circle cx="150" cy="1035" r="220" fill="#dcfce7"/>
+  <rect x="92" y="88" width="1016" height="1024" rx="52" fill="#ffffff" stroke="#dbe4ef" stroke-width="4"/>
+
+  <rect x="136" y="130" width="928" height="118" rx="30" fill="#0f172a"/>
+  <text x="178" y="187" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" letter-spacing="2">WORLD OF INTERNS</text>
+  <text x="178" y="224" fill="#bfdbfe" font-family="Arial, Helvetica, sans-serif" font-size="24">Tuesday Resume Review</text>
+
+  <text x="136" y="340" fill="#0f172a" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="800">Skills are not proof.</text>
+  <text x="136" y="414" fill="#0f172a" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="800">Work is proof.</text>
+  <rect x="136" y="454" width="470" height="12" rx="6" fill="#2563eb"/>
+
+  <rect x="136" y="535" width="420" height="240" rx="28" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
+  <text x="170" y="592" fill="#64748b" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">WEAK SECTION</text>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="31" fill="#1e293b">
+    <text x="170" y="652">Python</text>
+    <text x="170" y="702">Excel</text>
+    <text x="170" y="752">Communication</text>
+  </g>
+
+  <path d="M595 652 H690" stroke="#2563eb" stroke-width="18" stroke-linecap="round"/>
+  <path d="M660 612 L708 652 L660 692" fill="none" stroke="#2563eb" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="730" y="505" width="334" height="330" rx="28" fill="#eff6ff" stroke="#bfdbfe" stroke-width="3"/>
+  <text x="766" y="562" fill="#1d4ed8" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">BETTER PROOF</text>
+  <text x="766" y="630" fill="#0f172a" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">Excel</text>
+  <text x="766" y="685" fill="#1e293b" font-family="Arial, Helvetica, sans-serif" font-size="29">Cleaned a 3,000-row</text>
+  <text x="766" y="727" fill="#1e293b" font-family="Arial, Helvetica, sans-serif" font-size="29">dataset and built a</text>
+  <text x="766" y="769" fill="#1e293b" font-family="Arial, Helvetica, sans-serif" font-size="29">simple dashboard.</text>
+
+  <rect x="136" y="890" width="928" height="116" rx="26" fill="#fff7ed" stroke="#fed7aa" stroke-width="3"/>
+  <text x="176" y="936" fill="#9a3412" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="800">Keep 8-12 skills. Back each important one with evidence.</text>
+  <text x="176" y="982" fill="#9a3412" font-family="Arial, Helvetica, sans-serif" font-size="27">If you cannot explain it for two minutes, do not list it.</text>
+
+  <text x="136" y="1080" fill="#64748b" font-family="Arial, Helvetica, sans-serif" font-size="25">The skills section helps scanning. Project bullets build trust.</text>
+</svg>
