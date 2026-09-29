@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="World of Interns resume project line before and after proof card">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4efe6"/>
+      <stop offset="1" stop-color="#e7decd"/>
+    </linearGradient>
+    <filter id="paperShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#8b7f6b" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <circle cx="1010" cy="145" r="220" fill="#d9e4ff" opacity="0.55"/>
+  <circle cx="160" cy="1035" r="260" fill="#fff5d6" opacity="0.65"/>
+
+  <g>
+    <rect x="80" y="78" width="48" height="48" rx="11" fill="#0b5cff"/>
+    <text x="104" y="111" font-size="27" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="144" y="112" font-size="27" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="225" font-size="30" fill="#0b5cff" font-weight="800" font-family="Arial, sans-serif">RESUME PROJECT LINE CHECK</text>
+  <text x="80" y="292" font-size="58" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Show proof.</text>
+  <text x="80" y="360" font-size="58" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Not just a title.</text>
+
+  <g filter="url(#paperShadow)">
+    <rect x="80" y="455" width="500" height="425" rx="22" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+    <rect x="620" y="455" width="500" height="425" rx="22" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  </g>
+
+  <text x="126" y="520" font-size="30" fill="#c0492f" font-weight="800" font-family="Arial, sans-serif">WEAK</text>
+  <text x="666" y="520" font-size="30" fill="#2f7d4f" font-weight="800" font-family="Arial, sans-serif">STRONGER</text>
+
+  <text x="126" y="600" font-size="38" fill="#5c6773" font-weight="700" font-family="Georgia, 'Times New Roman', serif">Created an</text>
+  <text x="126" y="650" font-size="38" fill="#5c6773" font-weight="700" font-family="Georgia, 'Times New Roman', serif">ecommerce website</text>
+  <text x="126" y="700" font-size="38" fill="#5c6773" font-weight="700" font-family="Georgia, 'Times New Roman', serif">as a mini project.</text>
+
+  <text x="666" y="585" font-size="34" fill="#23303a" font-weight="700" font-family="Georgia, 'Times New Roman', serif">Built a mobile-first</text>
+  <text x="666" y="630" font-size="34" fill="#23303a" font-weight="700" font-family="Georgia, 'Times New Roman', serif">ecommerce demo with</text>
+  <text x="666" y="675" font-size="34" fill="#23303a" font-weight="700" font-family="Georgia, 'Times New Roman', serif">search, cart flow, and</text>
+  <text x="666" y="720" font-size="34" fill="#23303a" font-weight="700" font-family="Georgia, 'Times New Roman', serif">admin upload.</text>
+  <text x="666" y="765" font-size="34" fill="#23303a" font-weight="700" font-family="Georgia, 'Times New Roman', serif">Tested with 12 users.</text>
+
+  <line x1="126" y1="800" x2="520" y2="800" stroke="#d7cfbf" stroke-width="3"/>
+  <line x1="666" y1="800" x2="1060" y2="800" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="126" y="845" font-size="24" fill="#5c6773" font-family="Arial, sans-serif">Title only</text>
+  <text x="666" y="845" font-size="24" fill="#5c6773" font-family="Arial, sans-serif">Problem + action + result</text>
+
+  <g>
+    <rect x="112" y="940" width="976" height="120" rx="24" fill="#23303a"/>
+    <text x="156" y="991" font-size="30" fill="#ffffff" font-weight="800" font-family="Arial, sans-serif">Before sending your resume, ask:</text>
+    <text x="156" y="1038" font-size="29" fill="#f3efe7" font-family="Arial, sans-serif">Can someone understand my role without opening GitHub?</text>
+  </g>
+
+  <text x="600" y="1132" font-size="23" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
