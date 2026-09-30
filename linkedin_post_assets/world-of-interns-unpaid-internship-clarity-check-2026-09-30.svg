@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="World of Interns checklist visual: unpaid internship clarity check before accepting">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="255" font-size="62" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Before saying yes</text>
+  <text x="80" y="332" font-size="62" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">to unpaid work</text>
+  <text x="82" y="400" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">Free should still have structure.</text>
+
+  <rect x="80" y="475" width="455" height="360" rx="22" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="120" y="545" font-size="32" fill="#c0492f" font-weight="800" font-family="Arial, sans-serif">Weak signal</text>
+  <text x="120" y="625" font-size="38" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">"Great exposure"</text>
+  <text x="120" y="690" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">No mentor.</text>
+  <text x="120" y="745" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">No weekly scope.</text>
+  <text x="120" y="800" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">No proof of learning.</text>
+
+  <rect x="600" y="475" width="520" height="360" rx="22" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+  <text x="640" y="545" font-size="32" fill="#2f7d4f" font-weight="800" font-family="Arial, sans-serif">Better signal</text>
+  <g>
+    <circle cx="660" cy="625" r="15" fill="#0b5cff"/>
+    <text x="695" y="636" font-size="31" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Real weekly tasks</text>
+  </g>
+  <g>
+    <circle cx="660" cy="695" r="15" fill="#0b5cff"/>
+    <text x="695" y="706" font-size="31" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Named reviewer</text>
+  </g>
+  <g>
+    <circle cx="660" cy="765" r="15" fill="#0b5cff"/>
+    <text x="695" y="776" font-size="31" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">Clear portfolio proof</text>
+  </g>
+
+  <rect x="82" y="910" width="1038" height="116" rx="20" fill="#23303a"/>
+  <text x="600" y="962" font-size="32" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">Ask: What will a successful first month look like?</text>
+  <text x="600" y="1005" font-size="24" fill="#d7cfbf" text-anchor="middle" font-family="Arial, sans-serif">The answer tells you if the role has value.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
