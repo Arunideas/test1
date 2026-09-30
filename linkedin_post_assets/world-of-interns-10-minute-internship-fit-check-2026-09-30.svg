@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">The 10-minute fit check</title>
+  <desc id="desc">A World of Interns checklist card for deciding whether an internship is worth applying to today.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.06"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="245" font-size="56" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">The 10-minute</text>
+  <text x="80" y="315" font-size="56" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">fit check</text>
+  <text x="80" y="380" font-size="30" fill="#5c6773" font-family="Arial, sans-serif">Before you rewrite everything, check whether the role deserves your time.</text>
+
+  <rect x="80" y="455" width="1040" height="455" rx="24" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+
+  <g font-family="Arial, sans-serif">
+    <g>
+      <rect x="130" y="520" width="52" height="52" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M142 546 l14 15 l30 -38" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="210" y="555" font-size="34" fill="#23303a" font-weight="700">3 repeated role keywords</text>
+      <text x="210" y="595" font-size="24" fill="#5c6773">Look for the skills the posting asks for twice.</text>
+    </g>
+
+    <g>
+      <rect x="130" y="630" width="52" height="52" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M142 656 l14 15 l30 -38" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="210" y="665" font-size="34" fill="#23303a" font-weight="700">1 honest proof point</text>
+      <text x="210" y="705" font-size="24" fill="#5c6773">Project, coursework, result, or responsibility.</text>
+    </g>
+
+    <g>
+      <rect x="130" y="740" width="52" height="52" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M142 766 l14 15 l30 -38" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="210" y="775" font-size="34" fill="#23303a" font-weight="700">1 tailored sentence</text>
+      <text x="210" y="815" font-size="24" fill="#5c6773">Connect your proof to the internship's work.</text>
+    </g>
+
+    <g>
+      <rect x="130" y="850" width="52" height="52" rx="10" fill="none" stroke="#23303a" stroke-width="4"/>
+      <path d="M142 876 l14 15 l30 -38" fill="none" stroke="#2f7d4f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="210" y="885" font-size="34" fill="#23303a" font-weight="700">Apply today or skip</text>
+      <text x="210" y="925" font-size="24" fill="#5c6773">Save deep edits for roles that pass the check.</text>
+    </g>
+  </g>
+
+  <text x="80" y="1015" font-size="30" fill="#c0492f" font-weight="700" font-family="Arial, sans-serif">Relevant beats generic. Timely beats over-polished.</text>
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
