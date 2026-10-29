@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="World of Interns recruiter scan map checklist">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3efe7"/>
+      <stop offset="1" stop-color="#e9e3d6"/>
+    </linearGradient>
+    <filter id="paperNoise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.045"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#18212b" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#paperNoise)" opacity="0.08"/>
+
+  <g>
+    <rect x="80" y="80" width="46" height="46" rx="10" fill="#0b5cff"/>
+    <text x="103" y="112" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="140" y="112" font-size="26" fill="#23303a" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="80" y="225" font-size="34" fill="#5c6773" font-weight="700" font-family="Arial, sans-serif">RECRUITER INSIGHT</text>
+  <text x="80" y="300" font-size="62" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Recruiters scan</text>
+  <text x="80" y="372" font-size="62" fill="#23303a" font-weight="800" font-family="Georgia, 'Times New Roman', serif">for 4 things first</text>
+
+  <g filter="url(#softShadow)">
+    <rect x="80" y="450" width="1040" height="465" rx="28" fill="#fbf9f4" stroke="#d7cfbf" stroke-width="3"/>
+    <line x1="600" y1="492" x2="600" y2="873" stroke="#d7cfbf" stroke-width="3"/>
+    <line x1="128" y1="685" x2="1072" y2="685" stroke="#d7cfbf" stroke-width="3"/>
+
+    <circle cx="155" cy="565" r="34" fill="#0b5cff"/>
+    <text x="155" y="578" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+    <text x="215" y="550" font-size="39" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Role fit</text>
+    <text x="215" y="598" font-size="29" fill="#5c6773" font-family="Arial, sans-serif">Can I place you quickly?</text>
+
+    <circle cx="675" cy="565" r="34" fill="#0b5cff"/>
+    <text x="675" y="578" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+    <text x="735" y="550" font-size="39" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Visible proof</text>
+    <text x="735" y="598" font-size="29" fill="#5c6773" font-family="Arial, sans-serif">Where is the evidence?</text>
+
+    <circle cx="155" cy="790" r="34" fill="#0b5cff"/>
+    <text x="155" y="803" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+    <text x="215" y="775" font-size="39" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">One result</text>
+    <text x="215" y="823" font-size="29" fill="#5c6773" font-family="Arial, sans-serif">What changed because of you?</text>
+
+    <circle cx="675" cy="790" r="34" fill="#0b5cff"/>
+    <text x="675" y="803" font-size="34" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">4</text>
+    <text x="735" y="775" font-size="39" fill="#23303a" font-weight="800" font-family="Arial, sans-serif">Next step</text>
+    <text x="735" y="823" font-size="29" fill="#5c6773" font-family="Arial, sans-serif">Interview, task, or assessment?</text>
+  </g>
+
+  <rect x="132" y="975" width="936" height="72" rx="18" fill="#23303a" opacity="0.94"/>
+  <text x="600" y="1022" font-size="30" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">Make the scan easy. Do not make the recruiter translate.</text>
+
+  <text x="600" y="1130" font-size="22" fill="#5c6773" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in  -  practical, not promotional</text>
+</svg>
