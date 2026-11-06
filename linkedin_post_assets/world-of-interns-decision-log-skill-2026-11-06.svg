@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="World of Interns five line decision log card">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7f1e6"/>
+      <stop offset="1" stop-color="#e6ded0"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#17212b" flood-opacity="0.16"/>
+    </filter>
+    <filter id="paper">
+      <feTurbulence type="fractalNoise" baseFrequency="0.74" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.035"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" filter="url(#paper)" opacity="0.08"/>
+
+  <g>
+    <rect x="82" y="78" width="48" height="48" rx="11" fill="#0b5cff"/>
+    <text x="106" y="112" font-size="27" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">W</text>
+    <text x="146" y="112" font-size="27" fill="#24313d" font-weight="700" font-family="Arial, sans-serif">World of Interns</text>
+  </g>
+
+  <text x="82" y="212" font-size="32" fill="#687380" font-weight="700" font-family="Arial, sans-serif">FRIDAY FUTURE SKILL</text>
+  <text x="82" y="291" font-size="64" fill="#24313d" font-weight="800" font-family="Georgia, 'Times New Roman', serif">Keep a decision log</text>
+  <text x="82" y="363" font-size="64" fill="#24313d" font-weight="800" font-family="Georgia, 'Times New Roman', serif">while you work</text>
+
+  <g filter="url(#shadow)">
+    <rect x="82" y="438" width="1036" height="502" rx="30" fill="#fffaf1" stroke="#d5c9b7" stroke-width="3"/>
+    <text x="135" y="515" font-size="31" fill="#687380" font-weight="700" font-family="Arial, sans-serif">A five-line intern note</text>
+
+    <g>
+      <circle cx="154" cy="593" r="29" fill="#0b5cff"/>
+      <text x="154" y="604" font-size="28" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">1</text>
+      <text x="206" y="604" font-size="37" fill="#24313d" font-weight="800" font-family="Arial, sans-serif">Goal</text>
+      <text x="470" y="604" font-size="30" fill="#687380" font-family="Arial, sans-serif">What are we trying to improve?</text>
+    </g>
+
+    <line x1="136" y1="650" x2="1064" y2="650" stroke="#ded4c5" stroke-width="3"/>
+
+    <g>
+      <circle cx="154" cy="709" r="29" fill="#0b5cff"/>
+      <text x="154" y="720" font-size="28" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">2</text>
+      <text x="206" y="720" font-size="37" fill="#24313d" font-weight="800" font-family="Arial, sans-serif">Options</text>
+      <text x="470" y="720" font-size="30" fill="#687380" font-family="Arial, sans-serif">What choices did you compare?</text>
+    </g>
+
+    <line x1="136" y1="766" x2="1064" y2="766" stroke="#ded4c5" stroke-width="3"/>
+
+    <g>
+      <circle cx="154" cy="825" r="29" fill="#0b5cff"/>
+      <text x="154" y="836" font-size="28" fill="#ffffff" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">3</text>
+      <text x="206" y="836" font-size="37" fill="#24313d" font-weight="800" font-family="Arial, sans-serif">Constraint</text>
+      <text x="470" y="836" font-size="30" fill="#687380" font-family="Arial, sans-serif">What limit mattered most?</text>
+    </g>
+
+    <rect x="724" y="494" width="308" height="72" rx="18" fill="#e9f0ff" stroke="#bed0ff" stroke-width="2"/>
+    <text x="878" y="540" font-size="29" fill="#0b4fd6" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif">clear thinking</text>
+  </g>
+
+  <g>
+    <rect x="138" y="980" width="924" height="76" rx="20" fill="#24313d" opacity="0.95"/>
+    <text x="600" y="1028" font-size="30" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="Arial, sans-serif">Do not only report the task. Leave a trace of the thinking.</text>
+  </g>
+
+  <text x="600" y="1134" font-size="22" fill="#687380" text-anchor="middle" font-family="Arial, sans-serif">worldofinterns.in - practical, not promotional</text>
+</svg>
